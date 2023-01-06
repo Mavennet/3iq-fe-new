@@ -1,0 +1,40 @@
+@import '../../../styles/custom-media.css';
+
+.simple__block__content {
+  color: var(--black);
+  h1 {
+    font-size: var(--font-size-primary-xl);
+  }
+  h2 {
+    font-size: var(--font-size-primary-lg);
+  }
+  h3 {
+    font-size: var(--font-size-primary-md);
+  }
+  h4 {
+    font-size: var(--font-size-primary-sm);
+  }
+  h5 {
+    font-size: var(--font-size-primary-xs);
+  }
+  p {
+    font-size: var(--font-size-secondary-md);
+    font-weight: var(--font-weight-regular);
+    font-family: var(--font-family-secondary);
+  }
+}
+
+.blue {
+  color: var(--hover-blue);
+}
+
+.no__decoration {
+  text-decoration: none !important;
+}
+
+.line {
+  width: 100%;
+  height: 8px;
+  margin-bottom: 10px;
+  background: transparent linear-gradient(90deg, #EBEBEB 0%, #F2F2F2 100%) 0% 0% no-repeat padding-box;
+}

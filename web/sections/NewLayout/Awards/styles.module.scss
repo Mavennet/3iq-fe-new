@@ -1,0 +1,42 @@
+@import '../../../styles/custom-media.css';
+
+.full__width {
+  position: relative;
+  width: 100vw;
+  @media (--media-min-large) {
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+}
+
+.lines {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  height: auto;
+  @media (--media-min-large) {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    height: 100%;
+  }
+}
+
+.video {
+  position: relative;
+}
+
+.simple__block__content {
+  font-family: var(--font-family-secondary);
+  color: var(--white);
+  margin-right: 20px;
+  p {
+    font-size: var(--font-size-secondary-md);
+  }
+  strong {
+    font-size: var(--font-size-primary-md);
+  }
+}

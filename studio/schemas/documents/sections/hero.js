@@ -21,9 +21,55 @@ export default {
       title: 'Description',
     },
     {
+      name: 'fontColor',
+      type: 'string',
+      title: 'Font color',
+      description: 'Default: #FFF (White)',
+      options: {
+        list: [
+          { title: "Blue", value: "#0082E5" },
+          { title: "Green", value: "#008C86" },
+          { title: "Orange", value: "#F59B1E" },
+          { title: "White", value: "#FFFFFF" }
+        ],
+        layout: "radio"
+      }
+    },
+    {
       name: 'backgroundImage',
       type: 'image',
       title: 'Background image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'backgroundColor',
+      type: 'string',
+      title: 'Background color',
+      description: 'Default: #091b3f (Blue)',
+      options: {
+        list: [
+          { title: "Blue", value: "#0082E5" },
+          { title: "Green", value: "#008C86" },
+          { title: "Orange", value: "#F59B1E" },
+          { title: "White", value: "#FFFFFF" }
+        ],
+        layout: "radio"
+      }
+    },
+    {
+      name: 'sideImage',
+      type: 'image',
+      title: 'Optional Side Image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'bottomImage',
+      type: 'image',
+      title: 'Optional Bottom Image',
       options: {
         hotspot: true,
       },

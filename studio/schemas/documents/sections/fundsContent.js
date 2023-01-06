@@ -13,11 +13,31 @@ export default {
       validation: Rule => Rule.error('Information required.').required(),
     },
     {
+      name: 'isLightBlueLayout',
+      type: 'boolean',
+      title: 'Layout with light blue color?',
+      description: 'Enable this to use light blue layout',
+      initialValue: true,
+    },
+    {
       name: 'isFixedWhenScroll',
       type: 'boolean',
-      title: 'Stick navigation bar on top?',
-      description: 'Enable this to keep the navigation bar fixed at the top while scrolling the page on a desktop',
+      title: 'Using fixed menu when scroll page?',
+      description: 'Enable menu fixed when scroll page',
       initialValue: true,
+    },
+    {
+      name: 'showTitleSection',
+      type: 'boolean',
+      title: 'Show title in section?',
+      description: 'Enable the title over the section',
+      initialValue: false,
+    },
+    {
+      name: 'lastItem',
+      type: 'localeCta',
+      title: 'Last item link (Default: Ask 3iQ) (*)',
+      validation: Rule => Rule.error('Information required.').required(),
     },
     {
       name: 'fundItems',
