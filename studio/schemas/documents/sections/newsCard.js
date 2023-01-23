@@ -26,6 +26,13 @@ export default {
       initialValue: false,
     },
     {
+      name: 'hideHeader',
+      type: 'boolean',
+      title: 'Hide header layout?',
+      description: 'Enable this option to hide header ',
+      initialValue: false,
+    },
+    {
       name: 'shortDescription',
       type: 'localePortableText',
       title: 'Short description',
@@ -38,12 +45,6 @@ export default {
       description: "Optional short text about the selected post that will be shown only in the compacted/small view of the News Card",
     },
     {
-      name: 'buttonText',
-      type: 'localeString',
-      title: 'Button text (*)',
-      validation: Rule => Rule.error('Information required.').required(),
-    },
-    {
       name: 'route',
       type: 'reference',
       title: 'Route (*)',
@@ -54,6 +55,12 @@ export default {
           type: 'route',
         },
       ],
+    },
+    {
+      name: 'newsletterNumber',
+      type: 'string',
+      title: 'Newsletter Number (*)',
+      description: "Type a number if it's a Newsletter",
     },
   ],
   preview: {

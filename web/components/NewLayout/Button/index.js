@@ -2,6 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import styles from './styles.module.scss'
 import { FiChevronDown } from 'react-icons/fi'
+import {BsArrowUpRight} from 'react-icons/bs'
 import Link from 'next/link'
 
 function Button(props) {
@@ -11,6 +12,8 @@ function Button(props) {
     size = 'md',
     disabled = false,
     arrow = false,
+    onClick = null,
+    redirectArrow = false,
     route,
     link,
     target,
@@ -23,6 +26,7 @@ function Button(props) {
     solidOrange: styles.button__solid__orange,
     solidDarkBlue: styles.button__solid__darkblue,
     outlined: styles.button__outlined,
+    outlinedBlack: styles.button__outlined__black,
     outlinedWhite: styles.button__outlined__white,
   }
 
@@ -42,6 +46,7 @@ function Button(props) {
           >
             <div className={styles.button__title}>{title}</div>
             {arrow && (<FiChevronDown className={styles.arrow} />)}
+            {redirectArrow && (<BsArrowUpRight className={styles.redirect__arrow} />)}
           </button>
         </a>
       </Link>
@@ -57,6 +62,7 @@ function Button(props) {
         >
           <div className={styles.button__title}>{title}</div>
           {arrow && (<FiChevronDown className={styles.arrow} />)}
+          {redirectArrow && (<BsArrowUpRight className={styles.redirect__arrow} />)}
         </button>
       </a>
     )
@@ -66,9 +72,11 @@ function Button(props) {
     <button
       className={`${styles.button} ${typesStyle[variant]} ${size} ${className}`}
       disabled={disabled}
+      onClick={onClick}
     >
       <div className={styles.button__title}>{title}</div>
       {arrow && (<FiChevronDown className={styles.arrow} />)}
+      {redirectArrow && (<BsArrowUpRight className={styles.redirect__arrow} />)}
     </button>
   )
 }
@@ -79,6 +87,7 @@ Button.propTypes = {
   size: PropTypes.string,
   disabled: PropTypes.boolean,
   arrow: PropTypes.boolean,
+  arrowUp: PropTypes.boolean,
   route: PropTypes.shape({
     slug: PropTypes.shape({
       current: PropTypes.string,

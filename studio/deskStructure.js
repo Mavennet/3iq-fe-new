@@ -20,16 +20,21 @@ const hiddenDocTypes = listItem =>
     "country",
     "language",
     "person",
+    "benefity",
     "route",
     "textSection",
     "hero",
     "animatedHero",
     "heroWithImage",
+    "heroSailGP",
     "ourFunds",
     "componentsTests",
     "heroFirstVariation",
     "heroDoubleButton",
     "heroBigImage",
+    "heroNft",
+    "heroPreview",
+    "highlights",
     "imageBesideText",
     "doubleOptions",
     "imageWithText",
@@ -37,12 +42,15 @@ const hiddenDocTypes = listItem =>
     "mailchimp",
     "mainHero",
     "podcasts",
+    "search",
+    "articlesSearch",
     "teamsVideoDisplay",
     "keyBenefits",
     "benefitCard",
     "item",
     "note",
     "quoteHeads",
+    "quoteFounder",
     "quoteHeadsDubai",
     "readyToInvest",
     "awards",
@@ -55,6 +63,7 @@ const hiddenDocTypes = listItem =>
     "readMoreCard",
     "team",
     "teamsDisplay",
+    "whatWeOffer",
     "timeline",
     "timelineItem",
     "contactUsForm",
@@ -130,6 +139,8 @@ export default () =>
               S.documentTypeListItem("advertisement").title("Advertisement"),
               S.documentTypeListItem("mainHero").title("Main Hero"),
               S.documentTypeListItem("podcasts").title("Podcasts"),
+              S.documentTypeListItem("search").title("Search"),
+              S.documentTypeListItem("articlesSearch").title("Articles Search"),
               S.documentTypeListItem("teamsVideoDisplay").title("Teams Video Display"),
               S.documentTypeListItem("animatedHero").title("Animated Hero"),
               S.documentTypeListItem("automatedNewsCard").title(
@@ -147,15 +158,25 @@ export default () =>
               S.documentTypeListItem("hero").title("Hero"),
               S.documentTypeListItem("ourFunds").title("Our Funds"),
               S.documentTypeListItem("heroDoubleButton").title(
-                "Hero with 2 Buttons"
+                "Hero Fund"
               ),
               S.documentTypeListItem("heroBigImage").title(
                 "Hero with big image"
+              ),
+              S.documentTypeListItem("heroNft").title(
+                "Hero with NFT"
+              ),
+              S.documentTypeListItem("heroPreview").title(
+                "Hero Preview"
+              ),
+              S.documentTypeListItem("highlights").title(
+                "Highlights"
               ),
               S.documentTypeListItem("heroFirstVariation").title(
                 "Hero first variation"
               ),
               S.documentTypeListItem("heroWithImage").title("Hero with Image"),
+              S.documentTypeListItem("heroSailGP").title("Hero SailGP"),
               S.documentTypeListItem("componentsTests").title(
                 "Components Tests"
               ),
@@ -174,6 +195,7 @@ export default () =>
               S.documentTypeListItem("subscribeBlock").title("Subscribe Block"),
               S.documentTypeListItem("tabsContent").title("Tabs Content"),
               S.documentTypeListItem("teamsDisplay").title("Teams Display"),
+              S.documentTypeListItem("whatWeOffer").title("What We Offer"),
               S.documentTypeListItem("textSection").title("Text Block"),
               S.documentTypeListItem("plainText").title("Plain Text"),
               S.documentTypeListItem("post").title("Post"),
@@ -193,6 +215,7 @@ export default () =>
                 "Automated Articles"
               ),
               S.documentTypeListItem("awards").title("Awards"),
+              S.documentTypeListItem("advertisement").title("Advertisement"),
               S.documentTypeListItem("readyToInvest").title("Ready To Invest"),
               S.documentTypeListItem("fundsOverview").title("Funds Overview"),
               S.documentTypeListItem("fundsDisclaimer").title(
@@ -280,5 +303,6 @@ export default () =>
             )
         ),
       S.documentTypeListItem("person").title("Members"),
+      S.documentTypeListItem("benefity").title("Benefitys"),
       ...S.documentTypeListItems().filter(hiddenDocTypes)
     ]);

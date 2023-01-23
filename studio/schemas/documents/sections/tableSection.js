@@ -54,6 +54,19 @@ export default {
       initialValue: false,
     },
     {
+      title: "Color",
+      name: "color",
+      type: "string",
+      options: {
+        list: [
+          { title: "Light Blue", value: "lightBlue" },
+          { title: "Dark Blue", value: "darkBlue" },
+          { title: "Orange", value: "orange" },
+        ],
+        layout: "radio"
+      }
+    },
+    {
       name: 'downloadButton',
       type: 'boolean',
       title: 'Enable download button?',
@@ -83,8 +96,8 @@ export default {
     {
       name: 'embed',
       type: 'localePortableText',
-      title: 'HTML Table',
-      description: 'Create an optional hardcoded HTML table through the EmbedHTML tag. Also, through this same field you can add any text to display above either the Endpoint API table or the HTML one',
+      title: 'Description',
+      description: 'This field you can add any text to display above either the Endpoint API table or the HTML one',
       fieldset: 'tableComposition',
     },
   ],

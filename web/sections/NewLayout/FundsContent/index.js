@@ -15,9 +15,10 @@ import Link from 'next/link'
 function FundsContent(props) {
   const {
     currentLanguage,
+    enableArrows,
     lastItem,
     fundItems,
-    isLightBlueLayout,
+    menuColor,
     showTitleSection,
     currentCountry,
     allRoutes,
@@ -84,139 +85,157 @@ function FundsContent(props) {
     }
   }, [scrollPosition])
 
+  const typesStyle = {
+    lightBlue: styles.light__blue,
+    darkBlue: styles.dark__blue,
+    darkGray: styles.dark__gray,
+  }
+
+  const arrowStyle = {
+    lightBlue: styles.arrow__light__blue,
+    darkBlue: styles.arrow__dark__blue,
+    darkGray: styles.arrow__dark__gray,
+  }
+
   return (
-    <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' }, background: 'var(--background-color)' }}>
-      <Grid container>
-        <Grid item xs={12}>
-          <Box ref={fixedNavRef} className={navFixed && isFixedWhenScroll && styles.fixedLayout} sx={{ position: 'relative' }}>
-            {
-              !isLightBlueLayout && (
-                <div className={styles.arrow___left} onClick={() => handleArrow('prev')}>
-                  <SlArrowLeft size={20} />
-                </div>
-              )
-            }
-            <div className={`${styles.menu} ${isLightBlueLayout ? styles.light__blue : styles.dark__blue}`} ref={containerRef}>
-              <ul>
-                {fundItems &&
-                  fundItems.map((item, i) => {
-                    return (
-                      <li key={i}>
-                        <a href={`#section_${i}`}>{item.localeName[currentLanguage.languageTag]}</a>
-                      </li>
-                    )
-                  })}
+    <>
+      <Container sx={{ background: 'var(--background-color)', maxWidth: { sm: 'md', md: 'lg', xl: 'xl' } }}>
+        <Grid container>
+          <Grid item xs={12}>
+            <Box className={navFixed && isFixedWhenScroll && styles.fixedLayout}>
+              <Box ref={fixedNavRef} sx={{ position: 'relative' }}>
                 {
-                  lastItem?.[currentLanguage.languageTag]?.route &&
-                  lastItem?.[currentLanguage.languageTag].route?.slug &&
-                  lastItem?.[currentLanguage.languageTag].route?.slug.current && (
-                    <li>
-                      <Link
-                        href={{
-                          pathname: '/LandingPage',
-                          query: { slug: lastItem[currentLanguage.languageTag].route.slug.current },
-                        }}
-                        as={`/${lastItem[currentLanguage.languageTag].route.slug.current}`}
-                      >
-                        <a>{lastItem[currentLanguage.languageTag].title}</a>
-                      </Link>
-                    </li>
+                  enableArrows && (
+                    <div className={`${styles.arrow___left} ${arrowStyle[menuColor]}`} onClick={() => handleArrow('prev')}>
+                      <SlArrowLeft size={20} />
+                    </div>
                   )
                 }
+                <div className={`${styles.menu} ${typesStyle[menuColor]}`} ref={containerRef}>
+                  <ul>
+                    {fundItems &&
+                      fundItems.map((item, i) => {
+                        return (
+                          <li key={i}>
+                            <a href={`#section_${i}`}>{item.localeName[currentLanguage.languageTag]}</a>
+                          </li>
+                        )
+                      })}
+                    {
+                      lastItem?.[currentLanguage.languageTag]?.route &&
+                      lastItem?.[currentLanguage.languageTag].route?.slug &&
+                      lastItem?.[currentLanguage.languageTag].route?.slug.current && (
+                        <li>
+                          <Link
+                            href={{
+                              pathname: '/LandingPage',
+                              query: { slug: lastItem[currentLanguage.languageTag].route.slug.current },
+                            }}
+                            as={`/${lastItem[currentLanguage.languageTag].route.slug.current}`}
+                          >
+                            <a>{lastItem[currentLanguage.languageTag].title}</a>
+                          </Link>
+                        </li>
+                      )
+                    }
 
-              </ul>
-            </div>
-            {
-              !isLightBlueLayout && (
-                <div className={styles.arrow___right} onClick={() => handleArrow('next')}>
-                  <SlArrowRight size={20} />
+                  </ul>
                 </div>
-              )
-            }
-          </Box>
-
+                {
+                  enableArrows && (
+                    <div className={`${styles.arrow___right} ${arrowStyle[menuColor]}`} onClick={() => handleArrow('next')}>
+                      <SlArrowRight size={20} />
+                    </div>
+                  )
+                }
+              </Box>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      </Container>
       {fundItems &&
         fundItems.map((fundItem, index) => (
-          <section id={`section_${index}`} key={`fundItem${index}`}>
-            <Grid container mt={4} spacing={2} py={2}>
-              {showTitleSection && (
-                <Grid item xs={12}>
-                  <h2>{fundItem.localeName[currentLanguage.languageTag]}</h2>
-                </Grid>
-              )}
-              {fundItem.products &&
-                fundItem.products.map((product, index) => (
-                  <Grid item xs={12} md={fundItem.products.length === 1 ? 12 : 6} key={`product_${index}`}>
-                    <Grid container>
-                      <Grid item xs={12} my={4} sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                        {product.productIcon && (
-                          <div className={`${styles.icon} ${product.buttonColor ? styles[product.buttonColor] : styles.solid}`}>
-                            {icons[product.productIcon]}
+          <section id={`section_${index}`} key={`fundItem${index}`} style={{ backgroundColor: fundItem.bgColor ? fundItem.bgColor : 'var(--background-color)' }}>
+            <Container sx={{ maxWidth: { sm: 'md', md: 'lg', xl: 'xl' } }}>
+              <Grid container mt={4} spacing={2}>
+                {!fundItem.hiddenTitle && (
+                  <Grid item xs={12} mb={4}>
+                    <h2>{fundItem.localeName[currentLanguage.languageTag]}</h2>
+                  </Grid>
+                )}
+                {fundItem.products &&
+                  fundItem.products.map((product, index) => (
+                    <Grid item xs={12} mb={5} md={6} key={`product_${index}`}>
+                      <Grid container>
+                        <Grid item xs={12} my={0} sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                          {product.productIcon && (
+                            <div className={`${styles.icon} ${product.buttonColor ? styles[product.buttonColor] : styles.solid}`}>
+                              {icons[product.productIcon]}
+                            </div>
+                          )}
+                          <div className={styles.title__product}>
+                            <h3>{product.localeName[currentLanguage.languageTag]}</h3>
+                            <h5>
+                              {product.codes && (
+                                product.codes.map((code) => (
+                                  code + ', '
+                                ))
+                              )}
+                            </h5>
                           </div>
-                        )}
-                        <div className={styles.title__product}>
-                          <h3>{product.localeName[currentLanguage.languageTag]}</h3>
-                          <h5>
-                            {product.codes && (
-                              product.codes.map((code) => (
-                                code + ', '
-                              ))
-                            )}
-                          </h5>
-                        </div>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <div className={styles.simple__block__content}>
-                          {product.localeHighlights &&
-                            product.localeHighlights[currentLanguage.languageTag] && (
-                              <SimpleBlockContent
-                                blocks={product.localeHighlights[currentLanguage.languageTag]}
-                              />
-                            )}
-                        </div>
-                        {fundItem.localeReadMoreText && (
-                          <Button
-                            route={product.readMoreRoute && product.readMoreRoute}
-                            title={fundItem.localeReadMoreText[currentLanguage.languageTag]}
-                            variant={product.buttonColor ? product.buttonColor : 'solid'}
-                          />
-                        )}
-                      </Grid>
-                      <Grid xs={12}>
-                        {product.localeObservation && (
-                          <p className={styles.observation}>{product.localeObservation[currentLanguage.languageTag]}</p>
-                        )}
+                        </Grid>
+                        <Grid item xs={12}>
+                          <div className={styles.simple__block__content}>
+                            {product.localeHighlights &&
+                              product.localeHighlights[currentLanguage.languageTag] && (
+                                <SimpleBlockContent
+                                  blocks={product.localeHighlights[currentLanguage.languageTag]}
+                                />
+                              )}
+                          </div>
+                          {fundItem.localeReadMoreText && (
+                            <Button
+                              route={product.readMoreRoute && product.readMoreRoute}
+                              title={fundItem.localeReadMoreText[currentLanguage.languageTag]}
+                              variant={product.buttonColor ? product.buttonColor : 'solid'}
+                            />
+                          )}
+                        </Grid>
+                        <Grid xs={12}>
+                          {product.localeObservation && (
+                            <p className={styles.observation}>{product.localeObservation[currentLanguage.languageTag]}</p>
+                          )}
+                        </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
-                ))}
-              {fundItem.fundSections && (
-                <RenderSections
-                  sections={createSection(fundItem.fundSections)}
-                  routes={allRoutes}
-                  benefits={allBenefits}
-                  items={allItems}
-                  // posts={allPosts}
-                  teams={allTeams}
-                  timelines={allTimelines}
-                  locationsDisplays={allLocationsDisplays}
-                  tabItems={allTabItems}
-                />
-              )}
-            </Grid>
+                  ))}
+                {fundItem.fundSections && (
+                  <RenderSections
+                    sections={createSection(fundItem.fundSections)}
+                    routes={allRoutes}
+                    benefits={allBenefits}
+                    items={allItems}
+                    // posts={allPosts}
+                    teams={allTeams}
+                    timelines={allTimelines}
+                    locationsDisplays={allLocationsDisplays}
+                    tabItems={allTabItems}
+                  />
+                )}
+              </Grid>
+            </Container>
           </section>
         ))}
-    </Container>
+    </>
   )
 }
 
 FundsContent.propTypes = {
+  enableArrows: PropTypes.bool,
   currentLanguage: PropTypes.object,
   currentCountry: PropTypes.object,
   fundItems: PropTypes.fundItems,
-  isLightBlueLayout: PropTypes.bool,
+  menuColor: PropTypes.string,
   showTitleSection: PropTypes.bool,
   allRoutes: PropTypes.object,
   allBenefits: PropTypes.object,

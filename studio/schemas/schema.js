@@ -6,6 +6,7 @@ import page from "./documents/page";
 import route from "./documents/route";
 import siteConfig from "./documents/siteConfig";
 import person from "./documents/person";
+import benefity from "./documents/benefity";
 import country from "./documents/country";
 import language from "./documents/language";
 import post from "./documents/post";
@@ -26,6 +27,7 @@ import imagesContainer from "./documents/imagesContainer";
 // Section documents
 import textSection from "./documents/sections/textSection";
 import heroWithImage from "./documents/sections/heroWithImage";
+import heroSailGP from "./documents/sections/heroSailGP";
 import ourFunds from "./documents/sections/ourFunds";
 import componentsTests from "./documents/sections/componentsTests";
 import animatedHero from "./documents/sections/animatedHero";
@@ -33,14 +35,20 @@ import hero from "./documents/sections/hero";
 import heroFirstVariation from "./documents/sections/heroFirstVariation";
 import heroDoubleButton from "./documents/sections/heroDoubleButton";
 import heroBigImage from "./documents/sections/heroBigImage";
+import heroNft from './documents/sections/heroNft';
+import heroPreview from './documents/sections/heroPreview';
+import highlights from './documents/sections/highlights';
 import imageWithText from "./documents/sections/imageWithText";
 import mailchimp from "./documents/sections/mailchimp";
 import advertisement from "./documents/sections/advertisement";
 import mainHero from "./documents/sections/mainHero";
 import podcasts from "./documents/sections/podcasts";
+import search from "./documents/sections/search";
+import articlesSearch from "./documents/sections/articlesSearch";
 import teamsVideoDisplay from "./documents/sections/teamsVideoDisplay";
 import imageBesideText from "./documents/sections/imageBesideText";
 import quoteHeads from "./documents/sections/quoteHeads";
+import quoteFounder from "./documents/sections/quoteFounder";
 import quoteHeadsDubai from "./documents/sections/quoteHeadsDubai";
 import fundsDisclaimer from "./documents/sections/fundsDisclaimer";
 import readyToInvest from "./documents/sections/readyToInvest";
@@ -54,6 +62,7 @@ import automatedNewsCard from "./documents/sections/automatedNewsCard";
 import automatedArticles from "./documents/sections/automatedArticles";
 import readMoreCard from "./documents/sections/readMoreCard";
 import teamsDisplay from "./documents/sections/teamsDisplay";
+import whatWeOffer from "./documents/sections/whatWeOffer";
 import timeline from "./documents/sections/timeline";
 import contactUsForm from "./documents/sections/contactUsForm";
 import subscribeForm from "./documents/sections/subscribeForm";
@@ -105,6 +114,8 @@ export default createSchema({
     advertisement,
     mainHero,
     podcasts,
+    search,
+    articlesSearch,
     teamsVideoDisplay,
     page,
     portableText,
@@ -115,6 +126,7 @@ export default createSchema({
     bioPortableText,
     postPortableText,
     person,
+    benefity,
     doubleOptions,
     keyBenefits,
     benefitCard,
@@ -125,18 +137,23 @@ export default createSchema({
     localeString,
     localeText,
     heroWithImage,
+    heroSailGP,
     ourFunds,
     componentsTests,
     animatedHero,
     heroFirstVariation,
     heroDoubleButton,
     heroBigImage,
+    heroNft,
+    heroPreview,
+    highlights,
     imageBesideText,
     hero,
     localeCta,
     localeSimplePortableText,
     note,
     quoteHeads,
+    quoteFounder,
     quoteHeadsDubai,
     fundsDisclaimer,
     readyToInvest,
@@ -151,6 +168,7 @@ export default createSchema({
     localeBioPortableText,
     team,
     teamsDisplay,
+    whatWeOffer,
     timeline,
     timelineItem,
     subscribeForm,
