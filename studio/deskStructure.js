@@ -60,6 +60,7 @@ const hiddenDocTypes = listItem =>
     "sideBySideImages",
     "menuItem",
     "newsCard",
+    "categoriesList",
     "automatedNewsCard",
     "automatedArticles",
     "readMoreCard",
@@ -141,6 +142,7 @@ export default () =>
               S.documentTypeListItem("mailchimp").title("Mailchimp"),
               S.documentTypeListItem("advertisement").title("Advertisement"),
               S.documentTypeListItem("accordionText").title("Accordion Text"),
+              S.documentTypeListItem("categoriesList").title("Categories List"),
               S.documentTypeListItem("mainHero").title("Main Hero"),
               S.documentTypeListItem("podcasts").title("Podcasts"),
               S.documentTypeListItem("search").title("Search"),
@@ -149,6 +151,9 @@ export default () =>
               S.documentTypeListItem("animatedHero").title("Animated Hero"),
               S.documentTypeListItem("automatedNewsCard").title(
                 "Automated News Card"
+              ),
+              S.documentTypeListItem("automatedArticles").title(
+                "Automated Articles"
               ),
               S.documentTypeListItem("contactUsForm").title("Contact Us Form"),
               S.documentTypeListItem("subscribeForm").title("Subscribe Form"),

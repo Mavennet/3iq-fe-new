@@ -4,6 +4,8 @@ import client from '../../../client'
 import {
   Grid,
   Container,
+  Box,
+  Typography
 } from '@mui/material'
 import Button from '../../../components/NewLayout/Button'
 import groq from 'groq'
@@ -12,7 +14,7 @@ import ArticleCard from '../../../components/NewLayout/ArticleCard'
 import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io'
 
 function AutomatedArticles(props) {
-  const { selectedPostCategory, currentLanguage, button, name } = props
+  const { selectedPostCategory, currentLanguage, button, name, align, buttonInHeader, articlesCount = 3 } = props
 
   const localeButton = button && button[currentLanguage?.languageTag]
 
@@ -35,7 +37,7 @@ function AutomatedArticles(props) {
           _id,
           _type,
           publishedAt,
-        }[0..2]`,
+        }[0..${articlesCount - 1}]`,
         { categoryId: selectedPostCategory._ref }
       )
       .then((response) => {
@@ -72,7 +74,7 @@ function AutomatedArticles(props) {
                     profilePhoto,
                   },
                 },
-              }[0..2]`,
+              }[0..${articlesCount - 1}]`,
               { postsIds: postsId }
             )
             .then((res) => {
@@ -90,12 +92,24 @@ function AutomatedArticles(props) {
   }, [])
 
   return (
-    <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
+    <Container sx={{ maxWidth: { sm: 'md', lg: 'xl' } }}>
       <Grid container pb={4} mt={10}>
         {
           name && (
-            <Grid item xs={12} mb={8} sx={{ display: 'flex', alignItems: 'center', justifyContent: { xs: 'space-between', md: 'center' } }}>
-              <h2 className={styles.title}>{name}</h2>
+            <Grid item xs={12} mb={2} p={{ xs: 1, md: 2 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Typography
+                variant="h2"
+                className={styles.title}
+                sx={{
+                  fontSize: 'var(--font-size-primary-lg)',
+                  fontFamily: 'var(--font-family-primary)',
+                  color: 'var(--black)',
+                  textAlign: align ? align : 'center',
+                  width: buttonInHeader ? 'auto' : '100%'
+                }}
+              >
+                {name}
+              </Typography>
               <div className={styles.arrows}>
                 <IoIosArrowDropleft
                   size={40}
@@ -106,23 +120,39 @@ function AutomatedArticles(props) {
                   onClick={() => handleArrow('next')}
                 />
               </div>
+              {
+                localeButton && (localeButton.route || localeButton.link) && buttonInHeader && (
+                  <Box
+                    sx={{
+                      display: { xs: 'none', md: 'block' }
+                    }}
+                  >
+                    <Button
+                      {...localeButton}
+                      variant={'outlinedBlack'}
+                      arrow={false}
+                      size={'sm'}
+                      redirectArrow={true}
+                    />
+                  </Box>
+                )
+              }
             </Grid>
           )
         }
-        <Grid container spacing={{xs: 0, md: 6}}>
+        <Grid container>
           <div className={styles.news__container} ref={containerRef}>
             {
               articles && (
-                articles.map((item) => {
+                articles.map((item, i) => {
                   return (
-                    <Grid item xs={12} sm={6} mb={4} p={{xs: 1, md: 2}}>
+                    <Grid item xs={12} sm={6} mb={4} p={{ xs: 1, md: 2 }}>
                       <ArticleCard
                         {...item}
                         currentLanguage={currentLanguage}
                         key={item._id}
                       />
                     </Grid>
-
                   )
                 })
               )
@@ -130,7 +160,7 @@ function AutomatedArticles(props) {
           </div>
         </Grid>
         {
-          localeButton && (localeButton.route || localeButton.link) && (
+          localeButton && (localeButton.route || localeButton.link) && !buttonInHeader && (
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }} mt={3}>
               <Button
                 {...localeButton}
@@ -147,6 +177,9 @@ function AutomatedArticles(props) {
 
 AutomatedArticles.propTypes = {
   name: PropTypes.string,
+  align: PropTypes.string,
+  articlesCount: PropTypes.number,
+  buttonInHeader: PropTypes.bool,
   selectedPostCategory: PropTypes.object,
   currentLanguage: PropTypes.object,
   button: PropTypes.object
