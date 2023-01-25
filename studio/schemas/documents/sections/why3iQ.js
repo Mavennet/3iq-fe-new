@@ -5,8 +5,8 @@ const baseLanguage = supportedLanguages.find(l => l.isDefault);
 
 export default {
   type: 'document',
-  name: 'whatWeOffer',
-  title: 'What We Offer',
+  name: 'why3iQ',
+  title: 'Why 3iQ',
   icon: SplitHorizontalIcon,
   fields: [
     {
@@ -51,7 +51,7 @@ export default {
       const title = name
       return {
         title,
-        subtitle: 'What We Offer section',
+        subtitle: 'Why 3iQ section',
       };
     },
   },

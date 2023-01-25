@@ -65,7 +65,7 @@ import automatedNewsCard from "./documents/sections/automatedNewsCard";
 import automatedArticles from "./documents/sections/automatedArticles";
 import readMoreCard from "./documents/sections/readMoreCard";
 import teamsDisplay from "./documents/sections/teamsDisplay";
-import whatWeOffer from "./documents/sections/whatWeOffer";
+import why3iQ from "./documents/sections/why3iQ";
 import AccordionText from './documents/sections/accordionText';
 import timeline from "./documents/sections/timeline";
 import contactUsForm from "./documents/sections/contactUsForm";
@@ -83,6 +83,7 @@ import lineChart from "./documents/sections/lineChart";
 import tableSection from "./documents/sections/tableSection";
 import tableCripto from "./documents/sections/tableCripto";
 import articles from "./documents/sections/articles";
+import howWePartnerClients from "./documents/sections/howWePartnerClients";
 
 // Object types
 import cta from "./objects/cta";
@@ -176,7 +177,7 @@ export default createSchema({
     localeBioPortableText,
     team,
     teamsDisplay,
-    whatWeOffer,
+    why3iQ,
     accordionText,
     timeline,
     timelineItem,
@@ -204,6 +205,7 @@ export default createSchema({
     tableSection,
     tableCripto,
     articles,
-    localeFigure
+    localeFigure,
+    howWePartnerClients
   ])
 });

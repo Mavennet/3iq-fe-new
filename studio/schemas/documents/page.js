@@ -64,7 +64,7 @@ export default {
             { type: "heroPreview" },
             { type: "highlights" },
             { type: "teamsDisplay" },
-            { type: "whatWeOffer" },
+            { type: "why3iQ" },
             { type: "accordionText" },
             { type: "contactUsForm" },
             { type: "subscribeForm" },
@@ -88,7 +88,8 @@ export default {
             { type: "fundsOverview" },
             { type: "timeline" },
             { type: "imageBesideText" },
-            { type: "articles" }
+            { type: "articles" },
+            { type: "howWePartnerClients"}
           ]
         }
       ]

@@ -66,7 +66,7 @@ const hiddenDocTypes = listItem =>
     "readMoreCard",
     "team",
     "teamsDisplay",
-    "whatWeOffer",
+    "why3iQ",
     "accordionText",
     "timeline",
     "timelineItem",
@@ -92,7 +92,8 @@ const hiddenDocTypes = listItem =>
     "lineChart",
     "tableSection",
     "tableCripto",
-    "articles"
+    "articles",
+    "howWePartnerClients"
   ].includes(listItem.getId());
 
 export default () =>
@@ -207,12 +208,15 @@ export default () =>
               S.documentTypeListItem("subscribeBlock").title("Subscribe Block"),
               S.documentTypeListItem("tabsContent").title("Tabs Content"),
               S.documentTypeListItem("teamsDisplay").title("Teams Display"),
-              S.documentTypeListItem("whatWeOffer").title("What We Offer"),
+              S.documentTypeListItem("why3iQ").title("Why 3iQ"),
               S.documentTypeListItem("textSection").title("Text Block"),
               S.documentTypeListItem("plainText").title("Plain Text"),
               S.documentTypeListItem("post").title("Post"),
               S.documentTypeListItem("textSeparator").title("Text Separator"),
-              S.documentTypeListItem("timeline").title("Timeline")
+              S.documentTypeListItem("timeline").title("Timeline"),
+              S.documentTypeListItem("howWePartnerClients").title(
+                "How We Partner Clients"
+              ),
             ])
         ),
       S.listItem()

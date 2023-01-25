@@ -8,7 +8,7 @@ import client from '../../../client'
 import Image from 'next/image'
 import groq from 'groq'
 
-function WhatWeOffer(props) {
+function Why3iQ(props) {
 
   const { name, benefitys, currentLanguage } = props
 
@@ -46,7 +46,7 @@ function WhatWeOffer(props) {
   }, [])
 
   return (
-    <Box sx={{ background: '#ECECEC' }} py={12}>
+    <Box py={12}>
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
         <Grid container>
           <Grid item xs={12}>
@@ -77,8 +77,8 @@ function WhatWeOffer(props) {
                             <Image
                               src={urlFor(item.imageIcon.asset._ref).url()}
                               alt={item.name[currentLanguage.languageTag]}
-                              width={58}
-                              height={58}
+                              width={36}
+                              height={36}
                             />
                           )
                         }
@@ -92,7 +92,7 @@ function WhatWeOffer(props) {
                             sx={{
                               fontFamily: 'var(--font-family-primary)',
                               fontSize: 'var(--font-size-primary-md)',
-                              color: 'var(--black)',
+                              color: '#1495F8',
                               wordBreak: 'break-word'
                             }}
                           >
@@ -121,10 +121,10 @@ function WhatWeOffer(props) {
   )
 }
 
-WhatWeOffer.propTypes = {
+Why3iQ.propTypes = {
   name: PropTypes.string,
   benefitys: PropTypes.object,
   currentLanguage: PropTypes.object,
 }
 
-export default WhatWeOffer
+export default Why3iQ
