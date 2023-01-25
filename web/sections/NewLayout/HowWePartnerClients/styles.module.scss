@@ -44,6 +44,11 @@
   .button {
     padding: 10px 50px;
     word-break: break-all;
+    background-color: white; /* Green */
+    color: black;
+    &:hover {
+        color: white;
+      }
   }
   
   .green {
