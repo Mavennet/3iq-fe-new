@@ -84,6 +84,7 @@ import tableSection from "./documents/sections/tableSection";
 import tableCripto from "./documents/sections/tableCripto";
 import articles from "./documents/sections/articles";
 import howWePartnerClients from "./documents/sections/howWePartnerClients";
+import serviceAndSolutions from "./documents/sections/serviceAndSolutions";
 
 // Object types
 import cta from "./objects/cta";
@@ -206,6 +207,7 @@ export default createSchema({
     tableCripto,
     articles,
     localeFigure,
-    howWePartnerClients
+    howWePartnerClients,
+    serviceAndSolutions
   ])
 });

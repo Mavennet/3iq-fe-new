@@ -89,7 +89,8 @@ export default {
             { type: "timeline" },
             { type: "imageBesideText" },
             { type: "articles" },
-            { type: "howWePartnerClients"}
+            { type: "howWePartnerClients"},
+            { type: "serviceAndSolutions"}
           ]
         }
       ]

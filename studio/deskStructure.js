@@ -93,7 +93,8 @@ const hiddenDocTypes = listItem =>
     "tableSection",
     "tableCripto",
     "articles",
-    "howWePartnerClients"
+    "howWePartnerClients",
+    "serviceAndSolutions"
   ].includes(listItem.getId());
 
 export default () =>
@@ -217,6 +218,8 @@ export default () =>
               S.documentTypeListItem("howWePartnerClients").title(
                 "How We Partner Clients"
               ),
+              S.documentTypeListItem("serviceAndSolutions").title(
+                "Service And Solutions")
             ])
         ),
       S.listItem()
