@@ -90,7 +90,8 @@ export default {
             { type: "imageBesideText" },
             { type: "articles" },
             { type: "howWePartnerClients"},
-            { type: "serviceAndSolutions"}
+            { type: "serviceAndSolutions"},
+            { type: "ocioServices"}
           ]
         }
       ]

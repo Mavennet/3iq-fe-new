@@ -24,6 +24,7 @@ import fundCard from "./documents/fundCard";
 import fundSidebarItem from "./documents/fundSidebarItem";
 import category from "./documents/category";
 import imagesContainer from "./documents/imagesContainer";
+import services from "./documents/services";
 
 // Section documents
 import textSection from "./documents/sections/textSection";
@@ -85,6 +86,7 @@ import tableCripto from "./documents/sections/tableCripto";
 import articles from "./documents/sections/articles";
 import howWePartnerClients from "./documents/sections/howWePartnerClients";
 import serviceAndSolutions from "./documents/sections/serviceAndSolutions";
+import ocioServices from "./documents/sections/ocioServices";
 
 // Object types
 import cta from "./objects/cta";
@@ -208,6 +210,8 @@ export default createSchema({
     articles,
     localeFigure,
     howWePartnerClients,
-    serviceAndSolutions
+    serviceAndSolutions,
+    ocioServices,
+    services
   ])
 });

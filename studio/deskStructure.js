@@ -94,7 +94,9 @@ const hiddenDocTypes = listItem =>
     "tableCripto",
     "articles",
     "howWePartnerClients",
-    "serviceAndSolutions"
+    "serviceAndSolutions", 
+    "ocioServices",
+    "services"
   ].includes(listItem.getId());
 
 export default () =>
@@ -219,7 +221,9 @@ export default () =>
                 "How We Partner Clients"
               ),
               S.documentTypeListItem("serviceAndSolutions").title(
-                "Service And Solutions")
+                "Service And Solutions"),
+                S.documentTypeListItem("ocioServices").title(
+                  "OCIO Services"),            
             ])
         ),
       S.listItem()
@@ -324,5 +328,6 @@ export default () =>
       S.documentTypeListItem("person").title("Members"),
       S.documentTypeListItem("benefity").title("Benefitys"),
       S.documentTypeListItem("accordionItem").title("Accordion Item"),
+      S.documentTypeListItem("services").title("Services"),
       ...S.documentTypeListItems().filter(hiddenDocTypes)
     ]);
