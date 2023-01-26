@@ -13,6 +13,7 @@ import client from '../../../client'
 import {getPathFromSlug} from '../../../utils/urls'
 import SimpleBlockContent from '../../OldLayout/SimpleBlockContent'
 import Button from '../Button'
+import ButtonTextArea from '../../../components/NewLayout/ButtonTextArea'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -215,15 +216,15 @@ function Footer(props) {
                   />
                 </div>
               )}
-              {currentCountry.urlTag === 'ca' && currentCountry.newsletterSubscribeSrc && (
-                <iframe
-                  src={currentCountry.newsletterSubscribeSrc}
-                  width="100%"
-                  height="280"
-                  type="text/html"
-                  frameBorder="0"
-                  aria-label="newsletter subscription"
-                ></iframe>
+              <Box sx={{paddingBottom: {md: '20px', xs: '25px'}}}></Box>
+              <ButtonTextArea size="md" placeholder="Ex: john@email.com" buttonTitle="Send"/>
+              <Box sx={{paddingBottom: {md: '20px', xs: '25px'}}}></Box>
+              {currentCountry.newsLetterText && (
+                <div className={styles.newsletter}>
+                  <SimpleBlockContent
+                    blocks={currentCountry.newsLetterText[currentLanguage?.languageTag]}
+                  />
+                </div>
               )}
             </Grid>
           </Grid>

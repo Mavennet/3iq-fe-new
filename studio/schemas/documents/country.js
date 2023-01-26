@@ -158,6 +158,12 @@ export default {
       title: 'Youtube URL',
     },
     {
+      name: 'newsLetterText',
+      type: 'localePortableText',
+      title: 'Newsletter Text (*)',
+      validation: Rule => Rule.error('Information required.').required(),
+    },
+    {
       name: 'footerBottomContent',
       type: 'localePortableText',
       title: 'Footer bottom content (*)',
