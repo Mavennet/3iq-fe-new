@@ -17,10 +17,8 @@ function Header(props) {
 
   const router = useRouter()
 
-  const [showSearch, setShowSearch] = useState(false)
   const [showNav, setShowNav] = React.useState(false)
   const [logoLanguage, setLogoLanguage] = React.useState(null)
-  const [searchTerm, setSearchTerm] = useState(null)
 
   const size = useWindowSize()
 
@@ -32,17 +30,6 @@ function Header(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage.languageTag, size])
 
-  function handleSearch(e) {
-    setSearchTerm(e.target.value)
-  }
-
-  const watchKey = (event) => {
-    if (event.key === 'Enter') {
-      router.replace(`/${currentCountry.urlTag}/${currentCountry.searchPageRoute.slug.current}?searchTerm=${searchTerm}`)
-      setShowSearch(false)
-      setShowNav(false)
-    }
-  }
 
   return (
     <>
@@ -69,15 +56,6 @@ function Header(props) {
               />
             </Box>
             <Box pl={2}>
-              <Box m={1.5}>
-              <Form
-                value={searchTerm}
-                onKeyDown={(e) => watchKey(e)}
-                onChange={(e) => handleSearch(e)}
-                placeholder={'Type something and press enter to search'}
-              />
-              </Box>
-         
               <ul>
                 {navItems &&
                   navItems.map((item) =>
@@ -223,18 +201,6 @@ function Header(props) {
             </Box>
           </Toolbar>
         </Container>
-        {showSearch && (
-          <Container maxWidth="xl" sx={{borderTop: '0.8px solid var(--gray)'}}>
-            <Box my={2.5}>
-              <Form
-                value={searchTerm}
-                onKeyDown={(e) => watchKey(e)}
-                onChange={(e) => handleSearch(e)}
-                placeholder={'Type something and press enter to search'}
-              />
-            </Box>
-          </Container>
-        )}
       </AppBar>
     </>
   )
