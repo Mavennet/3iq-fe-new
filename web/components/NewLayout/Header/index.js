@@ -8,7 +8,7 @@ import NavItem from './NavItem'
 import NavItemDropdown from './NavItemDropdown'
 import {FiMenu} from 'react-icons/fi'
 import {IoMdClose} from 'react-icons/io'
-import CountryAndLanguageSwitch from '../CountryAndLanguageSwitch'
+import CountryAndLanguageFixed from '../CountryAndLanguageFixed'
 import Form from '../Form'
 import { useRouter } from 'next/router'
 
@@ -160,7 +160,7 @@ function Header(props) {
                       ))
                   )}
                 <div className={styles.separator}></div>
-                <CountryAndLanguageSwitch
+                <CountryAndLanguageFixed
                   currentCountry={currentCountry}
                   currentLanguage={currentLanguage}
                   setLanguage={setLanguage}
@@ -179,7 +179,7 @@ function Header(props) {
                     display: {xs: 'flex', sm: 'none', md: 'none'},
                   }}
                 >
-                  <CountryAndLanguageSwitch
+                  <CountryAndLanguageFixed
                     currentCountry={currentCountry}
                     currentLanguage={currentLanguage}
                     setLanguage={setLanguage}
