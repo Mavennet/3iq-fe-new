@@ -42,7 +42,7 @@ export const DATA_COUNTRIES = groq`
   shareThisStoryText,
   newsLetterText,
   caUrl,
-  uSUrl,
+  usUrl,
   aeUrl,
   contactUrl,
 }
