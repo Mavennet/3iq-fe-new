@@ -10,7 +10,6 @@ import {FiMenu} from 'react-icons/fi'
 import {IoMdClose} from 'react-icons/io'
 import CountryAndLanguageSwitch from '../CountryAndLanguageSwitch'
 import Form from '../Form'
-import {FiSearch} from 'react-icons/fi'
 import { useRouter } from 'next/router'
 
 function Header(props) {
@@ -157,10 +156,6 @@ function Header(props) {
               </Box>
               {/* NavBar Menu - Desktop */}
               <Box sx={{ml: 'auto', display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
-                <FiSearch
-                  className={styles.searchIcon}
-                  onClick={() => setShowSearch(!showSearch)}
-                />
                 <div className={styles.separator}></div>
                 {navItems &&
                   navItems.map(
