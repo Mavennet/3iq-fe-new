@@ -191,23 +191,23 @@ function Footer(props) {
                 </Box>
               </Grid>
             </Grid>
-            <Grid item md={3} xs={12}>
-              <Link href={currentCountry?.caUrl} color="inherit" target="_blank" rel="noopener">
-                <p>3iq.ca</p>
+            <Grid item md={3} xs={12} className={styles.newsletter}>
+              <Link underline="hover" href={currentCountry?.caUrl} target="_blank" rel="noopener">
+                <p style={{ margin: '14px 0px'}}>3iq.ca</p>
               </Link>
-              <Link href={currentCountry?.usUrl} color="inherit" target="_blank" rel="noopener">
-                <p>3iq-us.com</p>
+              <Link underline="hover" href={currentCountry?.usUrl} target="_blank" rel="noopener">
+                <p style={{ margin: '14px 0px'}}>3iq-us.com</p>
               </Link>
-              <Link href={currentCountry?.aeUrl} color="inherit" target="_blank" rel="noopener">
-                <p>3iq.ae</p>
+              <Link underline="hover" href={currentCountry?.aeUrl} target="_blank" rel="noopener">
+                <p style={{ margin: '14px 0px'}}>3iq.ae</p>
               </Link>
               <Link
+                underline="hover" 
                 href={currentCountry?.contactUrl}
-                color="inherit"
                 target="_blank"
                 rel="noopener"
               >
-                <p>Contact</p>
+                <p style={{ margin: '14px 0px'}}>Contact</p>
               </Link>
             </Grid>
             <Grid item md={3} xs={12} mt={{xs: 2, md: 0}}>
