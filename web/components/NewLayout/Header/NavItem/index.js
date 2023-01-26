@@ -7,22 +7,92 @@ import PropTypes from 'prop-types'
 function NavItem(props) {
   const { route, title, _id, isLinkEnabled } = props
   return (
-    <Link
-      key={_id}
-      href={isLinkEnabled && getPathFromSlug(route?.slug?.current)}
-      sx={{textDecoration: 'none'}}
-    >
-      <Box
-        className={styles.menuItem}
-        sx={{
-          width: {xs: '100%', lg: 'auto'},
-          marginLeft: {xs: '0', lg: '20px'},
-          padding: {xs: '12px 16px', lg: '0px'},
-          textTransform: 'capitalize',
-          position: 'relative'
-        }}
-      >{title || 'Missing'}</Box>
-    </Link>
+    <>
+      <Link
+        key={_id}
+        href={isLinkEnabled && getPathFromSlug(route?.slug?.current)}
+        sx={{textDecoration: 'none'}}
+      >
+        <Box
+          className={styles.menuItem}
+          sx={{
+            width: {xs: '100%', lg: 'auto'},
+            marginLeft: {xs: '0', lg: '20px'},
+            padding: {xs: '12px 16px', lg: '0px'},
+            textTransform: 'capitalize',
+            position: 'relative'
+          }}
+        >{title || 'Missing'}</Box>
+      </Link>
+      <Link
+        key={_id}
+        rel="noreferrer"
+        href="https://3iq-new.netlify.app/research-education"
+        sx={{textDecoration: 'none'}}
+      >
+        <Box
+          className={styles.menuItem}
+          sx={{
+            width: {xs: '100%', lg: 'auto'},
+            marginLeft: {xs: '0', lg: '20px'},
+            padding: {xs: '12px 16px', lg: '0px'},
+            textTransform: 'capitalize',
+            position: 'relative'
+          }}
+        >Research & Education</Box>
+      </Link>
+      <Link
+        key={_id}
+        rel="noreferrer"
+        href="https://3iq-new.netlify.app/our-story"
+        sx={{textDecoration: 'none'}}
+      >
+        <Box
+          className={styles.menuItem}
+          sx={{
+            width: {xs: '100%', lg: 'auto'},
+            marginLeft: {xs: '0', lg: '20px'},
+            padding: {xs: '12px 16px', lg: '0px'},
+            textTransform: 'capitalize',
+            position: 'relative'
+          }}
+        >About</Box>
+      </Link>
+      <Link
+        key={_id}
+        rel="noreferrer"
+        href="https://3iq-new.netlify.app/contact-us"
+        sx={{textDecoration: 'none'}}
+      >
+        <Box
+          className={styles.menuItem}
+          sx={{
+            width: {xs: '100%', lg: 'auto'},
+            marginLeft: {xs: '0', lg: '20px'},
+            padding: {xs: '12px 16px', lg: '0px'},
+            textTransform: 'capitalize',
+            position: 'relative'
+          }}
+        >Contact</Box>
+      </Link>
+      <Link
+        key={_id}
+        rel="noreferrer"
+        href="https://3iq-new.netlify.app/subscribe"
+        sx={{textDecoration: 'none'}}
+      >
+        <Box
+          className={styles.menuItem}
+          sx={{
+            width: {xs: '100%', lg: 'auto'},
+            marginLeft: {xs: '0', lg: '20px'},
+            padding: {xs: '12px 16px', lg: '0px'},
+            textTransform: 'capitalize',
+            position: 'relative'
+          }}
+        >Subscribe</Box>
+      </Link>
+    </>
   )
 }
 
