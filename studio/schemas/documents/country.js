@@ -158,6 +158,26 @@ export default {
       title: 'Youtube URL',
     },
     {
+      name: 'caUrl',
+      type: 'url',
+      title: '3iQ CA URL',
+    },
+    {
+      name: 'aeUrl',
+      type: 'url',
+      title: '3iQ AE URL',
+    },
+    {
+      name: 'contactUrl',
+      type: 'url',
+      title: 'Contact URL',
+    },
+    {
+      name: 'usUrl',
+      type: 'url',
+      title: '3iQ US URL',
+    },
+    {
       name: 'newsLetterText',
       type: 'localePortableText',
       title: 'Newsletter Text (*)',

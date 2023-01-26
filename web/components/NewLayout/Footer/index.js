@@ -192,21 +192,23 @@ function Footer(props) {
               </Grid>
             </Grid>
             <Grid item md={3} xs={12}>
-              {currentCountry.footerNavigation &&
-                currentCountry.footerNavigation.map((item, key) => {
-                  return (
-                    <Link
-                      key={item._id}
-                      href={getPathFromSlug(item?.slug?.current)}
-                      underline="hover"
-                      color="inherit"
-                    >
-                      <p className={styles.navigation}>
-                        {item.localeTitle[currentLanguage?.languageTag]}
-                      </p>
-                    </Link>
-                  )
-                })}
+              <Link href={currentCountry?.caUrl} color="inherit" target="_blank" rel="noopener">
+                <p>3iq.ca</p>
+              </Link>
+              <Link href={currentCountry?.usUrl} color="inherit" target="_blank" rel="noopener">
+                <p>3iq-us.com</p>
+              </Link>
+              <Link href={currentCountry?.aeUrl} color="inherit" target="_blank" rel="noopener">
+                <p>3iq.ae</p>
+              </Link>
+              <Link
+                href={currentCountry?.contactUrl}
+                color="inherit"
+                target="_blank"
+                rel="noopener"
+              >
+                <p>Contact</p>
+              </Link>
             </Grid>
             <Grid item md={3} xs={12} mt={{xs: 2, md: 0}}>
               {currentCountry.newsletterBody && (
@@ -217,7 +219,7 @@ function Footer(props) {
                 </div>
               )}
               <Box sx={{paddingBottom: {md: '20px', xs: '25px'}}}></Box>
-              <ButtonTextArea size="md" placeholder="Ex: john@email.com" buttonTitle="Send"/>
+              <ButtonTextArea size="md" placeholder="Ex: john@email.com" buttonTitle="Send" />
               <Box sx={{paddingBottom: {md: '20px', xs: '25px'}}}></Box>
               {currentCountry.newsLetterText && (
                 <div className={styles.newsletter}>
