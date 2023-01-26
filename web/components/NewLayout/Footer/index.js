@@ -210,25 +210,6 @@ function Footer(props) {
                 <p style={{ margin: '14px 0px'}}>Contact</p>
               </Link>
             </Grid>
-            <Grid item md={3} xs={12} mt={{xs: 2, md: 0}}>
-              {currentCountry.newsletterBody && (
-                <div className={styles.newsletter}>
-                  <SimpleBlockContent
-                    blocks={currentCountry.newsletterBody[currentLanguage?.languageTag]}
-                  />
-                </div>
-              )}
-              <Box sx={{paddingBottom: {md: '20px', xs: '25px'}}}></Box>
-              <ButtonTextArea size="md" placeholder="Ex: john@email.com" buttonTitle="Send" />
-              <Box sx={{paddingBottom: {md: '20px', xs: '25px'}}}></Box>
-              {currentCountry.newsLetterText && (
-                <div className={styles.newsletter}>
-                  <SimpleBlockContent
-                    blocks={currentCountry.newsLetterText[currentLanguage?.languageTag]}
-                  />
-                </div>
-              )}
-            </Grid>
           </Grid>
         </Grid>
       </Container>
