@@ -27,7 +27,7 @@ function NavItem(props) {
       <Link
         key={_id}
         rel="noreferrer"
-        href="https://3iq-new.netlify.app/research-education"
+        href="https://3iq.ca/research-education"
         sx={{textDecoration: 'none'}}
       >
         <Box
@@ -44,7 +44,7 @@ function NavItem(props) {
       <Link
         key={_id}
         rel="noreferrer"
-        href="https://3iq-new.netlify.app/our-story"
+        href="https://3iq.ca/our-story"
         sx={{textDecoration: 'none'}}
       >
         <Box
@@ -61,7 +61,7 @@ function NavItem(props) {
       <Link
         key={_id}
         rel="noreferrer"
-        href="https://3iq-new.netlify.app/contact-us"
+        href="https://3iq.ca/contact-us"
         sx={{textDecoration: 'none'}}
       >
         <Box
@@ -78,7 +78,7 @@ function NavItem(props) {
       <Link
         key={_id}
         rel="noreferrer"
-        href="https://3iq-new.netlify.app/subscribe"
+        href="https://3iq.ca/subscribe"
         sx={{textDecoration: 'none'}}
       >
         <Box
