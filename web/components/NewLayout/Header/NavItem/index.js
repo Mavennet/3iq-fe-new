@@ -25,6 +25,7 @@ function NavItem(props) {
         >{title || 'Missing'}</Box>
       </Link>
       <Link
+        target="_blank" 
         key={_id}
         rel="noreferrer"
         href="https://3iq.ca/research-education"
@@ -42,6 +43,7 @@ function NavItem(props) {
         >Research & Education</Box>
       </Link>
       <Link
+        target="_blank" 
         key={_id}
         rel="noreferrer"
         href="https://3iq.ca/our-story"
@@ -59,6 +61,7 @@ function NavItem(props) {
         >About</Box>
       </Link>
       <Link
+        target="_blank" 
         key={_id}
         rel="noreferrer"
         href="https://3iq.ca/contact-us"
@@ -76,6 +79,7 @@ function NavItem(props) {
         >Contact</Box>
       </Link>
       <Link
+        target="_blank" 
         key={_id}
         rel="noreferrer"
         href="https://3iq.ca/subscribe"
