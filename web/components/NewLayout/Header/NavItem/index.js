@@ -82,7 +82,7 @@ function NavItem(props) {
         target="_blank" 
         key={_id}
         rel="noreferrer"
-        href="https://3iq.ca/subscribe"
+        href="mailto:ocio@3iq.ca?subject=Website%20Inquiry:%20Hey%203iQ!"
         sx={{textDecoration: 'none'}}
       >
         <Box
