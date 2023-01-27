@@ -64,7 +64,7 @@ function NavItem(props) {
         target="_blank" 
         key={_id}
         rel="noreferrer"
-        href="https://3iq.ca/contact-us"
+        href="mailto:ocio@3iq.ca?subject=Website%20Inquiry:%20Hey%203iQ!"
         sx={{textDecoration: 'none'}}
       >
         <Box
@@ -82,7 +82,7 @@ function NavItem(props) {
         target="_blank" 
         key={_id}
         rel="noreferrer"
-        href="mailto:ocio@3iq.ca?subject=Website%20Inquiry:%20Hey%203iQ!"
+        href="https://3iq.ca/subscribe"
         sx={{textDecoration: 'none'}}
       >
         <Box
