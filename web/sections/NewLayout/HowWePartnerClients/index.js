@@ -19,7 +19,7 @@ function HowWePartnerClients(props) {
     greenLayout,
     shortDescription,
     buttonText,
-    route,
+    emailUrl,
     post,
     currentLanguage
   } = props
@@ -127,12 +127,12 @@ function HowWePartnerClients(props) {
               </Typography>
             )}
             {
-              buttonText && route && (
+              buttonText && emailUrl && (
                 <Button
                   title={buttonText}
                   variant={'solid'}
                   className={styles.button}
-                  route={route}
+                  link={emailUrl}
                 />
               )
             }
@@ -149,8 +149,8 @@ HowWePartnerClients.propTypes = {
   greenLayout: PropTypes.bool,
   hideHeading: PropTypes.bool,
   shortDescription: PropTypes.object,
+  emailUrl: PropTypes.object,
   buttonText: PropTypes.string,
-  route: PropTypes.object,
   post: PropTypes.object,
   currentLanguage: PropTypes.object,
 }
