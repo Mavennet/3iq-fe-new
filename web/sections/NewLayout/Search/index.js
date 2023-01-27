@@ -207,8 +207,6 @@ function Search(props) {
 
   async function search() {
     if (categories.length > 0) {
-      let categoryIds = []
-      categories.map((c) => categoryIds.push(c._id))
       // let webinars =
       if (
         searchTerm &&

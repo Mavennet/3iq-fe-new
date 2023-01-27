@@ -13,7 +13,7 @@ export default {
       name: 'name',
       type: 'localeString',
       title: 'Name (*)',
-      validation: Rule => Rule.error('Information required.').required(),
+      validation: Rule => Rule.error('Max Length: 30 caracteres.').required().max(30),
     },
     {
       name: 'searchCategory',
