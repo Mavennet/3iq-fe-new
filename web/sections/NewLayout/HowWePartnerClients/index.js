@@ -132,7 +132,7 @@ function HowWePartnerClients(props) {
                   title={buttonText}
                   variant={'solid'}
                   className={styles.button}
-                  link={emailUrl}
+                  link='mailto:ocio@3iq.ca?subject=Website%20Inquiry:%20Hey%203iQ!'
                 />
               )
             }
