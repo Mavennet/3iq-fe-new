@@ -77,85 +77,17 @@ function Hero(props) {
         }}
       >
         <Container sx={{ maxWidth: {sm: 'md', lg: 'lg'} }}>
-          <Box sx={{p: '5 1', pr: 1, pl:{xs: 1}}}>
-            <Box sx={{pt: 5, pr: {md: 30, sm: 10}, color: '#fff', align: 'left'}}>
-              <Typography component="h1" variant="h3" style={{fontWeight: 'bold'}} gutterBottom>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+            <Typography component="h1" variant="h3" style={{fontWeight: 'bold'}} gutterBottom>
                 {heading}
               </Typography>
               <div className={styles.simpleBlockContent}>
                 {description && <SimpleBlockContent blocks={description} />}
               </div>
-            </Box>
-
-            {isSubscriptionSrcLink && localeButton && localeButton.link ? (
-              <Button
-                variant="contained"
-                onClick={() => handleOpen(localeButton.link)}
-                sx={{
-                  background: '#dc6e19',
-                  border: '3px solid #dc6e19',
-                  textTransform: 'none',
-                  whiteSpace: 'normal',
-                  display: 'block',
-                  color: 'white',
-                  '&:hover': {
-                    background: 'none',
-                    color: '#dc6e19',
-                  },
-                  mt: 8,
-                  width: {xs: '100%', md: 'auto'},
-                  padding: '8px 25px',
-                  fontSize: '20px',
-                  fontWeight: '400',
-                }}
-                >
-                {localeButton.title || 'Missing button title'}
-              </Button>
-            ) :
-              !isSubscriptionSrcLink && localeButton && (localeButton.route || localeButton.link) && (
-                <RedirectButton
-                {...localeButton}
-                reverse={!!isButtonReverse}
-                sx={{mt: 8, width: {xs: '100%', md: 'auto'}, padding: '8px 25px', fontSize: '20px', fontWeight: '400'}}
-                ></RedirectButton>
-            )}
-
-          </Box>
-        </Container>
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={modalStyle}>
-            <Box
-              onClick={() => setOpen(false)}
-              sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                mb: 6,
-                cursor: 'pointer'
-              }}
-            >
-              <AiOutlineClose size={26} />
-            </Box>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <iframe
-                  src={iframeSelected}
-                  width='100%'
-                  height='350'
-                  type='text/html'
-                  frameBorder='0'
-                  aria-label='newsletter subscription'
-                  allowTransparency='true'
-                >
-                </iframe>
-              </Grid>
             </Grid>
-          </Box>
-        </Modal>
+          </Grid>
+        </Container>
       </Box>
     </ThemeProvider>
   )

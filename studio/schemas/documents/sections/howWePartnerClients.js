@@ -10,7 +10,7 @@ export default {
   fields: [
     {
       name: "heading",
-      type: "localeString",
+      type: "localePortableText",
       title: "Heading (*)",
       validation: Rule => Rule.error("Information required.").required()
     },
@@ -29,7 +29,7 @@ export default {
         "Select the post that this card should refer to. It is a good practice to keep only 1 News Card per Post, since it will avoid duplicates being displayed when enabling the News Cards Paginated Layout on a Tab Item",
       to: [
         {
-          type: "post"
+          type: "postV2"
         }
       ]
     },

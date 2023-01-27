@@ -25,6 +25,8 @@ import fundSidebarItem from "./documents/fundSidebarItem";
 import category from "./documents/category";
 import imagesContainer from "./documents/imagesContainer";
 import services from "./documents/services";
+import postV2 from "./documents/postV2";
+
 
 // Section documents
 import textSection from "./documents/sections/textSection";
@@ -212,6 +214,7 @@ export default createSchema({
     howWePartnerClients,
     serviceAndSolutions,
     ocioServices,
-    services
+    services,
+    postV2
   ])
 });

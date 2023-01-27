@@ -46,7 +46,7 @@ function ServiceAndSolutions(props) {
   }, [])
 
   return (
-    <Box py={12} sx={{ marginBottom: "0px"}}>
+    <Box pb={5} pt={12} sx={{ marginBottom: "0px"}}>
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
         <Grid container>
           <Grid item xs={12}>

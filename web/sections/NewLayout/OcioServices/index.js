@@ -47,7 +47,7 @@ function OcioServices(props) {
   }, [])
 
   return (
-    <Box py={12}>
+    <Box pb={12}>
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
         <Grid container>
           <Grid item xs={12}>
@@ -74,7 +74,9 @@ function OcioServices(props) {
                     {
                       item.name && (
                         <Grid item xs={12}>
-                          <Typography
+                          <ul className={styles.bulletPointsUl}>
+                            <li>
+                          <Typography 
                             variant="h4"
                             sx={{
                               fontFamily: 'var(--font-family-primary)',
@@ -86,6 +88,8 @@ function OcioServices(props) {
                           >
                             {item.name[currentLanguage.languageTag]}
                           </Typography>
+                          </li>
+                          </ul>
                         </Grid>
                       )
                     }

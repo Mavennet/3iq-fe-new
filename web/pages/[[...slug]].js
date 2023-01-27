@@ -27,9 +27,9 @@ export const getServerSideProps = async ({ params }) => {
   const country = 'ca'
 
   if (params?.slug) {
-    if (countries.indexOf(params.slug[0]) >= 0) {
+    // if (countries.indexOf(params.slug[0]) >= 0) {
       params.slug.shift()
-    }
+    // }
   }
 
   const slug = slugParamToPath(params?.slug)
@@ -40,23 +40,13 @@ export const getServerSideProps = async ({ params }) => {
 
   // Regular route
   if (country) {
-    if (slug === 'home') {
-      data = await client
-        .fetch(
-          // Get the route document with the home slug for the given country
-          DATA_EQUALS_SLUG,
-          { possibleSlug: `${country}/home`, country: country }
-        )
-        .then((res) => (res?.page ? { ...res.page, slug } : undefined))
-    } else {
       data = await client
         .fetch(
           // Get the route document with one of the possible slugs for the given requested path
           DATA_IN_SLUG,
-          { possibleSlugs: getSlugVariations(country, slug), country: country }
+          { possibleSlugs: getSlugVariations(country, 'ocio'), country: country }
         )
         .then((res) => (res?.page ? { ...res.page, slug } : undefined))
-    }
   } else {
     data = await client
       .fetch(
@@ -216,10 +206,9 @@ const LandingPage = (props) => {
           currentCountry: country,
           currentLanguage,
         })
-    } else {
-      router.replace(`/${country.urlTag}/home`)
+      router.replace(`/ocio`)
     }
-  }, [currentLanguage, config, content, country, dataCountries])
+  }, [currentLanguage]) //TODO: FIND OUT THE ISSUE HERE 
 
   const openGraphImages = openGraphImage
     ? [
@@ -260,9 +249,9 @@ const LandingPage = (props) => {
       <Layout config={formatedConfig}>
         <NextSeo
           title={localeTitle}
-          titleTemplate={`%s | ${config.title}`}
+          titleTemplate="OCIO | 3iQ"
           description={localeDescription}
-          canonical={config.url && `${config.url}/${slug}`}
+          canonical={config.url && `${config.url}`}
           openGraph={{
             images: openGraphImages,
           }}

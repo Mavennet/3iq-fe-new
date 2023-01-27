@@ -4,7 +4,7 @@
       position: absolute;
       top: -10px;
       left: -20px;
-      color: var(--white);
+      color: white !important;
       font-weight: 300;
       font-family: var(--font-family-primary);
       font-size: var(--font-size-primary-xl);
@@ -15,7 +15,7 @@
     color: var(--white);
     h1 {
       font-size: var(--font-size-primary-xl);
-      color: var(--white);
+      color: white; 
     }
     h2 {
       font-size: var(--font-size-primary-lg);
@@ -65,4 +65,5 @@
   .blue {
     background-color: #0D1C3D;
   }
+
   

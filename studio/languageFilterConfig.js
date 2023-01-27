@@ -81,7 +81,8 @@ export default {
     "tableCripto",
     "lineChart",
     "articles",
-    "automatedArticles"
+    "automatedArticles",
+    "postV2"
   ],
   filterField: (enclosingType, field, selectedLanguageIds) =>
     !enclosingType.name.startsWith("locale") ||

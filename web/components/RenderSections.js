@@ -246,7 +246,6 @@ function RenderSections(props) {
     console.error('Missing section')
     return <div>Missing sections</div>
   }
-
   return (
     <Fragment>
       {sections.map((section) => {

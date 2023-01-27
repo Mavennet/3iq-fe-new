@@ -96,7 +96,8 @@ const hiddenDocTypes = listItem =>
     "howWePartnerClients",
     "serviceAndSolutions", 
     "ocioServices",
-    "services"
+    "services",
+    "postV2"
   ].includes(listItem.getId());
 
 export default () =>
