@@ -86,8 +86,9 @@ function NavItem(props) {
         sx={{textDecoration: 'none'}}
       >
         <Box
-          className={styles.menuItem}
+          className={styles.subscribeButton}
           sx={{
+            color: '#0082E5',
             width: {xs: '100%', lg: 'auto'},
             marginLeft: {xs: '0', lg: '20px'},
             padding: {xs: '12px 16px', lg: '0px'},
