@@ -69,9 +69,9 @@ function HowWePartnerClients(props) {
       className={greenLayout ? styles.green : styles.blue}
     >
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg', xl: 'xl' } }}>
-        <Grid container spacing={{ xs: 0, md: 4 }} sx={{display: 'flex', alignItems: 'center'}}>
-          <Grid item xs={12} md={7} mb={4}>
-            <div className={styles.image}>
+        <Grid container spacing={{ xs: 0, md: 4 }} sx={{display: 'flex', alignItems: 'flex-end'}}>
+          <Grid item xs={12} md={7}>
+            <div className={styles.image} style={{ display: 'flex', alignItems: 'flex-end'}}>
               <Box
                 component="img"
                 sx={{
