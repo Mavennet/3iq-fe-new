@@ -203,7 +203,7 @@ function Footer(props) {
               </Link>
               <Link
                 underline="hover" 
-                href={currentCountry?.contactUrl}
+                href="mailto:ocio@3iq.ca?subject=Website%20Inquiry:%20Hey%203iQ!"
                 target="_blank"
                 rel="noopener"
               >
