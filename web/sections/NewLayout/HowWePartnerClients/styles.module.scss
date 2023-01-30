@@ -2,10 +2,11 @@
     position: relative;
     .heading {
       position: absolute;
-      top: -70px;
-      left: -2px;
+      top: -85px;
+      left:1px;
       color: white !important;
       font-weight: 300;
+      line-height: 60px;
       font-family: var(--font-family-primary);
       font-size: var(--font-size-primary-xl);
     }
