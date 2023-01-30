@@ -142,19 +142,19 @@ function Footer(props) {
                 <Grid item md={2} xs={1} sx={{color: '#0082E5', display: 'flex'}}>
                   <BsTelephone />
                 </Grid>
-                <Grid item md={10} xs={11} pr={{md: 12, xs: 28}} className={styles.grid__text}>
+                <Grid item md={10} xs={11} className={styles.grid__text}>
                   {footerPhoneNumber && footerPhoneNumber[currentLanguage?.languageTag]}
                 </Grid>
                 <Grid item md={2} xs={1} sx={{color: '#0082E5', display: 'flex'}}>
                   <RiMailSendLine />
                 </Grid>
-                <Grid item md={10} xs={11} pr={{md: 12, xs: 28}} className={styles.grid__text}>
+                <Grid item md={10} xs={11} className={styles.grid__text}>
                   {footerEmail && footerEmail[currentLanguage?.languageTag]}
                 </Grid>
                 <Grid item md={2} xs={1} sx={{color: '#0082E5', display: 'flex'}}>
                   <BiTime />
                 </Grid>
-                <Grid item md={10} xs={11} pr={{md: 12, xs: 32}} className={styles.grid__text}>
+                <Grid item md={10} xs={11} className={styles.grid__text}>
                   {footerSchedule && footerSchedule[currentLanguage?.languageTag]}
                 </Grid>
               </Grid>
