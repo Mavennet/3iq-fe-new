@@ -291,7 +291,7 @@ const LandingPage = (props) => {
             )
             */
           }
-          {!areCookiesEnabled && (
+          {/* {!areCookiesEnabled && (
             <CookieConsent
               disableStyles={true}
               style={{
@@ -343,7 +343,7 @@ const LandingPage = (props) => {
                 }
               </Box>
             </CookieConsent>
-          )}
+          )} */}
         </Box>
       </Layout>
     )
