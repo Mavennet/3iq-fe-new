@@ -17,7 +17,7 @@ function KeyBenefits(props) {
 
   return fundsLayout ? (
     <Container maxWidth="lg">
-      <h3>{title}</h3>
+      <h3 className={styles.title}>{title}</h3>
       <Grid container>
           <Grid item md={6} xs={12}>
           <p className={styles.subtitle}>{subtitle}</p>
