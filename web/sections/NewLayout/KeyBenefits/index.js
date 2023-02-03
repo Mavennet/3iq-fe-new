@@ -13,11 +13,17 @@ import styles from './styles.module.scss'
 const builder = imageUrlBuilder(client)
 
 function KeyBenefits(props) {
-  const {title, benefits, currentLanguage, fundsLayout} = props
+  const {title, subtitle, benefits, currentLanguage, fundsLayout} = props
 
   return fundsLayout ? (
     <Container maxWidth="lg">
       <h3>{title}</h3>
+      <Grid container>
+          <Grid item md={6} xs={12}>
+          <p className={styles.subtitle}>{subtitle}</p>
+          </Grid>
+      </Grid>
+
       <Grid container mt={5} mb={5}>
         {benefits.map((benefit, index) => (
           <Grid item md={6} xs={12} my={2} container>

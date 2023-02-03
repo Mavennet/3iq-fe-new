@@ -16,6 +16,12 @@ export default {
       validation: Rule => Rule.error('Information required.').required(),
     },
     {
+      name: 'subtitle',
+      type: 'localeString',
+      title: 'Subtitle (*)',
+      validation: Rule => Rule.error('Information required.').required(),
+    },
+    {
       name: 'benefits',
       title: 'Benefits (*)',
       description: 'Choose the benefits that will be displayed',
