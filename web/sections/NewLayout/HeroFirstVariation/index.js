@@ -12,8 +12,16 @@ function urlFor(source) {
 }
 
 function HeroFirstVariation(props) {
-  const {heading, firstButton, secondButton, backgroundImage, currentLanguage, icons, benefits} =
-    props
+  const {
+    heading,
+    firstButton,
+    secondButton,
+    backgroundImage,
+    bottomImage,
+    currentLanguage,
+    icons,
+    benefits,
+  } = props
 
   const localeFirstButton = firstButton?.[currentLanguage?.languageTag]
   const localeSecondButton = secondButton?.[currentLanguage?.languageTag]
@@ -42,11 +50,17 @@ function HeroFirstVariation(props) {
         <Grid item xs={12}>
           <Box
             sx={{
-              background: backgroundImage
-                ? `url("${urlFor(backgroundImage).url()}") no-repeat center center`
-                : 'var(--light-blue)',
-              backgroundSize: 'cover',
+              background: {
+                md: backgroundImage
+                  ? `url("${urlFor(backgroundImage).url()}") no-repeat center center`
+                  : 'var(--light-blue)',
+                xs: bottomImage
+                  ? `url(${urlFor(bottomImage).url()}) no-repeat bottom var(--light-blue)`
+                  : 'var(--light-blue)',
+              },
+              backgroundSize: {md: 'cover', xs: 'contain'},
               p: 7,
+              pb: {md: 7, sm: bottomImage ? 20 : 7, xs: bottomImage ? 15 : 7},
             }}
           >
             <Grid container>
@@ -54,9 +68,7 @@ function HeroFirstVariation(props) {
                 <div className={styles.simple__block__content}>
                   {heading && <SimpleBlockContent blocks={heading} />}
                 </div>
-                <Box sx={{display: {md: 'flex', xs: 'block'}}}>
-                  {renderBenefits()}
-                </Box>
+                <Box sx={{display: {md: 'flex', xs: 'block'}}}>{renderBenefits()}</Box>
                 <div className={styles.container__buttons}>
                   {localeFirstButton && (localeFirstButton.route || localeFirstButton.link) && (
                     <Button

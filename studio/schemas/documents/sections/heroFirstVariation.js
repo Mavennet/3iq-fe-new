@@ -37,6 +37,14 @@ export default {
       },
     },
     {
+      name: 'bottomImage',
+      type: 'image',
+      title: 'Background image (*)',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
       name: 'icons',
       title: 'Icons',
       description: 'Select the icons that will be displayed',

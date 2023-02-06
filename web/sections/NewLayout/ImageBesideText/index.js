@@ -42,7 +42,7 @@ function ImageBesideText(props) {
 
   return (
     <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
-      <Grid container py={10} spacing={{ xs: 0, md: 4 }} sx={{ display: 'flex', alignItems: 'center', flexDirection: { xs: 'column-reverse', md: !isInvertedLayout ? 'unset' : 'row-reverse' } }}>
+      <Grid container py={10} spacing={{ xs: 0, md: 4 }} sx={{ display: 'flex', alignItems: 'center', flexDirection: {md: !isInvertedLayout ? 'unset' : 'row-reverse' } }}>
         <Grid item xs={12} md={smallImage ? 4 : 6} lg={smallImage ? 4 : 7}>
           {backgroundImage?.asset && (
             <Box
