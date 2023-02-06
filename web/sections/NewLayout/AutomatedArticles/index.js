@@ -107,7 +107,7 @@ function AutomatedArticles(props) {
                   fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
                   fontFamily: 'var(--font-family-primary)',
                   color: 'var(--black)',
-                  textAlign: align ? align : 'center',
+                  textAlign: {xs: 'left', md: align ? align : 'center'},
                   width: buttonInHeader ? 'auto' : '100%'
                 }}
               >

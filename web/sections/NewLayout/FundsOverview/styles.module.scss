@@ -1,5 +1,8 @@
 .title {
-  font-size: var(--font-size-primary-lg);
+  font-size: var(--font-size-primary-md);
+  @media (--media-min-large) {
+    font-size: var(--font-size-primary-lg);
+  }
 }
 
 .content {
