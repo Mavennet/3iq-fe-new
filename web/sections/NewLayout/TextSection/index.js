@@ -112,7 +112,7 @@ function TextSection(props) {
                     {heading}
                   </Typography>
                 )}
-                <div style={{ background: isGrayBackground && '#e8e8ea', padding: 30 }}>
+                <div style={{ background: isGrayBackground && '#e8e8ea', padding: '30px 15px' }}>
                   {text && (
                     <Grid className={styles.textSection} container spacing={2}>
                       <div className={styles.simple__block__content}>
