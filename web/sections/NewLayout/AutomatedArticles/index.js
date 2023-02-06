@@ -99,7 +99,7 @@ function AutomatedArticles(props) {
       <Grid container pb={4} mt={10}>
         {
           name && (
-            <Grid item xs={12} mb={2} p={{ xs: 1, md: 2 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Grid item xs={12} mb={6} p={{ xs: 1, md: 2 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <Typography
                 variant="h2"
                 className={styles.title}

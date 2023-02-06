@@ -6,9 +6,10 @@ import client from '../../../client'
 import YouTube from 'react-youtube'
 import groq from 'groq'
 import MemberCard from '../../NewLayout/TeamsDisplay/MemberCard'
-import { AiOutlineClose } from 'react-icons/ai'
-import { Container, Grid, Box, Modal } from '@mui/material'
+import {AiOutlineClose} from 'react-icons/ai'
+import {Container, Grid, Box, Modal} from '@mui/material'
 import Button from '../../../components/NewLayout/Button'
+import imageUrlBuilder from '@sanity/image-url'
 
 function HeroNft(props) {
   const {
@@ -19,10 +20,13 @@ function HeroNft(props) {
     videoSrc,
     button,
     currentLanguage,
-    member
+    member,
+    gif
   } = props
 
   const localeButton = button && button[currentLanguage?.languageTag]
+
+  const builder = imageUrlBuilder(client)
 
   const [memberSelected, setMemberSelected] = React.useState()
   const [open, setOpen] = React.useState(false)
@@ -32,15 +36,15 @@ function HeroNft(props) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: { xs: '95%', md: '90%' },
+    width: {xs: '95%', md: '90%'},
     height: 'auto',
     maxWidth: '1024px',
-    maxHeight: { xs: '100vh', md: '85vh' },
+    maxHeight: {xs: '100vh', md: '85vh'},
     bgcolor: 'var(--light-gray)',
     outline: 'none',
     overflowY: 'scroll',
     p: 2,
-  };
+  }
 
   const opts = {
     width: '100%',
@@ -53,13 +57,14 @@ function HeroNft(props) {
       showinfo: 0,
       mute: 1,
       loop: 1,
-      playlist: videoSrc
-    }
-  };
+      playlist: videoSrc,
+    },
+  }
 
   const fetchMember = async () => {
-    await client.fetch(
-      groq`
+    await client
+      .fetch(
+        groq`
       *[_type == 'person' && _id == $personId] {
         _id,
         _type,
@@ -73,8 +78,8 @@ function HeroNft(props) {
         readProfileText,
       }[0]
      `,
-      { personId: member[0]._ref }
-    )
+        {personId: member[0]._ref}
+      )
       .then((response) => {
         setMemberSelected(response)
       })
@@ -91,17 +96,18 @@ function HeroNft(props) {
       <div className={styles.left__side}>
         <Box
           bgcolor={'#0082E5'}
-          py={{ xs: 6, md: 10}}
-          px={{ md: 6 }}
+          py={{xs: 6, md: 10}}
+          px={{md: 6}}
           className={styles.align__header}
           sx={{
             width: '100%',
             display: 'flex',
             alignItems: 'center',
             color: 'var(--white)',
-            justifyContent: 'flex-end'
-          }}>
-          <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
             <Grid container>
               <Grid item xs={12}>
                 <h1 className={styles.heading}>{heading}</h1>
@@ -114,7 +120,7 @@ function HeroNft(props) {
         </Box>
         <Box
           py={6}
-          px={{ md: 6 }}
+          px={{md: 6}}
           bgColor={'#F2F2F2'}
           className={styles.align__header}
           sx={{
@@ -122,9 +128,10 @@ function HeroNft(props) {
             color: 'var(--black)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'flex-end'
-          }}>
-          <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
+            justifyContent: 'flex-end',
+          }}
+        >
+          <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
             <Grid container>
               <Grid item xs={12}>
                 <h1 className={styles.heading}>{secondHeading}</h1>
@@ -132,12 +139,12 @@ function HeroNft(props) {
                   {secondDescription && <SimpleBlockContent blocks={secondDescription} />}
                 </div>
                 {localeButton && (
-                  <Box mb={4} sx={{ display: 'flex', justifyContent: 'flex-start' }} onClick={() => setOpen(true)}>
-                    <Button
-                      variant="solidOrange"
-                      {...localeButton}
-                      title={localeButton.title}
-                    />
+                  <Box
+                    mb={4}
+                    sx={{display: 'flex', justifyContent: 'flex-start'}}
+                    onClick={() => setOpen(true)}
+                  >
+                    <Button variant="solidOrange" {...localeButton} title={localeButton.title} />
                   </Box>
                 )}
               </Grid>
@@ -145,57 +152,64 @@ function HeroNft(props) {
           </Container>
         </Box>
       </div>
-      <div className={styles.right__side}>
+      <Box sx={{textAlign: {xs: 'center', md: 'left'}}} className={styles.right__side}>
         {videoSrc && (
           <div className={styles.nft}>
-            <YouTube videoId={videoSrc} opts={opts} />
+            <Box
+              component="img"
+              sx={{
+                height:{md: '580px', xs: '480px'} ,
+              }}
+              alt={gif.alt}
+              src={builder.image(gif).url()}
+            />
           </div>
         )}
-      </div>
-      {
-        memberSelected && (
-          <Modal
-            open={open}
-            onClose={() => setOpen(false)}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            BackdropProps={{
-              sx: {
-                backgroundColor: 'rgba(0, 0, 0, 0.8)'
-              }
-            }}
-          >
-            <Box sx={modalStyle}>
-              <Box
-                onClick={() => setOpen(false)}
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  my: 2,
-                  cursor: 'pointer',
-                }}
-              >
-                <AiOutlineClose size={32} />
-              </Box>
-              <Grid container spacing={3} py={4}>
-                <Grid item xs={12} sm={4} md={3}>
-                  <MemberCard
-                    name={memberSelected?.name}
-                    role={memberSelected?.jobTitle[currentLanguage.languageTag]}
-                    image={memberSelected?.profilePhoto.asset._ref}
-                    linkedin={memberSelected?.linkedinUrl}
-                    contactText={memberSelected?.contactText[currentLanguage.languageTag]}
-                    showProfileBox={false}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={8} md={9}>
-                  <div className={styles.simple__block__content}><SimpleBlockContent blocks={memberSelected?.bio[currentLanguage?.languageTag]} /></div>
-                </Grid>
-              </Grid>
+      </Box>
+      {memberSelected && (
+        <Modal
+          open={open}
+          onClose={() => setOpen(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+          BackdropProps={{
+            sx: {
+              backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            },
+          }}
+        >
+          <Box sx={modalStyle}>
+            <Box
+              onClick={() => setOpen(false)}
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                my: 2,
+                cursor: 'pointer',
+              }}
+            >
+              <AiOutlineClose size={32} />
             </Box>
-          </Modal>
-        )
-      }
+            <Grid container spacing={3} py={4}>
+              <Grid item xs={12} sm={4} md={3}>
+                <MemberCard
+                  name={memberSelected?.name}
+                  role={memberSelected?.jobTitle[currentLanguage.languageTag]}
+                  image={memberSelected?.profilePhoto.asset._ref}
+                  linkedin={memberSelected?.linkedinUrl}
+                  contactText={memberSelected?.contactText[currentLanguage.languageTag]}
+                  showProfileBox={false}
+                />
+              </Grid>
+              <Grid item xs={12} sm={8} md={9}>
+                <div className={styles.simple__block__content}>
+                  <SimpleBlockContent blocks={memberSelected?.bio[currentLanguage?.languageTag]} />
+                </div>
+              </Grid>
+            </Grid>
+          </Box>
+        </Modal>
+      )}
     </div>
   )
 }
