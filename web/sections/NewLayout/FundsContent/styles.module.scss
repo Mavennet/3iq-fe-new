@@ -241,11 +241,17 @@
 .title__product {
   width: 100%;
   h3 {
-    font-size: var(--font-size-primary-md);
+    font-size: var(--font-size-primary-sm);
+    @media (--media-min-large) {
+      font-size: var(--font-size-primary-md);
+    }
   }
   h5 {
-    font-size: var(--font-size-secondary-md);
+    font-size: var(--font-size-secondary-sm);
     color: #404040;
+    @media (--media-min-large) {
+      font-size: var(--font-size-secondary-md);
+    }
   }
 }
 
@@ -254,8 +260,4 @@
   @media (--media-min-large) {
     font-size: var(--font-size-primary-lg);
   }
-}
-
-.half {
-  width: 50%;
 }
