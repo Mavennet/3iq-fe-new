@@ -153,6 +153,63 @@ function FundsContent(props) {
           </Grid>
         </Grid>
       </Container>
+      <Container sx={{ background: 'var(--background-color)', maxWidth: { sm: 'md', md: 'lg', xl: 'xl' } }}>
+        <Grid container mt={5} spacing={4}>
+          {
+            fundItems &&
+            fundItems.map((fundItem, i) => {
+              return (fundItem?.products?.map((product, index) => (
+                <Grid item xs={12} mb={5} md={6} key={`section_${index}`} id={`section_${i}`}>
+                  <Grid container>
+                    <Grid xs={12} mb={4}>
+                      <h2 className={styles.title}>{index === 0 && fundItem.localeName[currentLanguage.languageTag]}</h2>
+                    </Grid>
+                    <Grid item xs={12} my={0} mt={{xs: 0, md: index !== 0 && 9}} sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                      {product.productIcon && (
+                        <div className={`${styles.icon} ${product.buttonColor ? styles[product.buttonColor] : styles.solid}`}>
+                          {icons[product.productIcon]}
+                        </div>
+                      )}
+                      <div className={styles.title__product}>
+                        <h3>{product.localeName[currentLanguage.languageTag]}</h3>
+                        <h5>
+                          {product.codes && (
+                            product.codes.map((code) => (
+                              code + ', '
+                            ))
+                          )}
+                        </h5>
+                      </div>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <div className={styles.simple__block__content}>
+                        {product.localeHighlights &&
+                          product.localeHighlights[currentLanguage.languageTag] && (
+                            <SimpleBlockContent
+                              blocks={product.localeHighlights[currentLanguage.languageTag]}
+                            />
+                          )}
+                      </div>
+                      {fundItem.localeReadMoreText && (
+                        <Button
+                          route={product.readMoreRoute && product.readMoreRoute}
+                          title={fundItem.localeReadMoreText[currentLanguage.languageTag]}
+                          variant={product.buttonColor ? product.buttonColor : 'solid'}
+                        />
+                      )}
+                    </Grid>
+                    <Grid xs={12}>
+                      {product.localeObservation && (
+                        <p className={styles.observation}>{product.localeObservation[currentLanguage.languageTag]}</p>
+                      )}
+                    </Grid>
+                  </Grid>
+                </Grid>
+              )))
+            })
+          }
+        </Grid>
+      </Container>
       {fundItems &&
         fundItems.map((fundItem, index) => (
           <section id={`section_${index}`} key={`fundItem${index}`} style={{ backgroundColor: fundItem.bgColor ? fundItem.bgColor : 'var(--background-color)' }}>
@@ -163,52 +220,6 @@ function FundsContent(props) {
                     <h2 className={styles.title}>{fundItem.localeName[currentLanguage.languageTag]}</h2>
                   </Grid>
                 )}
-                {fundItem.products &&
-                  fundItem.products.map((product, index) => (
-                    <Grid item xs={12} mb={5} md={6} key={`product_${index}`}>
-                      <Grid container>
-                        <Grid item xs={12} my={0} sx={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                          {product.productIcon && (
-                            <div className={`${styles.icon} ${product.buttonColor ? styles[product.buttonColor] : styles.solid}`}>
-                              {icons[product.productIcon]}
-                            </div>
-                          )}
-                          <div className={styles.title__product}>
-                            <h3>{product.localeName[currentLanguage.languageTag]}</h3>
-                            <h5>
-                              {product.codes && (
-                                product.codes.map((code) => (
-                                  code + ', '
-                                ))
-                              )}
-                            </h5>
-                          </div>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <div className={styles.simple__block__content}>
-                            {product.localeHighlights &&
-                              product.localeHighlights[currentLanguage.languageTag] && (
-                                <SimpleBlockContent
-                                  blocks={product.localeHighlights[currentLanguage.languageTag]}
-                                />
-                              )}
-                          </div>
-                          {fundItem.localeReadMoreText && (
-                            <Button
-                              route={product.readMoreRoute && product.readMoreRoute}
-                              title={fundItem.localeReadMoreText[currentLanguage.languageTag]}
-                              variant={product.buttonColor ? product.buttonColor : 'solid'}
-                            />
-                          )}
-                        </Grid>
-                        <Grid xs={12}>
-                          {product.localeObservation && (
-                            <p className={styles.observation}>{product.localeObservation[currentLanguage.languageTag]}</p>
-                          )}
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                  ))}
                 {fundItem.fundSections && (
                   <RenderSections
                     sections={createSection(fundItem.fundSections)}
