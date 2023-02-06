@@ -19,8 +19,11 @@ function TableSection(props) {
     endpoint,
     headers,
     currentLanguage,
-    headerFundPerformance
+    headerFundPerformance,
+    _id
   } = props
+
+  console.log(props)
 
   const [data, setData] = React.useState(null)
   const [date, setDate] = React.useState(null)
@@ -94,7 +97,7 @@ function TableSection(props) {
                   <>
                     <CSVLink
                       data={data ? data : []}
-                      filename={`table.csv`}
+                      filename={`table-${_id}.csv`}
                       target="_blank"
                       style={{
                         textAlign: 'center',
@@ -238,7 +241,8 @@ TableSection.propTypes = {
   endpoint: PropTypes.string,
   headers: PropTypes.array,
   currentLanguage: PropTypes.object,
-  headerFundPerformance: PropTypes.bool
+  headerFundPerformance: PropTypes.bool,
+  _id: PropTypes.string,
 }
 
 export default TableSection

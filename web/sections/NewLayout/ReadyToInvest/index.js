@@ -30,6 +30,7 @@ function ReadyToInvest(props) {
             (<Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
               <Button
                 {...localeButton}
+                size={'lg'}
                 reverse={false}
                 variant={'solid'}
                 className={styles.button}
