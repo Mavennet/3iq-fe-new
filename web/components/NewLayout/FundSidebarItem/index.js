@@ -14,7 +14,7 @@ function FundSidebarItem(props) {
     props
 
   return (
-    <Box sx={{ mb: 5 }}>
+    <Box sx={{ mb: 8 }}>
       {localeTitle && localeTitle[languageTag] && (
         <Typography
           sx={{
