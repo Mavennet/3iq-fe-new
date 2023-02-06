@@ -4,7 +4,7 @@ import { Grid, Typography, Box } from '@mui/material'
 import { CSVLink } from 'react-csv'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import axios from 'axios'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import styles from './styles.module.scss'
 import { TfiDownload } from 'react-icons/tfi'
 import { ResponsiveLine } from '@nivo/line'
@@ -56,7 +56,7 @@ function LineChart(props) {
         entries.map(([key, val] = entry) => {
           if (key !== 'label') {
             newData.push({
-              x: key,
+              x: format(new Date(key), 'yyyy-MM-dd'),
               y: val.toString()
             })
           }
@@ -64,7 +64,7 @@ function LineChart(props) {
         datasets.push({
           id: item.label,
           color: colors[count],
-          data: newData.slice(0,6),
+          data: newData,
         })
         count = count + 1
         return null
@@ -116,6 +116,7 @@ function LineChart(props) {
           </Grid>
         )}
         <Grid item xs={12}>
+          {console.log(dataSet(data))}
           {
             data && (
               <Box
@@ -128,19 +129,25 @@ function LineChart(props) {
                   data={dataSet(data)}
                   margin={{ top: 50, right: 100, bottom: 50, left: 100 }}
                   xScale={{
-                    type: 'point'
+                    type: "time",
+                    format: "%Y-%m-%d",
+                    precision: 'day'
                   }}
                   yScale={{
                     type: 'linear',
                     min: 'auto',
                     max: 'auto',
-                    stacked: true,
+                    stacked: false,
                     reverse: false
                   }}
-                  axisLeft={{ format: v => `$ ${v.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}` }}
-                  axisBottom={{
-                    format: v => convertDate(v),
+                  axisLeft={{
+                    format: v => `$ ${v.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`,
                   }}
+                  axisBottom={{
+                    //format: v => convertDate(v),
+                    format: "%Y-%m-%d"
+                  }}
+                  lineWidth={1}
                   pointSize={10}
                   pointBorderWidth={2}
                   pointColor={'var(--background-color)'}
