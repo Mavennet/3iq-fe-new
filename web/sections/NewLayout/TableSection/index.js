@@ -86,9 +86,10 @@ function TableSection(props) {
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
               <Typography
                 variant="h2"
+                mb={!downloadButton && 4}
                 sx={{
                   fontFamily: 'var(--font-family-primary)',
-                  fontSize: 'var(--font-size-primary-lg)',
+                  fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
                   color: 'var(--black)',
                 }}
               >{heading}</Typography>

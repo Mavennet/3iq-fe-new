@@ -160,7 +160,7 @@ function FundsContent(props) {
               <Grid container mt={4} spacing={2}>
                 {!fundItem.hiddenTitle && (
                   <Grid item xs={12} mb={4}>
-                    <h2>{fundItem.localeName[currentLanguage.languageTag]}</h2>
+                    <h2 className={styles.title}>{fundItem.localeName[currentLanguage.languageTag]}</h2>
                   </Grid>
                 )}
                 {fundItem.products &&

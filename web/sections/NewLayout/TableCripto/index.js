@@ -39,7 +39,7 @@ function TableCripto(props) {
                 variant="h2"
                 sx={{
                   fontFamily: 'var(--font-family-primary)',
-                  fontSize: 'var(--font-size-primary-lg)',
+                  fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
                   color: 'var(--black)',
                 }}
               >

@@ -40,7 +40,17 @@
     background-color: transparent;
   }
   &::-webkit-scrollbar {
-    display: none;
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--medium-gray);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--light-blue);
+    border-radius: 10px;
+    border: 3px solid var(--gray);
   }
   ul {
     max-width: 100%;
