@@ -1,7 +1,7 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
+import {PropTypes} from 'prop-types'
 import styles from './styles.module.scss'
-import { Box, Container, Grid } from '@mui/material'
+import {Box, Container, Grid} from '@mui/material'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../client'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
@@ -12,29 +12,41 @@ function urlFor(source) {
 }
 
 function HeroFirstVariation(props) {
-  const {
-    heading,
-    firstButton,
-    secondButton,
-    backgroundImage,
-    currentLanguage,
-  } = props
+  const {heading, firstButton, secondButton, backgroundImage, currentLanguage, icons, benefits} =
+    props
 
   const localeFirstButton = firstButton?.[currentLanguage?.languageTag]
   const localeSecondButton = secondButton?.[currentLanguage?.languageTag]
 
+  const renderBenefits = () => {
+    if (benefits && icons && benefits.length == icons.length) {
+      return benefits.map((b, i) => (
+        <Box pr={5} mb={{md: 4, xs: 3}}>
+          <Box
+            component="img"
+            alt={icons[i].alt}
+            className={styles.icon}
+            src={urlFor(icons[i].asset._ref).url()}
+          />
+          <Box sx={{display: 'inline'}}>
+            <span className={styles.benefits}>{b[currentLanguage.languageTag]}</span>
+          </Box>
+        </Box>
+      ))
+    }
+  }
+
   return (
-    <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
+    <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
       <Grid container my={6}>
         <Grid item xs={12}>
           <Box
             sx={{
-              background:
-                backgroundImage ?
-                `url("${urlFor(backgroundImage)
-                  .url()}") no-repeat center center` : 'var(--light-blue)',
+              background: backgroundImage
+                ? `url("${urlFor(backgroundImage).url()}") no-repeat center center`
+                : 'var(--light-blue)',
               backgroundSize: 'cover',
-              p: 7
+              p: 7,
             }}
           >
             <Grid container>
@@ -42,6 +54,9 @@ function HeroFirstVariation(props) {
                 <div className={styles.simple__block__content}>
                   {heading && <SimpleBlockContent blocks={heading} />}
                 </div>
+                <Box sx={{display: {md: 'flex', xs: 'block'}}}>
+                  {renderBenefits()}
+                </Box>
                 <div className={styles.container__buttons}>
                   {localeFirstButton && (localeFirstButton.route || localeFirstButton.link) && (
                     <Button

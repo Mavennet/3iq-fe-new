@@ -16,46 +16,48 @@ function KeyBenefits(props) {
   const {title, subtitle, benefits, currentLanguage, fundsLayout} = props
 
   return fundsLayout ? (
-    <Container maxWidth="lg">
-      <h3 className={styles.title}>{title}</h3>
-      <Grid container>
+    <Box bgcolor={'#F1F1F1'} py={6}>
+      <Container maxWidth="lg">
+        <h3 className={styles.title}>{title}</h3>
+        <Grid container>
           <Grid item md={6} xs={12}>
-          <p className={styles.subtitle}>{subtitle}</p>
+            <p className={styles.subtitle}>{subtitle}</p>
           </Grid>
-      </Grid>
+        </Grid>
 
-      <Grid container mt={5} mb={5}>
-        {benefits.map((benefit, index) => (
-          <Grid item md={6} xs={12} my={2} container>
-            <Grid item xs={3} pr={{md: 8, xs: 3}}>
-              <Box sx={{background: benefit.cardColor || '#F59B1E', textAlign: 'center'}}>
-                <Box
-                  component="img"
-                  src={builder.image(benefit.mainImage).url()}
-                  sx={{
-                    filter: 'brightness(0) invert(1)',
-                    maxHeight: {md: '40px', xs: '35px'},
-                    pt: 2,
-                    pb: 1.5,
-                  }}
-                />
-              </Box>
+        <Grid container mt={5} mb={5}>
+          {benefits.map((benefit, index) => (
+            <Grid item md={6} xs={12} my={2} container>
+              <Grid item xs={3} pr={{md: 8, xs: 3}}>
+                <Box sx={{background: benefit.cardColor || '#F59B1E', textAlign: 'center'}}>
+                  <Box
+                    component="img"
+                    src={builder.image(benefit.mainImage).url()}
+                    sx={{
+                      filter: 'brightness(0) invert(1)',
+                      maxHeight: {md: '40px', xs: '35px'},
+                      pt: 2,
+                      pb: 1.5,
+                    }}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={9} mt={3}>
+                <h5 className={styles.text__fundLayout__heading}>
+                  {benefit.heading[currentLanguage?.languageTag]}
+                </h5>
+                <span className={styles.text__fundLayout__body}>
+                  {(benefit.text && benefit.text[currentLanguage?.languageTag]) || ''}
+                </span>
+                <Box className={styles.text__fundLayout__body} pt={2} pr={{md: 30, xs: 2}}>
+                  <SimpleBlockContent blocks={benefit.body[currentLanguage?.languageTag]} />
+                </Box>
+              </Grid>
             </Grid>
-            <Grid item xs={9} mt={3}>
-              <h5 className={styles.text__fundLayout__heading}>
-                {benefit.heading[currentLanguage?.languageTag]}
-              </h5>
-              <span className={styles.text__fundLayout__body}>
-                {(benefit.text && benefit.text[currentLanguage?.languageTag]) || ''}
-              </span>
-              <Box className={styles.text__fundLayout__body} pt={2} pr={{md: 30, xs: 2}}>
-                <SimpleBlockContent blocks={benefit.body[currentLanguage?.languageTag]} />
-              </Box>
-            </Grid>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
+          ))}
+        </Grid>
+      </Container>
+    </Box>
   ) : (
     <Container maxWidth="lg">
       <h3>{title}</h3>

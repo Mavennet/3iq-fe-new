@@ -36,6 +36,30 @@ export default {
         hotspot: true,
       },
     },
+    {
+      name: 'icons',
+      title: 'Icons',
+      description: 'Select the icons that will be displayed',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          title: 'Benefit Icon',
+        },
+      ],
+    },
+    {
+      name: 'benefits',
+      title: 'Benefits',
+      description: 'Select the benefits that will be displayed',
+      type: 'array',
+      of: [
+        {
+          type: 'localeString',
+          title: 'Benefit',
+        },
+      ],
+    },
   ],
   preview: {
     select: {
