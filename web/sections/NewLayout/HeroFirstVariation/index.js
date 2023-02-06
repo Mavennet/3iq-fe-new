@@ -26,6 +26,8 @@ function HeroFirstVariation(props) {
   const localeFirstButton = firstButton?.[currentLanguage?.languageTag]
   const localeSecondButton = secondButton?.[currentLanguage?.languageTag]
 
+  //pr
+
   const renderBenefits = () => {
     if (benefits && icons && benefits.length == icons.length) {
       return benefits.map((b, i) => (
