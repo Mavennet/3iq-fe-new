@@ -80,7 +80,7 @@ function TableSection(props) {
 
   return (
     <Container sx={{ maxWidth: { sm: 'md', md: 'lg', lg: 'xl' } }}>
-      <Grid container mb={6}>
+      <Grid container my={6}>
         {
           heading && (
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -136,7 +136,6 @@ function TableSection(props) {
                   <p>{currentLanguage?.languageTag.startsWith('en') ? 'Annualized Returns' : 'Rendements annualisés'}</p>
                 </div>
               </div>
-
             </Grid>
           )
         }
@@ -207,7 +206,7 @@ function TableSection(props) {
                   </tbody>
                 </table>
                 {data[0].dateDaily && (
-                  <Box sx={{ mt: 2 }}>
+                  <Box sx={{ my: 2 }}>
                     <Typography align='right' sx={{ color: '#77757F' }}>{`${currentLanguage.name === 'EN' ? 'Price as at' : 'Prix au'} ${convertDate(data[0].dateDaily)}`}</Typography>
                   </Box>
                 )}
@@ -217,7 +216,7 @@ function TableSection(props) {
         }
         {
           embed && (
-            <Grid item xs={12} mb={3}>
+            <Grid item xs={12} my={3}>
               <div className={styles.simpleBlockContent}>
                 <SimpleBlockContent blocks={embed} />
                 {date && (

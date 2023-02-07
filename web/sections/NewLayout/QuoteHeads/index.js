@@ -63,7 +63,7 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
   }, [greenBoxEndpoint])
 
   return (
-    <Grid xs={12} md={5} lg={6}>
+    <Grid xs={12} md={5} lg={6} py={8}>
       <Container>
         <Grid container>
           <Grid item xs={12}>
