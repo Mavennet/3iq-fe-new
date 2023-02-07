@@ -84,6 +84,7 @@ function LineChart(props) {
                 fontFamily: 'var(--font-family-primary)',
                 fontSize: 'var(--font-size-primary-lg)',
                 color: 'var(--black)',
+                minHeight: {md: desktopSize === 6 && '200px'}
               }}
             >
               {heading}
@@ -134,7 +135,7 @@ function LineChart(props) {
                     type: 'linear',
                     min: 'auto',
                     max: 'auto',
-                    stacked: true,
+                    stacked: false,
                     reverse: false
                   }}
                   axisLeft={{ format: v => `$ ${v.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}` }}

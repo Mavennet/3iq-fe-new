@@ -7,11 +7,14 @@ import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent
 import styles from './styles.module.scss'
 import Link from 'next/link'
 import groq from 'groq'
+import Button from '../../../components/NewLayout/Button'
 
 const builder = imageUrlBuilder(client)
 
 function SideBySideImages(props) {
-  const { heading, currentLanguage, backgroundColor, footerText, _id } = props
+  const { heading, currentLanguage, backgroundColor, footerText, _id, ctaButton } = props
+
+  const localeButton = ctaButton?.[currentLanguage?.languageTag]
 
   const [images, setImages] = React.useState(null)
 
@@ -53,13 +56,23 @@ function SideBySideImages(props) {
           <CssBaseline />
           {
             heading && (
-              <Grid item xs={12} mb={{xs: 5, md: 12}}>
+              <Grid item xs={12} mb={4}>
                 <div className={styles.simple__block__content}>
                   <SimpleBlockContent blocks={heading} />
                 </div>
               </Grid>
             )
           }
+          {localeButton && (localeButton.route || localeButton.link) &&
+            (<Grid item xs={12} mb={8} sx={{display: 'flex', justifyContent: 'center'}}>
+              <Button
+                {...localeButton}
+                size={'lg'}
+                reverse={false}
+                variant={'solid'}
+                className={styles.button}
+              ></Button>
+            </Grid>)}
           {
             images &&
             images.map((item) => (
@@ -71,7 +84,7 @@ function SideBySideImages(props) {
                   }
                   if (item?.images) {
                     return (
-                      <Grid item xs={12} mb={4} key={i}>
+                      <Grid item xs={12} my={4} key={i}>
                         {
                           title && <h5 className={styles.title__image}>{title}</h5>
                         }
@@ -146,6 +159,7 @@ SideBySideImages.propTypes = {
   currentLanguage: PropTypes.object,
   backgroundColor: PropTypes.string,
   footerText: PropTypes.object,
+  ctaButton: PropTypes.object,
 }
 
 export default SideBySideImages
