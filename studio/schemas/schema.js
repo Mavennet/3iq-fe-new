@@ -93,6 +93,7 @@ import articles from "./documents/sections/articles";
 import howWePartnerClients from "./documents/sections/howWePartnerClients";
 import serviceAndSolutions from "./documents/sections/serviceAndSolutions";
 import ocioServices from "./documents/sections/ocioServices";
+import ocioHero from "./documents/sections/ocioHero";
 
 // Object types
 import cta from "./objects/cta";
@@ -226,6 +227,7 @@ export default createSchema({
     ocioServices,
     services,
     why3iQ,
-    postV2
+    postV2,
+    ocioHero
   ])
 });

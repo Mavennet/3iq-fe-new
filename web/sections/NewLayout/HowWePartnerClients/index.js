@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import imageUrlBuilder from '@sanity/image-url'
 import styles from './styles.module.scss'
 import client from '../../../client'
-import { Container, Typography, Box, Grid } from '@mui/material'
+import { Container, Typography, Box, Grid, colors } from '@mui/material'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import { format } from 'date-fns'
 import Button from '../../../components/NewLayout/Button'
@@ -80,7 +80,7 @@ function HowWePartnerClients(props) {
                 alt={backgroundImage.alt}
                 src={builder.image(backgroundImage).url()}
               />
-              {heading && !hideHeading && <div className={styles.heading}> {<SimpleBlockContent blocks={heading} />} </div>} 
+              {heading && !hideHeading && <div className={styles.heading} > {<SimpleBlockContent blocks={heading} />} </div>} 
             </div>
           </Grid>
           <Grid item xs={12} md={5}>
