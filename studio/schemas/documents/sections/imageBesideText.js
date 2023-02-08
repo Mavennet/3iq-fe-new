@@ -29,6 +29,13 @@ export default {
       initialValue: false,
     },
     {
+      name: 'invertMobile',
+      type: 'boolean',
+      title: 'Invert layout on mobile?',
+      description: 'Enable this option to invert the content on mobile',
+      initialValue: false,
+    },
+    {
       name: 'backgroundImage',
       type: 'image',
       title: 'Image',
