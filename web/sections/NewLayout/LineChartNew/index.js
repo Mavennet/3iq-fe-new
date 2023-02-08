@@ -62,7 +62,7 @@ function LineChart(props) {
           if (key !== 'label') {
             newData.push({
               x: format(new Date(key), 'yyyy-MM-dd'),
-              y: val.toString()
+              y: isNaN(val) ? '0' : parseFloat(val).toFixed(2)
             })
           }
         })
@@ -131,7 +131,7 @@ function LineChart(props) {
               >
                 <ResponsiveLine
                   colors={{ datum: 'color' }}
-                  data={dataSet(data)}
+                  data={data && dataSet(data)}
                   margin={{ top: 50, right: 50, bottom: 50, left: 70 }}
                   xScale={{
                     type: "time",
