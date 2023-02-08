@@ -46,7 +46,7 @@ function Highlights(props) {
           _id,
           _type,
           publishedAt,
-        }[0..2]`,
+        }`,
         { categoryId: selectedPostCategory._ref }
       )
       .then((response) => {
