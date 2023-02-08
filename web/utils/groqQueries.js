@@ -284,6 +284,7 @@ export const FUND_CARDS = groq`
   _rev,
   'localeHeading': heading,
   codes,
+  cardColor,
   'localeButton': button,
   'localeText': text,
   'localeDailyNav': dailyNav,
