@@ -80,7 +80,7 @@ function HowWePartnerClients(props) {
                 alt={backgroundImage.alt}
                 src={builder.image(backgroundImage).url()}
               />
-              {heading && !hideHeading && <div className={styles.heading} > {<SimpleBlockContent blocks={heading} />} </div>} 
+              {heading && !hideHeading && <div className={styles.heading} > <SimpleBlockContent blocks={heading} /> </div>} 
             </div>
           </Grid>
           <Grid item xs={12} md={5}>
