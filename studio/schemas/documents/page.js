@@ -93,7 +93,12 @@ export default {
             { type: "timeline" },
             { type: "imageBesideText" },
             { type: "overflowHero" },
-            { type: "articles" }
+            { type: "articles" },
+            { type: "howWePartnerClients"},
+            { type: "serviceAndSolutions"},
+            { type: "ocioServices"},
+            { type: "why3iQ" },
+            { type: "ocioHero" },
           ]
         }
       ]

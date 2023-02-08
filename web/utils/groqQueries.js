@@ -40,6 +40,7 @@ export const DATA_COUNTRIES = groq`
   linkedinUrl,
   youtubeUrl,
   shareThisStoryText,
+  newsLetterText,
 }
 `
 
@@ -57,7 +58,7 @@ export const DATA_IN_SLUG = groq`*[_type == "route" && slug.current in $possible
 
 export const DATA_IN_SLUG_BY_PATH = groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
     page-> {
-      ${pageFragment}
+      ${pageFragment}[]
     }
   }`
 

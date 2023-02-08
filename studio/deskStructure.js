@@ -97,7 +97,14 @@ const hiddenDocTypes = listItem =>
     "lineChart",
     "tableSection",
     "tableCripto",
-    "articles"
+    "articles",
+    "why3iQ",
+    "howWePartnerClients",
+    "serviceAndSolutions",
+    "ocioServices",
+    "services",
+    "postV2",
+    "ocioHero"
   ].includes(listItem.getId());
 
 export default () =>
@@ -226,8 +233,17 @@ export default () =>
               S.documentTypeListItem("plainText").title("Plain Text"),
               S.documentTypeListItem("post").title("Post"),
               S.documentTypeListItem("textSeparator").title("Text Separator"),
-              S.documentTypeListItem("timeline").title("Timeline")
-            ])
+              S.documentTypeListItem("timeline").title("Timeline"),
+              S.documentTypeListItem("why3iQ").title("Why 3iQ"),
+              S.documentTypeListItem("howWePartnerClients").title(
+                "How We Partner Clients"
+              ),
+              S.documentTypeListItem("serviceAndSolutions").title(
+                "Service And Solutions"),
+              S.documentTypeListItem("ocioServices").title(
+                "OCIO Services"),            
+              S.documentTypeListItem("ocioHero").title("Ocio Hero"),
+            ]),
         ),
       S.listItem()
         .title("Fund Sections")
@@ -331,5 +347,6 @@ export default () =>
       S.documentTypeListItem("person").title("Members"),
       S.documentTypeListItem("benefity").title("Benefitys"),
       S.documentTypeListItem("accordionItem").title("Accordion Item"),
+      S.documentTypeListItem("services").title("Services"),
       ...S.documentTypeListItems().filter(hiddenDocTypes)
     ]);
