@@ -86,7 +86,8 @@ export default {
     "lineChart",
     "articles",
     "automatedArticles",
-    "automatedLatest"
+    "automatedLatest",
+    "postV2"
   ],
   filterField: (enclosingType, field, selectedLanguageIds) =>
     !enclosingType.name.startsWith("locale") ||
