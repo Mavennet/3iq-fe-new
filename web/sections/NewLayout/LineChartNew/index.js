@@ -11,6 +11,7 @@ import { ResponsiveLine } from '@nivo/line'
 
 function LineChart(props) {
   const {
+    _id,
     heading,
     description,
     desktopSize = 12,
@@ -27,10 +28,8 @@ function LineChart(props) {
 
   const convertDate = (value) => {
     const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
-    const dt = value.split('/')
-    const newYears = new Date(parseInt(dt[2]), parseInt(dt[0]) - 1, parseInt(dt[1]), 12)
     const isEng = currentLanguage.name === "EN"
-    const formattedDate = format(newYears, isEng ? 'MMM dd yyyy' : 'dd MMM yyyy', {
+    const formattedDate = format(value, isEng ? 'MMM dd yyyy' : 'dd MMM yyyy', {
       locale: getLocale(currentLanguage.languageTag.replace('_', '-')),
     })
     !isEng && formattedDate.toLocaleLowerCase('fr')
@@ -39,6 +38,12 @@ function LineChart(props) {
 
   const getChartData = () => {
     axios.get(endpoint).then((response) => setData(response.data))
+  }
+
+  const limitLabel = (text) => {
+    let count = 6
+    let textLength = text.toString().length
+    return text.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,').slice(0, count) + (textLength > count ? "..." : "");
   }
 
   React.useEffect(() => {
@@ -56,7 +61,7 @@ function LineChart(props) {
         entries.map(([key, val] = entry) => {
           if (key !== 'label') {
             newData.push({
-              x: key,
+              x: format(new Date(key), 'yyyy-MM-dd'),
               y: val.toString()
             })
           }
@@ -64,7 +69,7 @@ function LineChart(props) {
         datasets.push({
           id: item.label,
           color: colors[count],
-          data: newData.slice(0,6),
+          data: newData.sort((a, b) =>  new Date(a.x) - new Date(b.x)),
         })
         count = count + 1
         return null
@@ -95,7 +100,7 @@ function LineChart(props) {
           <Grid item xs={12} mb={4} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
             <CSVLink
               data={data}
-              filename={`line-chart.csv`}
+              filename={`line-chart-${_id}.csv`}
               target="_blank"
               style={{
                 textAlign: 'center',
@@ -121,16 +126,19 @@ function LineChart(props) {
             data && (
               <Box
                 sx={{
-                  height: `${chartHeight}px`
+                  height: `${chartHeight}px`,
                 }}
               >
                 <ResponsiveLine
                   colors={{ datum: 'color' }}
                   data={dataSet(data)}
-                  margin={{ top: 50, right: 100, bottom: 50, left: 100 }}
+                  margin={{ top: 50, right: 50, bottom: 50, left: 70 }}
                   xScale={{
-                    type: 'point'
+                    type: "time",
+                    format: "%Y-%m-%d",
+                    precision: 'day'
                   }}
+                  xFormat={`time:%Y-%m-%d`}
                   yScale={{
                     type: 'linear',
                     min: 'auto',
@@ -138,11 +146,15 @@ function LineChart(props) {
                     stacked: false,
                     reverse: false
                   }}
-                  axisLeft={{ format: v => `$ ${v.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}` }}
+                  axisLeft={{
+                    format: v => `$ ${limitLabel(v)}`,
+                  }}
                   axisBottom={{
                     format: v => convertDate(v),
+                    tickRotation: desktopSize === 6 ? 30 : 0,
                   }}
-                  pointSize={10}
+                  lineWidth={2}
+                  pointSize={8}
                   pointBorderWidth={2}
                   pointColor={'var(--background-color)'}
                   pointBorderColor={{ from: 'serieColor' }}
@@ -192,6 +204,7 @@ function LineChart(props) {
 }
 
 LineChart.propTypes = {
+  _id: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
   chartColor: PropTypes.string,
