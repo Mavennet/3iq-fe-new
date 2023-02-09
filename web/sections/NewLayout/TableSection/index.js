@@ -1,11 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Typography, Container, Box } from '@mui/material'
+import { Grid, Typography, Container, Box, MenuItem, Menu, Button } from '@mui/material'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import styles from './styles.module.scss'
 import axios from 'axios'
 import { format } from 'date-fns'
 import { CSVLink } from 'react-csv'
+import * as XLSX from 'xlsx'
+import { RiFileExcel2Line, RiTable2 } from 'react-icons/ri'
 import { TfiDownload } from 'react-icons/tfi'
 
 function TableSection(props) {
@@ -23,10 +25,42 @@ function TableSection(props) {
     _id
   } = props
 
-  console.log(props)
-
-  const [data, setData] = React.useState(null)
+  const [data, setData] = React.useState()
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
   const [date, setDate] = React.useState(null)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  function downloadExcel() {
+    const worksheet = XLSX.utils.json_to_sheet(data)
+    const workbook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1')
+    XLSX.writeFile(workbook, `line-chart-${_id}.xlsx`)
+    handleClose()
+  }
+
+  const submenuStyle = {
+    //width: '160px',
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    fontFamily: 'var(--font-family-primary)',
+    fontSize: 'var(--font-size-secondary-sm)',
+    color: 'var(--black)',
+    alignItems: 'center',
+    margin: '0px 28.5px',
+    '&:hover': {
+      background: 'none'
+    }
+  }
+
 
   const typesStyle = {
     orange: styles.orange,
@@ -89,27 +123,31 @@ function TableSection(props) {
                 mb={!downloadButton && 4}
                 sx={{
                   fontFamily: 'var(--font-family-primary)',
-                  fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
+                  fontSize: { xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)' },
                   color: 'var(--black)',
                 }}
               >{heading}</Typography>
               {
                 downloadButton && embed && (
                   <>
-                    <CSVLink
-                      data={data ? data : []}
-                      filename={`table-${_id}.csv`}
-                      target="_blank"
-                      style={{
+                    <Button
+                      id="demo-positioned-button"
+                      aria-controls={open ? 'demo-positioned-menu' : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? 'true' : undefined}
+                      onClick={handleClick}
+                      sx={{
+                        fontFamily: 'var(--font-family-primary)',
                         textAlign: 'center',
                         background: 'transparent',
-                        border: '2px solid #091B3F',
-                        color: '#091B3F',
+                        border: '2px solid var(--black)',
+                        color: 'var(--black)',
                         textDecoration: 'none',
                         padding: '5px 25px',
-                        borderRadius: '4px',
-                        fontSize: '20px',
-                        margin: '20px 0px'
+                        borderRadius: open ? '4px 4px 0px 0px' : '4px',
+                        fontSize: 'var(--font-size-secondary-sm)',
+                        textTransform: 'initial',
+                        borderBottom: open && 'none'
                       }}
                     >
                       <TfiDownload
@@ -117,7 +155,63 @@ function TableSection(props) {
                         className={styles.download__icon}
                       />
                       Download
-                    </CSVLink>
+                    </Button>
+                    <Menu
+                      id={`menu-${_id}`}
+                      aria-labelledby="demo-positioned-button"
+                      anchorEl={anchorEl}
+                      open={open}
+                      onClose={handleClose}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                      }}
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'left',
+                      }}
+                      sx={{
+                        "& .MuiPaper-root": {
+                          backgroundColor: "var(--background-color)",
+                          boxShadow: 'none',
+                          borderRadius: '0px 0px 4px 4px',
+                          borderLeft: '2px solid var(--black)',
+                          borderRight: '2px solid var(--black)',
+                          borderBottom: '2px solid var(--black)',
+                        }
+                      }}
+                    >
+                      <MenuItem onClick={() => downloadExcel()} sx={{ borderTop: '1px solid #ececec', ...submenuStyle }}>
+                        <RiFileExcel2Line
+                          size={17}
+                          className={styles.download__icon}
+                        />
+                        Excel
+                      </MenuItem>
+                      <MenuItem onClick={handleClose} sx={submenuStyle}>
+                        <CSVLink
+                          data={data}
+                          onClick={handleClose}
+                          filename={`line-chart-${_id}.csv`}
+                          target="_blank"
+                          style={{
+                            textAlign: 'center',
+                            background: 'transparent',
+                            color: 'var(--black)',
+                            textDecoration: 'none',
+                            fontSize: 'var(--font-size-secondary-sm)',
+                            display: 'flex',
+                            alignItems: 'center'
+                          }}
+                        >
+                          <RiTable2
+                            size={18}
+                            className={styles.download__icon}
+                          />
+                          CSV
+                        </CSVLink>
+                      </MenuItem>
+                    </Menu>
                   </>
                 )
               }
@@ -220,7 +314,7 @@ function TableSection(props) {
               <div className={styles.simpleBlockContent}>
                 <SimpleBlockContent blocks={embed} />
                 {date && (
-                  <Typography paragraph style={{color: 'var(--dark-gray)', fontWeight: '300', fontStyle: 'normal'}}>‡ {date}</Typography>
+                  <Typography paragraph style={{ color: 'var(--dark-gray)', fontWeight: '300', fontStyle: 'normal' }}>‡ {date}</Typography>
                 )}
               </div>
             </Grid>
