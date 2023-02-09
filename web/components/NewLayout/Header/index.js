@@ -34,7 +34,6 @@ function Header(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage.languageTag, size])
 
-
   React.useEffect(() => {
     pageType == 'search' && setShowSearchIcon(false)
   }, [pageType])
@@ -173,7 +172,7 @@ function Header(props) {
                     />
                     <div className={styles.separator}></div>
                   </>
-                 )} 
+                )}
 
                 {navItems &&
                   navItems.map(
@@ -206,6 +205,24 @@ function Header(props) {
                   setLanguage={setLanguage}
                   dataCountries={dataCountries}
                 />
+                <Link
+                  href="http://3iq-dash-poc.s3-website.us-east-2.amazonaws.com"
+                  sx={{textDecoration: 'none'}}
+                >
+                  <Box
+                    className={styles.menuItem}
+                    sx={{
+                      width: {xs: '100%', lg: 'auto'},
+                      marginLeft: {xs: '0', lg: '20px'},
+                      padding: {xs: '12px 16px', lg: '0px'},
+                      textTransform: 'capitalize',
+                      position: 'relative',
+                      color: 'black',
+                    }}
+                  >
+                    Login
+                  </Box>
+                </Link>
               </Box>
               {/* NavBar Menu - Mobile */}
               <Box
@@ -226,6 +243,24 @@ function Header(props) {
                     dataCountries={dataCountries}
                   />
                 </Box>
+                <Link
+                  href="http://3iq-dash-poc.s3-website.us-east-2.amazonaws.com"
+                  sx={{textDecoration: 'none'}}
+                >
+                  <Box
+                    className={styles.menuItem}
+                    sx={{
+                      width: {xs: '100%', lg: 'auto'},
+                      marginLeft: {xs: '0', lg: '20px'},
+                      padding: {xs: '12px 16px', lg: '0px'},
+                      textTransform: 'capitalize',
+                      position: 'relative',
+                      color: 'black',
+                    }}
+                  >
+                    Login
+                  </Box>
+                </Link>
                 <Box>
                   <IconButton
                     size="medium"
