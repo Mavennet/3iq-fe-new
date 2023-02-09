@@ -34,7 +34,7 @@ function renderCards(items, languageTag) {
                             <h4>{item.localeHeading[languageTag] || ''}</h4>
                         </div>
                         <div className={styles.box__container__span}>
-                            <span>TSX: {item.codes.map((code, i) => i == item.codes.length - 1 ? `${code}` : `${code}, `)}</span>
+                            <span>TSX: {item.codes.map((code, i) => (i == item.codes.length - 1 || code.indexOf(':' >= 0)) ? `${code}` : `${code}, `)}</span>
                         </div>
                         <div className={styles.box__container__text}>
                             <p className='p__secondary__sm'>
@@ -42,7 +42,7 @@ function renderCards(items, languageTag) {
                             </p>
                         </div>
                         <div className={styles.box__container__price}>
-                            <span className='p__secondary__sm'>Daily NAV</span>
+                            <span className='p__secondary__sm'>{item.localeDailyNavlabel ? item.localeDailyNavlabel[languageTag] : 'Daily NAV:'}</span>
                             <h5>{item.localeDailyNav[languageTag] || ''}</h5>
                         </div>
                         {item.localeButton[languageTag] && (

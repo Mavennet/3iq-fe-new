@@ -33,6 +33,12 @@ export default {
       validation: Rule => Rule.error("Information required.").required()
     },
     {
+      name: "dailyNavLabel",
+      title: "Daily NAV Label (*)",
+      type: "localeString",
+      validation: Rule => Rule.error("Information required.").required()
+    },
+    {
       name: "dailyNav",
       title: "Daily NAV (*)",
       type: "localeString",
