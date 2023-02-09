@@ -25,7 +25,7 @@
 
 .simpleBlockContent thead tr th {
   padding: 20px 0px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #E8E8EA;
 }
 
@@ -70,6 +70,7 @@
 .orange tr td:last-child {
   .bg {
     background-color: var(--light-orange);
+    width: 90px;
   }
 }
 
