@@ -206,7 +206,7 @@ function Header(props) {
                   dataCountries={dataCountries}
                 />
                 <Link
-                  href="http://3iq-dash-poc.s3-website.us-east-2.amazonaws.com"
+                  href="https://d3uavdqzebpj3q.cloudfront.net"
                   sx={{textDecoration: 'none'}}
                   target="_blank"
                 >
@@ -218,7 +218,7 @@ function Header(props) {
                       padding: {xs: '12px 16px', lg: '0px'},
                       textTransform: 'capitalize',
                       position: 'relative',
-                      color: 'black',
+                      color: '#0082E5',
                     }}
                   >
                     Login
@@ -245,7 +245,7 @@ function Header(props) {
                   />
                 </Box>
                 <Link
-                  href="http://3iq-dash-poc.s3-website.us-east-2.amazonaws.com"
+                  href="https://d3uavdqzebpj3q.cloudfront.net/login"
                   sx={{textDecoration: 'none'}}
                 >
                   <Box
@@ -256,7 +256,7 @@ function Header(props) {
                       padding: {xs: '12px 16px', lg: '0px'},
                       textTransform: 'capitalize',
                       position: 'relative',
-                      color: 'black',
+                      color: '#0082E5',
                     }}
                   >
                     Login
