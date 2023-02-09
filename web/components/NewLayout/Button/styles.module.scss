@@ -1,15 +1,23 @@
+@import '../../../styles/custom-media.css';
+
 .button {
   border: none;
-  padding: 15px 30px;
+  padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
   font-family: var(--font-family-secondary);
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   width: auto;
   height: auto;
+
+  @media (--media-min-large) {
+    padding: 15px 30px;
+    flex-wrap: wrap;
+  }
+
   &::after {
     content: '',
   }
@@ -151,8 +159,21 @@
   margin-left: auto;
 }
 
+.map{
+  position: relative;
+  font-size: 20px;
+  padding-right: 8px;
+}
+
 .redirect__arrow{
-  position: realtive;
+  position: relative;
   padding-left: 5px;
   margin-left: auto;
+
+  &__left{
+    position: relative;
+    font-size: 18px;
+    padding-right: 8px;
+
+  }
 }

@@ -50,7 +50,7 @@ function HeroBigImage(props) {
                 sx={{
                   fontWeight: '300',
                   color: fontColor ? fontColor : 'var(--black)',
-                  fontSize: 'var(--font-size-primary-lg)',
+                  fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
                   fontFamily: 'var(--font-family-primary)'
                 }}
               >

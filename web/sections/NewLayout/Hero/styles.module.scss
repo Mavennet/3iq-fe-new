@@ -5,8 +5,10 @@
 
 .simpleBlockContent {
   p{
-    font-family: var(--font-family-secondary);
+    font-family: var(--font-family-primary);
     font-size: var(--font-size-secondary-md);
   }
-
+  strong {
+    font-weight: 700;
+  }
 }

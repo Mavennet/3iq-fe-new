@@ -7,6 +7,7 @@ import route from "./documents/route";
 import siteConfig from "./documents/siteConfig";
 import person from "./documents/person";
 import benefity from "./documents/benefity";
+import accordionItem from './documents/accordionItem';
 import country from "./documents/country";
 import language from "./documents/language";
 import post from "./documents/post";
@@ -23,10 +24,14 @@ import fundCard from "./documents/fundCard";
 import fundSidebarItem from "./documents/fundSidebarItem";
 import category from "./documents/category";
 import imagesContainer from "./documents/imagesContainer";
+import services from "./documents/services";
+import postV2 from "./documents/postV2";
 
 // Section documents
 import textSection from "./documents/sections/textSection";
 import heroWithImage from "./documents/sections/heroWithImage";
+import headerPost from "./documents/sections/headerPost";
+import postOverview from './documents/sections/postOverview';
 import heroSailGP from "./documents/sections/heroSailGP";
 import ourFunds from "./documents/sections/ourFunds";
 import componentsTests from "./documents/sections/componentsTests";
@@ -36,6 +41,7 @@ import heroFirstVariation from "./documents/sections/heroFirstVariation";
 import heroDoubleButton from "./documents/sections/heroDoubleButton";
 import heroBigImage from "./documents/sections/heroBigImage";
 import heroNft from './documents/sections/heroNft';
+import heroSubscribe from './documents/sections/heroSubscribe';
 import heroPreview from './documents/sections/heroPreview';
 import highlights from './documents/sections/highlights';
 import imageWithText from "./documents/sections/imageWithText";
@@ -47,12 +53,14 @@ import search from "./documents/sections/search";
 import articlesSearch from "./documents/sections/articlesSearch";
 import teamsVideoDisplay from "./documents/sections/teamsVideoDisplay";
 import imageBesideText from "./documents/sections/imageBesideText";
+import overflowHero from "./documents/sections/overflowHero";
 import quoteHeads from "./documents/sections/quoteHeads";
 import quoteFounder from "./documents/sections/quoteFounder";
 import quoteHeadsDubai from "./documents/sections/quoteHeadsDubai";
 import fundsDisclaimer from "./documents/sections/fundsDisclaimer";
 import readyToInvest from "./documents/sections/readyToInvest";
 import awards from "./documents/sections/awards";
+import categoriesList from './documents/sections/categoriesList';
 import note from "./documents/sections/note";
 import doubleOptions from "./documents/sections/doubleOptions";
 import sideBySideImages from "./documents/sections/sideBySideImages";
@@ -60,11 +68,14 @@ import keyBenefits from "./documents/sections/keyBenefits";
 import newsCard from "./documents/sections/newsCard";
 import automatedNewsCard from "./documents/sections/automatedNewsCard";
 import automatedArticles from "./documents/sections/automatedArticles";
+import automatedLatest from "./documents/sections/automatedLatest";
 import readMoreCard from "./documents/sections/readMoreCard";
 import teamsDisplay from "./documents/sections/teamsDisplay";
 import whatWeOffer from "./documents/sections/whatWeOffer";
+import AccordionText from './documents/sections/accordionText';
 import timeline from "./documents/sections/timeline";
 import contactUsForm from "./documents/sections/contactUsForm";
+import webinarSubscribe from "./documents/sections/webinarSubscribe";
 import subscribeForm from "./documents/sections/subscribeForm";
 import locationsDisplay from "./documents/sections/locationsDisplay";
 import plainText from "./documents/sections/plainText";
@@ -79,6 +90,10 @@ import lineChart from "./documents/sections/lineChart";
 import tableSection from "./documents/sections/tableSection";
 import tableCripto from "./documents/sections/tableCripto";
 import articles from "./documents/sections/articles";
+import howWePartnerClients from "./documents/sections/howWePartnerClients";
+import serviceAndSolutions from "./documents/sections/serviceAndSolutions";
+import ocioServices from "./documents/sections/ocioServices";
+import ocioHero from "./documents/sections/ocioHero";
 
 // Object types
 import cta from "./objects/cta";
@@ -100,6 +115,8 @@ import localeSimplePortableText from "./objects/locale/localeSimplePortableText"
 import localePortableText from "./objects/locale/localePortableText";
 import localeBioPortableText from "./objects/locale/localeBioPortableText";
 import localeFigure from "./objects/locale/localeFigure";
+import accordionText from "./documents/sections/accordionText";
+import why3iQ from "./documents/sections/why3iQ";
 
 export default createSchema({
   name: "default",
@@ -127,8 +144,10 @@ export default createSchema({
     postPortableText,
     person,
     benefity,
+    accordionItem,
     doubleOptions,
     keyBenefits,
+    overflowHero,
     benefitCard,
     item,
     post,
@@ -137,6 +156,8 @@ export default createSchema({
     localeString,
     localeText,
     heroWithImage,
+    headerPost,
+    postOverview,
     heroSailGP,
     ourFunds,
     componentsTests,
@@ -145,6 +166,7 @@ export default createSchema({
     heroDoubleButton,
     heroBigImage,
     heroNft,
+    heroSubscribe,
     heroPreview,
     highlights,
     imageBesideText,
@@ -158,21 +180,25 @@ export default createSchema({
     fundsDisclaimer,
     readyToInvest,
     awards,
+    categoriesList,
     sideBySideImages,
     menuItem,
     localePortableText,
     newsCard,
     automatedNewsCard,
     automatedArticles,
+    automatedLatest,
     readMoreCard,
     localeBioPortableText,
     team,
     teamsDisplay,
     whatWeOffer,
+    accordionText,
     timeline,
     timelineItem,
     subscribeForm,
     contactUsForm,
+    webinarSubscribe,
     locationsDisplay,
     location,
     plainText,
@@ -195,6 +221,13 @@ export default createSchema({
     tableSection,
     tableCripto,
     articles,
-    localeFigure
+    localeFigure,
+    howWePartnerClients,
+    serviceAndSolutions,
+    ocioServices,
+    services,
+    why3iQ,
+    postV2,
+    ocioHero
   ])
 });

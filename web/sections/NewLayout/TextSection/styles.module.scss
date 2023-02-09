@@ -39,26 +39,30 @@
   color: var(--black);
   strong {
     color: var(--black);
-    font-family: var(--font-family-secondary);
   }
   h1 {
     font-size: var(--font-size-primary-xl);
+    font-family: var(--font-family-primary);
   }
   h2 {
     font-size: var(--font-size-primary-lg);
+    font-family: var(--font-family-primary);
   }
   h3 {
     font-size: var(--font-size-primary-md);
     color: var(--light-blue);
+    font-family: var(--font-family-primary);
   }
   h4 {
     font-size: var(--font-size-primary-sm);
+    font-family: var(--font-family-primary);
   }
   h5 {
     font-size: var(--font-size-primary-xs);
+    font-family: var(--font-family-primary);
   }
   p {
-    font-size: var(--font-size-secondary-lg);
+    font-size: var(--font-size-secondary-md);
     font-weight: var(--font-weight-regular);
     font-family: var(--font-family-secondary);
   }
@@ -66,7 +70,13 @@
     margin: 0;
     padding-left: 20px;
     color: var(--black);
+    font-size: var(--font-size-secondary-md);
     font-weight: var(--font-weight-regular);
+    font-family: var(--font-family-secondary);
+    margin-bottom: 50px;
+    li {
+      margin-bottom: 40px;
+    }
   }
   a {
     color: var(--black);

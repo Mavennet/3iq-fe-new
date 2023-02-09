@@ -4,30 +4,40 @@ import styles from './styles.module.scss'
 import Button from '../Button'
 import SimpleBlockContent from '../../OldLayout/SimpleBlockContent'
 import { RiCloseLine } from 'react-icons/ri'
+import { Grid } from '@mui/material'
 
 function Popup(props) {
 
-  const { content } = props
+  const { content, closeHandler, route } = props
 
-  const [hiddenPopup, setHiddenPopup] = React.useState(false)
+  const goToContent = () => {
+    localStorage.setItem('lastUpdate', route._id);
+  }
 
   return (
-    !hiddenPopup && (
-      <div className={styles.popup__box}>
-        <div className={styles.button__container}>
-          <div className={styles.close__button} onClick={() => setHiddenPopup(true)}>
-            <RiCloseLine size={20} color={'var(--black)'} />
+    <div className={styles.popup__box}>
+      <Grid container p={2}>
+        <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <div className={styles.close__button} onClick={() => closeHandler()}>
+            <RiCloseLine size={20} color={'#000'} />
           </div>
-        </div>
-        <div className={styles.simple__block__content}>
-          <SimpleBlockContent blocks={content} />
-        </div>
-        <Button
-          title={'Go to content'}
-          size={'sm'}
-        />
-      </div>
-    )
+        </Grid>
+        <Grid item xs={12}>
+          <div className={styles.simple__block__content}>
+            <SimpleBlockContent blocks={content} />
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          <div onClick={() => goToContent()}>
+            <Button
+              title={'Go to content'}
+              size={'xs'}
+              route={route}
+            />
+          </div>
+        </Grid>
+      </Grid>
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 .popup__box {
   background-color: #F6F6F6;
-  padding: 10px 20px 30px 20px;
+  //padding: 10px 20px 30px 20px;
   box-shadow: 5px 5px 20px #00000029;
   border-radius: 4px;
   width: 100%;
@@ -8,8 +8,15 @@
   display: block;
 }
 
+.block__button {
+  display: block;
+  a {
+    float: none!important;
+  }
+}
+
 .simple__block__content {
-  margin: 10px 0px;
+  margin-bottom: 10px;
   strong {
     font-weight: var(--font-weight-bold);
   }

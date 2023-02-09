@@ -1,0 +1,17 @@
+.simple__block__content * {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-secondary-md);
+    font-weight: var(--font-weight-regular);
+    word-wrap: break-word;
+  }
+
+  .simple__block__content {
+    a {
+      color: var(--black);
+      text-decoration: underline;
+    }
+  }
+
+.bulletPointsUl {
+  color: #0082E5;
+}

@@ -32,10 +32,12 @@ export default {
       title: 'Second Description (*)',
     },
     {
-      name: 'videoSrc',
-      type: 'string',
-      title: 'YouTube video ID',
-      description: 'Optional display of an YouTube video through its ID'
+      name: 'gif',
+      type: 'image',
+      title: 'Gif',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'videoDescription',
@@ -70,7 +72,7 @@ export default {
     select: {
       title: `heading.${baseLanguage.id}`,
     },
-    prepare({ title, media }) {
+    prepare({ title }) {
       return {
         title,
         subtitle: 'Hero NFT section',

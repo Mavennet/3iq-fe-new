@@ -86,7 +86,7 @@ function Awards(props) {
                     fontSize: { xs: '50px', md: '131px' },
                     fontFamily: 'var(--font-family-primary)',
                     position: 'absolute',
-                    top: { xs: '-40px', md: '-80px' },
+                    top: '-80px',
                     left: { xs: '0', md: '-40px' },
                   }}
                 >

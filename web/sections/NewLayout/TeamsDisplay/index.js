@@ -17,6 +17,7 @@ function TeamsDisplay(props) {
 
   const [open, setOpen] = React.useState(false)
   const [memberSelected, setMemberSelected] = React.useState(null)
+  const [categorie, setCategorie] = React.useState("")
 
   function urlFor(source) {
     return imageUrlBuilder(client).image(source)
@@ -42,6 +43,12 @@ function TeamsDisplay(props) {
     p: 2,
   };
 
+  React.useEffect(() => {
+    if (teams) {
+      setCategorie(teams[0]._id)
+    }
+  }, [teams])
+
   return (
     <>
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
@@ -61,7 +68,17 @@ function TeamsDisplay(props) {
                   {
                     teams.map((item) => {
                       return (
-                        <li key={item._id}><a href={`#${item._id}`}>{item.localeName[currentLanguage.languageTag]}</a></li>
+                        <li
+                          key={item._id}
+                          className={item._id === categorie && styles.active}
+                        >
+                          <a
+                            href={`#${item._id}`}
+                            onClick={() => setCategorie(item._id)}
+                          >
+                            {item.localeName[currentLanguage.languageTag]}
+                          </a>
+                        </li>
                       )
                     })
                   }
@@ -69,7 +86,7 @@ function TeamsDisplay(props) {
               </div>
             </div>
           </Grid>
-          <Grid xs={12} md={8}>
+          <Grid xs={12} md={8} mt={2}>
             {
               teams.map((item) => {
                 return (
@@ -164,6 +181,7 @@ function TeamsDisplay(props) {
                             xs={6}
                             sm={4}
                             md={3}
+                            mb={4}
                             key={item._id}
                             onClick={item.localeBio ? () => handleOpen(item) : null}
                             sx={{ cursor: item.localeBio ? 'pointer' : '' }}

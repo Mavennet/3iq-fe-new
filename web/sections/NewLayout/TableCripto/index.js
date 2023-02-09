@@ -39,7 +39,7 @@ function TableCripto(props) {
                 variant="h2"
                 sx={{
                   fontFamily: 'var(--font-family-primary)',
-                  fontSize: 'var(--font-size-primary-lg)',
+                  fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
                   color: 'var(--black)',
                 }}
               >
@@ -82,9 +82,9 @@ function TableCripto(props) {
                       <thead>
                         <tr>
                           {
-                            headers.map((item) => {
+                            headers.map((item, i) => {
                               return (
-                                <th key={item._key}>{item[currentLanguage?.languageTag]}</th>
+                                <th key={item._key} className={i === 0 && styles.header__fixed__mobile}>{item[currentLanguage?.languageTag]}</th>
                               )
                             })
                           }
@@ -97,7 +97,7 @@ function TableCripto(props) {
                       data.map((item, i) => {
                         return (
                           <tr key={i}>
-                            <td>
+                            <td className={styles.fixed__mobile}>
                               <div className={styles.criptoInfo}>
                                 <Box
                                   component="img"
@@ -111,8 +111,8 @@ function TableCripto(props) {
                                 {item.currency}
                               </div>
                             </td>
-                            <td>{item.price}</td>
-                            <td>{item.index}</td>
+                            <td className={styles.price}>$ {(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
+                            <td className={styles.price}>{item.index}</td>
                             <td>{item.weight}</td>
                           </tr>
                         )

@@ -6,7 +6,12 @@ import client from '../../../client'
 import Form from '../../../components/NewLayout/Form'
 import Dropdown from '../../../components/NewLayout/Dropdown'
 import Button from '../../../components/NewLayout/Button'
-import {ROUTES_BY_TERM, CATEGORIES, NEWS_CARD_BY_TERM} from '../../../utils/groqQueries'
+import {
+  ROUTES_BY_TERM,
+  CATEGORIES,
+  NEWS_CARD_BY_TERM,
+  POSTS_BY_TERM,
+} from '../../../utils/groqQueries'
 import SearchCard from '../../../components/NewLayout/SearchCard'
 import Card from '../../../components/NewLayout/Card'
 import NewsletterCard from '../../../components/NewLayout/NewletterCard'
@@ -170,7 +175,11 @@ function Search(props) {
         <Box sx={{display: {md: 'none', xs: 'flex'}, alignItems: 'center'}}>
           {singleSection && (
             <Box mt={1} mr={1.5}>
-              <IoIosArrowDropleft onClick={() => setSingleSection(null)} className={styles.icon} size={30} />
+              <IoIosArrowDropleft
+                onClick={() => setSingleSection(null)}
+                className={styles.icon}
+                size={30}
+              />
             </Box>
           )}
           <h5>{title}</h5>
@@ -181,7 +190,11 @@ function Search(props) {
         <Box sx={{display: {md: 'flex', xs: 'none'}, alignItems: 'center'}}>
           {singleSection && (
             <Box mt={1.2} mr={1.5}>
-              <IoIosArrowDropleft onClick={() =>  setSingleSection(null)} className={styles.icon} size={35} />
+              <IoIosArrowDropleft
+                onClick={() => setSingleSection(null)}
+                className={styles.icon}
+                size={35}
+              />
             </Box>
           )}
           <h3>{title}</h3>
@@ -207,8 +220,6 @@ function Search(props) {
 
   async function search() {
     if (categories.length > 0) {
-      let categoryIds = []
-      categories.map((c) => categoryIds.push(c._id))
       // let webinars =
       if (
         searchTerm &&
@@ -217,14 +228,18 @@ function Search(props) {
         await client
           .fetch(ROUTES_BY_TERM, {term: searchTerm, urlTag: currentCountry.urlTag})
           .then((res) => {
-            setRoutes(res), console.log(res)
+            setRoutes(res)
           })
         await client
-          .fetch(NEWS_CARD_BY_TERM, {
-            term: searchTerm,
+          .fetch(POSTS_BY_TERM, {
+            term: `${searchTerm}*`,
             languageTag: currentLanguage.languageTag,
           })
-          .then((res) => filterPosts(res))
+          .then(async (res) => {
+            let postsIds = []
+            res.map((p) => postsIds.push(p._id))
+            await client.fetch(NEWS_CARD_BY_TERM, {postsIds}).then((res) => filterPosts(res))
+          })
       }
     }
   }
@@ -247,9 +262,10 @@ function Search(props) {
     let filteredPosts = {}
     categories.map((c) => (filteredPosts[c] = []))
     posts.map((p) => {
-      p.post.categories.map((c) => {
-        categories.indexOf(c.searchId) >= 0 && filteredPosts[c.searchId].push(p)
-      })
+      p.post &&
+        p.post.categories.map((c) => {
+          categories.indexOf(c.searchId) >= 0 && filteredPosts[c.searchId].push(p)
+        })
     })
     if (independentSearch && filterDropdownValue && filterDropdownValue.value == 'most_recent') {
       categories.map((c) =>

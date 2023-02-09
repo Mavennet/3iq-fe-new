@@ -21,6 +21,7 @@ function HeroPreview(props) {
     buttonText,
     route,
     post,
+    arrowButton,
     currentLanguage
   } = props
 
@@ -32,7 +33,7 @@ function HeroPreview(props) {
       const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
       const newYears = new Date(post.publishedAt)
       const isEng = currentLanguage.name === "EN"
-      const formattedDate = format(newYears, isEng ? 'MMMM dd, yyyy' : 'dd MMMM yyyy', {
+      const formattedDate = format(newYears, isEng ? "MMMM dd, yyyy - hh a" : 'dd MMMM yyyy - hh a', {
         locale: getLocale(currentLanguage.languageTag.replace('_', '-')),
       })
       !isEng && formattedDate.toLocaleLowerCase('fr')
@@ -69,8 +70,27 @@ function HeroPreview(props) {
       className={greenLayout ? styles.green : styles.blue}
     >
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg', xl: 'xl' } }}>
-        <Grid container spacing={{ xs: 0, md: 4 }} sx={{display: 'flex', alignItems: 'center'}}>
+        <Grid container spacing={{ xs: 0, md: 4 }} sx={{ display: 'flex', alignItems: 'center' }}>
           <Grid item xs={12} md={7} mb={4}>
+            {arrowButton && arrowButton[currentLanguage.languageTag] && (
+              <Box
+                sx={{
+                  width: '100%',
+                  justifyContent: 'flex-end',
+                  display: { xs: 'flex', md: 'none' },
+                  marginBottom: 8
+                }}
+              >
+                <Button
+                  variant={'outlinedWhite'}
+                  className={styles.button}
+                  {...arrowButton[currentLanguage.languageTag]}
+                  size="xs"
+                  title={arrowButton[currentLanguage.languageTag]?.title}
+                  redirectArrow={true}
+                />
+              </Box>
+            )}
             <div className={styles.image}>
               <Box
                 component="img"
@@ -80,18 +100,37 @@ function HeroPreview(props) {
                 alt={backgroundImage.alt}
                 src={builder.image(backgroundImage).url()}
               />
-              {heading && !hideHeading &&<h2 className={styles.heading}>{heading}</h2>}
+              {heading && !hideHeading && <h2 className={styles.heading}>{heading}</h2>}
             </div>
           </Grid>
           <Grid item xs={12} md={5}>
+            {arrowButton && arrowButton[currentLanguage.languageTag] && (
+              <Box
+                sx={{
+                  width: '100%',
+                  justifyContent: 'flex-end',
+                  display: { xs: 'none', md: 'flex' }
+                }}
+              >
+                <Button
+                  variant={'outlinedWhite'}
+                  className={styles.button}
+                  {...arrowButton[currentLanguage.languageTag]}
+                  size="xs"
+                  title={arrowButton[currentLanguage.languageTag]?.title}
+                  redirectArrow={true}
+                />
+              </Box>
+            )}
             {categorie?.name && (
               <Typography
                 my={2}
                 variant="h5"
                 sx={{
-                  fontSize: 'var(--font-size-secondary-sm)',
+                  fontSize: 'var(--font-size-secondary-md)',
                   fontFamily: 'var(--font-family-secondary)',
                   color: '#F59B1E',
+                  display: greenLayout && 'none'
                 }}
               >
                 {categorie?.name?.[currentLanguage.languageTag]}
@@ -153,6 +192,7 @@ HeroPreview.propTypes = {
   route: PropTypes.object,
   post: PropTypes.object,
   currentLanguage: PropTypes.object,
+  arrowButton: PropTypes.object,
 }
 
 export default HeroPreview

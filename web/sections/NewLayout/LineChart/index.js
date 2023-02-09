@@ -11,6 +11,7 @@ import { TfiDownload } from 'react-icons/tfi'
 
 function LineChart(props) {
   const {
+    _id,
     heading,
     description,
     desktopSize = 12,
@@ -144,7 +145,7 @@ function LineChart(props) {
               variant="h2"
               sx={{
                 fontFamily: 'var(--font-family-primary)',
-                fontSize: 'var(--font-size-primary-lg)',
+                fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
                 color: 'var(--black)',
               }}
             >
@@ -156,7 +157,7 @@ function LineChart(props) {
           <Grid item xs={12} mb={4} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
             <CSVLink
               data={data}
-              filename={`line-chart.csv`}
+              filename={`line-chart-${_id}.csv`}
               target="_blank"
               style={{
                 textAlign: 'center',
@@ -194,6 +195,7 @@ function LineChart(props) {
 }
 
 LineChart.propTypes = {
+  _id: PropTypes.string,
   heading: PropTypes.string,
   description: PropTypes.string,
   chartColor: PropTypes.string,

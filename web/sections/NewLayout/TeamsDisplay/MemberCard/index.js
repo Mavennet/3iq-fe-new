@@ -48,7 +48,7 @@ function MemberCard(props) {
       >
         <Typography
           variant="h3"
-          my={2}
+          my={1}
           sx={{
             fontFamily: 'var(--font-family-secondary)',
             color: 'var(--black)',
@@ -60,7 +60,7 @@ function MemberCard(props) {
         </Typography>
         <Typography
           variant="h4"
-          mb={2}
+          mb={1}
           sx={{
             fontFamily: 'var(--font-family-secondary)',
             color: 'var(--black)',

@@ -14,8 +14,6 @@ import Button from '../../../components/NewLayout/Button'
 function FundsOverview(props) {
   const { title, embed, fundSidebarItem, currentLanguage, endpoint, button, footer } = props
 
-  console.log(button)
-
   const [data, setData] = React.useState(null)
 
   const getKeyFacts = (endpoint) => {
@@ -55,7 +53,7 @@ function FundsOverview(props) {
               </Box>
             )}
             {data && (
-              <Box className={styles.key__table} mt={4}>
+              <Box className={styles.key__table} my={6}>
                 <table>
                   <tbody>
                     {Object.entries(data[0].en_CA ? data[0][currentLanguage.languageTag.startsWith('en') ? 'en_CA' : currentLanguage.languageTag] : data[0]).map((item, key) => {
@@ -72,7 +70,7 @@ function FundsOverview(props) {
 
                       return (
                         <tr key={key}>
-                          <td>{isExpandKey ? keysExpanded[indexOfKey] : item[0]}</td>
+                          <td><strong>{isExpandKey ? keysExpanded[indexOfKey] : item[0]}</strong></td>
                           <td>{isExpandKey || isFrenchKey ? expandValue : item[1]}</td>
                         </tr>
                       )

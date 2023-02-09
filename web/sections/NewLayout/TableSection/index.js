@@ -19,8 +19,11 @@ function TableSection(props) {
     endpoint,
     headers,
     currentLanguage,
-    headerFundPerformance
+    headerFundPerformance,
+    _id
   } = props
+
+  console.log(props)
 
   const [data, setData] = React.useState(null)
   const [date, setDate] = React.useState(null)
@@ -77,15 +80,16 @@ function TableSection(props) {
 
   return (
     <Container sx={{ maxWidth: { sm: 'md', md: 'lg', lg: 'xl' } }}>
-      <Grid container mb={6}>
+      <Grid container my={6}>
         {
           heading && (
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
               <Typography
                 variant="h2"
+                mb={!downloadButton && 4}
                 sx={{
                   fontFamily: 'var(--font-family-primary)',
-                  fontSize: 'var(--font-size-primary-lg)',
+                  fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
                   color: 'var(--black)',
                 }}
               >{heading}</Typography>
@@ -94,7 +98,7 @@ function TableSection(props) {
                   <>
                     <CSVLink
                       data={data ? data : []}
-                      filename={`table.csv`}
+                      filename={`table-${_id}.csv`}
                       target="_blank"
                       style={{
                         textAlign: 'center',
@@ -132,7 +136,6 @@ function TableSection(props) {
                   <p>{currentLanguage?.languageTag.startsWith('en') ? 'Annualized Returns' : 'Rendements annualisés'}</p>
                 </div>
               </div>
-
             </Grid>
           )
         }
@@ -185,8 +188,8 @@ function TableSection(props) {
                                     <div className={styles.bg}>
                                       {
                                         (keys[i] === 'cad' || keys[i] === 'usd') && parseFloat(item) > 1000
-                                          ? `$${parseFloat(item).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
-                                          : (keys[i] === 'cad' || keys[i] === 'usd') && parseFloat(item) < 1000 ? `$${parseFloat(item).toFixed(4)}`
+                                          ? `$ ${parseFloat(item).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+                                          : (keys[i] === 'cad' || keys[i] === 'usd') && parseFloat(item) < 1000 ? `$ ${parseFloat(item).toFixed(4)}`
                                             : isDate(item)
                                               ? convertDate(item)
                                               : item
@@ -203,7 +206,7 @@ function TableSection(props) {
                   </tbody>
                 </table>
                 {data[0].dateDaily && (
-                  <Box sx={{ mt: 2 }}>
+                  <Box sx={{ my: 2 }}>
                     <Typography align='right' sx={{ color: '#77757F' }}>{`${currentLanguage.name === 'EN' ? 'Price as at' : 'Prix au'} ${convertDate(data[0].dateDaily)}`}</Typography>
                   </Box>
                 )}
@@ -213,11 +216,11 @@ function TableSection(props) {
         }
         {
           embed && (
-            <Grid item xs={12} mb={3}>
+            <Grid item xs={12} my={3}>
               <div className={styles.simpleBlockContent}>
                 <SimpleBlockContent blocks={embed} />
                 {date && (
-                  <Typography paragraph>‡ {date}</Typography>
+                  <Typography paragraph style={{color: 'var(--dark-gray)', fontWeight: '300', fontStyle: 'normal'}}>‡ {date}</Typography>
                 )}
               </div>
             </Grid>
@@ -238,7 +241,8 @@ TableSection.propTypes = {
   endpoint: PropTypes.string,
   headers: PropTypes.array,
   currentLanguage: PropTypes.object,
-  headerFundPerformance: PropTypes.bool
+  headerFundPerformance: PropTypes.bool,
+  _id: PropTypes.string,
 }
 
 export default TableSection

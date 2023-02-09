@@ -1,5 +1,9 @@
+@import '../../../styles/custom-media.css';
+
 .our__funds__section {
     padding: 100px 0px;
+    background: #EBEBEB;
+    overflow: hidden;
 }
 
 .box__container {
@@ -8,6 +12,18 @@
     display: flex;
     scroll-behavior: smooth;
     scrollbar-width: none;
+    @media (min-width: 1700px) {
+      margin-left: 5%;
+    }
+    @media (min-width: 2000px) {
+      margin-left: 10%;
+    }
+    @media (min-width: 2436px) {
+      margin-left: 22%;
+    }
+    @media (min-width: 4000px) {
+      margin-left: 30vw;
+    }
 
     &::-webkit-scrollbar {
         display: none;
@@ -136,7 +152,7 @@
                 url('../../../temp/moeds.png');
             background-repeat: no-repeat;
             background-size: 300px;
-            background-position: 160% 50%;       
+            background-position: 160% 50%;
             // top: 20px;
         }
 
@@ -153,4 +169,27 @@
     }
 
 
+}
+
+.arrows {
+  display: flex;
+  gap: 10px;
+}
+
+.arrow{
+  border: 1px solid #404040;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.3s;
+    &:hover{
+        cursor: pointer;
+        background-color: var(--light-blue);
+        color: var(--white);
+        border: none;
+        transition: 0.3s;
+    }
 }

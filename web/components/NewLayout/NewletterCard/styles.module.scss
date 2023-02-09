@@ -51,4 +51,11 @@
   color: var(--hover-blue);
   font-size: var(--font-size-secondary-xs);
   font-family: var(--font-family-secondary);
+  font-weight: normal;
+  word-wrap: break-word;
+}
+
+
+.newsletterCard{
+  word-wrap: break-word;
 }

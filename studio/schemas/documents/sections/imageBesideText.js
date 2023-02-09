@@ -29,12 +29,26 @@ export default {
       initialValue: false,
     },
     {
+      name: 'invertMobile',
+      type: 'boolean',
+      title: 'Invert layout on mobile?',
+      description: 'Enable this option to invert the content on mobile',
+      initialValue: false,
+    },
+    {
       name: 'backgroundImage',
       type: 'image',
       title: 'Image',
       options: {
         hotspot: true
       }
+    },
+    {
+      name: 'smallImage',
+      type: 'boolean',
+      title: 'Image Grid size less than text?',
+      description: 'Size: {true: 35%, false: 70%}',
+      initialValue: false,
     },
     {
       name: 'videoSrc',

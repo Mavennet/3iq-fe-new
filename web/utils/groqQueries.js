@@ -40,6 +40,7 @@ export const DATA_COUNTRIES = groq`
   linkedinUrl,
   youtubeUrl,
   shareThisStoryText,
+  newsLetterText,
 }
 `
 
@@ -57,7 +58,7 @@ export const DATA_IN_SLUG = groq`*[_type == "route" && slug.current in $possible
 
 export const DATA_IN_SLUG_BY_PATH = groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
     page-> {
-      ${pageFragment}
+      ${pageFragment}[]
     }
   }`
 
@@ -69,8 +70,17 @@ export const ROUTES_BY_TERM = groq`
 *[_type == 'route' && slug.current match [$urlTag, $term]] {...,countries[]-> {urlTag}, page->{...}}
 `
 
+export const POSTS_BY_TERM = groq`*[_type == 'post' && !(_id in path('drafts.**')) && (name match $term || heading[$languageTag] match $term || categories[0].name[$languageTag] match $term)] {
+      _id,
+      _type,
+      publishedAt,
+      name,
+      heading,
+      categories[]-> {name},
+    }`
+
 export const NEWS_CARD_BY_TERM = groq`
-*[_type == 'newsCard' &&  pt::text(shortDescription[$languageTag]) match $term] {
+*[_type == 'newsCard' && !(_id in path('drafts.**')) && post._ref in $postsIds] {
   _id,
   _type,
   _rev,
@@ -85,7 +95,7 @@ export const NEWS_CARD_BY_TERM = groq`
     mainImage,
     'localeHeading': heading,
     publishedAt,
-    categories[]-> {'localeName': name, ...},
+    categories[]-> {singularName, 'localeName': name, ...},
     author-> {
       _id,
       _type,
@@ -164,6 +174,19 @@ export const LOCATIONS_DISPLAY = groq`
 }
 `
 
+export const LOCATIONS = groq`
+*[_type == 'location' && _id in $locationIds] {
+    _id,
+    _type,
+    'localeName': name,
+    'localeDescription': description,
+    googleMapsSrc,
+    isMetaverse,
+    redirectLink,
+    mainImage,
+}
+`
+
 export const TAB_ITEMS = groq`
 *[_type == 'tabItem'] {
   _id,
@@ -192,6 +215,7 @@ export const TAB_ITEMS = groq`
       categories[]-> {
         _id,
         _type,
+        singularName,
         'localeName': name,
         ...
       },
@@ -261,6 +285,7 @@ export const FUND_CARDS = groq`
   _rev,
   'localeHeading': heading,
   codes,
+  cardColor,
   'localeButton': button,
   'localeText': text,
   'localeDailyNav': dailyNav,

@@ -46,30 +46,24 @@ function NewsletterCard(props) {
                 sx={{
                   background: '#0D1C3D',
                   color: 'white',
-                  width: '53px',
-                  height: '53px',
+                  width: '60px',
+                  height: '60px',
                   textAlign: 'center',
-                  fontSize: 'var(--font-size-secondary-sm)',
+                  fontSize: 'var(--font-size-secondary-xs)',
                   fontFamily: 'var(--font-family-primary)',
                 }}
               >
-                <Box pt={1.7}>#{newsletterNumber}</Box>
+                <Box pt={2.5}>#{newsletterNumber}</Box>
               </Box>
             </Grid>
             <Grid
               item
               xs={10}
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-              }}
               pl={3}
             >
-              <div>
+              <div className={styles.newsletterCard}>
                 {post?.author?.name &&
-                  post?.categories[0]?.localeName[currentLanguage.languageTag] && (
+                  post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] && (
                     <Typography
                       mt={2}
                       variant="h5"
@@ -78,9 +72,10 @@ function NewsletterCard(props) {
                         fontFamily: 'var(--font-family-secondary)',
                         color: 'var(--black)',
                       }}
+                    
                     >
                       <span className={styles.blue}>
-                        {post?.categories[0]?.localeName[currentLanguage.languageTag] + ' '}
+                        {post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}
                       </span>
                       by {post?.author?.name}
                     </Typography>

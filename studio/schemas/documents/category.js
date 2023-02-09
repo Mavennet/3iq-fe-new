@@ -16,6 +16,17 @@ export default {
       validation: Rule => Rule.error('Information required.').required(),
     },
     {
+      name: 'singularName',
+      type: 'localeString',
+      title: 'Singular Name (*)',
+      validation: Rule => Rule.error('Information required.').required(),
+    },
+    {
+      name: 'description',
+      type: 'localeString',
+      title: 'Description (*)',
+    },
+    {
       name: 'searchCategory',
       type: 'boolean',
       title: 'Search Category (*)',
@@ -32,8 +43,18 @@ export default {
       hidden: ({currentUser}) => {
         return !(currentUser.roles.find(({name}) => name === 'editor'))
       }
-    }
-
+    },
+    {
+      name: 'optionalTitle',
+      type: 'localeString',
+      title: 'Optional Title (*)',
+    },
+    {
+      name: 'priority',
+      title: 'Priority',
+      type: 'number',
+      validation: Rule => Rule.min(0).integer().positive(),
+    },
   ],
   preview: {
     select: {

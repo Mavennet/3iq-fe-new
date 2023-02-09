@@ -2,13 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
 import { Container, Grid, Box } from '@mui/material'
-import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io'
+import { RiArrowRightSLine, RiArrowLeftSLine } from 'react-icons/ri'
 import Button from '../../../components/NewLayout/Button'
 
 function renderCards(items, languageTag) {
-
-    const count = -1
-
     const cardStyles = [
         {
             card: styles.box__container__card,
@@ -24,15 +21,14 @@ function renderCards(items, languageTag) {
             card: styles.box__container__card__3,
             background: styles.box__container__card__3__background,
             button: styles.box__container__card__3__button
-        }
+        },
+      
     ]
 
     const cards = items.map((item) => {
-        count > 2 && --count
-        ++count
         return (
-            <Box sx={{ minWidth: { sm: '500px', xs: '300px' }, ml: count == 0 && { xl: 60, lg: 10, md: 2, xs: 0 } }} className={cardStyles[count].card}>
-                <div className={cardStyles[count].background}>
+            <Box sx={{ minWidth: { sm: '500px', xs: '300px' } }} className={item.cardColor ? cardStyles[item.cardColor].card : cardStyles[0].card}>
+                <div className={item.cardColor ? cardStyles[item.cardColor].background : cardStyles[0].background}>
                     <div className={styles.box__container__card__content}>
                         <div className={styles.box__container__title}>
                             <h4>{item.localeHeading[languageTag] || ''}</h4>
@@ -51,7 +47,7 @@ function renderCards(items, languageTag) {
                         </div>
                         {item.localeButton[languageTag] && (
                             <Box className={styles.box__container__card__button__grid} sx={{ justifyContent: { sm: 'end', xs: 'center' } }}>
-                                <Button {...item.localeButton[languageTag]} title={item.localeButton[languageTag].title} className={cardStyles[count].button} size="sm" />
+                                <Button {...item.localeButton[languageTag]} title={item.localeButton[languageTag].title} className={item.cardColor ? cardStyles[item.cardColor].button : cardStyles[0].button} size="sm" />
                             </Box>
                         )}
 
@@ -93,16 +89,18 @@ function OurFunds(props) {
 
     return (
         <section className={styles.our__funds__section}>
-            <Container>
+            <Container sx={{maxWidth: { sm: 'md', md: 'lg', lg: 'xl' }}}>
                 <Grid container mb={4}>
                     <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <h3>Our Funds</h3>
                         <div className={styles.arrows}>
-                            <IoIosArrowDropleft
+                            <RiArrowLeftSLine
+                            className={styles.arrow}
                                 size={40}
                                 onClick={() => handleArrow('prev')}
                             />
-                            <IoIosArrowDropright
+                            <RiArrowRightSLine
+                            className={styles.arrow}
                                 size={40}
                                 onClick={() => handleArrow('next')}
                             />
