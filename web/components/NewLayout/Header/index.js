@@ -208,6 +208,7 @@ function Header(props) {
                 <Link
                   href="http://3iq-dash-poc.s3-website.us-east-2.amazonaws.com"
                   sx={{textDecoration: 'none'}}
+                  target="_blank"
                 >
                   <Box
                     className={styles.menuItem}
