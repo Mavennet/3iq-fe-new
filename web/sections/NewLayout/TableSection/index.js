@@ -125,6 +125,7 @@ function TableSection(props) {
                   fontFamily: 'var(--font-family-primary)',
                   fontSize: { xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)' },
                   color: 'var(--black)',
+                  marginBottom: {xs: 2, md: 0}
                 }}
               >{heading}</Typography>
               {

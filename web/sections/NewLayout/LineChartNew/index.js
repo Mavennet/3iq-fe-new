@@ -10,6 +10,7 @@ import styles from './styles.module.scss'
 import { TfiDownload } from 'react-icons/tfi'
 import { RiFileExcel2Line, RiTable2 } from 'react-icons/ri'
 import { ResponsiveLine } from '@nivo/line'
+import {isMobile} from 'react-device-detect'
 
 function LineChart(props) {
   const {
@@ -133,7 +134,7 @@ function LineChart(props) {
           </Grid>
         )}
         {data && (
-          <Grid item xs={12} mb={4} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+          <Grid item xs={12} mb={4} sx={{ display: 'flex', justifyContent: {xs: 'flex-start', md: 'flex-end'}, gap: 1 }}>
             <Button
               id="demo-positioned-button"
               aria-controls={open ? 'demo-positioned-menu' : undefined}
@@ -223,17 +224,17 @@ function LineChart(props) {
             data && (
               <Box
                 sx={{
-                  height: `${chartHeight}px`,
+                  height: {xs: '400px', md: `${chartHeight}px`},
                 }}
               >
                 <ResponsiveLine
                   colors={{ datum: 'color' }}
                   data={data && dataSet(data)}
-                  margin={{ top: 50, right: 50, bottom: 70, left: 80 }}
+                  margin={{ top: 50, right: isMobile ? 20 : 50, bottom: isMobile ? 80 : 70, left: isMobile ? (desktopSize === 6 ? 70 : 40) : 80 }}
                   xScale={{
                     type: "time",
                     format: "%Y-%m-%d",
-                    precision: 'day'
+                    precision: 'day',
                   }}
                   xFormat={`time:%Y-%m-%d`}
                   yScale={{
@@ -248,7 +249,7 @@ function LineChart(props) {
                   }}
                   axisBottom={{
                     format: v => convertDate(v),
-                    tickRotation: desktopSize === 6 ? 30 : 0,
+                    tickRotation: isMobile ? 90 : desktopSize === 6 ? 30 : 0,
                   }}
                   lineWidth={2}
                   pointSize={8}
