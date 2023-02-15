@@ -54,6 +54,19 @@
 
   word-wrap: break-word;
 
+  @media (min-width: 1700px) {
+    padding-left: 12%;
+  }
+  @media (min-width: 2000px) {
+    padding-left: 20%;
+  }
+  @media (min-width: 2436px) {
+    padding-left: 40%;
+  }
+  @media (min-width: 4000px) {
+    padding-left: 31vw;
+  }
+
 
   h1,
   h2,
@@ -102,4 +115,16 @@
   font-family: var(--font-family-secondary);
   font-size: var(--font-size-secondary-xs);
   color: #A9A9A9;
+}
+
+.align__header {
+  @media (min-width: 1700px) {
+    padding-left: 23%;
+  }
+  @media (min-width: 2436px) {
+    padding-left: 47%;
+  }
+  @media (min-width: 4000px) {
+    padding-left: 32vw;
+  }
 }

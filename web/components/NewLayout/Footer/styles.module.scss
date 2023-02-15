@@ -27,6 +27,12 @@
   font-size: var(--font-size-secondary-xs);
   margin: 0;
   padding: 0;
+  a {
+    text-decoration: none;
+    font-family: var(--font-family-secondary);
+    color: var(--white);
+    font-size: var(--font-size-secondary-xs);
+  }
 }
 
 .inputNewsletter {

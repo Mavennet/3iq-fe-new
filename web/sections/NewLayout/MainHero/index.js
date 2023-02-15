@@ -125,7 +125,7 @@ function MainHero(props) {
             as={`/${secondRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
           >
             <a>
-              <div className={`${styles.box__main__hero} ${styles.blue}`}>
+              <div className={`${styles.box__main__hero}`}>
                 <div className={styles.box__title}>
                   <BsCurrencyBitcoin />
                   {secondBoxTitle && <h5>{secondBoxTitle}</h5>}
