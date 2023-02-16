@@ -46,7 +46,7 @@ function Why3iQ(props) {
   }, [])
 
   return (
-    <Box py={12}>
+    <Box pt={12}>
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
         <Grid container>
           <Grid item xs={12}>
@@ -64,7 +64,7 @@ function Why3iQ(props) {
             </Typography>
           </Grid>
         </Grid>
-        <Grid container spacing={{xs: 2, md: 4}}>
+        <Grid container spacing={{xs: 2, md: 4}} sx={{display: 'flex', justifyContent: 'center'}}>
           {
             members && members.map((item) => {
               return (

@@ -76,7 +76,7 @@ function OcioServices(props) {
                         <Grid item xs={12}>
                           <ul className={styles.bulletPointsUl}>
                             <li>
-                          <Typography 
+                          <Typography
                             variant="h4"
                             sx={{
                               fontFamily: 'var(--font-family-primary)',

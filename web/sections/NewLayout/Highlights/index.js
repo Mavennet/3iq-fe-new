@@ -7,6 +7,7 @@ import groq from 'groq'
 import ArticleText from '../../../components/NewLayout/ArticleText'
 import { Container, Grid, Typography, Box } from '@mui/material'
 import Button from '../../../components/NewLayout/Button'
+import { isMobile } from 'react-device-detect'
 
 function Highlights(props) {
   const {
@@ -25,7 +26,7 @@ function Highlights(props) {
 
   const opts = {
     width: '100%',
-    height: '600',
+    height: isMobile ? '300' : '600',
     margin: 0,
     padding: 0,
     playerVars: {
@@ -142,7 +143,7 @@ function Highlights(props) {
           </Box>
         </Grid>
       </Grid>
-      <Grid container spacing={{ xs: 0, md: 3 }} sx={{ alignItems: 'stretch' }}>
+      <Grid container spacing={{ xs: 0, md: 3 }} sx={{ alignItems: {xs: 'flex-start', md: 'stretch'} }}>
         <Grid item xs={12} lg={8}>
           {videoSrc && (
             <div className={styles.video}>
