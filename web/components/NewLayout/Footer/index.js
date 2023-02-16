@@ -187,6 +187,7 @@ function Footer(props) {
                     )}
                 </Grid>
                 <Box
+                  ml={3}
                   sx={{
                     paddingBottom: { md: '100px', xs: '25px' },
                     paddingTop: { md: '0px', xs: '25px' },
