@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../client'
-import { Grid, Box, Container } from '@mui/material'
+import {Grid, Box, Container} from '@mui/material'
 import YouTube from 'react-youtube'
 import styles from './styles.module.scss'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
@@ -23,7 +23,7 @@ function ImageBesideText(props) {
     currentLanguage,
     invertMobile,
     isInvertedLayout,
-    smallImage = false
+    smallImage = false,
   } = props
 
   const opts = {
@@ -37,13 +37,25 @@ function ImageBesideText(props) {
       showinfo: 0,
       mute: 1,
       loop: 1,
-      playlist: videoSrc
-    }
-  };
+      playlist: videoSrc,
+    },
+  }
 
   return (
-    <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
-      <Grid container py={10} spacing={{ xs: 0, md: 4 }} sx={{ display: 'flex', alignItems: 'center', flexDirection: {xs: !invertMobile ? 'column-reverse' : false ,md: !isInvertedLayout ? 'unset' : 'row-reverse' } }}>
+    <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
+      <Grid
+        container
+        py={10}
+        spacing={{xs: 0, md: 4}}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          flexDirection: {
+            xs: !invertMobile ? 'column-reverse' : false,
+            md: !isInvertedLayout ? 'unset' : 'row-reverse',
+          },
+        }}
+      >
         <Grid item xs={12} md={smallImage ? 4 : 6} lg={smallImage ? 4 : 7}>
           {backgroundImage?.asset && (
             <Box
@@ -51,7 +63,7 @@ function ImageBesideText(props) {
               mt={4}
               sx={{
                 maxWidth: '100%',
-                height: 'auto'
+                height: 'auto',
               }}
               alt={backgroundImage.alt}
               src={builder.image(backgroundImage).url()}
@@ -67,6 +79,7 @@ function ImageBesideText(props) {
               <video
                 width="100%"
                 height="100%"
+                onContextMenu={(e) => e.preventDefault()}
                 playsInline
                 loop
                 controls
@@ -77,13 +90,11 @@ function ImageBesideText(props) {
           )}
         </Grid>
         <Grid item xs={12} md={smallImage ? 8 : 6} lg={smallImage ? 8 : 5} mt={2}>
-          {
-            description && (
-              <div className={styles.simple__block__content}>
-                <SimpleBlockContent blocks={description}></SimpleBlockContent>
-              </div>
-            )
-          }
+          {description && (
+            <div className={styles.simple__block__content}>
+              <SimpleBlockContent blocks={description}></SimpleBlockContent>
+            </div>
+          )}
         </Grid>
       </Grid>
     </Container>
