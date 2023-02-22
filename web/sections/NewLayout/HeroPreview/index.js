@@ -18,6 +18,7 @@ function HeroPreview(props) {
     backgroundImage,
     greenLayout,
     shortDescription,
+    dateTime,
     buttonText,
     route,
     post,
@@ -33,7 +34,7 @@ function HeroPreview(props) {
       const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
       const newYears = new Date(post.publishedAt)
       const isEng = currentLanguage.name === "EN"
-      const formattedDate = format(newYears, isEng ? "MMMM dd, yyyy - hh a" : 'dd MMMM yyyy - hh a', {
+      const formattedDate = format(newYears, isEng ? "MMMM dd, yyyy - h a" : 'dd MMMM yyyy - hh a', {
         locale: getLocale(currentLanguage.languageTag.replace('_', '-')),
       })
       !isEng && formattedDate.toLocaleLowerCase('fr')
@@ -153,7 +154,7 @@ function HeroPreview(props) {
             <div className={styles.simple__block__content}>
               {shortDescription && <SimpleBlockContent blocks={shortDescription} />}
             </div>
-            {publishedDate && (
+            {dateTime && (
               <Typography variant="h5"
                 mb={4}
                 sx={{
@@ -162,7 +163,7 @@ function HeroPreview(props) {
                   color: greenLayout ? 'var(--white)' : '#A9A9A9',
                 }}
               >
-                {publishedDate}
+                {dateTime}
               </Typography>
             )}
             {

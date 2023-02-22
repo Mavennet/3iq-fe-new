@@ -60,6 +60,11 @@ export default {
       description: "Optional overview about the selected post for the normal-sized News Card",
     },
     {
+      name: 'dateTime',
+      type: 'localeString',
+      title: 'Date Time',
+    },
+    {
       name: 'buttonText',
       type: 'localeString',
       title: 'Button text',
