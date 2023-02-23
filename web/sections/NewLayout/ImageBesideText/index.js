@@ -79,6 +79,7 @@ function ImageBesideText(props) {
               <video
                 width="100%"
                 height="100%"
+                autoPlay='true'
                 onContextMenu={(e) => e.preventDefault()}
                 playsInline
                 loop
