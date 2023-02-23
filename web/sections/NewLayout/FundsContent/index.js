@@ -174,9 +174,7 @@ function FundsContent(props) {
                         <h3>{product.localeName[currentLanguage.languageTag]}</h3>
                         <h5>
                           {product.codes && (
-                            product.codes.map((code) => (
-                              code + ', '
-                            ))
+                            product.codes.join(", ")
                           )}
                         </h5>
                       </div>
