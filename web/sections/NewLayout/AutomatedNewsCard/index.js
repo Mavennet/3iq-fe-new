@@ -37,7 +37,13 @@ function AutomatedNewsCard(props) {
           </Grid>
         ))
       }
-      if (category.searchId == 'articles') {
+      if (
+        category.searchId == 'articles' ||
+        category.searchId == 'digital-markets-weekly' ||
+        category.searchId == 'research-papers-blogs' ||
+        category.searchId == 'metaverse' ||
+        category.searchId == 'digital-asset-bulletin'
+      ) {
         return newsCard.map((item) => (
           <Grid item xs={12} sm={4} p={2} mb={4}>
             <SearchCard {...item} currentLanguage={currentLanguage} key={item._id} />
@@ -133,7 +139,7 @@ function AutomatedNewsCard(props) {
         {newsCard && newsCard.length > 0 && (
           <Grid item xs={12} align="center">
             <Button
-            className={styles.button}
+              className={styles.button}
               size="xs"
               variant="outlined"
               onClick={() => setMaxQuantity(maxQuantity + 6)}
