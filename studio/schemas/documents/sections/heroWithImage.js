@@ -21,10 +21,16 @@ export default {
       title: 'Description',
     },
     {
-      name: 'mainImage',
-      type: 'localeFigure',
-      title: 'Main image (*)',
-      validation: Rule => Rule.error('Information required.').required(),
+      title: "Align text to",
+      name: "align",
+      type: "string",
+      options: {
+        list: [
+          { title: "Left", value: "flex-start" },
+          { title: "Right", value: "flex-end" },
+        ],
+        layout: "radio"
+      }
     },
     {
       name: 'backgroundImage',
@@ -40,6 +46,13 @@ export default {
       type: 'localeCta',
       title: 'Main button (*)',
       validation: Rule => Rule.error('Information required.').required(),
+    },
+    {
+      name: 'stripes',
+      type: 'boolean',
+      title: 'Display stripes in Layout?',
+      description: 'Enable to show 3 stripes in footer layout.',
+      initialValue: false,
     },
   ],
   preview: {

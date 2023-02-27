@@ -1,0 +1,34 @@
+.card {
+  background-color: hsl(0deg 0% 24% / 50%);
+  backdrop-filter: blur(5px);
+   -webkit-backdrop-filter: blur(13px);
+  span {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-secondary-sm);
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.text {
+  color: white;
+  p {
+    font-family: var(--font-family-secondary);
+    font-size: var(--font-size-secondary-sm);
+    color: white;
+  }
+}
+
+.filteredImage {
+  padding-top: 6px;
+  filter: invert(84%) sepia(13%) saturate(5245%) hue-rotate(330deg) brightness(101%) contrast(102%);
+}
+
+.title {
+  font-family: var(--font-family-primary);
+  strong {
+    display: block !important;
+    color: var(--light-blue);
+    font-weight: normal;
+  }
+}

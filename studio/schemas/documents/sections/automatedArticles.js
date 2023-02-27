@@ -16,6 +16,19 @@ export default {
         validation: Rule => Rule.error('Information required.').required(),
     },
     {
+      title: "Align title to",
+      name: "align",
+      type: "string",
+      options: {
+        list: [
+          { title: "Left", value: "left" },
+          { title: "Center", value: "center" },
+          { title: "Right", value: "right" },
+        ],
+        layout: "radio"
+      }
+    },
+    {
       name: 'selectedPostCategory',
       title: 'Post Category (*)',
       description: "Select a category that will be used to automatically filter the 3 lastest Articles that has a post on the category selected, ordered by the post's 'Published at' date. **IMPORTANT: the automated News Card will only be visible if each of the 3 latest Posts for the selected category has a News Card that it is associated with**",
@@ -24,10 +37,23 @@ export default {
       validation: Rule => Rule.error('Information required.').required(),
     },
     {
+      name: 'articlesCount',
+      title: 'How many posts did you want show?',
+      description: 'Numbers of posts to display in section',
+      type: 'number',
+      validation: Rule => Rule.min(0).integer().positive(),
+    },
+    {
       name: 'button',
       type: 'localeCta',
       title: 'Read more Button',
       description: 'Optional button to show the route/link to more Posts'
+    },
+    {
+      name: 'buttonInHeader',
+      type: 'boolean',
+      title: 'Button fixed in Header, inline with Title?',
+      initialValue: false,
     },
   ],
   preview: {

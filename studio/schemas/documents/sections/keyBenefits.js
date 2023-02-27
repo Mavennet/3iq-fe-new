@@ -16,6 +16,12 @@ export default {
       validation: Rule => Rule.error('Information required.').required(),
     },
     {
+      name: 'subtitle',
+      type: 'localeString',
+      title: 'Subtitle (*)',
+      validation: Rule => Rule.error('Information required.').required(),
+    },
+    {
       name: 'benefits',
       title: 'Benefits (*)',
       description: 'Choose the benefits that will be displayed',
@@ -25,6 +31,11 @@ export default {
         Rule.min(4).max(4).error('Please, select 4 benefits.'),
       ],
       of: [{ type: 'reference', to: { type: 'benefitCard' } }],
+    },
+    {
+      name: 'fundsLayout',
+      type: 'boolean',
+      title: 'Funds Layout (*)',
     },
   ],
   preview: {

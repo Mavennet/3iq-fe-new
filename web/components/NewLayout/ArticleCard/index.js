@@ -10,14 +10,14 @@ import Link from 'next/link'
 import { AiFillPlayCircle } from 'react-icons/ai'
 
 function ArticleCard(props) {
-  const { post, route, currentLanguage } = props
+  const { post, route, hideImage = false, currentLanguage, className } = props
 
   const [publishedDate, setPublishedDate] = React.useState('')
 
   const builder = imageUrlBuilder(client)
 
   React.useEffect(() => {
-    if (currentLanguage.languageTag) {
+    if (currentLanguage.languageTag && post?.publishedAt) {
       const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
       const newYears = new Date(post.publishedAt)
       const isEng = currentLanguage.name === "EN"
@@ -27,46 +27,50 @@ function ArticleCard(props) {
       !isEng && formattedDate.toLocaleLowerCase('fr')
       setPublishedDate(formattedDate)
     }
-  }, [currentLanguage, post.publishedAt])
+  }, [currentLanguage, post?.publishedAt])
 
   return (
     <Link
       href={{
         pathname: `/${post?.localeHeading[currentLanguage.languageTag]}`,
-        query: { slug: route.slug.current },
+        query: { slug: route?.slug?.current },
       }}
-      as={`/${route.slug.current}`}
+      as={`/${route?.slug?.current}`}
     >
       <a>
-        <div className={styles.article__card}>
+        <div className={`${styles.article__card} ${className}`}>
           <Grid container>
-            <Grid item xs={12}>
-              <div className={styles.imgGrid}>
-                {
-                  post?.mainImage && route && (
-                    <Image
-                      src={builder.image(post?.mainImage.asset._ref).url()}
-                      alt={post?.heading}
-                      layout='fill'
-                      objectFit='cover'
-                    />
-                  )
-                }
-                {
-                  post?.categories[0]?._id === 'f0043b46-c820-4101-81c7-81caf7deba35' && (
-                    <div className={styles.play}>
-                      <AiFillPlayCircle
-                        size={90}
-                        color={'var(--white)'}
-                      />
-                    </div>
-                  )
-                }
-              </div>
-            </Grid>
+            {
+              !hideImage && (
+                <Grid item xs={12}>
+                  <div className={styles.imgGrid}>
+                    {
+                      post?.mainImage && route && (
+                        <Image
+                          src={builder.image(post?.mainImage.asset._ref).url()}
+                          alt={post?.heading}
+                          layout='fill'
+                          objectFit='cover'
+                        />
+                      )
+                    }
+                    {
+                      (post?.categories[0]?.searchId === 'videos' || post?.categories[0]?.searchId === 'podcasts' )  && (
+                        <div className={styles.play}>
+                          <AiFillPlayCircle
+                            size={90}
+                            color={'var(--white)'}
+                          />
+                        </div>
+                      )
+                    }
+                  </div>
+                </Grid>
+              )
+            }
             <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div>
-                {post?.author?.name && post?.categories[0]?.localeName[currentLanguage.languageTag] && (
+                {post?.author?.name && post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] && (
                   <Typography
                     mt={2}
                     variant="h5"
@@ -74,9 +78,10 @@ function ArticleCard(props) {
                       fontSize: 'var(--font-size-secondary-sm)',
                       fontFamily: 'var(--font-family-secondary)',
                       color: 'var(--black)',
+                      wordWrap: 'break-word'
                     }}
                   >
-                    <strong className={styles.blue}>{post?.categories[0]?.localeName[currentLanguage.languageTag] + ' '}</strong>
+                    <span className={styles.blue}>{post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}</span>
                     by {post?.author?.name}
                   </Typography>
                 )}
@@ -94,7 +99,7 @@ function ArticleCard(props) {
                         variant="h2"
                         my={2}
                         sx={{
-                          fontSize: 'var(--font-size-primary-md)',
+                          fontSize: 'var(--font-size-primary-sm)',
                           fontFamily: 'var(--font-family-primary)',
                           color: 'var(--black)',
                         }}
@@ -127,6 +132,8 @@ function ArticleCard(props) {
 
 ArticleCard.propTypes = {
   post: PropTypes.object,
+  className: PropTypes.object,
+  hideImage: PropTypes.bool,
   route: PropTypes.object,
   currentLanguage: PropTypes.object,
   localeButtonText: PropTypes.string,

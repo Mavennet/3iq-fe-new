@@ -1,5 +1,8 @@
 .title {
-  font-size: var(--font-size-primary-lg);
+  font-size: var(--font-size-primary-md);
+  @media (--media-min-large) {
+    font-size: var(--font-size-primary-lg);
+  }
 }
 
 .content {
@@ -33,7 +36,7 @@
     font-size: var(--font-size-secondary-lg);
     td {
       padding: 15px;
-      border-top: 2px solid var(--gray);
+      border-top: 2px solid #e6e6e6;
     }
   }
 }

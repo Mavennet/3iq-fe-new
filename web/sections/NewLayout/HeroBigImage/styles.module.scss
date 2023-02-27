@@ -1,18 +1,14 @@
 .heading {
   position: absolute;
   top: -50px;
-  right: -80%;
-  max-width: 100%;
+  right: -50%;
+  max-width: 500px;
 }
 
 .simple__block__content {
-  margin-left: 150px;
   font-family: var(--font-family-secondary);
   p {
     font-size: var(--font-size-secondary-md);
-  }
-  strong {
-    font-size: var(--font-size-primary-md);
   }
 }
 

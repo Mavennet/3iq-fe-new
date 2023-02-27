@@ -20,29 +20,42 @@ const hiddenDocTypes = listItem =>
     "country",
     "language",
     "person",
+    "benefity",
+    "accordionItem",
     "route",
     "textSection",
     "hero",
     "animatedHero",
     "heroWithImage",
+    "headerPost",
+    "postOverview",
+    "heroSailGP",
     "ourFunds",
     "componentsTests",
     "heroFirstVariation",
     "heroDoubleButton",
     "heroBigImage",
+    "heroNft",
+    "heroSubscribe",
+    "heroPreview",
+    "highlights",
     "imageBesideText",
+    "overflowHero",
     "doubleOptions",
     "imageWithText",
     "advertisement",
     "mailchimp",
     "mainHero",
     "podcasts",
+    "search",
+    "articlesSearch",
     "teamsVideoDisplay",
     "keyBenefits",
     "benefitCard",
     "item",
     "note",
     "quoteHeads",
+    "quoteFounder",
     "quoteHeadsDubai",
     "readyToInvest",
     "awards",
@@ -50,14 +63,19 @@ const hiddenDocTypes = listItem =>
     "sideBySideImages",
     "menuItem",
     "newsCard",
+    "categoriesList",
     "automatedNewsCard",
     "automatedArticles",
+    "automatedLatest",
     "readMoreCard",
     "team",
     "teamsDisplay",
+    "whatWeOffer",
+    "accordionText",
     "timeline",
     "timelineItem",
     "contactUsForm",
+    "webinarSubscribe",
     "subscribeForm",
     "locationsDisplay",
     "location",
@@ -79,7 +97,14 @@ const hiddenDocTypes = listItem =>
     "lineChart",
     "tableSection",
     "tableCripto",
-    "articles"
+    "articles",
+    "why3iQ",
+    "howWePartnerClients",
+    "serviceAndSolutions",
+    "ocioServices",
+    "services",
+    "postV2",
+    "ocioHero"
   ].includes(listItem.getId());
 
 export default () =>
@@ -128,14 +153,25 @@ export default () =>
             .items([
               S.documentTypeListItem("mailchimp").title("Mailchimp"),
               S.documentTypeListItem("advertisement").title("Advertisement"),
+              S.documentTypeListItem("accordionText").title("Accordion Text"),
+              S.documentTypeListItem("categoriesList").title("Categories List"),
               S.documentTypeListItem("mainHero").title("Main Hero"),
               S.documentTypeListItem("podcasts").title("Podcasts"),
+              S.documentTypeListItem("search").title("Search"),
+              S.documentTypeListItem("articlesSearch").title("Articles Search"),
               S.documentTypeListItem("teamsVideoDisplay").title("Teams Video Display"),
               S.documentTypeListItem("animatedHero").title("Animated Hero"),
               S.documentTypeListItem("automatedNewsCard").title(
                 "Automated News Card"
               ),
+              S.documentTypeListItem("automatedArticles").title(
+                "Automated Articles"
+              ),
+              S.documentTypeListItem("automatedLatest").title(
+                "Automated Latest"
+              ),
               S.documentTypeListItem("contactUsForm").title("Contact Us Form"),
+              S.documentTypeListItem("webinarSubscribe").title("Webinar Subscribe"),
               S.documentTypeListItem("subscribeForm").title("Subscribe Form"),
               S.documentTypeListItem("descriptionsWithButton").title(
                 "Descriptions with Button"
@@ -147,20 +183,38 @@ export default () =>
               S.documentTypeListItem("hero").title("Hero"),
               S.documentTypeListItem("ourFunds").title("Our Funds"),
               S.documentTypeListItem("heroDoubleButton").title(
-                "Hero with 2 Buttons"
+                "Hero Fund"
               ),
               S.documentTypeListItem("heroBigImage").title(
                 "Hero with big image"
+              ),
+              S.documentTypeListItem("heroNft").title(
+                "Hero with NFT"
+              ),
+              S.documentTypeListItem("heroSubscribe").title(
+                "Hero with Subscribe"
+              ),
+              S.documentTypeListItem("heroPreview").title(
+                "Hero Preview"
+              ),
+              S.documentTypeListItem("highlights").title(
+                "Highlights"
               ),
               S.documentTypeListItem("heroFirstVariation").title(
                 "Hero first variation"
               ),
               S.documentTypeListItem("heroWithImage").title("Hero with Image"),
+              S.documentTypeListItem("headerPost").title("Header Post"),
+              S.documentTypeListItem("postOverview").title("Post Overview"),
+              S.documentTypeListItem("heroSailGP").title("Hero SailGP"),
               S.documentTypeListItem("componentsTests").title(
                 "Components Tests"
               ),
               S.documentTypeListItem("imageBesideText").title(
                 "Image beside Text"
+              ),
+              S.documentTypeListItem("overflowHero").title(
+                "Overflow Hero"
               ),
               S.documentTypeListItem("keyBenefits").title("Key Benefits"),
               S.documentTypeListItem("locationsDisplay").title(
@@ -174,12 +228,22 @@ export default () =>
               S.documentTypeListItem("subscribeBlock").title("Subscribe Block"),
               S.documentTypeListItem("tabsContent").title("Tabs Content"),
               S.documentTypeListItem("teamsDisplay").title("Teams Display"),
+              S.documentTypeListItem("whatWeOffer").title("What We Offer"),
               S.documentTypeListItem("textSection").title("Text Block"),
               S.documentTypeListItem("plainText").title("Plain Text"),
               S.documentTypeListItem("post").title("Post"),
               S.documentTypeListItem("textSeparator").title("Text Separator"),
-              S.documentTypeListItem("timeline").title("Timeline")
-            ])
+              S.documentTypeListItem("timeline").title("Timeline"),
+              S.documentTypeListItem("why3iQ").title("Why 3iQ"),
+              S.documentTypeListItem("howWePartnerClients").title(
+                "How We Partner Clients"
+              ),
+              S.documentTypeListItem("serviceAndSolutions").title(
+                "Service And Solutions"),
+              S.documentTypeListItem("ocioServices").title(
+                "OCIO Services"),            
+              S.documentTypeListItem("ocioHero").title("Ocio Hero"),
+            ]),
         ),
       S.listItem()
         .title("Fund Sections")
@@ -193,6 +257,7 @@ export default () =>
                 "Automated Articles"
               ),
               S.documentTypeListItem("awards").title("Awards"),
+              S.documentTypeListItem("advertisement").title("Advertisement"),
               S.documentTypeListItem("readyToInvest").title("Ready To Invest"),
               S.documentTypeListItem("fundsOverview").title("Funds Overview"),
               S.documentTypeListItem("fundsDisclaimer").title(
@@ -280,5 +345,8 @@ export default () =>
             )
         ),
       S.documentTypeListItem("person").title("Members"),
+      S.documentTypeListItem("benefity").title("Benefitys"),
+      S.documentTypeListItem("accordionItem").title("Accordion Item"),
+      S.documentTypeListItem("services").title("Services"),
       ...S.documentTypeListItems().filter(hiddenDocTypes)
     ]);

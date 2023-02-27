@@ -9,12 +9,21 @@ import NavItemDropdown from './NavItemDropdown'
 import {FiMenu} from 'react-icons/fi'
 import {IoMdClose} from 'react-icons/io'
 import CountryAndLanguageSwitch from '../CountryAndLanguageSwitch'
+import Form from '../Form'
+import {FiSearch} from 'react-icons/fi'
+import {useRouter} from 'next/router'
 
 function Header(props) {
-  const {navItems, setLanguage, dataCountries, currentCountry, currentLanguage} = props
+  const {navItems, setLanguage, dataCountries, currentCountry, currentLanguage, pageType} = props
 
+  const router = useRouter()
+
+  const [showSearch, setShowSearch] = useState(false)
+  const [showSearchIcon, setShowSearchIcon] = useState(true)
   const [showNav, setShowNav] = React.useState(false)
   const [logoLanguage, setLogoLanguage] = React.useState(null)
+  const [searchTerm, setSearchTerm] = useState(null)
+
   const size = useWindowSize()
 
   React.useEffect(() => {
@@ -24,6 +33,25 @@ function Header(props) {
     setShowNav(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage.languageTag, size])
+
+
+  React.useEffect(() => {
+    pageType == 'search' && setShowSearchIcon(false)
+  }, [pageType])
+
+  function handleSearch(e) {
+    setSearchTerm(e.target.value)
+  }
+
+  const watchKey = (event) => {
+    if (event.key === 'Enter') {
+      router.replace(
+        `/${currentCountry.urlTag}/${currentCountry.searchPageRoute.slug.current}?searchTerm=${searchTerm}`
+      )
+      setShowSearch(false)
+      setShowNav(false)
+    }
+  }
 
   return (
     <>
@@ -50,6 +78,15 @@ function Header(props) {
               />
             </Box>
             <Box pl={2}>
+              <Box m={1.5}>
+                <Form
+                  value={searchTerm}
+                  onKeyDown={(e) => watchKey(e)}
+                  onChange={(e) => handleSearch(e)}
+                  placeholder={'Type something and press enter to search'}
+                />
+              </Box>
+
               <ul>
                 {navItems &&
                   navItems.map((item) =>
@@ -84,7 +121,7 @@ function Header(props) {
                 display: {xs: 'flex', sm: 'none', md: 'none'},
               }}
             >
-               <Social
+              <Social
                 youtubeUrl={currentCountry.youtubeUrl}
                 linkedinUrl={currentCountry.linkedinUrl}
                 twitterUrl={currentCountry.twitterUrl}
@@ -94,7 +131,7 @@ function Header(props) {
         </Box>
       )}
       <AppBar position="static" sx={{bgcolor: '#F9F9F9', boxShadow: 'none'}}>
-        <Container maxWidth={'lg'}>
+        <Container maxWidth={'xl'}>
           <Toolbar disableGutters>
             {logoLanguage && (
               <Box>
@@ -127,7 +164,17 @@ function Header(props) {
                 ></Box>
               </Box>
               {/* NavBar Menu - Desktop */}
-              <Box sx={{ml: 'auto', display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+              <Box sx={{ml: 'auto', alignItems: {lg: 'center'}, display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+                {showSearchIcon && (
+                  <>
+                    <FiSearch
+                      className={styles.searchIcon}
+                      onClick={() => setShowSearch(!showSearch)}
+                    />
+                    <div className={styles.separator}></div>
+                  </>
+                 )}
+
                 {navItems &&
                   navItems.map(
                     (item) =>
@@ -152,7 +199,7 @@ function Header(props) {
                         />
                       ))
                   )}
-                <span className={styles.separator}>|</span>
+                <div className={styles.separator}></div>
                 <CountryAndLanguageSwitch
                   currentCountry={currentCountry}
                   currentLanguage={currentLanguage}
@@ -194,6 +241,18 @@ function Header(props) {
             </Box>
           </Toolbar>
         </Container>
+        {showSearch && (
+          <Container maxWidth="xl" sx={{borderTop: '0.8px solid var(--gray)'}}>
+            <Box my={2.5}>
+              <Form
+                value={searchTerm}
+                onKeyDown={(e) => watchKey(e)}
+                onChange={(e) => handleSearch(e)}
+                placeholder={'Type something and press enter to search'}
+              />
+            </Box>
+          </Container>
+        )}
       </AppBar>
     </>
   )

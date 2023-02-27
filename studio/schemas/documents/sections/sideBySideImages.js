@@ -25,6 +25,11 @@ export default {
       description: "Use this field to input the background color in the same pattern as '#FFFFFF'.",
     },
     {
+      name: 'ctaButton',
+      type: 'localeCta',
+      title: 'Call to Action Button'
+    },
+    {
       name: 'imagesContainers',
       type: 'array',
       title: 'Image Containers (*)',

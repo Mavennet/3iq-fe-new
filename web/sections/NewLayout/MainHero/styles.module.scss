@@ -62,6 +62,18 @@
     backdrop-filter: blur(13px);
     -webkit-backdrop-filter: blur(13px);
     padding: 1em;
+    border: 1px solid transparent;
+    transition: 0.3s;
+    transition: 0.3s;
+    &:hover {
+      border-color: var(--light-orange)!important;
+      transition: 0.3s;
+      p {
+        &::after {
+          background-color: var(--light-blue);
+        }
+      }
+    }
     .box__title {
       display: flex;
       align-items: center;
@@ -84,6 +96,33 @@
       border-bottom: 1px solid var(--component-light-gray);
       padding-bottom: 20px;
       margin-bottom: 0px;
+      position:relative;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        width: 40%;
+        height: 1px;
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.blue {
+
+  p {
+
+
+  }
+  &:hover {
+    border-color: var(--light-orange)!important;
+    transition: 0.3s;
+    p {
+      &::after {
+        background-color: var(--light-orange);
+      }
     }
   }
 }

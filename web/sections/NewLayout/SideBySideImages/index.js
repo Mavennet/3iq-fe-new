@@ -7,11 +7,14 @@ import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent
 import styles from './styles.module.scss'
 import Link from 'next/link'
 import groq from 'groq'
+import Button from '../../../components/NewLayout/Button'
 
 const builder = imageUrlBuilder(client)
 
 function SideBySideImages(props) {
-  const { heading, currentLanguage, backgroundColor, footerText, _id } = props
+  const { heading, currentLanguage, backgroundColor, footerText, _id, ctaButton } = props
+
+  const localeButton = ctaButton?.[currentLanguage?.languageTag]
 
   const [images, setImages] = React.useState(null)
 
@@ -60,6 +63,16 @@ function SideBySideImages(props) {
               </Grid>
             )
           }
+          {localeButton && (localeButton.route || localeButton.link) &&
+            (<Grid item xs={12} mb={8} sx={{display: 'flex', justifyContent: 'center'}}>
+              <Button
+                {...localeButton}
+                size={'lg'}
+                reverse={false}
+                variant={'solid'}
+                className={styles.button}
+              ></Button>
+            </Grid>)}
           {
             images &&
             images.map((item) => (
@@ -71,53 +84,52 @@ function SideBySideImages(props) {
                   }
                   if (item?.images) {
                     return (
-                      <Grid item xs={12} mb={4} key={i}>
+                      <Grid item xs={12} my={4} key={i}>
                         {
                           title && <h5 className={styles.title__image}>{title}</h5>
                         }
-                        <Box
-                          sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}
-                        >
+                        <Grid container spacing={6} my={4}>
                           {
                             item.images.map((image, i) => {
                               if (image.imageExternalLink) {
                                 return (
-                                  <Link href={image.imageExternalLink} key={i}>
-                                    <a target='_blank' rel="noopener">
-                                      <Box
-                                        component="img"
-                                        alt={image.alt}
-                                        src={builder.image(image).url()}
-                                        key={image._key}
-                                        sx={{
-                                          margin: '5px',
-                                          padding: '30px',
-                                          maxHeight: '110px',
-                                          justifyContent: 'center',
-                                        }}
-                                      />
-                                    </a>
-                                  </Link>
+                                  <Grid item xs={6} md={3} sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                                    <Link href={image.imageExternalLink} key={i}>
+                                      <a target='_blank' rel="noopener">
+                                        <Box
+                                          component="img"
+                                          alt={image.alt}
+                                          src={builder.image(image).url()}
+                                          key={image._key}
+                                          sx={{
+                                            maxWidth: '100%',
+                                            maxHeight: '100%',
+                                          }}
+                                        />
+                                      </a>
+                                    </Link>
+                                  </Grid>
                                 )
                               } else {
                                 return (
-                                  <Box
-                                    component="img"
-                                    alt={image.alt}
-                                    src={builder.image(image).url()}
-                                    key={image._key}
-                                    sx={{
-                                      margin: '5px',
-                                      padding: '30px',
-                                      maxHeight: '110px',
-                                      justifyContent: 'center',
-                                    }}
-                                  />
+                                  <Grid item xs={6} md={3}>
+                                    <Box
+                                      component="img"
+                                      alt={image.alt}
+                                      src={builder.image(image).url()}
+                                      key={image._key}
+                                      p={2}
+                                      sx={{
+                                        maxWidth: '100%',
+                                        maxHeight: '100%',
+                                      }}
+                                    />
+                                  </Grid>
                                 )
                               }
                             })
                           }
-                        </Box>
+                        </Grid>
                       </Grid>
                     )
                   }
@@ -147,6 +159,7 @@ SideBySideImages.propTypes = {
   currentLanguage: PropTypes.object,
   backgroundColor: PropTypes.string,
   footerText: PropTypes.object,
+  ctaButton: PropTypes.object,
 }
 
 export default SideBySideImages

@@ -30,6 +30,7 @@ export const DATA_COUNTRIES = groq`
   footerEmail,
   footerPhoneNumber,
   footerSchedule,
+  searchPageRoute  -> {page, slug, ...},
   footerSecondLeftBlockButton,
   footerBottomContent,
   newsletterBody,
@@ -39,6 +40,7 @@ export const DATA_COUNTRIES = groq`
   linkedinUrl,
   youtubeUrl,
   shareThisStoryText,
+  newsLetterText,
 }
 `
 
@@ -56,12 +58,53 @@ export const DATA_IN_SLUG = groq`*[_type == "route" && slug.current in $possible
 
 export const DATA_IN_SLUG_BY_PATH = groq`*[_type == "route" && slug.current in $possibleSlugs][0]{
     page-> {
-      ${pageFragment}
+      ${pageFragment}[]
     }
   }`
 
 export const ROUTES = groq`
 *[_type == 'route'] {...}
+`
+
+export const ROUTES_BY_TERM = groq`
+*[_type == 'route' && slug.current match [$urlTag, $term]] {...,countries[]-> {urlTag}, page->{...}}
+`
+
+export const POSTS_BY_TERM = groq`*[_type == 'post' && !(_id in path('drafts.**')) && (name match $term || heading[$languageTag] match $term || categories[0].name[$languageTag] match $term)] {
+      _id,
+      _type,
+      publishedAt,
+      name,
+      heading,
+      categories[]-> {name},
+    }`
+
+export const NEWS_CARD_BY_TERM = groq`
+*[_type == 'newsCard' && !(_id in path('drafts.**')) && post._ref in $postsIds] {
+  _id,
+  _type,
+  _rev,
+  'localeButtonText': buttonText,
+  'localeShortDescription': shortDescription,
+  'localeSmallCardText': smallCardText,
+  newsletterNumber,
+  route->,
+  post-> {
+    _id,
+    _type,
+    mainImage,
+    'localeHeading': heading,
+    publishedAt,
+    categories[]-> {singularName, 'localeName': name, ...},
+    author-> {
+      _id,
+      _type,
+      name,
+      email,
+      profilePhoto,
+    },
+  },
+}
 `
 
 export const BENEFIT_CARDS = groq`
@@ -98,7 +141,7 @@ export const TEAMS = groq`
 }
 `
 
-export const TIMELINES =  groq`
+export const TIMELINES = groq`
 *[_type == 'timeline'] {
   _id,
   _type,
@@ -115,7 +158,7 @@ export const TIMELINES =  groq`
 }
 `
 
-export const LOCATIONS_DISPLAY =  groq`
+export const LOCATIONS_DISPLAY = groq`
 *[_type == 'locationsDisplay'] {
   _id,
   _type,
@@ -131,6 +174,19 @@ export const LOCATIONS_DISPLAY =  groq`
 }
 `
 
+export const LOCATIONS = groq`
+*[_type == 'location' && _id in $locationIds] {
+    _id,
+    _type,
+    'localeName': name,
+    'localeDescription': description,
+    googleMapsSrc,
+    isMetaverse,
+    redirectLink,
+    mainImage,
+}
+`
+
 export const TAB_ITEMS = groq`
 *[_type == 'tabItem'] {
   _id,
@@ -141,7 +197,7 @@ export const TAB_ITEMS = groq`
   'localeName': name,
   isPaginatedNewsletter,
   isNewsCardsHorizontalLayout,
-  selectedPostCategory->,
+  selectedPostCategory-> {...},
   newsCards[]-> {
     _id,
     _type,
@@ -159,7 +215,9 @@ export const TAB_ITEMS = groq`
       categories[]-> {
         _id,
         _type,
+        singularName,
         'localeName': name,
+        ...
       },
       author-> {
         _id,
@@ -188,6 +246,7 @@ export const FUND_ITEMS = groq`
   'localeContactUsText': contactUsText,
   'localeObservation' : observation,
   'hiddenTitle': hiddenTitle,
+  'bgColor': bgColor,
   fundSections[]-> {
     ...,
     fundSidebarItem[]-> {
@@ -226,12 +285,20 @@ export const FUND_CARDS = groq`
   _rev,
   'localeHeading': heading,
   codes,
+  cardColor,
   'localeButton': button,
   'localeText': text,
+  'localeDailyNavLabel': dailyNavLabel,
   'localeDailyNav': dailyNav,
   'backgroundImage': backgroundImage
 }
 `
+
+export const CATEGORIES = groq`
+*[_type == 'category' && searchCategory == true] {...}`
+
+export const CATEGORY_BY_ID = groq`
+*[_type == 'category' && _id == $id] {...}[0]`
 
 export const SITE_CONFIG_QUERY = `
   *[_id == "global-config"] {

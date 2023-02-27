@@ -11,40 +11,61 @@ export default {
   fields: [
     {
       name: 'heading',
-      type: 'localeString',
-      title: 'Heading (*)',
+      type: 'string',
+      title: 'Name (*)',
       validation: Rule => Rule.error('Information required.').required(),
     },
     {
       name: 'description',
-      type: 'localeText',
-      title: 'Description (*)',
+      type: 'localePortableText',
+      title: 'Text (*)',
       validation: Rule => Rule.error('Information required.').required(),
+    },
+    {
+      name: 'isInvertedLayout',
+      type: 'boolean',
+      title: 'Invert layout?',
+      description: 'Enable this option to invert the content and show the image on the right side',
+      initialValue: false,
+    },
+    {
+      name: 'invertMobile',
+      type: 'boolean',
+      title: 'Invert layout on mobile?',
+      description: 'Enable this option to invert the content on mobile',
+      initialValue: false,
     },
     {
       name: 'backgroundImage',
       type: 'image',
-      title: 'Background image (*)',
-      validation: Rule => Rule.error('Information required.').required(),
+      title: 'Image',
       options: {
         hotspot: true
       }
     },
     {
-      name: 'mainImage',
-      type: 'figure',
-      title: 'Optional image',
+      name: 'smallImage',
+      type: 'boolean',
+      title: 'Image Grid size less than text?',
+      description: 'Size: {true: 35%, false: 70%}',
+      initialValue: false,
     },
     {
-      name: 'button',
-      type: 'localeCta',
-      title: 'Main Button (*)',
-      validation: Rule => Rule.error('Information required.').required(),
-    }
+      name: 'videoSrc',
+      type: 'string',
+      title: 'YouTube video ID',
+      description: 'Optional display of an YouTube video through its ID'
+    },
+    {
+      name: 'videoUrl',
+      type: 'url',
+      title: 'Video URL',
+      description: 'Optional display of an video through its url'
+    },
   ],
   preview: {
     select: {
-      title: `heading.${baseLanguage.id}`,
+      title: `heading`,
       media: 'backgroundImage',
     },
     prepare({ title, media }) {

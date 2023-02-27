@@ -6,6 +6,7 @@ import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../../client'
 import Image from 'next/image'
 import { RiLinkedinLine } from 'react-icons/ri'
+import { BsArrowRightShort } from 'react-icons/bs'
 
 function MemberCard(props) {
   const { name, image, role, linkedin, showProfileBox, email, contactText, readProfileText } = props
@@ -47,7 +48,7 @@ function MemberCard(props) {
       >
         <Typography
           variant="h3"
-          my={2}
+          my={1}
           sx={{
             fontFamily: 'var(--font-family-secondary)',
             color: 'var(--black)',
@@ -59,7 +60,7 @@ function MemberCard(props) {
         </Typography>
         <Typography
           variant="h4"
-          mb={2}
+          mb={1}
           sx={{
             fontFamily: 'var(--font-family-secondary)',
             color: 'var(--black)',
@@ -90,6 +91,31 @@ function MemberCard(props) {
               >
                 <RiLinkedinLine />
                 <div>{contactText && contactText}</div>
+              </Box>
+            </Link>
+          )
+        }
+        {
+          email && (
+            <Link href={email} color="inherit" target='_blank' rel="noopener" className={styles.link}>
+              <Box
+                sx={{
+                  color: 'var(--light-blue)',
+                  borderRadius: '34px',
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  textDecoration: 'none',
+                  alignItems: 'center',
+                  fontFamily: 'var(--font-family-secondary)',
+                  fontSize: 'var(--font-size-secondary-sm)',
+                  fontWeight: '600',
+                  gap: 1
+                }}
+              >
+                <div>
+                  {contactText && contactText}
+                </div>
+                <BsArrowRightShort size={27} />
               </Box>
             </Link>
           )
