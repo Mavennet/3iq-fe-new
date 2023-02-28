@@ -37,6 +37,7 @@
 .content {
   max-height: 550px;
   overflow-y: scroll;
+  scrollbar-color: var(--light-blue) var(--gray);
 
   &::-webkit-scrollbar {
     width: 5px;
