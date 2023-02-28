@@ -164,7 +164,7 @@ function Header(props) {
                 ></Box>
               </Box>
               {/* NavBar Menu - Desktop */}
-              <Box sx={{ml: 'auto', display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
+              <Box sx={{ml: 'auto', alignItems: {lg: 'center'}, display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
                 {showSearchIcon && (
                   <>
                     <FiSearch
@@ -173,7 +173,7 @@ function Header(props) {
                     />
                     <div className={styles.separator}></div>
                   </>
-                 )} 
+                 )}
 
                 {navItems &&
                   navItems.map(

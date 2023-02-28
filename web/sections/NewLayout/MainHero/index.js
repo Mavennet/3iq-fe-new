@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types'
 import styles from './styles.module.scss'
 import { Container, Grid, Box, useMediaQuery, useTheme } from '@mui/material'
-import { FaTwitter, FaYoutube, FaLinkedin, FaEthereum, FaMixer } from 'react-icons/fa'
+import { FaTwitter, FaYoutube, FaLinkedin, FaEthereum, FaRegHandshake } from 'react-icons/fa'
 import { BsCurrencyBitcoin } from 'react-icons/bs'
 import Link from 'next/link'
 import Button from '../../../components/NewLayout/Button'
@@ -125,7 +125,7 @@ function MainHero(props) {
             as={`/${secondRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
           >
             <a>
-              <div className={`${styles.box__main__hero} ${styles.blue}`}>
+              <div className={`${styles.box__main__hero}`}>
                 <div className={styles.box__title}>
                   <BsCurrencyBitcoin />
                   {secondBoxTitle && <h5>{secondBoxTitle}</h5>}
@@ -144,7 +144,7 @@ function MainHero(props) {
             <a>
               <div className={styles.box__main__hero}>
                 <div className={styles.box__title}>
-                  <FaMixer />
+                  <FaRegHandshake />
                   {thirdBoxTitle && <h5>{thirdBoxTitle}</h5>}
                 </div>
                 {thirdBoxDescription && <p>{thirdBoxDescription}</p>}

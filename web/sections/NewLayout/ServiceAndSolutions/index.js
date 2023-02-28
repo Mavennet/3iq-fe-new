@@ -64,11 +64,11 @@ function ServiceAndSolutions(props) {
             </Typography>
           </Grid>
         </Grid>
-        <Grid container spacing={{xs: 2, md: 4}}>
+        <Grid container spacing={{xs: 2, md: 6}}>
           {
             members && members.map((item) => {
               return (
-                <Grid item key={item._id} xs={12} md={4} mb={4}>
+                <Grid item key={item._id} xs={12} md={4} mb={4} p={2}>
                   <Grid container>
                     <Grid item xs={12} mb={2}>
                       <div className={styles.imgGrid}>
