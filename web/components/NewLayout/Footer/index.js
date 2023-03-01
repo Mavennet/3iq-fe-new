@@ -154,6 +154,7 @@ function Footer(props) {
                       color="inherit"
                       target="_blank"
                       rel="noopener"
+                      hover="underline"
                     >
                       {footerEmail[currentLanguage?.languageTag]}
                     </Link>
@@ -194,6 +195,7 @@ function Footer(props) {
                   }}
                 >
                   <Button
+                    target="_blank"
                     variant="outlineWhite"
                     {...currentCountry.footerSecondLeftBlockButton[currentLanguage?.languageTag]}
                   />
