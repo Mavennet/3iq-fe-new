@@ -151,10 +151,10 @@ function Footer(props) {
                   {footerEmail && (
                     <Link
                       href={`mailto:${footerEmail[currentLanguage?.languageTag]}`}
-                      color="inherit"
                       target="_blank"
                       rel="noopener"
-                      hover="underline"
+                      underline="hover"
+                      color="inherit"
                     >
                       {footerEmail[currentLanguage?.languageTag]}
                     </Link>
