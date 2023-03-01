@@ -203,7 +203,9 @@ function TeamsDisplay(props) {
                 )
               })
             }
-            <Grid container>
+          </Grid>
+        </Grid>
+        <Grid container>
               <Grid item xs={12}>
                 <HeroFirstVariation
                   heading={textCta}
@@ -214,8 +216,6 @@ function TeamsDisplay(props) {
                 />
               </Grid>
             </Grid>
-          </Grid>
-        </Grid>
       </Container>
       <Modal
         open={open}
