@@ -2,9 +2,14 @@
 
 .simpleBlockContent {
   max-width: 100%;
-  overflow-x: auto;
+  min-width: 100%;
+  overflow-x: scroll;
   scrollbar-color: var(--light-blue) var(--gray);
-  -webkit-overflow-scrolling: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (--media-min-large) {
+    overflow-x: auto;
+  }
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -27,9 +32,12 @@
 }
 
 .simpleBlockContent thead tr th {
-  padding: 20px 0px;
+  padding: 20px 20px;
   text-align: center;
   border-bottom: 1px solid #E8E8EA;
+  @media (--media-min-large) {
+    padding: 20px 0px;
+  }
 }
 
 .headerTransparent tr th {
@@ -42,11 +50,14 @@
 
 .simpleBlockContent tbody tr td{
   border-bottom: 1px solid #E8E8EA;
-  padding: 30px 0px;
+  padding: 30px 20px;
   text-align: left;
   font-weight: var(--font-weight-regular);
   font-family: var(--font-family-secondary);
   color: var(--black);
+  @media (--media-min-large) {
+    padding: 30px 0px;
+  }
 }
 
 .simpleBlockContent tbody tr td:first-child {
