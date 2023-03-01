@@ -42,7 +42,13 @@ function AutomatedNewsCard(props) {
         category.searchId == 'digital-markets-weekly' ||
         category.searchId == 'research-papers-blogs' ||
         category.searchId == 'metaverse' ||
-        category.searchId == 'digital-asset-bulletin'
+        category.searchId == 'digital-asset-bulletin' ||
+        category.searchId ==  'press_releases' ||
+        category.searchId ==  'pr-bitcoin-etf' ||
+        category.searchId ==  'pr-ether-etf' ||
+        category.searchId ==  'pr-bitcoin-fund' ||
+        category.searchId ==  'pr-ether-fund' ||
+        category.searchId ==  'pr-global-crypto'
       ) {
         return newsCard.map((item) => (
           <Grid item xs={12} sm={4} p={2} mb={4}>
