@@ -151,9 +151,10 @@ function Footer(props) {
                   {footerEmail && (
                     <Link
                       href={`mailto:${footerEmail[currentLanguage?.languageTag]}`}
-                      color="inherit"
                       target="_blank"
                       rel="noopener"
+                      underline="hover"
+                      color="inherit"
                     >
                       {footerEmail[currentLanguage?.languageTag]}
                     </Link>
@@ -194,6 +195,7 @@ function Footer(props) {
                   }}
                 >
                   <Button
+                    target="_blank"
                     variant="outlineWhite"
                     {...currentCountry.footerSecondLeftBlockButton[currentLanguage?.languageTag]}
                   />

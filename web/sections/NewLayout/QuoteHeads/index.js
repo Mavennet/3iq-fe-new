@@ -71,25 +71,25 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
               orangeBoxData && (
                 <>
                   <div className={styles.circle__top}></div>
-                  <div className={`${styles.box} ${styles.down} ${parseFloat(orangeBoxData.results.quote[0].pricedata.change) < 0 ? styles.orange : styles.green}`}>
+                  <div className={`${styles.box} ${styles.down} ${parseFloat(orangeBoxData?.results?.quote[0].pricedata.change) < 0 ? styles.orange : styles.green}`}>
                     <Grid container>
                       <Grid item xs={9}>
-                        <h5>{orangeBoxData.results.quote[0].equityinfo.longname}</h5>
-                        <h2>{toCurrency(orangeBoxData.results.quote[0].pricedata.vwap)} <small>{orangeBoxData.results.quote[0].pricedata.change}({orangeBoxData.results.quote[0].pricedata.changepercent.toFixed(2)}%)</small></h2>
+                        <h5>{orangeBoxData?.results?.quote[0].equityinfo.longname}</h5>
+                        <h2>{toCurrency(orangeBoxData?.results?.quote[0].pricedata.vwap)} <small>{orangeBoxData?.results?.quote[0].pricedata.change}({orangeBoxData?.results?.quote[0].pricedata.changepercent.toFixed(2)}%)</small></h2>
                         <div className={styles.info}>
                           <div>
                             <label>{dateText && dateText}</label>
-                            <h5><strong>{convertDate(orangeBoxData.results.quote[0].datetime)}</strong></h5>
+                            <h5><strong>{convertDate(orangeBoxData?.results?.quote[0].datetime)}</strong></h5>
                           </div>
                           <div>
                             <label>{volumeText && volumeText}</label>
-                            <h5><strong>{orangeBoxData.results.quote[0].pricedata.tradevolume}</strong></h5>
+                            <h5><strong>{orangeBoxData?.results?.quote[0].pricedata.tradevolume}</strong></h5>
                           </div>
                         </div>
                       </Grid>
                       <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                         {
-                          parseFloat(orangeBoxData.results.quote[0].pricedata.change) < 0 ? (
+                          parseFloat(orangeBoxData?.results?.quote[0].pricedata.change) < 0 ? (
                             <BsFillArrowDownLeftCircleFill
                               size={60}
                               color={'var(--orange)'}
@@ -115,25 +115,25 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
             {
               greenBoxData && (
                 <>
-                  <div className={`${styles.box} ${styles.up} ${parseFloat(orangeBoxData.results.quote[0].pricedata.change) < 0 ? styles.orange : styles.green}`}>
+                  <div className={`${styles.box} ${styles.up} ${parseFloat(orangeBoxData?.result?.quote[0].pricedata.change) < 0 ? styles.orange : styles.green}`}>
                     <Grid container>
                       <Grid item xs={9}>
-                        <h5>{greenBoxData.results.quote[0].equityinfo.longname}</h5>
-                        <h2>{toCurrency(greenBoxData.results.quote[0].pricedata.vwap)} <small>{orangeBoxData.results.quote[0].pricedata.change}({orangeBoxData.results.quote[0].pricedata.changepercent.toFixed(2)}%)</small></h2>
+                        <h5>{greenBoxData?.results?.quote[0].equityinfo.longname}</h5>
+                        <h2>{toCurrency(greenBoxData?.results?.quote[0].pricedata.vwap)} <small>{orangeBoxData?.results?.quote[0].pricedata.change}({orangeBoxData?.results?.quote[0].pricedata.changepercent.toFixed(2)}%)</small></h2>
                         <div className={styles.info}>
                           <div>
                             <label>{dateText && dateText}</label>
-                            <h5><strong>{convertDate(greenBoxData.results.quote[0].datetime)}</strong></h5>
+                            <h5><strong>{convertDate(greenBoxData?.results?.quote[0].datetime)}</strong></h5>
                           </div>
                           <div>
                             <label>{volumeText && volumeText}</label>
-                            <h5><strong>{greenBoxData.results.quote[0].pricedata.tradevolume}</strong></h5>
+                            <h5><strong>{greenBoxData?.results?.quote[0].pricedata.tradevolume}</strong></h5>
                           </div>
                         </div>
                       </Grid>
                       <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                         {
-                          parseFloat(orangeBoxData.results.quote[0].pricedata.change) < 0 ? (
+                          parseFloat(orangeBoxData?.results?.quote[0].pricedata.change) < 0 ? (
                             <BsFillArrowDownLeftCircleFill
                               size={60}
                               color={'var(--orange)'}
@@ -148,7 +148,7 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
                       </Grid>
                       <Grid item xs={12}>
                         <div className={styles.footer}>
-                          <p>{returnKeys(greenBoxData.results.quote[0].key)}</p>
+                          <p>{returnKeys(greenBoxData?.results?.quote[0].key)}</p>
                         </div>
                       </Grid>
                     </Grid>
