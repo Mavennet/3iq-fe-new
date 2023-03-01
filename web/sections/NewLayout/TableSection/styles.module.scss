@@ -13,10 +13,16 @@
 
   &::-webkit-scrollbar {
     width: 10px;
+    -webkit-appearance: none;
+  }
+
+  ::-webkit-scrollbar:horizontal {
+    height: 10px;
   }
 
   &::-webkit-scrollbar-track {
     background: var(--medium-gray);
+    border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
