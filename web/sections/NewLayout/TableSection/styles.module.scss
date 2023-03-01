@@ -1,35 +1,8 @@
 @import '../../../styles/custom-media.css';
 
 .simpleBlockContent {
-  max-width: 100%;
-  min-width: 100%;
-  overflow-x: scroll;
-  scrollbar-color: var(--light-blue) var(--gray);
-  -webkit-overflow-scrolling: touch;
-
-  @media (--media-min-large) {
-    overflow-x: auto;
-  }
-
-  &::-webkit-scrollbar {
-    width: 10px;
-    -webkit-appearance: none;
-  }
-
-  ::-webkit-scrollbar:horizontal {
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: var(--medium-gray);
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: rgb(15, 114, 228);
-    border-radius: 10px;
-    border: 3px solid var(--gray);
-  }
+  width: 100%;
+  height: auto;
 }
 
 .simpleBlockContent table {
