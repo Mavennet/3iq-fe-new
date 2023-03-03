@@ -77,12 +77,12 @@ function AutomatedArticles(props) {
                     profilePhoto,
                   },
                 },
-              }[0..${articlesCount - 1}]`,
+              }`,
               { postsIds: postsId }
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
-              setArticles(res)
+              setArticles(res.slice(0, articlesCount))
             })
         }
         fetchArticles()

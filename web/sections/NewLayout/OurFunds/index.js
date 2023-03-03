@@ -39,7 +39,7 @@ function renderCards(items, languageTag) {
 
             <div className={styles.box__container__text}>
               <p className='p__secondary__sm'>
-                {item.localeText?.[languageTag] || ''}
+                {item.localeText?.[languageTag] || <br></br>}
               </p>
             </div>
 
