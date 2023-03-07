@@ -79,7 +79,7 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
                   <div className={`${styles.box} ${styles.down} ${parseFloat(orangeBoxData?.results?.quote[0].pricedata.change) < 0 ? styles.orange : styles.green}`}>
                     <Grid container>
                       <Grid item xs={9}>
-                        <h5>{orangeBoxData?.results?.quote[0].equityinfo.longname} - {orangeBoxData?.results?.quote[0].symbolstring}</h5>
+                        <h5>{orangeBoxData?.results?.quote[0].equityinfo.longname} ({orangeBoxData?.results?.quote[0].symbolstring})</h5>
                         <h2>{toCurrency(orangeBoxData?.results?.quote[0].pricedata.last,orangeBoxData?.results?.quote[0].symbolstring)} <small>{orangeBoxData?.results?.quote[0].pricedata.change}({orangeBoxData?.results?.quote[0].pricedata.changepercent.toFixed(2)}%)</small></h2>
                         <div className={styles.info}>
                           <div>
@@ -119,7 +119,7 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
                   <div className={`${styles.box} ${styles.up} ${parseFloat(orangeBoxData?.result?.quote[0].pricedata.change) < 0 ? styles.orange : styles.green}`}>
                     <Grid container>
                       <Grid item xs={9}>
-                        <h5>{greenBoxData?.results?.quote[0].equityinfo.longname} - {greenBoxData?.results?.quote[0].symbolstring}</h5>
+                        <h5>{greenBoxData?.results?.quote[0].equityinfo.longname} ({greenBoxData?.results?.quote[0].symbolstring})</h5>
                         <h2>{toCurrency(greenBoxData?.results?.quote[0].pricedata.last,greenBoxData?.results?.quote[0].symbolstring)} <small>{orangeBoxData?.results?.quote[0].pricedata.change}({orangeBoxData?.results?.quote[0].pricedata.changepercent.toFixed(2)}%)</small></h2>
                         <div className={styles.info}>
                           <div>
