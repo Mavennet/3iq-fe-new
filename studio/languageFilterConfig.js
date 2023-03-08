@@ -88,7 +88,9 @@ export default {
     "automatedArticles",
     "automatedLatest",
     "postV2",
-    "ocioHero"
+    "ocioHero",
+    "textAndThreeImages",
+    "textAndFourImages"
   ],
   filterField: (enclosingType, field, selectedLanguageIds) =>
     !enclosingType.name.startsWith("locale") ||
