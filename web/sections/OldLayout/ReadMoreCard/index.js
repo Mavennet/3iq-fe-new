@@ -44,7 +44,7 @@ function ReadMoreCard(props) {
         <Grid
           item
           xs={12}
-          py={{xs: 40}}
+          py={{xs: 20}}
           sm={4}
           md={6}
           sx={{
@@ -65,7 +65,7 @@ function ReadMoreCard(props) {
               mt: 10,
               mb: 2,
               ml: {xs: 2, md: 10},
-              mr: {xs: 0, md: 8},
+              mr: {xs: 0, md: 30},
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'left',
@@ -73,7 +73,7 @@ function ReadMoreCard(props) {
             }}
           >
             {heading && (
-              <Typography component="h1" variant="h4" style={{fontWeight: 'bold', color: '#0082E5'}} gutterBottom>
+              <Typography component="h1" variant="h4" style={{fontWeight: 'bold', color: '#0082E5'}}>
                 {heading}
               </Typography>
             )}
@@ -84,8 +84,6 @@ function ReadMoreCard(props) {
             )}
             <Box
               sx={{
-                mt: 5,
-                mb: 5,
                 display: 'flex',
                 justifyContent: {xs: 'center', md: 'flex-end'}
               }}
