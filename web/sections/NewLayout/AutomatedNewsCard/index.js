@@ -50,7 +50,8 @@ function AutomatedNewsCard(props) {
         category.searchId ==  'pr-ether-fund' ||
         category.searchId ==  'pr-global-crypto' || 
         category.searchId ==  'pr-bitcoin-fund-dubai' || 
-        category.searchId ==  'pr-dubai'
+        category.searchId ==  'pr-dubai' || 
+        category.searchId ==  'articles_ae'
       ) {
         return newsCard.map((item) => (
           <Grid item xs={12} sm={4} p={2} mb={4}>
