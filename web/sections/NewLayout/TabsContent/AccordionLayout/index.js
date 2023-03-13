@@ -26,7 +26,6 @@ function AccordionLayout(props) {
   const [articles, setArticles] = useState([])
   const containerRef = useRef(null)
 
-
   const fetchCategory = async () => {
     await client
       .fetch(
@@ -93,8 +92,6 @@ function AccordionLayout(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected])
 
-  fetchCategory()
-
   return (
     <>
       <Container maxWidth={'lg'} bgcolor="#F6F6F6">
@@ -139,10 +136,15 @@ function AccordionLayout(props) {
               <Box mt={3}>
                 <Grid contianer xs={12} sx={{display: 'flex', justifyContent: 'space-between'}}>
                   <h3>Press Releases</h3>
-                  {tabItems[selected].localeButton && tabItems[selected].localeButton[currentLanguage.languageTag] && (
-                     <Button className={styles.button} size={"sm"} variant="outlined" {...tabItems[selected].localeButton[currentLanguage.languageTag]} />
-                  )}
-
+                  {tabItems[selected].localeButton &&
+                    tabItems[selected].localeButton[currentLanguage.languageTag] && (
+                      <Button
+                        className={styles.button}
+                        size={'sm'}
+                        variant="outlined"
+                        {...tabItems[selected].localeButton[currentLanguage.languageTag]}
+                      />
+                    )}
                 </Grid>
                 <Grid container mt={3} spacing={2}>
                   {articles &&
