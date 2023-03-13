@@ -1,6 +1,6 @@
 export default async (request, context) => {
   const translations = {
-    UNKNOWN: "ae",
+    UNKNOWN: "ca",
     US: "us",
     AE: "ae",
   };
