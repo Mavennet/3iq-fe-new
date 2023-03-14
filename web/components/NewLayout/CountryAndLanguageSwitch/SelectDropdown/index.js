@@ -61,13 +61,11 @@ function SelectDropdown(props) {
               
                 key={country.urlTag}
                 href={
-                  country.urlTag === 'au'
-                    ? 'https://3iq-au.com/'
-                    : country.urlTag === 'us'
-                    ? 'https://www.3iq-us.com/'
+                  country.urlTag === 'us'
+                    ? 'https://3iq-new.netlify.app/us/home'
                     : country.urlTag === 'ae'
-                    ? 'https://3iq.ae/'
-                    : 'https://3iq.ca/'
+                    ? 'https://3iq-new.netlify.app/ae/home'
+                    : 'https://3iq-new.netlify.app/ca/home'
                 }
                 underline="hover"
                 color="inherit"

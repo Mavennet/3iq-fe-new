@@ -1,23 +1,31 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Container, Typography, Modal, Box } from '@mui/material'
+import {Grid, Container, Typography, Modal, Box} from '@mui/material'
 import MemberCard from './MemberCard'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import HeroFirstVariation from '../HeroFirstVariation'
-import { RiDoubleQuotesL } from 'react-icons/ri'
+import {RiDoubleQuotesL} from 'react-icons/ri'
 import styles from './styles.module.scss'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../client'
 import Image from 'next/image'
-import { AiOutlineClose } from 'react-icons/ai'
+import {AiOutlineClose} from 'react-icons/ai'
 
 function TeamsDisplay(props) {
-
-  const { name, description, teams, textCta, buttonCta, currentLanguage, backgroundImageCta, quotesText } = props
+  const {
+    name,
+    description,
+    teams,
+    textCta,
+    buttonCta,
+    currentLanguage,
+    backgroundImageCta,
+    quotesText,
+  } = props
 
   const [open, setOpen] = React.useState(false)
   const [memberSelected, setMemberSelected] = React.useState(null)
-  const [categorie, setCategorie] = React.useState("")
+  const [categorie, setCategorie] = React.useState('')
 
   function urlFor(source) {
     return imageUrlBuilder(client).image(source)
@@ -33,15 +41,15 @@ function TeamsDisplay(props) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: { xs: '95%', md: '90%' },
+    width: {xs: '95%', md: '90%'},
     height: 'auto',
     maxWidth: '1024px',
-    maxHeight: { xs: '100vh', md: '85vh' },
+    maxHeight: {xs: '100vh', md: '85vh'},
     bgcolor: 'var(--light-gray)',
     outline: 'none',
     overflowY: 'scroll',
     p: 2,
-  };
+  }
 
   React.useEffect(() => {
     if (teams) {
@@ -51,82 +59,60 @@ function TeamsDisplay(props) {
 
   return (
     <>
-      <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
+      <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
         <Grid container mt={4}>
           <Grid xs={12} md={4}>
             <div className={styles.sticky__grid}>
               <h2>{name}</h2>
-              {
-                description && (
-                  <div className={styles.simple__block__content}>
-                    <SimpleBlockContent blocks={description} />
-                  </div>
-                )
-              }
+              {description && (
+                <div className={styles.simple__block__content}>
+                  <SimpleBlockContent blocks={description} />
+                </div>
+              )}
               <div className={styles.nav__team}>
                 <ul>
-                  {
-                    teams.map((item) => {
-                      return (
-                        <li
-                          key={item._id}
-                          className={item._id === categorie && styles.active}
-                        >
-                          <a
-                            href={`#${item._id}`}
-                            onClick={() => setCategorie(item._id)}
-                          >
-                            {item.localeName[currentLanguage.languageTag]}
-                          </a>
-                        </li>
-                      )
-                    })
-                  }
+                  {teams.map((item) => {
+                    return (
+                      <li key={item._id} className={item._id === categorie && styles.active}>
+                        <a href={`#${item._id}`} onClick={() => setCategorie(item._id)}>
+                          {item.localeName[currentLanguage.languageTag]}
+                        </a>
+                      </li>
+                    )
+                  })}
                 </ul>
               </div>
             </div>
           </Grid>
           <Grid xs={12} md={8} mt={2}>
-            {
-              teams.map((item) => {
-                return (
-                  <Grid
-                    id={item._id}
-                    container
-                    spacing={2}
-                    key={item._id}
-                    mb={4}
-                  >
-                    <Grid item xs={12}>
-                      <Typography
-                        variant="h2"
-                        mb={2}
-                        sx={{
-                          color: 'var(--black)',
-                          fontWeight: '300',
-                          fontSize: 'var(--font-size-primary-md)',
-                          fontFamily: 'var(--font-family-primary)'
-                        }}
-                      >
-                        <strong>{item.localeName[currentLanguage.languageTag]}</strong>
-                      </Typography>
-                    </Grid>
-                    {
-                      item.isFounder ? item.members.map((item) => {
+            {teams.map((item) => {
+              return (
+                <Grid id={item._id} container spacing={2} key={item._id} mb={4}>
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="h2"
+                      mb={2}
+                      sx={{
+                        color: 'var(--black)',
+                        fontWeight: '300',
+                        fontSize: 'var(--font-size-primary-md)',
+                        fontFamily: 'var(--font-family-primary)',
+                      }}
+                    >
+                      <strong>{item.localeName[currentLanguage.languageTag]}</strong>
+                    </Typography>
+                  </Grid>
+                  {item.isFounder
+                    ? item.members.map((item) => {
                         return (
                           <>
                             <Grid item xs={12} sm={6} md={8}>
-                              <RiDoubleQuotesL
-                                size={50}
-                                color={'var(--light-blue)'}
-                              />
-                              {
-                                quotesText && (
-                                  <div className={styles.simple__block__content}>
-                                    <SimpleBlockContent blocks={quotesText} />
-                                  </div>
-                                )
-                              }
+                              <RiDoubleQuotesL size={50} color={'var(--light-blue)'} />
+                              {quotesText && (
+                                <div className={styles.simple__block__content}>
+                                  <SimpleBlockContent blocks={quotesText} />
+                                </div>
+                              )}
                               <Typography
                                 variant="h3"
                                 my={2}
@@ -139,8 +125,8 @@ function TeamsDisplay(props) {
                                   fontWeight: 'var(--font-weight-regular)',
                                   '&:hover': {
                                     textDecoration: 'underline',
-                                    textUnderlineOffset: '5px'
-                                  }
+                                    textUnderlineOffset: '5px',
+                                  },
                                 }}
                               >
                                 {item.name}
@@ -155,26 +141,26 @@ function TeamsDisplay(props) {
                                   fontWeight: 'var(--font-weight-regular)',
                                 }}
                               >
-                                {item.localeJobTitle[currentLanguage.languageTag] && item.localeJobTitle[currentLanguage.languageTag]}
+                                {item.localeJobTitle[currentLanguage.languageTag] &&
+                                  item.localeJobTitle[currentLanguage.languageTag]}
                               </Typography>
                             </Grid>
                             <Grid item xs={12} sm={6} md={4}>
                               <div className={styles.imgGrid}>
-                                {
-                                  item.profilePhoto.asset._ref && (
-                                    <Image
-                                      src={urlFor(item.profilePhoto.asset._ref).url()}
-                                      alt={item.name}
-                                      layout='fill'
-                                      objectFit='cover'
-                                    />
-                                  )
-                                }
+                                {item.profilePhoto.asset._ref && (
+                                  <Image
+                                    src={urlFor(item.profilePhoto.asset._ref).url()}
+                                    alt={item.name}
+                                    layout="fill"
+                                    objectFit="cover"
+                                  />
+                                )}
                               </div>
                             </Grid>
                           </>
                         )
-                      }) : item.members.map((item) => {
+                      })
+                    : item.members.map((item) => {
                         return (
                           <Grid
                             item
@@ -184,39 +170,45 @@ function TeamsDisplay(props) {
                             mb={4}
                             key={item._id}
                             onClick={item.localeBio ? () => handleOpen(item) : null}
-                            sx={{ cursor: item.localeBio ? 'pointer' : '' }}
+                            sx={{cursor: item.localeBio ? 'pointer' : ''}}
                           >
                             <MemberCard
                               name={item.name && item.name}
-                              role={item.localeJobTitle[currentLanguage.languageTag] && item.localeJobTitle[currentLanguage.languageTag]}
+                              role={
+                                item.localeJobTitle[currentLanguage.languageTag] &&
+                                item.localeJobTitle[currentLanguage.languageTag]
+                              }
                               image={item.profilePhoto.asset._ref && item.profilePhoto.asset._ref}
                               showProfileBox={false}
                               email={item.email && item.email}
-                              readProfileText={item.readProfileText && item.readProfileText[currentLanguage.languageTag]}
-                              contactText={item.contactText && item.contactText[currentLanguage.languageTag]}
+                              readProfileText={
+                                item.readProfileText &&
+                                item.readProfileText[currentLanguage.languageTag]
+                              }
+                              contactText={
+                                item.contactText && item.contactText[currentLanguage.languageTag]
+                              }
                             />
                           </Grid>
                         )
-                      })
-                    }
-                  </Grid>
-                )
-              })
-            }
-            <Grid container>
-              <Grid item xs={12}>
-                <HeroFirstVariation
-                  heading={textCta}
-                  firstButton={buttonCta}
-                  secondButton={null}
-                  currentLanguage={currentLanguage}
-                  backgroundImage={backgroundImageCta}
-                />
-              </Grid>
-            </Grid>
+                      })}
+                </Grid>
+              )
+            })}
           </Grid>
         </Grid>
       </Container>
+      <Grid container>
+        <Grid item xs={12}>
+          <HeroFirstVariation
+            heading={textCta}
+            firstButton={buttonCta}
+            secondButton={null}
+            currentLanguage={currentLanguage}
+            backgroundImage={backgroundImageCta}
+          />
+        </Grid>
+      </Grid>
       <Modal
         open={open}
         onClose={() => setOpen(false)}
@@ -224,8 +216,8 @@ function TeamsDisplay(props) {
         aria-describedby="modal-modal-description"
         BackdropProps={{
           sx: {
-            backgroundColor: 'rgba(0, 0, 0, 0.8)'
-          }
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          },
         }}
       >
         <Box sx={modalStyle}>
@@ -244,15 +236,25 @@ function TeamsDisplay(props) {
             <Grid item xs={12} sm={4} md={3}>
               <MemberCard
                 name={memberSelected?.name}
-                role={memberSelected?.localeJobTitle[currentLanguage.languageTag] && memberSelected?.localeJobTitle[currentLanguage.languageTag]}
+                role={
+                  memberSelected?.localeJobTitle[currentLanguage.languageTag] &&
+                  memberSelected?.localeJobTitle[currentLanguage.languageTag]
+                }
                 image={memberSelected?.profilePhoto.asset._ref}
                 linkedin={memberSelected?.linkedinUrl}
-                contactText={memberSelected?.contactText?.[currentLanguage.languageTag] && memberSelected?.contactText?.[currentLanguage.languageTag]}
+                contactText={
+                  memberSelected?.contactText?.[currentLanguage.languageTag] &&
+                  memberSelected?.contactText?.[currentLanguage.languageTag]
+                }
                 showProfileBox={false}
               />
             </Grid>
             <Grid item xs={12} sm={8} md={9}>
-              <div className={styles.simple__block__content}><SimpleBlockContent blocks={memberSelected?.localeBio[currentLanguage?.languageTag]} /></div>
+              <div className={styles.simple__block__content}>
+                <SimpleBlockContent
+                  blocks={memberSelected?.localeBio[currentLanguage?.languageTag]}
+                />
+              </div>
             </Grid>
           </Grid>
         </Box>

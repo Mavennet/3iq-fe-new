@@ -81,7 +81,7 @@ export default {
     },
     {
       name: 'footerSchedule',
-      type: 'localeString',
+      type: 'localePortableText',
       title: 'Schedule (*)',
       description: "Schedule that will be displayed in the footer",
       validation: Rule => Rule.error('Information required.').required(),
