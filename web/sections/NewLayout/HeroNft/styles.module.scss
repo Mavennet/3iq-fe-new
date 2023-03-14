@@ -46,7 +46,7 @@
   @media (--media-min-large) {
     width: 50%;
     height: 100%;
-    background-color: #0D1C3D;
+    background-color: #0d1c3d;
     position: relative;
   }
 }
@@ -54,11 +54,13 @@
 .nft {
   @media (--media-min-large) {
     position: absolute;
-    width: 100%;
     height: auto;
-    left: -20px;
-    top: 100px;
+    top: 0;
+    right: 0;
+    left: 0;
     bottom: 0;
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -69,7 +71,7 @@
 }
 
 .simpleBlockContent {
-  p{
+  p {
     font-family: var(--font-family-secondary);
     font-size: var(--font-size-secondary-md);
   }
