@@ -33,10 +33,11 @@ export default {
         "URL for the Mailchimp signup form. Remember to add your domain in your mailchimp settings to avoid CORS errors."
     },
     {
-      name: "button",
-      type: "localeString",
-      title: "Button Text"
-    }
+      name: 'button',
+      type: 'localeCta',
+      title: 'Optional button',
+      description: 'Optional button that will be displayed above the content'
+    },
   ],
   preview: {
     select: {

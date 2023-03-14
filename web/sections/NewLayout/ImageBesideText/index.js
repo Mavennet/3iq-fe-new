@@ -6,6 +6,7 @@ import {Grid, Box, Container} from '@mui/material'
 import YouTube from 'react-youtube'
 import styles from './styles.module.scss'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
+import Script from 'next/script'
 
 const builder = imageUrlBuilder(client)
 
@@ -17,6 +18,7 @@ function ImageBesideText(props) {
   const {
     videoSrc,
     videoUrl,
+    bambooHrUrl,
     heading,
     backgroundImage,
     description,
@@ -97,6 +99,18 @@ function ImageBesideText(props) {
           )}
         </Grid>
       </Grid>
+      {bambooHrUrl && (
+        <>
+          <div
+            id="BambooHR"
+            data-domain="3iq.bamboohr.com"
+            data-version="1.0.0"
+            data-departmentId=""
+          ></div>
+          <Script src={bambooHrUrl} type="text/javascript" async defer />
+          <br></br>
+        </>
+      )}
     </Container>
   )
 }
@@ -110,6 +124,7 @@ ImageBesideText.propTypes = {
   currentLanguage: PropTypes.object,
   videoSrc: PropTypes.string,
   videoUrl: PropTypes.string,
+  bambooHrUrl: PropTypes.string,
 }
 
 export default ImageBesideText

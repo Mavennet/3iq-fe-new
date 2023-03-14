@@ -144,7 +144,6 @@ function HeroNft(props) {
                   <Box
                     mb={4}
                     sx={{display: 'flex', justifyContent: 'flex-start'}}
-                    onClick={() => setOpen(true)}
                   >
                     <Button variant="solidOrange" {...localeButton} title={localeButton.title} />
                   </Box>
