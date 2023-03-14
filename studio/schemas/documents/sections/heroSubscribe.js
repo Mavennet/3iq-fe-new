@@ -29,6 +29,12 @@ export default {
         hotspot: true,
       },
     },
+    {
+      name: 'button',
+      type: 'localeCta',
+      title: 'Optional button',
+      description: 'Optional button that will be displayed above the content'
+    },
   ],
   preview: {
     select: {
