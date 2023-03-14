@@ -39,7 +39,7 @@ function renderCards(items, languageTag) {
 
             <div className={styles.box__container__text}>
               <p className='p__secondary__sm'>
-                {item.localeText?.[languageTag] || ''}
+                {item.localeText?.[languageTag] || <br></br>}
               </p>
             </div>
 
@@ -71,6 +71,7 @@ function renderCards(items, languageTag) {
 
 function OurFunds(props) {
   const {
+    heading,
     currentLanguage,
     fundCards
   } = props
@@ -99,7 +100,7 @@ function OurFunds(props) {
       <Container sx={{ maxWidth: { sm: 'md', md: 'lg', lg: 'xl' } }}>
         <Grid container mb={4}>
           <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <h3>Our Funds</h3>
+            <h3>{heading}</h3>
             <div className={styles.arrows}>
               <RiArrowLeftSLine
                 className={styles.arrow}

@@ -104,7 +104,9 @@ const hiddenDocTypes = listItem =>
     "ocioServices",
     "services",
     "postV2",
-    "ocioHero"
+    "ocioHero",
+    "textAndThreeImages",
+    "textAndFourImages",
   ].includes(listItem.getId());
 
 export default () =>
@@ -243,6 +245,8 @@ export default () =>
               S.documentTypeListItem("ocioServices").title(
                 "OCIO Services"),            
               S.documentTypeListItem("ocioHero").title("Ocio Hero"),
+              S.documentTypeListItem("textAndThreeImages").title("Text and Three Images"),
+              S.documentTypeListItem("textAndFourImages").title("Text and Four Images"),
             ]),
         ),
       S.listItem()
