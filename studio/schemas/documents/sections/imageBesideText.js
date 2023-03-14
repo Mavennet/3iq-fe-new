@@ -62,6 +62,12 @@ export default {
       title: 'Video URL',
       description: 'Optional display of an video through its url'
     },
+    {
+      name: 'bambooHrUrl',
+      type: 'url',
+      title: 'Bamboo Hr URL',
+      description: 'Optional display job posting'
+    },
   ],
   preview: {
     select: {
