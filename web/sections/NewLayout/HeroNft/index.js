@@ -21,8 +21,10 @@ function HeroNft(props) {
     button,
     currentLanguage,
     member,
-    gif
+    gif,
   } = props
+
+  // console.log(gif)
 
   const localeButton = button && button[currentLanguage?.languageTag]
 
@@ -153,18 +155,19 @@ function HeroNft(props) {
         </Box>
       </div>
       <Box sx={{textAlign: {xs: 'center', md: 'left'}}} className={styles.right__side}>
-        {videoSrc && (
-          <div className={styles.nft}>
-            <Box
-              component="img"
-              sx={{
-                height:{md: '580px', xs: '480px'} ,
-              }}
-              alt={gif.alt}
-              src={builder.image(gif).url()}
-            />
-          </div>
-        )}
+        <div className={styles.nft}>
+          <Box
+            component="img"
+            sx={{
+              height: '100%',
+              width: '100%',
+              objectFit: 'contain',
+            }}
+            alt={gif.alt}
+            src={builder.image(gif).url()}
+          />
+        </div>
+        {/* )} */}
       </Box>
       {memberSelected && (
         <Modal
