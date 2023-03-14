@@ -35,6 +35,8 @@
   display: flex;
   justify-content: left;
   margin-top: 100px;
+  scrollbar-color: var(--light-blue) var(--gray);
+
   @media (--media-max-large) {
     margin: 10px 0px;
     background-color: transparent;
