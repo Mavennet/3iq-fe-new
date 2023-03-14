@@ -11,62 +11,6 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
   const [orangeBoxData, setOrangeBoxData] = React.useState(null)
   const [greenBoxData, setGreenBoxData] = React.useState(null)
 
-  const getOrangeData = (endpoint) => {
-    const data = {}
-    axios.get(endpoint)
-      .then(response => {
-        if (response.data?.results) {
-          data["longname"] = response.data.results.quote[0].equityinfo.longname
-          data["symbolstring"] = response.data.results.quote[0].symbolstring
-          data["symbolstringCrr"] = response.data.results.quote[0].symbolstring
-          data["last"] = response.data.results.quote[0].pricedata.last
-          data["datetime"] = response.data.results.quote[0].datetime
-          data["key"] = returnKeys(response.data.results.quote[0].key)
-          data["change"] = response.data.results.quote[0].pricedata.change
-          data["changepercent"] = response.data.results.quote[0].pricedata.changepercent
-          setOrangeBoxData(data)
-        } else if (response.data?.root) {
-          data["longname"] = response.data.root[0].full_name
-          data["symbolstring"] = response.data.root[0].code
-          data["symbolstringCrr"] = response.data.root[0].code + ".U"
-          data["last"] = response.data.root[0].display_price
-          data["datetime"] = response.data.root[0].time_of_last_update
-          data["key"] = "USD | NASDAQ DUBAI STOCK EXCHANGE | REAL TIME PRICE | END OF DAY"
-          data["change"] = response.data.root[0].numerical_change
-          data["changepercent"] = response.data.root[0].percentage_change
-          setOrangeBoxData(data)
-        }
-      })
-  }
-
-  const getGreenData = (endpoint) => {
-    const data = {}
-    axios.get(endpoint)
-      .then(response => {
-        if (response.data?.results) {
-          data["longname"] = response.data.results.quote[0].equityinfo.longname
-          data["symbolstring"] = response.data.results.quote[0].symbolstring
-          data["symbolstringCrr"] = response.data.results.quote[0].symbolstring
-          data["last"] = response.data.results.quote[0].pricedata.last
-          data["datetime"] = response.data.results.quote[0].datetime
-          data["key"] = returnKeys(response.data.results.quote[0].key)
-          data["change"] = response.data.results.quote[0].pricedata.change
-          data["changepercent"] = response.data.results.quote[0].pricedata.changepercent
-          setGreenBoxData(data)
-        } else if (response.data?.root) {
-          data["longname"] = response.data.root[0].full_name
-          data["symbolstring"] = response.data.root[0].code
-          data["symbolstringCrr"] = response.data.root[0].code + ".U"
-          data["last"] = response.data.root[0].display_price
-          data["datetime"] = response.data.root[0].time_of_last_update
-          data["key"] = "USD | NASDAQ DUBAI STOCK EXCHANGE | REAL TIME PRICE | END OF DAY"
-          data["change"] = response.data.root[0].numerical_change
-          data["changepercent"] = response.data.root[0].percentage_change
-          setGreenBoxData(data)
-        }
-      })
-  }
-
   const convertDate = (value) => {
     const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
     const dt = value.split('-')
@@ -77,6 +21,60 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
     })
     !isEng && formattedDate.toLocaleLowerCase('fr')
     return formattedDate
+  }
+
+  const getOrangeData = async (endpoint) => {
+    const data = {}
+    const r = await axios.get(endpoint)
+    console.log(r)
+    if (r.data?.results) {
+      data["longname"] = r.data.results.quote[0].equityinfo.longname
+      data["symbolstring"] = r.data.results.quote[0].symbolstring
+      data["symbolstringCrr"] = r.data.results.quote[0].symbolstring
+      data["last"] = r.data.results.quote[0].pricedata.last
+      data["datetime"] = convertDate(r.data.results.quote[0].datetime)
+      data["key"] = returnKeys(r.data.results.quote[0].key)
+      data["change"] = r.data.results.quote[0].pricedata.change
+      data["changepercent"] = r.data.results.quote[0].pricedata.changepercent
+      setOrangeBoxData(data)
+    } else if (r.data?.root) {
+      data["longname"] = r.data.root[0].full_name
+      data["symbolstring"] = r.data.root[0].code
+      data["symbolstringCrr"] = r.data.root[0].code + ".U"
+      data["last"] = r.data.root[0].display_price
+      data["datetime"] = r.data.root[0].time_of_last_update
+      data["key"] = "USD | NASDAQ DUBAI STOCK EXCHANGE | REAL TIME PRICE | END OF DAY"
+      data["change"] = r.data.root[0].numerical_change
+      data["changepercent"] = r.data.root[0].percentage_change
+      setOrangeBoxData(data)
+    }
+  }
+
+  const getGreenData = async (endpoint) => {
+    const data = {}
+    const r = await axios.get(endpoint)
+    console.log(r)
+    if (r.data?.results) {
+      data["longname"] = r.data.results.quote[0].equityinfo.longname
+      data["symbolstring"] = r.data.results.quote[0].symbolstring
+      data["symbolstringCrr"] = r.data.results.quote[0].symbolstring
+      data["last"] = r.data.results.quote[0].pricedata.last
+      data["datetime"] = convertDate(r.data.results.quote[0].datetime)
+      data["key"] = returnKeys(r.data.results.quote[0].key)
+      data["change"] = r.data.results.quote[0].pricedata.change
+      data["changepercent"] = r.data.results.quote[0].pricedata.changepercent
+      setGreenBoxData(data)
+    } else if (r.data?.root) {
+      data["longname"] = r.data.root[0].full_name
+      data["symbolstring"] = r.data.root[0].code
+      data["symbolstringCrr"] = r.data.root[0].code + ".U"
+      data["last"] = r.data.root[0].display_price
+      data["datetime"] = r.data.root[0].time_of_last_update
+      data["key"] = "USD | NASDAQ DUBAI STOCK EXCHANGE | REAL TIME PRICE | END OF DAY"
+      data["change"] = r.data.root[0].numerical_change
+      data["changepercent"] = r.data.root[0].percentage_change
+      setGreenBoxData(data)
+    }
   }
 
   const toCurrency = (value,symbol) => {
@@ -101,17 +99,14 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
     return str;
   }
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
     if (orangeBoxEndpoint) {
-      getOrangeData(orangeBoxEndpoint)
+      await getOrangeData(orangeBoxEndpoint)
     }
-  }, [orangeBoxEndpoint])
-
-  React.useEffect(() => {
     if (greenBoxEndpoint) {
-      getGreenData(greenBoxEndpoint)
+      await getGreenData(greenBoxEndpoint)
     }
-  }, [greenBoxEndpoint])
+  }, [greenBoxEndpoint,orangeBoxEndpoint])
 
   return (
     <Grid xs={12} md={5} lg={6} py={8}>
@@ -130,7 +125,7 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
                         <div className={styles.info}>
                           <div>
                             <label>{dateText && dateText}</label>
-                            <h5><strong>{convertDate(orangeBoxData?.datetime)}</strong></h5>
+                            <h5><strong>{orangeBoxData?.datetime}</strong></h5>
                           </div>
                         </div>
                       </Grid>
@@ -170,7 +165,7 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
                         <div className={styles.info}>
                           <div>
                             <label>{dateText && dateText}</label>
-                            <h5><strong>{convertDate(orangeBoxData?.datetime)}</strong></h5>
+                            <h5><strong>{orangeBoxData?.datetime}</strong></h5>
                           </div>
                         </div>
                       </Grid>
