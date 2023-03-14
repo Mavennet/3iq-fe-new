@@ -28,6 +28,7 @@ function LineChart(props) {
   const colors = [chartColor ? chartColor : '#0082E5', '#DC6E19', '#869D7A', '#FF2205']
 
   const [data, setData] = React.useState()
+  const [formattedData, setFormattedData] = React.useState()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
 
@@ -49,8 +50,28 @@ function LineChart(props) {
     return formattedDate
   }
 
+  const formatData = (data) => {
+    const labels = data.map((element) => {
+      const label = element.label
+      delete element.label
+      return label
+    })
+    const newFormat = []
+    for (const date in data[0]) {
+      const entry = {Date: date}
+      data.forEach((element, i) => {
+        entry[labels[i]] = element[date]
+      })
+      newFormat.push(entry)
+    }
+    setFormattedData(newFormat)
+  }
+
   const getChartData = () => {
-    axios.get(endpoint).then((response) => setData(response.data))
+    axios.get(endpoint).then((response) => {
+      setData(response.data)
+      formatData(JSON.parse(JSON.stringify(response.data)))
+    })
   }
 
   const limitLabel = (text) => {
@@ -64,7 +85,7 @@ function LineChart(props) {
   }
 
   function downloadExcel() {
-    const worksheet = XLSX.utils.json_to_sheet(data)
+    const worksheet = XLSX.utils.json_to_sheet(formattedData)
     const workbook = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1')
     XLSX.writeFile(workbook, `line-chart-${_id}.xlsx`)
@@ -205,7 +226,7 @@ function LineChart(props) {
               </MenuItem>
               <MenuItem onClick={handleClose} sx={submenuStyle}>
                 <CSVLink
-                  data={data}
+                  data={formattedData}
                   onClick={handleClose}
                   filename={`line-chart-${_id}.csv`}
                   target="_blank"
