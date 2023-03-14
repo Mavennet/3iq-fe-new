@@ -103,10 +103,13 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
     if (orangeBoxEndpoint) {
       await getOrangeData(orangeBoxEndpoint)
     }
+  }, [orangeBoxEndpoint])
+
+  React.useEffect(async () => {
     if (greenBoxEndpoint) {
       await getGreenData(greenBoxEndpoint)
     }
-  }, [greenBoxEndpoint,orangeBoxEndpoint])
+  }, [greenBoxEndpoint])
 
   return (
     <Grid xs={12} md={5} lg={6} py={8}>
