@@ -45,7 +45,7 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--medium-gray);
   }
 
   &::-webkit-scrollbar-thumb {

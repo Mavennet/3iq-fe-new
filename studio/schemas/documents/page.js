@@ -99,8 +99,6 @@ export default {
             { type: "ocioServices"},
             { type: "why3iQ" },
             { type: "ocioHero" },
-            { type: "textAndThreeImages"},
-            { type: "textAndFourImages"}
           ]
         }
       ]

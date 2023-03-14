@@ -52,11 +52,11 @@ function SideBySideImages(props) {
       backgroundColor: backgroundColor && backgroundColor
     }}>
       <Container sx={{ maxWidth: { sm: 'md', md: 'md', lg: 'lg' } }} >
-        <Grid container py={6} pb>
+        <Grid container py={6}>
           <CssBaseline />
           {
             heading && (
-              <Grid item xs={12} mb={4} mt={4}>
+              <Grid item xs={12} mb={4}>
                 <div className={styles.simple__block__content}>
                   <SimpleBlockContent blocks={heading} />
                 </div>

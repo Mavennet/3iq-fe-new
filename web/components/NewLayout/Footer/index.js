@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withRouter} from 'next/router'
-import {createTheme, ThemeProvider} from '@mui/material/styles'
-import {Grid, Box, Typography, CssBaseline, Link, Container, AppBar} from '@mui/material'
-import {FaTwitter, FaLinkedinIn, FaYoutube} from 'react-icons/fa'
-import {RiMailSendLine} from 'react-icons/ri'
-import {BiMap, BiTime, BiGlobe} from 'react-icons/bi'
-import {BsTelephone} from 'react-icons/bs'
+import { withRouter } from 'next/router'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { Grid, Box, Typography, CssBaseline, Link, Container, AppBar } from '@mui/material'
+import { FaTwitter, FaLinkedinIn, FaYoutube } from 'react-icons/fa'
+import { RiMailSendLine } from 'react-icons/ri'
+import { BiMap, BiTime, BiGlobe } from 'react-icons/bi'
+import { BsTelephone } from 'react-icons/bs'
 import styles from './styles.module.scss'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../client'
-import {getPathFromSlug} from '../../../utils/urls'
+import { getPathFromSlug } from '../../../utils/urls'
 import SimpleBlockContent from '../../OldLayout/SimpleBlockContent'
 import Button from '../Button'
 
@@ -46,9 +46,9 @@ const breakArray = (array) => {
 }
 
 function Footer(props) {
-  const {currentCountry, currentLanguage} = props
+  const { currentCountry, currentLanguage } = props
 
-  const {footerAddress, footerPhoneNumber, footerEmail, footerSchedule} = currentCountry
+  const { footerAddress, footerPhoneNumber, footerEmail, footerSchedule } = currentCountry
 
   const [logoLanguage, setLogoLanguage] = React.useState(null)
 
@@ -60,16 +60,16 @@ function Footer(props) {
   }, [currentLanguage.languageTag])
 
   return (
-    <AppBar position="static" sx={{bgcolor: '#0D1C3D', boxShadow: 'none'}}>
+    <AppBar position="static" sx={{ bgcolor: '#0D1C3D', boxShadow: 'none' }}>
       <Container maxWidth={'xl'}>
-        <Grid container pl={{xs: 1.5, md: 0}}>
-          <Grid item md={12} py={4} sx={{display: 'flex', justifyContent: 'space-between'}}>
+        <Grid container pl={{ xs: 1.5, md: 0 }}>
+          <Grid item md={12} py={4} sx={{ display: 'flex', justifyContent: 'space-between' }}>
             {currentCountry.footerLogo && (
               <Link href={`/${currentCountry.urlTag}/home`}>
                 {logoLanguage && (
                   <Box
                     component="img"
-                    sx={{maxWidth: '100%'}}
+                    sx={{ maxWidth: '100%' }}
                     width={150}
                     alt={currentCountry.footerLogo[logoLanguage].alt}
                     src={
@@ -124,61 +124,52 @@ function Footer(props) {
           <Grid item xs={12} container>
             <Grid item container md={3} xs={12} className={styles.block__content}>
               <Grid item container xs={12}>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{ color: '#0082E5' }}>
                   <BiMap />
                 </Grid>
                 <Grid
                   item
                   md={10}
                   xs={11}
-                  pr={{md: 12, xs: 28}}
+                  pr={{ md: 12, xs: 28 }}
                   className={styles.simpleBlockContent}
                 >
                   {footerAddress && footerAddress[currentLanguage?.languageTag] && (
                     <SimpleBlockContent blocks={footerAddress[currentLanguage?.languageTag]} />
                   )}
                 </Grid>
-                <Grid item md={2} xs={1} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} sx={{ color: '#0082E5' }}>
                   <BsTelephone />
                 </Grid>
-                <Grid item md={10} xs={11} pr={{md: 12, xs: 28}} className={styles.grid__text}>
+                <Grid item md={10} xs={11} pr={{ md: 12, xs: 28 }} className={styles.grid__text}>
                   {footerPhoneNumber && footerPhoneNumber[currentLanguage?.languageTag]}
                 </Grid>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} sx={{ color: '#0082E5' }}>
                   <RiMailSendLine />
                 </Grid>
-                <Grid item mt={1.5} md={10} xs={11} pr={{md: 12, xs: 28}} className={styles.grid__text}>
+                <Grid item md={10} xs={11} pr={{ md: 12, xs: 28 }} className={styles.grid__text}>
                   {footerEmail && (
                     <Link
                       href={`mailto:${footerEmail[currentLanguage?.languageTag]}`}
+                      color="inherit"
                       target="_blank"
                       rel="noopener"
-                      underline="hover"
-                      color="inherit"
                     >
                       {footerEmail[currentLanguage?.languageTag]}
                     </Link>
                   )}
                 </Grid>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} sx={{ color: '#0082E5' }}>
                   <BiTime />
                 </Grid>
-                <Grid
-                  item
-                  md={10}
-                  xs={11}
-                  pr={{md: 12, xs: 28}}
-                  className={styles.simpleBlockContent}
-                >
-                  {footerSchedule && footerSchedule[currentLanguage?.languageTag] && (
-                    <SimpleBlockContent blocks={footerSchedule[currentLanguage?.languageTag]} />
-                  )}
+                <Grid item md={10} xs={11} pr={{ md: 12, xs: 32 }} className={styles.grid__text}>
+                  {footerSchedule && footerSchedule[currentLanguage?.languageTag]}
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item md={3} xs={12} mt={{xs: 2, md: 0}} className={styles.block__content}>
+            <Grid item md={3} xs={12} mt={{ xs: 2, md: 0 }} className={styles.block__content}>
               <Grid item container xs={12}>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{ color: '#0082E5' }}>
                   <BiGlobe />
                 </Grid>
                 <Grid item md={10} xs={11}>
@@ -188,7 +179,7 @@ function Footer(props) {
                         <SimpleBlockContent
                           blocks={
                             currentCountry?.footerSecondLeftBlockContent[
-                              currentLanguage?.languageTag
+                            currentLanguage?.languageTag
                             ]
                           }
                         />
@@ -198,12 +189,11 @@ function Footer(props) {
                 <Box
                   ml={3}
                   sx={{
-                    paddingBottom: {md: '100px', xs: '25px'},
-                    paddingTop: {md: '0px', xs: '25px'},
+                    paddingBottom: { md: '100px', xs: '25px' },
+                    paddingTop: { md: '0px', xs: '25px' },
                   }}
                 >
                   <Button
-                    target="_blank"
                     variant="outlineWhite"
                     {...currentCountry.footerSecondLeftBlockButton[currentLanguage?.languageTag]}
                   />
@@ -227,7 +217,7 @@ function Footer(props) {
                   )
                 })}
             </Grid>
-            <Grid item md={3} xs={12} mt={{xs: 2, md: 0}}>
+            <Grid item md={3} xs={12} mt={{ xs: 2, md: 0 }}>
               {currentCountry.newsletterBody && (
                 <div className={styles.newsletter}>
                   <SimpleBlockContent
@@ -249,7 +239,7 @@ function Footer(props) {
           </Grid>
         </Grid>
       </Container>
-      <Box sx={{background: '#0082E5', display: {sm: 'none', md: 'block'}}}>
+      <Box sx={{ background: '#0082E5', display: { sm: 'none', md: 'block' } }}>
         {currentCountry?.footerBottomContent &&
           currentCountry?.footerBottomContent[currentLanguage?.languageTag] && (
             <div className={styles.simpleBlockContent}>

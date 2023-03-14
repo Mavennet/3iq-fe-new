@@ -172,7 +172,13 @@ function FundsContent(props) {
                       )}
                       <div className={styles.title__product}>
                         <h3>{product.localeName[currentLanguage.languageTag]}</h3>
-                        <h5>{product.codes && product.codes.join(', ')}</h5>
+                        <h5>
+                          {product.codes && (
+                            product.codes.map((code) => (
+                              code + ', '
+                            ))
+                          )}
+                        </h5>
                       </div>
                     </Grid>
                     <Grid item xs={12}>

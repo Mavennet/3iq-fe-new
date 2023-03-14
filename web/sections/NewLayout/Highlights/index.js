@@ -146,15 +146,9 @@ function Highlights(props) {
       <Grid container spacing={{ xs: 0, md: 3 }} sx={{ alignItems: {xs: 'flex-start', md: 'stretch'} }}>
         <Grid item xs={12} lg={8}>
           {videoSrc && (
-            <iframe
-            width="100%"
-            height="100%"
-            src={videoSrc}
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+            <div className={styles.video}>
+              <YouTube videoId={videoSrc} opts={opts} />
+            </div>
           )}
         </Grid>
         <Grid item xs={12} lg={4} sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'stretch' }}>

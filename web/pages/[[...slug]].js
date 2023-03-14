@@ -25,14 +25,11 @@ export const getServerSideProps = async ({ params }) => {
 
   dataCountries.map((c) => countries.push(c.urlTag))
 
-  let country = ''
+  const country = 'ca'
 
   if (params?.slug) {
     if (countries.indexOf(params.slug[0]) >= 0) {
-      country = params.slug[0]
       params.slug.shift()
-    } else {
-      country = 'ca'
     }
   }
 
@@ -43,13 +40,33 @@ export const getServerSideProps = async ({ params }) => {
   // Frontpage - fetch the linked `frontpage` from the global configuration document.
 
   // Regular route
-  data = await client
-    .fetch(
-      // Get the route document with one of the possible slugs for the given requested path
-      DATA_IN_SLUG_BY_PATH,
-      { possibleSlugs: getSlugVariations(country, slug) }
-    )
-    .then((res) => (res?.page ? { ...res.page, slug } : undefined))
+  if (country) {
+    if (slug === 'home') {
+      data = await client
+        .fetch(
+          // Get the route document with the home slug for the given country
+          DATA_EQUALS_SLUG,
+          { possibleSlug: `${country}/home`, country: country }
+        )
+        .then((res) => (res?.page ? { ...res.page, slug } : undefined))
+    } else {
+      data = await client
+        .fetch(
+          // Get the route document with one of the possible slugs for the given requested path
+          DATA_IN_SLUG,
+          { possibleSlugs: getSlugVariations(country, slug), country: country }
+        )
+        .then((res) => (res?.page ? { ...res.page, slug } : undefined))
+    }
+  } else {
+    data = await client
+      .fetch(
+        // Get the route document with one of the possible slugs for the given requested path
+        DATA_IN_SLUG_BY_PATH,
+        { possibleSlugs: getSlugVariations(country, slug) }
+      )
+      .then((res) => (res?.page ? { ...res.page, slug } : undefined))
+  }
 
 
   if (!data?._type === 'page') {
