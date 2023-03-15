@@ -65,6 +65,9 @@
   .bottom {
     bottom: 0;
   }
+  .nearBottom {
+    top: 85%;
+  }
   .right {
     left: 80px;
   }
@@ -79,6 +82,14 @@
 
 .bottom__second {
   bottom: -20%;
+}
+
+.bottom__third {
+  bottom: -15%;
+}
+
+.bottom__fourth {
+  bottom: -5%;
 }
 
 .simpleBlockContent {
