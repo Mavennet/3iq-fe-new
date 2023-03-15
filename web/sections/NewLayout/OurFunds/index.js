@@ -33,7 +33,8 @@ function renderCards(items, languageTag) {
       const data = {}
       const r = await axios.get(item.endpoint)
       if (item.localeHeading[languageTag] != '3iQ Global Cryptoasset Fund' && r.data) {
-        data["dailyNavCad"] = Number(r.data[0].cad).toFixed(2)
+        data["dailyNavCad"] = Number(r.data[0].cad).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        // x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         setData(data)
       } else {
         console.log(item.localeHeading)
