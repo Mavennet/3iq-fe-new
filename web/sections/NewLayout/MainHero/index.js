@@ -1,24 +1,27 @@
 import React from 'react'
-import { PropTypes } from 'prop-types'
+import {PropTypes} from 'prop-types'
 import styles from './styles.module.scss'
-import { Container, Grid, Box, useMediaQuery, useTheme } from '@mui/material'
-import { FaTwitter, FaYoutube, FaLinkedin, FaEthereum, FaRegHandshake } from 'react-icons/fa'
-import { BsCurrencyBitcoin } from 'react-icons/bs'
+import {Container, Grid, Box, useMediaQuery, useTheme} from '@mui/material'
+import {FaTwitter, FaYoutube, FaLinkedin, FaEthereum, FaRegHandshake} from 'react-icons/fa'
+import {BsCurrencyBitcoin} from 'react-icons/bs'
 import Link from 'next/link'
 import Button from '../../../components/NewLayout/Button'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../client'
 import Rotating3DLogo from '../Rotating3DLogo'
+import Image from 'next/image'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
 }
+const builder = imageUrlBuilder(client)
 
 function MainHero(props) {
   const {
     description,
     button,
+    mainImage,
     backgroundImage,
     currentLanguage,
     twitterUrl,
@@ -37,6 +40,8 @@ function MainHero(props) {
 
   const localeButton = button[currentLanguage?.languageTag]
 
+  const localeMainImage = mainImage && mainImage[currentLanguage?.languageTag]
+
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down('md'))
 
@@ -52,9 +57,23 @@ function MainHero(props) {
         py: 7,
       }}
     >
-      <Container sx={{ maxWidth: { sm: 'md', lg: 'lg', xl: 'xl' } }}>
-        <Grid container sx={{ display: 'flex', alignItems: 'center' }}>
+      <Container sx={{maxWidth: {sm: 'md', lg: 'lg', xl: 'xl'}}}>
+        <Grid container sx={{display: 'flex', alignItems: 'center'}}>
           <Grid item sm={8} md={5} xs={12}>
+            <div>
+              {localeMainImage && (
+                <Box
+                  component="img"
+                  sx={{
+                    height: '100%',
+                    width: '100%',
+                    objectFit: 'contain',
+                  }}
+                  alt={localeMainImage.alt}
+                  src={builder.image(localeMainImage).url()}
+                />
+              )}
+            </div>
             <div className={styles.simple__block__content}>
               {description && <SimpleBlockContent blocks={description} />}
             </div>
@@ -67,7 +86,7 @@ function MainHero(props) {
               <Rotating3DLogo />
             </Box>
           </Grid>
-          <Grid item sm={4} md={1} sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Grid item sm={4} md={1} sx={{display: {xs: 'none', sm: 'block'}}}>
             <div className={styles.social__media}>
               {twitterUrl && (
                 <Link href={twitterUrl}>
@@ -103,7 +122,7 @@ function MainHero(props) {
           <Link
             href={{
               pathname: `/${firstRoute[currentLanguage?.languageTag]?.title}`,
-              query: { slug: firstRoute[currentLanguage?.languageTag]?.route?.slug?.current },
+              query: {slug: firstRoute[currentLanguage?.languageTag]?.route?.slug?.current},
             }}
             as={`/${firstRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
           >
@@ -120,7 +139,7 @@ function MainHero(props) {
           <Link
             href={{
               pathname: `/${secondRoute[currentLanguage?.languageTag]?.title}`,
-              query: { slug: secondRoute[currentLanguage?.languageTag]?.route?.slug?.current },
+              query: {slug: secondRoute[currentLanguage?.languageTag]?.route?.slug?.current},
             }}
             as={`/${secondRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
           >
@@ -137,7 +156,7 @@ function MainHero(props) {
           <Link
             href={{
               pathname: `/${thirdRoute[currentLanguage?.languageTag]?.title}`,
-              query: { slug: thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current },
+              query: {slug: thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current},
             }}
             as={`/${thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
           >
@@ -152,14 +171,15 @@ function MainHero(props) {
             </a>
           </Link>
         </div>
-      </Container >
-    </Box >
+      </Container>
+    </Box>
   )
 }
 
 MainHero.propTypes = {
   heading: PropTypes.string.isRequired,
   description: PropTypes.any,
+  mainImage: PropTypes.object,
   button: PropTypes.object,
   currentLanguage: PropTypes.object,
   twitterUrl: PropTypes.string,
