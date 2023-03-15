@@ -36,7 +36,8 @@ function Timeline(props) {
     thirdDateContent,
     fourthDateContent,
     fifthDateContent,
-    sixthDateContent
+    sixthDateContent,
+    seventhDateContent
   } = props
 
   return (
@@ -82,11 +83,19 @@ function Timeline(props) {
                   )
                 }
                 <div className={`${styles.circle} ${styles.top}`}>2012</div>
-                <div className={`${styles.circle} ${styles.bottom}`}>2022</div>
+                <div className={`${styles.circle} ${styles.nearBottom}`}>2022</div>
                 {
                   sixthDateContent && (
-                    <div className={`${styles.text} ${styles.bottom__second} ${styles.left}`}>
+                    <div className={`${styles.text} ${styles.bottom__third} ${styles.left}`}>
                       <SimpleBlockContent blocks={sixthDateContent[currentLanguage.languageTag]} />
+                    </div>
+                  )
+                }
+                <div className={`${styles.circle} ${styles.bottom}`}>2023</div>
+                {
+                  seventhDateContent && (
+                    <div className={`${styles.text} ${styles.bottom__fourth} ${styles.right}`}>
+                      <SimpleBlockContent blocks={seventhDateContent[currentLanguage.languageTag]} />
                     </div>
                   )
                 }
@@ -204,22 +213,6 @@ function Timeline(props) {
                       <TimelineContent>
                         <div className={styles.simpleBlockContent}>
                           <SimpleBlockContent blocks={fifthDateContent[currentLanguage.languageTag]} />
-                        </div>
-                      </TimelineContent>
-                    </TimelineItem>
-                  )
-                }
-                {
-                  sixthDateContent && (
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ ...timeLineDotSx, }} variant="outlined">
-                          2022
-                        </TimelineDot>
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <div className={styles.simpleBlockContent}>
-                          <SimpleBlockContent blocks={sixthDateContent[currentLanguage.languageTag]} />
                         </div>
                       </TimelineContent>
                     </TimelineItem>

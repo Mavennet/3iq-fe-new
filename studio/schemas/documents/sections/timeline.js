@@ -64,6 +64,12 @@ export default {
       validation: Rule => Rule.error('Information required.').required(),
     },
     {
+      name: 'seventhDateContent',
+      type: 'localeBioPortableText',
+      title: '2023 text description (*)',
+      validation: Rule => Rule.error('Information required.').required(),
+    },
+    {
       name: 'span',
       title: 'Short text',
       description: 'Short text above the second text block on the left',
