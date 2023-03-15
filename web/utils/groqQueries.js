@@ -290,6 +290,7 @@ export const FUND_CARDS = groq`
   'localeText': text,
   'localeDailyNavLabel': dailyNavLabel,
   'localeDailyNav': dailyNav,
+  'endpoint': endpoint,
   'backgroundImage': backgroundImage
 }
 `
