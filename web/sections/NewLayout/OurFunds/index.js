@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import {Container, Grid, Box} from '@mui/material'
 import {RiArrowRightSLine, RiArrowLeftSLine} from 'react-icons/ri'
 import Button from '../../../components/NewLayout/Button'
+import axios from 'axios'
 
 function renderCards(items, languageTag) {
   const cardStyles = [
@@ -25,6 +26,32 @@ function renderCards(items, languageTag) {
   ]
 
   const cards = items.map((item) => {
+
+    const [data, setData] = React.useState(null)
+
+    const fetchData = async () => {
+      const data = {}
+      const r = await axios.get(item.endpoint)
+      if (item.localeHeading[languageTag] != '3iQ Global Cryptoasset Fund' && r.data) {
+        data["dailyNavCad"] = Number(r.data[0].cad).toFixed(2)
+        setData(data)
+      } else {
+        console.log(item.localeHeading)
+        console.log(r.data[0].id)
+        data['TIQ101'] = r.data[0].Daily
+        data['TIQ111'] = r.data[1].Daily
+        data['TIQ103'] = r.data[2].Daily
+        setData(data)
+      }
+    }
+    
+    React.useEffect(() => {
+      if (item.endpoint) {
+        console.log("hereeeee")
+        fetchData()
+      }
+    }, [item.endpoint])
+    
     return (
       <Box
         sx={{minWidth: {sm: '500px', xs: '300px'}}}
@@ -57,7 +84,10 @@ function renderCards(items, languageTag) {
                 <span className="p__secondary__sm">
                   {item.localeDailyNavlabel ? item.localeDailyNavlabel[languageTag] : 'Daily NAV:'}
                 </span>
-                <h5>{item.localeDailyNav[languageTag] || ''}</h5>
+                <h5> { data?.dailyNavCad ? 'CAD $' + data?.dailyNavCad : ''}</h5>
+                {data?.TIQ101 && (<h5>{'TIQ 101: CAD ' + data?.TIQ101}</h5>)}
+                {data?.TIQ111 && (<h5>{'TIQ 111: CAD ' + data?.TIQ111}</h5>)}
+                {data?.TIQ103 && (<h5>{'TIQ 103: CAD ' + data?.TIQ103}</h5>)}
               </div>
             )}
 
