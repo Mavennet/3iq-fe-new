@@ -151,10 +151,8 @@ function Highlights(props) {
             height="100%"
             src={videoSrc}
             title="YouTube video player"
-            autoplay
-            muted
             frameborder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allow="accelerometer; clipboard-write; autoplay; mute; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
           )}
