@@ -43,6 +43,17 @@ export default {
       validation: Rule => Rule.error("Information required.").required()
     },
     {
+      name: 'endpoint',
+      type: 'url',
+      title: 'API Endpoint',
+      description: "Insert an optional URL for the API endpoint that will retrieve the data to populate the table automatically",
+      validation: Rule =>
+        Rule.uri({
+          allowRelative: false,
+          scheme: ['https', 'http'],
+        }),
+    },
+    {
       title: "Card Color",
       name: "cardColor",
       type: "string",
