@@ -79,7 +79,7 @@ function OcioHero(props) {
         }}
       >
         <Container sx={{ maxWidth: {sm: 'md', lg: 'lg'} }}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} pt={3} pb={3}>
             <Grid item xs={12} md={6}>
             <Typography component="h1" variant="h3" style={{fontWeight: 'bold', color: 'white'}} gutterBottom>
                 {heading}
