@@ -5,6 +5,8 @@
   font-family: var(--font-family-secondary);
   color: var(--black);
   overflow-x: auto;
+  scrollbar-color: var(--light-blue) var(--gray);
+  -webkit-overflow-scrolling: auto;
   &::-webkit-scrollbar {
     width: 10px;
   }
