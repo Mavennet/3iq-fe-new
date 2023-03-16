@@ -15,6 +15,13 @@ function QuoteFounder({ name, quotesText, profilePhoto, localeJobTitle, button, 
     return imageUrlBuilder(client).image(source)
   }
 
+  const handleClickScroll = () => {
+    const element = document.getElementById('BambooHR');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <Box sx={{background: '#ECECEC'}} py={10}>
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
@@ -57,8 +64,8 @@ function QuoteFounder({ name, quotesText, profilePhoto, localeJobTitle, button, 
             </Typography>
             {button && (
               <Button
-                {...button[currentLanguage.languageTag]}
-                title={button[currentLanguage.languageTag].title}
+                title="Check our opportunities"
+                onClick={() => handleClickScroll()}
               />
             )}
           </Grid>
