@@ -18,5 +18,8 @@
     "@sanity/language-filter": "^2.29.8",
     "lerna": "^6.1.0",
     "react-custom-scrollbars-2": "^4.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.36.0"
   }
 }
