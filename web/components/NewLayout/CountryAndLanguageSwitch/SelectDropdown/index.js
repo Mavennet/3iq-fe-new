@@ -62,10 +62,10 @@ function SelectDropdown(props) {
                 key={country.urlTag}
                 href={
                   country.urlTag === 'us'
-                    ? 'us/home'
+                    ? '/us/home'
                     : country.urlTag === 'ae'
-                    ? 'ae/home'
-                    : 'ca/home'
+                    ? '/ae/home'
+                    : '/ca/home'
                 }
                 underline="hover"
                 color="inherit"

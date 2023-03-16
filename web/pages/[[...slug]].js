@@ -26,11 +26,13 @@ export const getServerSideProps = async ({ params }) => {
   dataCountries.map((c) => countries.push(c.urlTag))
 
   let country = ''
+  let origCountry = ''
 
   if (params?.slug) {
     if (countries.indexOf(params.slug[0]) >= 0) {
       country = params.slug[0]
       params.slug.shift()
+      origCountry = params.slug[0]
     } else {
       country = 'ca'
     }
@@ -94,7 +96,7 @@ export const getServerSideProps = async ({ params }) => {
       } || {},
   }
 
-  let test = JSON.stringify(props).replace(/{{LINK}}/g, country)
+  let test = JSON.stringify(props).replace(/{{LINK}}/g, origCountry)
 
   // Retrieve all posts (used later on to get the news cards details)
   // const allPosts = await client.fetch(
