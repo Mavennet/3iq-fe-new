@@ -9,6 +9,7 @@ import { CSVLink } from 'react-csv'
 import * as XLSX from 'xlsx'
 import { RiFileExcel2Line, RiTable2 } from 'react-icons/ri'
 import { TfiDownload } from 'react-icons/tfi'
+import { Scrollbars } from 'react-custom-scrollbars-2'
 
 function TableSection(props) {
   const {
@@ -112,6 +113,18 @@ function TableSection(props) {
     }
   }, [endpoint, currentLanguage])
 
+  const renderThumb = ({ style, ...props }) => {
+    const thumbStyle = {
+      backgroundColor: `#0082E5`,
+      borderRadius: '10px'
+    };
+    return (
+      <div
+        style={{ ...style, ...thumbStyle }}
+        {...props} />
+    );
+  }
+
   return (
     <Container sx={{ maxWidth: { sm: 'md', md: 'lg', lg: 'xl' } }}>
       <Grid container my={6}>
@@ -125,7 +138,7 @@ function TableSection(props) {
                   fontFamily: 'var(--font-family-primary)',
                   fontSize: { xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)' },
                   color: 'var(--black)',
-                  marginBottom: {xs: 2, md: 0}
+                  marginBottom: { xs: 2, md: 0 }
                 }}
               >{heading}</Typography>
               {
@@ -237,7 +250,13 @@ function TableSection(props) {
         {
           data && (
             <Grid item xs={12}>
-              <div className={styles.simpleBlockContent}>
+               <Scrollbars
+                autoHeight
+                autoHeightMin={data.length === 1 ? 200 : 300}
+                autoHeightMax={500}
+                className={styles.simpleBlockContent}
+                renderThumbHorizontal={renderThumb}
+              >
                 <table>
                   {
                     headers ? (
@@ -305,7 +324,7 @@ function TableSection(props) {
                     <Typography align='right' sx={{ color: '#77757F' }}>{`${currentLanguage.name === 'EN' ? 'Price as at' : 'Prix au'} ${convertDate(data[0].dateDaily)}`}</Typography>
                   </Box>
                 )}
-              </div>
+              </Scrollbars>
             </Grid>
           )
         }
