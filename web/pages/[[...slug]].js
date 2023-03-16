@@ -31,10 +31,11 @@ export const getServerSideProps = async ({ params }) => {
   if (params?.slug) {
     if (countries.indexOf(params.slug[0]) >= 0) {
       country = params.slug[0]
+      origCountry = "/"+params.slug[0]
       params.slug.shift()
-      origCountry = params.slug[0]
     } else {
       country = 'ca'
+      origCountry = "/"
     }
   }
 
