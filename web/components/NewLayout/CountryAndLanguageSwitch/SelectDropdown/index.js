@@ -39,7 +39,7 @@ function SelectDropdown(props) {
           <span>
             {title}
           </span>
-          
+
         )}
       </button>
       <Menu
@@ -58,14 +58,14 @@ function SelectDropdown(props) {
           dataCountries.map((country) => {
             return (
               <Link
-              
+
                 key={country.urlTag}
                 href={
                   country.urlTag === 'us'
-                    ? 'https://3iq-new.netlify.app/us/home'
+                    ? 'us/home'
                     : country.urlTag === 'ae'
-                    ? 'https://3iq-new.netlify.app/ae/home'
-                    : 'https://3iq-new.netlify.app/ca/home'
+                    ? 'ae/home'
+                    : 'ca/home'
                 }
                 underline="hover"
                 color="inherit"

@@ -51,7 +51,6 @@ export const getServerSideProps = async ({ params }) => {
     )
     .then((res) => (res?.page ? { ...res.page, slug } : undefined))
 
-
   if (!data?._type === 'page') {
     return {
       notFound: true,
@@ -76,22 +75,7 @@ export const getServerSideProps = async ({ params }) => {
   // Retrieve all Fund Cards
   const allFundCards = await client.fetch(FUND_CARDS)
 
-
-  // Retrieve all posts (used later on to get the news cards details)
-  // const allPosts = await client.fetch(
-  //   groq`
-  //   *[_type == 'post'] {
-  //     ...,
-  //     author->
-  //   }
-  //   `
-  // )
-  // console.log('allPosts', Buffer.byteLength(JSON.stringify(allPosts), 'utf8'))
-  //
-  // Routes filtered by the current country (can be used if necessary)
-  // const countryRoutes = allRoutes.filter(route => route.slug.current.startsWith(country));
-
-  return {
+  const props = {
     props:
       {
         ...data,
@@ -109,6 +93,24 @@ export const getServerSideProps = async ({ params }) => {
         allFundCards
       } || {},
   }
+
+  let test = JSON.stringify(props).replace(/{{LINK}}/g, country)
+
+  // Retrieve all posts (used later on to get the news cards details)
+  // const allPosts = await client.fetch(
+  //   groq`
+  //   *[_type == 'post'] {
+  //     ...,
+  //     author->
+  //   }
+  //   `
+  // )
+  // console.log('allPosts', Buffer.byteLength(JSON.stringify(allPosts), 'utf8'))
+  //
+  // Routes filtered by the current country (can be used if necessary)
+  // const countryRoutes = allRoutes.filter(route => route.slug.current.startsWith(country));
+
+  return JSON.parse(test)
 }
 
 let areCookiesEnabled = false
