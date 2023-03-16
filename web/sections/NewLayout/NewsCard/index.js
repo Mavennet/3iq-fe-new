@@ -410,8 +410,8 @@ function NewsCard(props) {
                   sx={{
                     background:
                       post.mainImage &&
-                      `url("${urlFor(post.mainImage).url()}") no-repeat center center`,
-                    backgroundSize: 'cover',
+                      `url("${urlFor(post.mainImage).url()}")`,
+                    backgroundSize: 'cover', 
                     bgcolor: '#091b3f',
                     display: {xs: hideImage && 'none', md: 'flex'},
                     flexDirection: 'column',
