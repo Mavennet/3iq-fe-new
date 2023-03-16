@@ -18,6 +18,7 @@
   font-size: var(--font-size-secondary-md);
   scrollbar-width: auto;
   scrollbar-color: var(--light-blue) var(--gray);
+  -webkit-overflow-scrolling: auto;
   position: relative;
 
   &::-webkit-scrollbar {
