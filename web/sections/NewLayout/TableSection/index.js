@@ -22,6 +22,8 @@ function TableSection(props) {
     headers,
     currentLanguage,
     headerFundPerformance,
+    downloadFileName,
+    languageTag,
     _id
   } = props
 
@@ -39,10 +41,11 @@ function TableSection(props) {
   };
 
   function downloadExcel() {
+    const fileName = downloadFileName ? `${downloadFileName}.xlsx` : `line-chart.xlsx`
     const worksheet = XLSX.utils.json_to_sheet(data)
     const workbook = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1')
-    XLSX.writeFile(workbook, `line-chart-${_id}.xlsx`)
+    XLSX.writeFile(workbook, fileName)
     handleClose()
   }
 
@@ -193,7 +196,7 @@ function TableSection(props) {
                         <CSVLink
                           data={data}
                           onClick={handleClose}
-                          filename={`line-chart-${_id}.csv`}
+                          filename={ downloadFileName ? `${downloadFileName}.csv` : `line-chart.csv` }
                           target="_blank"
                           style={{
                             textAlign: 'center',

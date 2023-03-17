@@ -19,6 +19,12 @@ export default {
       description: 'Optional title that will be displayed above the chart',
     },
     {
+      name: 'downloadFileName',
+      type: 'string',
+      description: 'Download File Name',
+      title: 'Download File Name',
+    },
+    {
       name: 'description',
       type: 'localePortableText',
       title: 'Description',
