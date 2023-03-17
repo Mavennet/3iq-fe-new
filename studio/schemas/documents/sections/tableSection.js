@@ -33,6 +33,12 @@ export default {
       title: 'Heading',
     },
     {
+      name: 'downloadFileName',
+      type: 'string',
+      description: 'Download File Name',
+      title: 'Download File Name',
+    },
+    {
       name: 'headerTransparentLayout',
       type: 'boolean',
       title: 'Use layout with transparent header?',
