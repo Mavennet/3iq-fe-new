@@ -19,6 +19,7 @@ function LineChart(props) {
     chartHeight = '120',
     chartColor,
     endpoint,
+    downloadFileName,
     currentLanguage,
   } = props
 
@@ -157,7 +158,7 @@ function LineChart(props) {
           <Grid item xs={12} mb={4} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
             <CSVLink
               data={data}
-              filename={`line-chart-${_id}.csv`}
+              filename={ downloadFileName ? `${downloadFileName}.csv` : `line-chart.csv` }
               target="_blank"
               style={{
                 textAlign: 'center',
