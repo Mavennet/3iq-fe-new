@@ -32,13 +32,10 @@ function renderCards(items, languageTag) {
     const fetchData = async () => {
       const data = {}
       const r = await axios.get(item.endpoint)
-      if (item.localeHeading[languageTag] != '3iQ Global Cryptoasset Fund' && r.data) {
+      if ((item.localeHeading[languageTag] != '3iQ Global Cryptoasset Fund' && item.localeHeading[languageTag] != "Fonds mondial de cryptoactifs 3iQ") && r.data) {
         data["dailyNavCad"] = Number(r.data[0].cad).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        // x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         setData(data)
       } else {
-        console.log(item.localeHeading)
-        console.log(r.data[0].id)
         data['TIQ101'] = r.data[0].Daily
         data['TIQ111'] = r.data[1].Daily
         data['TIQ103'] = r.data[2].Daily
@@ -48,7 +45,6 @@ function renderCards(items, languageTag) {
     
     React.useEffect(() => {
       if (item.endpoint) {
-        console.log("hereeeee")
         fetchData()
       }
     }, [item.endpoint])
