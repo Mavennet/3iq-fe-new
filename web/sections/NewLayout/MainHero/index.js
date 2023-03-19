@@ -2,7 +2,8 @@ import React from 'react'
 import {PropTypes} from 'prop-types'
 import styles from './styles.module.scss'
 import {Container, Grid, Box, useMediaQuery, useTheme} from '@mui/material'
-import {FaTwitter, FaYoutube, FaLinkedin, FaEthereum, FaRegHandshake} from 'react-icons/fa'
+import {FaTwitter, FaYoutube, FaLinkedin, FaEthereum} from 'react-icons/fa'
+import {SiAlgorand} from "react-icons/si";
 import {BsCurrencyBitcoin} from 'react-icons/bs'
 import Link from 'next/link'
 import Button from '../../../components/NewLayout/Button'
@@ -163,7 +164,7 @@ function MainHero(props) {
             <a>
               <div className={styles.box__main__hero}>
                 <div className={styles.box__title}>
-                  <FaRegHandshake />
+                  <SiAlgorand/>
                   {thirdBoxTitle && <h5>{thirdBoxTitle}</h5>}
                 </div>
                 {thirdBoxDescription && <p>{thirdBoxDescription}</p>}
