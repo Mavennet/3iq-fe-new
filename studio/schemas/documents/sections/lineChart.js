@@ -49,6 +49,12 @@ export default {
       description: 'Default: Light Blue',
     },
     {
+      name: 'downloadFileName',
+      type: 'string',
+      description: 'Download File Name',
+      title: 'Download File Name',
+    },
+    {
       name: 'endpoint',
       type: 'url',
       title: 'API Endpoint (*)',
