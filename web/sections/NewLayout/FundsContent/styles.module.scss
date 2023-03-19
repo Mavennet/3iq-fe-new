@@ -73,6 +73,8 @@
   display: flex;
   justify-content: center;
   position: relative;
+  scrollbar-color: var(--light-blue) var(--gray);
+  -webkit-overflow-scrolling: auto;
   @media (--media-max-large) {
     margin: 10px 0px;
     background-color: transparent;
