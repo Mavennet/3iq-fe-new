@@ -124,30 +124,29 @@ function Footer(props) {
           <Grid item xs={12} container>
             <Grid item container md={3} xs={12} className={styles.block__content}>
               <Grid item container xs={12}>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5', display: 'flex'}}>
                   <BiMap />
                 </Grid>
                 <Grid
                   item
                   md={10}
                   xs={11}
-                  pr={{md: 12, xs: 28}}
                   className={styles.simpleBlockContent}
                 >
                   {footerAddress && footerAddress[currentLanguage?.languageTag] && (
                     <SimpleBlockContent blocks={footerAddress[currentLanguage?.languageTag]} />
                   )}
                 </Grid>
-                <Grid item md={2} xs={1} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} sx={{color: '#0082E5', display: 'flex'}}>
                   <BsTelephone />
                 </Grid>
-                <Grid item md={10} xs={11} pr={{md: 12, xs: 28}} className={styles.grid__text}>
+                <Grid item md={10} xs={11} className={styles.grid__text}>
                   {footerPhoneNumber && footerPhoneNumber[currentLanguage?.languageTag]}
                 </Grid>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5', display: 'flex'}}>
                   <RiMailSendLine />
                 </Grid>
-                <Grid item mt={1.5} md={10} xs={11} pr={{md: 12, xs: 28}} className={styles.grid__text}>
+                <Grid item mt={1.5} md={10} xs={11} className={styles.grid__text}>
                   {footerEmail && (
                     <Link
                       href={`mailto:${footerEmail[currentLanguage?.languageTag]}`}
@@ -160,14 +159,13 @@ function Footer(props) {
                     </Link>
                   )}
                 </Grid>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5', display: 'flex'}}>
                   <BiTime />
                 </Grid>
                 <Grid
                   item
                   md={10}
                   xs={11}
-                  pr={{md: 12, xs: 28}}
                   className={styles.simpleBlockContent}
                 >
                   {footerSchedule && footerSchedule[currentLanguage?.languageTag] && (
@@ -200,6 +198,7 @@ function Footer(props) {
                   sx={{
                     paddingBottom: {md: '100px', xs: '25px'},
                     paddingTop: {md: '0px', xs: '25px'},
+                    display: 'flex'
                   }}
                 >
                   <Button

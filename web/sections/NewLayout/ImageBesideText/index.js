@@ -83,8 +83,6 @@ function ImageBesideText(props) {
                 height="100%"
                 onContextMenu={(e) => e.preventDefault()}
                 playsInline
-                autoplay
-                muted
                 loop
                 controls
               >
