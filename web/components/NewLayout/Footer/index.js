@@ -13,7 +13,6 @@ import client from '../../../client'
 import {getPathFromSlug} from '../../../utils/urls'
 import SimpleBlockContent from '../../OldLayout/SimpleBlockContent'
 import Button from '../Button'
-import ButtonTextArea from '../../../components/NewLayout/ButtonTextArea'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -125,7 +124,7 @@ function Footer(props) {
           <Grid item xs={12} container>
             <Grid item container md={3} xs={12} className={styles.block__content}>
               <Grid item container xs={12}>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5', display: 'flex'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
                   <BiMap />
                 </Grid>
                 <Grid
@@ -139,29 +138,47 @@ function Footer(props) {
                     <SimpleBlockContent blocks={footerAddress[currentLanguage?.languageTag]} />
                   )}
                 </Grid>
-                <Grid item md={2} xs={1} sx={{color: '#0082E5', display: 'flex'}}>
+                <Grid item md={2} xs={1} sx={{color: '#0082E5'}}>
                   <BsTelephone />
                 </Grid>
-                <Grid item md={10} xs={11} className={styles.grid__text}>
+                <Grid item md={10} xs={11} pr={{md: 12, xs: 28}} className={styles.grid__text}>
                   {footerPhoneNumber && footerPhoneNumber[currentLanguage?.languageTag]}
                 </Grid>
-                <Grid item md={2} xs={1} sx={{color: '#0082E5', display: 'flex'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
                   <RiMailSendLine />
                 </Grid>
-                <Grid item md={10} xs={11} className={styles.grid__text}>
-                  {footerEmail && footerEmail[currentLanguage?.languageTag]}
+                <Grid item mt={1.5} md={10} xs={11} pr={{md: 12, xs: 28}} className={styles.grid__text}>
+                  {footerEmail && (
+                    <Link
+                      href={`mailto:${footerEmail[currentLanguage?.languageTag]}`}
+                      target="_blank"
+                      rel="noopener"
+                      underline="hover"
+                      color="inherit"
+                    >
+                      {footerEmail[currentLanguage?.languageTag]}
+                    </Link>
+                  )}
                 </Grid>
-                <Grid item md={2} xs={1} sx={{color: '#0082E5', display: 'flex'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
                   <BiTime />
                 </Grid>
-                <Grid item md={10} xs={11} className={styles.grid__text}>
-                  {footerSchedule && footerSchedule[currentLanguage?.languageTag]}
+                <Grid
+                  item
+                  md={10}
+                  xs={11}
+                  pr={{md: 12, xs: 28}}
+                  className={styles.simpleBlockContent}
+                >
+                  {footerSchedule && footerSchedule[currentLanguage?.languageTag] && (
+                    <SimpleBlockContent blocks={footerSchedule[currentLanguage?.languageTag]} />
+                  )}
                 </Grid>
               </Grid>
             </Grid>
             <Grid item md={3} xs={12} mt={{xs: 2, md: 0}} className={styles.block__content}>
               <Grid item container xs={12}>
-                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5', display: 'flex'}}>
+                <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5'}}>
                   <BiGlobe />
                 </Grid>
                 <Grid item md={10} xs={11}>
@@ -179,37 +196,55 @@ function Footer(props) {
                     )}
                 </Grid>
                 <Box
+                  ml={3}
                   sx={{
                     paddingBottom: {md: '100px', xs: '25px'},
                     paddingTop: {md: '0px', xs: '25px'},
-                    display: 'flex'
                   }}
                 >
                   <Button
+                    target="_blank"
                     variant="outlineWhite"
                     {...currentCountry.footerSecondLeftBlockButton[currentLanguage?.languageTag]}
                   />
                 </Box>
               </Grid>
             </Grid>
-            <Grid item md={3} xs={12} className={styles.newsletter}>
-              <Link underline="hover" href={currentCountry?.caUrl} target="_blank" rel="noopener">
-                <p style={{ margin: '14px 0px'}}>3iq.ca</p>
-              </Link>
-              <Link underline="hover" href={currentCountry?.usUrl} target="_blank" rel="noopener">
-                <p style={{ margin: '14px 0px'}}>3iq-us.com</p>
-              </Link>
-              <Link underline="hover" href={currentCountry?.aeUrl} target="_blank" rel="noopener">
-                <p style={{ margin: '14px 0px'}}>3iq.ae</p>
-              </Link>
-              <Link
-                underline="hover" 
-                href="mailto:ocio@3iq.ca?subject=Website%20Inquiry:%20Hey%203iQ!"
-                target="_blank"
-                rel="noopener"
-              >
-                <p style={{ margin: '14px 0px'}}>Contact</p>
-              </Link>
+            <Grid item md={3} xs={12}>
+              {currentCountry.footerNavigation &&
+                currentCountry.footerNavigation.map((item, key) => {
+                  return (
+                    <Link
+                      key={item._id}
+                      href={getPathFromSlug(item?.slug?.current)}
+                      underline="hover"
+                      color="inherit"
+                    >
+                      <p className={styles.navigation}>
+                        {item.localeTitle[currentLanguage?.languageTag]}
+                      </p>
+                    </Link>
+                  )
+                })}
+            </Grid>
+            <Grid item md={3} xs={12} mt={{xs: 2, md: 0}}>
+              {currentCountry.newsletterBody && (
+                <div className={styles.newsletter}>
+                  <SimpleBlockContent
+                    blocks={currentCountry.newsletterBody[currentLanguage?.languageTag]}
+                  />
+                </div>
+              )}
+              {currentCountry.urlTag === 'ca' && currentCountry.newsletterSubscribeSrc && (
+                <iframe
+                  src={currentCountry.newsletterSubscribeSrc}
+                  width="100%"
+                  height="280"
+                  type="text/html"
+                  frameBorder="0"
+                  aria-label="newsletter subscription"
+                ></iframe>
+              )}
             </Grid>
           </Grid>
         </Grid>
