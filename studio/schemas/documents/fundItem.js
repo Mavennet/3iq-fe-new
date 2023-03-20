@@ -61,7 +61,8 @@ export default {
             {type: 'quoteHeadsDubai'},
             {type: 'articles'},
             {type: 'automatedArticles'},
-            {type: 'textSeparator'}
+            {type: 'textSeparator'},
+            {type: 'heroFirstVariation'}
           ]
         }
       ]
