@@ -1,2 +1,17 @@
 [[plugins]]
 package = "@netlify/plugin-nextjs"
+[[redirects]]
+  from = "https://3iq.ae/*"
+  to = "https:/3iq.io/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://3iq.ca/*"
+  to = "https:/3iq.io/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://3iq-us.com/*"
+  to = "https:/3iq.io/:splat"
+  status = 301
+  force = true
