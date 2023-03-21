@@ -31,7 +31,6 @@ package = "@netlify/plugin-nextjs"
   to = "https://3iq.io/us/home"
   status = 301
   force = false
-
 [[redirects]]
   from = "https://www.3iq.ae/*"
   to = "https://3iq.io/ae/home"
