@@ -1,25 +1,38 @@
 import imageUrlBuilder from '@sanity/image-url'
-import { NextSeo } from 'next-seo'
-import { useRouter } from 'next/router'
+import {NextSeo} from 'next-seo'
+import {useRouter} from 'next/router'
 import PropTypes from 'prop-types'
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import client from '../client'
 import Layout from '../components/Layout'
 import RenderSections from '../components/RenderSections'
-import { getSlugVariations, slugParamToPath } from '../utils/urls'
-import CookieConsent, { Cookies } from 'react-cookie-consent'
+import {getSlugVariations, slugParamToPath} from '../utils/urls'
+import CookieConsent, {Cookies} from 'react-cookie-consent'
 import Popup from '../components/NewLayout/Popup'
-import { Box } from '@mui/material'
+import {Box, Fab} from '@mui/material'
+import {MdOutlineKeyboardControlKey} from 'react-icons/md'
 import Custom404 from './404'
+import ScrollTop from './ScrollTop'
 import SimpleBlockContent from '../components/OldLayout/SimpleBlockContent'
 import groq from 'groq'
-import { BENEFIT_CARDS, DATA_COUNTRIES, DATA_EQUALS_SLUG, DATA_IN_SLUG, DATA_IN_SLUG_BY_PATH, FUND_ITEMS, ITEMS, LOCATIONS_DISPLAY, ROUTES, TAB_ITEMS, TEAMS, TIMELINES, FUND_CARDS } from '../utils/groqQueries'
+import {
+  BENEFIT_CARDS,
+  DATA_COUNTRIES,
+  DATA_EQUALS_SLUG,
+  DATA_IN_SLUG,
+  DATA_IN_SLUG_BY_PATH,
+  FUND_ITEMS,
+  ITEMS,
+  LOCATIONS_DISPLAY,
+  ROUTES,
+  TAB_ITEMS,
+  TEAMS,
+  TIMELINES,
+  FUND_CARDS,
+} from '../utils/groqQueries'
 
-export const getServerSideProps = async ({ params }) => {
-
-  const dataCountries = await client.fetch(
-    DATA_COUNTRIES
-  )
+export const getServerSideProps = async ({params}) => {
+  const dataCountries = await client.fetch(DATA_COUNTRIES)
 
   const countries = []
 
@@ -31,11 +44,11 @@ export const getServerSideProps = async ({ params }) => {
   if (params?.slug) {
     if (countries.indexOf(params.slug[0]) >= 0) {
       country = params.slug[0]
-      origCountry = "/"+params.slug[0]
+      origCountry = '/' + params.slug[0]
       params.slug.shift()
     } else {
       country = 'ca'
-      origCountry = "/"
+      origCountry = '/'
     }
   }
 
@@ -50,9 +63,9 @@ export const getServerSideProps = async ({ params }) => {
     .fetch(
       // Get the route document with one of the possible slugs for the given requested path
       DATA_IN_SLUG_BY_PATH,
-      { possibleSlugs: getSlugVariations(country, slug) }
+      {possibleSlugs: getSlugVariations(country, slug)}
     )
-    .then((res) => (res?.page ? { ...res.page, slug } : undefined))
+    .then((res) => (res?.page ? {...res.page, slug} : undefined))
 
   if (!data?._type === 'page') {
     return {
@@ -93,7 +106,7 @@ export const getServerSideProps = async ({ params }) => {
         allLocationsDisplays,
         allTabItems,
         allFundItems,
-        allFundCards
+        allFundCards,
       } || {},
   }
 
@@ -140,7 +153,7 @@ const LandingPage = (props) => {
     allLocationsDisplays,
     allTabItems,
     allFundItems,
-    allFundCards
+    allFundCards,
   } = props
 
   const router = useRouter()
@@ -188,13 +201,13 @@ const LandingPage = (props) => {
   const [lastRoute, setLastRoute] = useState(null)
 
   // Custom 404 Page redirect
-  if (!router.isFallback && !content && router.asPath !== "/") {
+  if (!router.isFallback && !content && router.asPath !== '/') {
     return <Custom404 config={formatedConfig} currentLanguage={currentLanguage} />
   }
 
   const closePopUp = () => {
-    setShowPopUp(false);
-    localStorage.setItem('lastUpdate', lastRoute._id);
+    setShowPopUp(false)
+    localStorage.setItem('lastUpdate', lastRoute._id)
   }
 
   const fetchNewUpdates = async () => {
@@ -206,19 +219,19 @@ const LandingPage = (props) => {
         slug,
         page
       }[0]
-     `,
+     `
       )
       .then((response) => {
         let storageItem = localStorage.getItem('lastUpdate')
         if (storageItem) {
           if (response._id === storageItem) {
-            setShowPopUp(false);
+            setShowPopUp(false)
           } else {
-            setLastRoute(response);
-            setShowPopUp(true);
+            setLastRoute(response)
+            setShowPopUp(true)
           }
         } else {
-          localStorage.setItem('lastUpdate', response._id);
+          localStorage.setItem('lastUpdate', response._id)
         }
       })
   }
@@ -228,7 +241,7 @@ const LandingPage = (props) => {
       const contentWithDefaultLanguage = []
       content &&
         content.map((c) =>
-          contentWithDefaultLanguage.push({ ...c, currentLanguage, currentCountry: country })
+          contentWithDefaultLanguage.push({...c, currentLanguage, currentCountry: country})
         )
       setFormatedContent(contentWithDefaultLanguage)
       fetchNewUpdates()
@@ -247,27 +260,27 @@ const LandingPage = (props) => {
 
   const openGraphImages = openGraphImage
     ? [
-      {
-        url: builder.image(openGraphImage).width(800).height(600).url(),
-        width: 800,
-        height: 600,
-        alt: title,
-      },
-      {
-        // Facebook recommended size
-        url: builder.image(openGraphImage).width(1200).height(630).url(),
-        width: 1200,
-        height: 630,
-        alt: title,
-      },
-      {
-        // Square 1:1
-        url: builder.image(openGraphImage).width(600).height(600).url(),
-        width: 600,
-        height: 600,
-        alt: title,
-      },
-    ]
+        {
+          url: builder.image(openGraphImage).width(800).height(600).url(),
+          width: 800,
+          height: 600,
+          alt: title,
+        },
+        {
+          // Facebook recommended size
+          url: builder.image(openGraphImage).width(1200).height(630).url(),
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+        {
+          // Square 1:1
+          url: builder.image(openGraphImage).width(600).height(600).url(),
+          width: 600,
+          height: 600,
+          alt: title,
+        },
+      ]
     : []
 
   const localeTitle =
@@ -279,13 +292,11 @@ const LandingPage = (props) => {
       ? description[currentLanguage?.languageTag]
       : 'Description not filled on the corresponding language for this page'
 
-      // console.log(formatedContent[0]._type)
+  // console.log(formatedContent[0]._type)
 
   return (
     content && (
-      <Layout config={formatedConfig}
-       pageType={formatedContent[0] && formatedContent[0]._type}
-       >
+      <Layout config={formatedConfig} pageType={formatedContent[0] && formatedContent[0]._type}>
         <NextSeo
           title={localeTitle}
           titleTemplate={`%s | ${config.title}`}
@@ -311,25 +322,28 @@ const LandingPage = (props) => {
             sections={formatedContent}
           />
         )}
+        <ScrollTop children={props.children}>
+          <Fab size="large" aria-label="scroll back to top" color="primary">
+            <MdOutlineKeyboardControlKey size="1.3em" />
+          </Fab>
+        </ScrollTop>
         <Box
           sx={{
             position: 'fixed',
             right: 0,
-            left: { xs: '5px', md: 'auto', },
+            left: {xs: '5px', md: 'auto'},
             bottom: '5px',
             right: '5px',
-            width: { xs: 'auto', md: '40%', lg: '30%' },
+            width: {xs: 'auto', md: '40%', lg: '30%'},
           }}
         >
-          {
-            config.newUpdatesText && showPopUp && (
-              <Popup
-                content={config.newUpdatesText[currentLanguage.languageTag]}
-                closeHandler={closePopUp}
-                route={lastRoute && lastRoute}
-              />
-            )
-          }
+          {config.newUpdatesText && showPopUp && (
+            <Popup
+              content={config.newUpdatesText[currentLanguage.languageTag]}
+              closeHandler={closePopUp}
+              route={lastRoute && lastRoute}
+            />
+          )}
           {!areCookiesEnabled && (
             <CookieConsent
               disableStyles={true}
@@ -348,7 +362,7 @@ const LandingPage = (props) => {
                 fontFamily: 'var(--font-family-secondary)',
                 fontSize: 'var(--font-size-secondary-xs)',
                 padding: '7px 20px',
-                cursor: 'pointer'
+                cursor: 'pointer',
               }}
               buttonText={'Ok'}
               onDecline={() => {
@@ -357,11 +371,14 @@ const LandingPage = (props) => {
                   const neededAttributes = {
                     // Here you pass the same attributes that were used when the cookie was created
                     // and are required when removing the cookie
-                  };
-                  Cookies.remove(cookieName, neededAttributes);
-                });
+                  }
+                  Cookies.remove(cookieName, neededAttributes)
+                })
               }}
-              onAccept={() => { areCookiesEnabled = true }}>
+              onAccept={() => {
+                areCookiesEnabled = true
+              }}
+            >
               <Box
                 sx={{
                   '& p': {
@@ -371,15 +388,13 @@ const LandingPage = (props) => {
                   '& a': {
                     fontFamily: 'var(--font-family-secondary)',
                     fontSize: 'var(--font-size-secondary-sm)',
-                    textDecoration: 'underline'
+                    textDecoration: 'underline',
                   },
                 }}
               >
-                {
-                  config.cookiesText && (
-                    <SimpleBlockContent blocks={config.cookiesText[currentLanguage.languageTag]} />
-                  )
-                }
+                {config.cookiesText && (
+                  <SimpleBlockContent blocks={config.cookiesText[currentLanguage.languageTag]} />
+                )}
               </Box>
             </CookieConsent>
           )}
@@ -409,6 +424,7 @@ LandingPage.propTypes = {
   allFundCards: PropTypes.any,
   allBenefitCards: PropTypes.any,
   allItems: PropTypes.any,
+  children: PropTypes.element.isRequired,
 }
 
 export default LandingPage
