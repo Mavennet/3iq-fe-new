@@ -4,12 +4,12 @@ import styles from './styles.module.scss'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
-import { Timeline as MuiTimeline } from '@mui/lab'
+import {Timeline as MuiTimeline} from '@mui/lab'
 import TimelineSeparator from '@mui/lab/TimelineSeparator'
 import TimelineConnector from '@mui/lab/TimelineConnector'
 import TimelineContent from '@mui/lab/TimelineContent'
 import TimelineDot from '@mui/lab/TimelineDot'
-import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
+import TimelineItem, {timelineItemClasses} from '@mui/lab/TimelineItem'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 
 const timeLineDotSx = {
@@ -21,7 +21,7 @@ const timeLineDotSx = {
   margin: 0,
   width: '78px',
   height: '78px',
-  border: 0
+  border: 0,
 }
 
 function Timeline(props) {
@@ -37,12 +37,12 @@ function Timeline(props) {
     fourthDateContent,
     fifthDateContent,
     sixthDateContent,
-    seventhDateContent
+    seventhDateContent,
   } = props
 
   return (
     <Box sx={{backgroundColor: '#EBEBEB'}} pb={10}>
-      <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
+      <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
         <Grid container py={10}>
           <Grid item xs={12}>
             <h2 className={styles.title}>{name}</h2>
@@ -52,77 +52,68 @@ function Timeline(props) {
               {leftFirstTextBlock && <SimpleBlockContent blocks={leftFirstTextBlock} />}
             </div>
           </Grid>
-          <Grid item xs={0} md={12} sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', gap: 10 }}>
+          <Grid
+            item
+            xs={0}
+            md={12}
+            sx={{display: {xs: 'none', md: 'flex'}, justifyContent: 'center', gap: 10}}
+          >
             <Box mt={20}>
               <div className={`${styles.line} ${styles.half__height}`}>
-                {
-                  secondDateContent && (
-                    <div className={`${styles.text} ${styles.top} ${styles.left}`}>
-                      <SimpleBlockContent blocks={secondDateContent[currentLanguage.languageTag]} />
-                    </div>
-                  )
-                }
+                {secondDateContent && (
+                  <div className={`${styles.text} ${styles.top} ${styles.left}`}>
+                    <SimpleBlockContent blocks={secondDateContent[currentLanguage.languageTag]} />
+                  </div>
+                )}
                 <div className={`${styles.circle} ${styles.top}`}>2017</div>
                 <div className={`${styles.circle} ${styles.bottom}`}>2020</div>
-                {
-                  fourthDateContent && (
-                    <div className={`${styles.text} ${styles.bottom} ${styles.left}`}>
-                      <SimpleBlockContent blocks={fourthDateContent[currentLanguage.languageTag]} />
-                    </div>
-                  )
-                }
+                {fourthDateContent && (
+                  <div className={`${styles.text} ${styles.bottom} ${styles.left}`}>
+                    <SimpleBlockContent blocks={fourthDateContent[currentLanguage.languageTag]} />
+                  </div>
+                )}
               </div>
             </Box>
             <Box>
               <div className={styles.line}>
-                {
-                  firstDateContent && (
-                    <div className={`${styles.text} ${styles.right}`}>
-                      <SimpleBlockContent blocks={firstDateContent[currentLanguage.languageTag]} />
-                    </div>
-                  )
-                }
+                {firstDateContent && (
+                  <div className={`${styles.text} ${styles.right}`}>
+                    <SimpleBlockContent blocks={firstDateContent[currentLanguage.languageTag]} />
+                  </div>
+                )}
                 <div className={`${styles.circle} ${styles.top}`}>2012</div>
                 <div className={`${styles.circle} ${styles.nearBottom}`}>2022</div>
-                {
-                  sixthDateContent && (
-                    <div className={`${styles.text} ${styles.bottom__third} ${styles.left}`}>
-                      <SimpleBlockContent blocks={sixthDateContent[currentLanguage.languageTag]} />
-                    </div>
-                  )
-                }
+                {sixthDateContent && (
+                  <div className={`${styles.text} ${styles.bottom__third} ${styles.left}`}>
+                    <SimpleBlockContent blocks={sixthDateContent[currentLanguage.languageTag]} />
+                  </div>
+                )}
                 <div className={`${styles.circle} ${styles.bottom}`}>2023</div>
-                {
-                  seventhDateContent && (
-                    <div className={`${styles.text} ${styles.bottom__fourth} ${styles.right}`}>
-                      <SimpleBlockContent blocks={seventhDateContent[currentLanguage.languageTag]} />
-                    </div>
-                  )
-                }
+                {seventhDateContent && (
+                  <div className={`${styles.text} ${styles.bottom__fourth} ${styles.right}`}>
+                    <SimpleBlockContent blocks={seventhDateContent[currentLanguage.languageTag]} />
+                  </div>
+                )}
               </div>
             </Box>
             <Box mt={40}>
               <div className={`${styles.line} ${styles.half__height}`}>
-                {
-                  thirdDateContent && (
-                    <div className={`${styles.text} ${styles.top} ${styles.right}`}>
-                      <SimpleBlockContent blocks={thirdDateContent[currentLanguage.languageTag]} />
-                    </div>
-                  )
-                }
+                {thirdDateContent && (
+                  <div className={`${styles.text} ${styles.top} ${styles.right}`}>
+                    <SimpleBlockContent blocks={thirdDateContent[currentLanguage.languageTag]} />
+                  </div>
+                )}
                 <div className={`${styles.circle} ${styles.top}`}>2018</div>
                 <div className={`${styles.circle} ${styles.bottom}`}>2021</div>
-                {
-                  fifthDateContent && (
-                    <div className={`${styles.text} ${styles.bottom__second} ${styles.right}`}>
-                      <SimpleBlockContent blocks={fifthDateContent[currentLanguage.languageTag]} />
-                    </div>
-                  )
-                }
+                {fifthDateContent && (
+                  <div className={`${styles.text} ${styles.bottom__second} ${styles.right}`}>
+                    <SimpleBlockContent blocks={fifthDateContent[currentLanguage.languageTag]} />
+                  </div>
+                )}
               </div>
             </Box>
           </Grid>
-          <Grid item xs={12} sx={{ display: { md: 'none' } }}>
+          <Grid item xs={12} sx={{display: {md: 'none'}}}>
             <Box>
               <MuiTimeline
                 position="right"
@@ -133,100 +124,145 @@ function Timeline(props) {
                   },
                 }}
               >
-                {
-                  firstDateContent && (
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ ...timeLineDotSx, }} variant="outlined">
-                          2012
-                        </TimelineDot>
-                        <TimelineConnector sx={{ border: '2px solid var(--dark-gray)', paddingTop: '90px' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <div className={styles.simpleBlockContent}>
-                          <SimpleBlockContent blocks={firstDateContent[currentLanguage.languageTag]} />
-                        </div>
-                      </TimelineContent>
-                    </TimelineItem>
-                  )
-                }
-                {
-                  secondDateContent && (
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ ...timeLineDotSx, }} variant="outlined">
-                          2017
-                        </TimelineDot>
-                        <TimelineConnector sx={{ border: '2px solid var(--dark-gray)', paddingTop: '90px' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <div className={styles.simpleBlockContent}>
-                          <SimpleBlockContent blocks={secondDateContent[currentLanguage.languageTag]} />
-                        </div>
-                      </TimelineContent>
-                    </TimelineItem>
-                  )
-                }
-                {
-                  thirdDateContent && (
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ ...timeLineDotSx, }} variant="outlined">
-                          2018
-                        </TimelineDot>
-                        <TimelineConnector sx={{ border: '2px solid var(--dark-gray)', paddingTop: '90px' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <div className={styles.simpleBlockContent}>
-                          <SimpleBlockContent blocks={thirdDateContent[currentLanguage.languageTag]} />
-                        </div>
-                      </TimelineContent>
-                    </TimelineItem>
-                  )
-                }
-                {
-                  fourthDateContent && (
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ ...timeLineDotSx, }} variant="outlined">
-                          2020
-                        </TimelineDot>
-                        <TimelineConnector sx={{ border: '2px solid var(--dark-gray)', paddingTop: '90px' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <div className={styles.simpleBlockContent}>
-                          <SimpleBlockContent blocks={fourthDateContent[currentLanguage.languageTag]} />
-                        </div>
-                      </TimelineContent>
-                    </TimelineItem>
-                  )
-                }
-                {
-                  fifthDateContent && (
-                    <TimelineItem>
-                      <TimelineSeparator>
-                        <TimelineDot sx={{ ...timeLineDotSx, }} variant="outlined">
-                          2021
-                        </TimelineDot>
-                        <TimelineConnector sx={{ border: '2px solid var(--dark-gray)', paddingTop: '300px' }} />
-                      </TimelineSeparator>
-                      <TimelineContent>
-                        <div className={styles.simpleBlockContent}>
-                          <SimpleBlockContent blocks={fifthDateContent[currentLanguage.languageTag]} />
-                        </div>
-                      </TimelineContent>
-                    </TimelineItem>
-                  )
-                }
+                {firstDateContent && (
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot sx={{...timeLineDotSx}} variant="outlined">
+                        2012
+                      </TimelineDot>
+                      <TimelineConnector
+                        sx={{border: '2px solid var(--dark-gray)', paddingTop: '90px'}}
+                      />
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <div className={styles.simpleBlockContent}>
+                        <SimpleBlockContent
+                          blocks={firstDateContent[currentLanguage.languageTag]}
+                        />
+                      </div>
+                    </TimelineContent>
+                  </TimelineItem>
+                )}
+                {secondDateContent && (
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot sx={{...timeLineDotSx}} variant="outlined">
+                        2017
+                      </TimelineDot>
+                      <TimelineConnector
+                        sx={{border: '2px solid var(--dark-gray)', paddingTop: '90px'}}
+                      />
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <div className={styles.simpleBlockContent}>
+                        <SimpleBlockContent
+                          blocks={secondDateContent[currentLanguage.languageTag]}
+                        />
+                      </div>
+                    </TimelineContent>
+                  </TimelineItem>
+                )}
+                {thirdDateContent && (
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot sx={{...timeLineDotSx}} variant="outlined">
+                        2018
+                      </TimelineDot>
+                      <TimelineConnector
+                        sx={{border: '2px solid var(--dark-gray)', paddingTop: '90px'}}
+                      />
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <div className={styles.simpleBlockContent}>
+                        <SimpleBlockContent
+                          blocks={thirdDateContent[currentLanguage.languageTag]}
+                        />
+                      </div>
+                    </TimelineContent>
+                  </TimelineItem>
+                )}
+                {fourthDateContent && (
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot sx={{...timeLineDotSx}} variant="outlined">
+                        2020
+                      </TimelineDot>
+                      <TimelineConnector
+                        sx={{border: '2px solid var(--dark-gray)', paddingTop: '90px'}}
+                      />
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <div className={styles.simpleBlockContent}>
+                        <SimpleBlockContent
+                          blocks={fourthDateContent[currentLanguage.languageTag]}
+                        />
+                      </div>
+                    </TimelineContent>
+                  </TimelineItem>
+                )}
+                {fifthDateContent && (
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot sx={{...timeLineDotSx}} variant="outlined">
+                        2021
+                      </TimelineDot>
+                      <TimelineConnector
+                        sx={{border: '2px solid var(--dark-gray)', paddingTop: '90px'}}
+                      />
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <div className={styles.simpleBlockContent}>
+                        <SimpleBlockContent
+                          blocks={fifthDateContent[currentLanguage.languageTag]}
+                        />
+                      </div>
+                    </TimelineContent>
+                  </TimelineItem>
+                )}
+                {sixthDateContent && (
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot sx={{...timeLineDotSx}} variant="outlined">
+                        2022
+                      </TimelineDot>
+                      <TimelineConnector
+                        sx={{border: '2px solid var(--dark-gray)', paddingTop: '90px'}}
+                      />
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <div className={styles.simpleBlockContent}>
+                        <SimpleBlockContent
+                          blocks={sixthDateContent[currentLanguage.languageTag]}
+                        />
+                      </div>
+                    </TimelineContent>
+                  </TimelineItem>
+                )}
+                {seventhDateContent && (
+                  <TimelineItem>
+                    <TimelineSeparator>
+                      <TimelineDot sx={{...timeLineDotSx}} variant="outlined">
+                        2023
+                      </TimelineDot>
+                    </TimelineSeparator>
+                    <TimelineContent>
+                      <div className={styles.simpleBlockContent}>
+                        <SimpleBlockContent
+                          blocks={seventhDateContent[currentLanguage.languageTag]}
+                        />
+                      </div>
+                    </TimelineContent>
+                  </TimelineItem>
+                )}
               </MuiTimeline>
             </Box>
           </Grid>
         </Grid>
         <Grid container>
-          <Grid item xs={12} mt={{ xs: 4, md: 25 }}>
+          <Grid item xs={12} mt={{xs: 4, md: 25}}>
             <div className={styles.subtitle}>
               {leftSecondTextBlock && <SimpleBlockContent blocks={leftSecondTextBlock} />}
-              {span && (<h5 className={styles.span}>{span}</h5>)}
+              {span && <h5 className={styles.span}>{span}</h5>}
             </div>
           </Grid>
         </Grid>
