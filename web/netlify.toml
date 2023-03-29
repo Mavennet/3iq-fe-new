@@ -1,2 +1,63 @@
 [[plugins]]
 package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "https://3iq.ae/*"
+  to = "https://3iq.io/ae/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "https://3iq.ca/*"
+  to = "https://3iq.io/ca/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "https://3iq-us.com/*"
+  to = "https://3iq.io/us/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "http://3iq.ae/*"
+  to = "https://3iq.io/ae/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "http://3iq.ca/*"
+  to = "https://3iq.io/ca/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "http://3iq-us.com/*"
+  to = "https://3iq.io/us/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "https://www.3iq.ae/*"
+  to = "https://3iq.io/ae/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "https://www.3iq.ca/*"
+  to = "https://3iq.io/ca/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "https://www.3iq-us.com/*"
+  to = "https://3iq.io/us/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "http://www.3iq.ae/*"
+  to = "https://3iq.io/ae/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "http://www.3iq.ca/*"
+  to = "https://3iq.io/ca/home"
+  status = 301
+  force = false
+[[redirects]]
+  from = "http://www.3iq-us.com/*"
+  to = "https://3iq.io/us/home"
+  status = 301
+  force = false
