@@ -2,16 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
 import client from '../../../client'
-import { Grid, Container, Typography, Box } from '@mui/material'
+import {Grid, Container, Typography, Box} from '@mui/material'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
-import { MdOutlineArrowForward } from 'react-icons/md'
+import {MdOutlineArrowForward} from 'react-icons/md'
 import groq from 'groq'
 import Link from 'next/link'
 import YouTube from 'react-youtube'
 
 function Post(props) {
-
-  const { body, currentLanguage, categories, videoSrc, videoText } = props
+  const {body, currentLanguage, categories, videoSrc, videoText} = props
 
   const [relatedArticles, setRelatedArticles] = React.useState(null)
 
@@ -26,9 +25,9 @@ function Post(props) {
       showinfo: 0,
       mute: 1,
       loop: 1,
-      playlist: videoSrc
-    }
-  };
+      playlist: videoSrc,
+    },
+  }
 
   const fetchRelatedArticles = async () => {
     await client
@@ -38,11 +37,13 @@ function Post(props) {
           _type,
           publishedAt,
         }[0..2]`,
-        { categoryId: categories[0]?._ref }
+        {categoryId: categories[0]?._ref}
       )
       .then((response) => {
         const postsId = []
-        response.map((item) => { return postsId.push(item._id) })
+        response.map((item) => {
+          return postsId.push(item._id)
+        })
         const fetchArticles = async () => {
           await client
             .fetch(
@@ -77,7 +78,7 @@ function Post(props) {
                   },
                 },
               }[0..2]`,
-              { postsIds: postsId }
+              {postsIds: postsId}
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
@@ -93,106 +94,95 @@ function Post(props) {
   }, [])
 
   return (
-    <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
+    <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
       <Grid container my={2} spacing={4}>
         <Grid item xs={12} md={8}>
           <Grid container>
-            {
-              body && (
-                <Grid item xs={12}>
-                  <div className={styles.simple__block__content}>
-                    {body && <SimpleBlockContent blocks={body} />}
-                  </div>
-                </Grid>
-              )
-            }
+            {body && (
+              <Grid item xs={12}>
+                <div className={styles.simple__block__content}>
+                  {body && <SimpleBlockContent blocks={body} />}
+                </div>
+              </Grid>
+            )}
           </Grid>
         </Grid>
         <Grid item xs={12} md={4} my={4}>
           <Grid container>
-            {
-              videoSrc && (
-                <Grid item xs={12} mb={3}>
-                  <Box
+            {videoSrc && (
+              <Grid item xs={12} mb={3}>
+                <Box
                   pb={3}
                   sx={{
                     borderBottom: '1px solid #b0b0b0',
-                  }}>
+                  }}
+                >
                   <YouTube videoId={videoSrc} opts={opts} />
-                  {
-                    videoText && (
-                      <Typography
-                        component="h4"
-                        variant="h4"
-                        mt={1}
-                        sx={{
-                          fontSize: 'var(--font-size-primary-xs)',
-                          fontFamily: 'var(--font-family-primary)',
-                          fontWeight: '600'
-                        }}
-                      >
-                        {videoText}
-                      </Typography>
-                    )
-                  }
-                  </Box>
-                </Grid>
-              )
-            }
-            {
-              relatedArticles && (
-                <Grid item xs={12}>
-                  <Typography
-                    component="h4"
-                    variant="h4"
-                    sx={{
-                      fontSize: 'var(--font-size-primary-md)',
-                      fontFamily: 'var(--font-family-primary)',
-                    }}
-                  >
-                    Related content
-                  </Typography>
-                  <ul className={styles.related__articles}>
-                    {
-                      relatedArticles.map((item) => {
-                        return (
-                          <li>
-                            <Link
-                              href={{
-                                pathname: `/${item.post?.localeHeading?.[currentLanguage.languageTag]}`,
-                                query: { slug: item.route.slug.current },
+                  {videoText && (
+                    <Typography
+                      component="h4"
+                      variant="h4"
+                      mt={1}
+                      sx={{
+                        fontSize: 'var(--font-size-primary-xs)',
+                        fontFamily: 'var(--font-family-primary)',
+                        fontWeight: '600',
+                      }}
+                    >
+                      {videoText}
+                    </Typography>
+                  )}
+                </Box>
+              </Grid>
+            )}
+            {relatedArticles && (
+              <Grid item xs={12}>
+                <Typography
+                  component="h4"
+                  variant="h4"
+                  sx={{
+                    fontSize: 'var(--font-size-primary-md)',
+                    fontFamily: 'var(--font-family-primary)',
+                  }}
+                >
+                  Related content
+                </Typography>
+                <ul className={styles.related__articles}>
+                  {relatedArticles.map((item) => {
+                    return (
+                      <li>
+                        <Link
+                          href={{
+                            pathname: `/${item.post?.localeHeading?.[currentLanguage.languageTag]}`,
+                            query: {slug: item.route.slug.current},
+                          }}
+                          as={`/${item.route.slug.current}`}
+                        >
+                          <a className={styles.no__decoration}>
+                            <Typography
+                              component="h5"
+                              variant="h5"
+                              sx={{
+                                fontSize: 'var(--font-size-secondary-md)',
+                                fontFamily: 'var(--font-family-secondary)',
+                                fontWeight: 500,
+                                color: 'var(--light-blue)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                flexWrap: 'wrap',
                               }}
-                              as={`/${item.route.slug.current}`}
                             >
-                              <a className={styles.no__decoration}>
-                                <Typography
-                                  component="h5"
-                                  variant="h5"
-                                  sx={{
-                                    fontSize: 'var(--font-size-secondary-md)',
-                                    fontFamily: 'var(--font-family-secondary)',
-                                    fontWeight: 500,
-                                    color: 'var(--light-blue)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    flexWrap: 'wrap'
-                                  }}
-                                >
-                                  {item.post?.localeHeading?.[currentLanguage.languageTag]}
-                                  <MdOutlineArrowForward
-                                    className={styles.icon}
-                                  />
-                                </Typography>
-                              </a>
-                            </Link>
-                          </li>
-                        )
-                      })
-                    }
-                  </ul>
-                </Grid>
-              )
-            }
+                              {item.post?.localeHeading?.[currentLanguage.languageTag]}
+                              <MdOutlineArrowForward className={styles.icon} />
+                            </Typography>
+                          </a>
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </Grid>
@@ -205,7 +195,7 @@ Post.propTypes = {
   currentLanguage: PropTypes.object,
   categories: PropTypes.object,
   videoSrc: PropTypes.string,
-  videoText: PropTypes.string
+  videoText: PropTypes.string,
 }
 
 export default Post

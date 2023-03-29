@@ -21,7 +21,7 @@
   transition: 0.3s;
 }
 
-.grid__text{
+.grid__text {
   font-family: var(--font-family-secondary);
   color: var(--white);
   font-size: var(--font-size-secondary-xs);
@@ -61,7 +61,7 @@
   font-size: var(--font-size-secondary-xs);
 }
 
-.navigation{
+.navigation {
   font-family: var(--font-family-secondary);
   color: var(--white);
   font-size: var(--font-size-secondary-xs);
@@ -77,15 +77,20 @@
   text-decoration: underline;
 }
 
-.newsletter{
-  p{
+.newsletter {
+  p {
     font-family: var(--font-family-secondary);
     font-size: var(--font-size-secondary-xs);
     color: var(--white);
-    padding: 0;
+    padding-bottom: 16px;
     margin: 0;
   }
-   h1, h2, h3, h4, h5, h6{
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-family-secondary);
     font-size: var(--font-size-secondary-xs);
     font-weight: bold;

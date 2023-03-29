@@ -34,7 +34,6 @@ function Header(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage.languageTag, size])
 
-
   React.useEffect(() => {
     pageType == 'search' && setShowSearchIcon(false)
   }, [pageType])
@@ -164,8 +163,14 @@ function Header(props) {
                 ></Box>
               </Box>
               {/* NavBar Menu - Desktop */}
-              <Box sx={{ml: 'auto', alignItems: {lg: 'center'}, display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
-                {showSearchIcon && (
+              <Box
+                sx={{
+                  ml: 'auto',
+                  alignItems: {lg: 'center'},
+                  display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'},
+                }}
+              >
+                {/* {showSearchIcon && (
                   <>
                     <FiSearch
                       className={styles.searchIcon}
@@ -173,7 +178,7 @@ function Header(props) {
                     />
                     <div className={styles.separator}></div>
                   </>
-                 )}
+                )} */}
 
                 {navItems &&
                   navItems.map(

@@ -9,7 +9,7 @@ export default function ScrollTop(props) {
     threshold: 100,
   })
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     window.scrollTo(0, 0)
   }
 
