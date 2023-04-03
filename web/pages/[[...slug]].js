@@ -410,6 +410,7 @@ const LandingPage = (props) => {
         <Box
           sx={{
             position: 'fixed',
+            zIndex: '1000',
             right: 0,
             left: {xs: '5px', md: 'auto'},
             bottom: '5px',
