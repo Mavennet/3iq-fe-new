@@ -11,7 +11,7 @@ import SearchCard from '../../../components/NewLayout/SearchCard'
 import styles from './styles.module.scss'
 
 function AutomatedNewsCard(props) {
-  const {selectedPostCategory, isInvertedLayout, buttonText, currentLanguage} = props
+  const {selectedPostCategory, isInvertedLayout, buttonText, currentLanguage, currentCountry} = props
 
   const [newsCard, setNewsCard] = useState(null)
   const [category, setCategory] = useState(null)
@@ -62,7 +62,7 @@ function AutomatedNewsCard(props) {
       }
     }
   }
-
+  
   const fetchCategory = async () => {
     await client.fetch(CATEGORY_BY_ID, {id: selectedPostCategory._ref}).then((response) => {
       setCategory(response)
@@ -127,6 +127,7 @@ function AutomatedNewsCard(props) {
       )
       .then((res) => {
         res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
+        res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
         setNewsCard(res)
       })
   }
@@ -166,6 +167,7 @@ AutomatedNewsCard.propTypes = {
   selectedPostCategory: PropTypes.object,
   isInvertedLayout: PropTypes.bool,
   currentLanguage: PropTypes.object,
+  currentCountry: PropTypes.object,
 }
 
 export default AutomatedNewsCard

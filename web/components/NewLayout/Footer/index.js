@@ -224,8 +224,8 @@ function Footer(props) {
                   />
                 </div>
               )}
-              <Box sx={{display: 'flex', justifyContent: 'flex-start', pt: '16px'}}>
-                <Button link={`/${currentCountry.urlTag}/subscribe`} title="subscribe" />
+              <Box sx={{display: 'flex', justifyContent: 'flex-start'}}>
+                <Button link={`/${currentCountry.urlTag}/subscribe`} title="Subscribe" />
               </Box>
             </Grid>
           </Grid>
