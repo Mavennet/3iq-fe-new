@@ -29,6 +29,7 @@ import {
   TEAMS,
   TIMELINES,
   FUND_CARDS,
+  ALL_ARTICLES
 } from '../utils/groqQueries'
 
 export const getServerSideProps = async ({params}) => {
@@ -106,11 +107,28 @@ export const getServerSideProps = async ({params}) => {
         allLocationsDisplays,
         allTabItems,
         allFundItems,
-        allFundCards,
+        allFundCards
       } || {},
   }
 
+
   let test = JSON.stringify(props).replace(/{{LINK}}/g, origCountry)
+  let fix2 = JSON.parse(test)
+
+  let routes = fix2.props.allRoutes
+  for (const x of routes) {
+    let route = x.slug.current
+    let check = route.substring(0,3)
+    // console.log("new check")
+    if (!(check === 'ae/' || check === 'ca/' || check == 'us/')) {
+      route = origCountry.slice(1) + '/' + route
+      x.slug.current = route
+    }
+  }
+  fix2.props.allRoutes = routes
+
+  // search all instance of "slug":{"_type":"slug","current":" 
+  // and check for the origin country and replace it with the new country
 
   // Retrieve all posts (used later on to get the news cards details)
   // const allPosts = await client.fetch(
@@ -126,7 +144,70 @@ export const getServerSideProps = async ({params}) => {
   // Routes filtered by the current country (can be used if necessary)
   // const countryRoutes = allRoutes.filter(route => route.slug.current.startsWith(country));
 
-  return JSON.parse(test)
+  return fix2 
+}
+
+const fetchArticles = async () => {
+  await client
+    .fetch(
+      groq`
+      *[_type == 'newsCard' {
+        _id,
+        _type,
+        _rev,
+        'localeButtonText': buttonText,
+        'localeShortDescription': shortDescription,
+        'localeSmallCardText': smallCardText,
+        newsletterNumber,
+        route->,
+        post-> {
+          _id,
+          _type,
+          mainImage,
+          'localeHeading': heading,
+          publishedAt,
+          categories[]-> {
+            _id,
+            _type,
+            'localeName': name,
+            singularName,
+            ...
+          },
+          author-> {
+            _id,
+            _type,
+            name,
+            email,
+            profilePhoto,
+          },
+        },
+      }[0..${maxQuantity - 1}]`,
+      {postsIds: id}
+    )
+    .then((res) => {
+      res.map((item) => { item.route.slug.current =  origCountry + '/' + item.route.slug.current })
+    })
+}
+
+function search(origCountry, obj, fn, results = []) {
+  if (typeof obj !== "object" || obj === null) {
+      if (fn(obj)) {
+        let route = obj
+          let temp = obj.toString()
+          console.log(temp)
+          if (temp[0] === '/') {
+            route = 'ca'+ route
+            console.log("hehehe")
+            console.log(route)
+            obj = route
+          }
+      }
+      return results;
+  }
+  for (const [k, v] of Object.entries(obj)) {
+      search(origCountry, v, fn, results);
+  }
+  return results;
 }
 
 let areCookiesEnabled = false
@@ -153,7 +234,7 @@ const LandingPage = (props) => {
     allLocationsDisplays,
     allTabItems,
     allFundItems,
-    allFundCards,
+    allFundCards
   } = props
 
   const router = useRouter()
