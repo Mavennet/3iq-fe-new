@@ -15,7 +15,7 @@ import {
 } from 'react-icons/ri'
 
 function CategoriesList(props) {
-  const { route, currentLanguage, categories, heading } = props
+  const { route, currentLanguage, categories, heading, currentCountry } = props
 
   const [categoriesList, setCategoriesList] = React.useState([])
 
@@ -34,6 +34,7 @@ function CategoriesList(props) {
           { categorieRef: ids }
         )
         .then((response) => {
+          response.map((item) => {item.searchId = currentCountry.urlTag + '/' + item.searchId })
           setCategoriesList(response)
         })
     }
@@ -121,6 +122,7 @@ CategoriesList.propTypes = {
   currentLanguage: PropTypes.object,
   route: PropTypes.object,
   categories: PropTypes.object,
+  currentCountry: PropTypes.object
 }
 
 export default CategoriesList

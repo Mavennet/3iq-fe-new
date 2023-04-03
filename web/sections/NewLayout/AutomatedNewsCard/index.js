@@ -38,7 +38,7 @@ function AutomatedNewsCard(props) {
         ))
       }
       if (
-        category.searchId == 'articles' ||
+        category.searchId == 'articles-reports' ||
         category.searchId == 'digital-markets-weekly' ||
         category.searchId == 'research-papers-blogs' ||
         category.searchId == 'metaverse' ||

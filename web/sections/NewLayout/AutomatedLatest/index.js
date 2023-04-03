@@ -28,6 +28,7 @@ function AutomatedLatest(props) {
     rightButton,
     bottomButton,
     currentLanguage,
+    currentCountry
   } = props
 
   const leftLocaleButton = leftButton && leftButton[currentLanguage?.languageTag]
@@ -102,6 +103,7 @@ function AutomatedLatest(props) {
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
+              res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setLeftArticles(res)
             })
         }
@@ -157,6 +159,7 @@ function AutomatedLatest(props) {
               { postId: response._id }
             )
             .then((res) => {
+              [res].map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setRightArticles(res)
             })
         }
@@ -216,6 +219,7 @@ function AutomatedLatest(props) {
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
+              res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setBottomArticles(res)
             })
         }
@@ -498,6 +502,7 @@ AutomatedLatest.propTypes = {
   rightButton: PropTypes.object,
   bottomButton: PropTypes.object,
   currentLanguage: PropTypes.object,
+  currentCountry: PropTypes.object
 }
 
 export default AutomatedLatest
