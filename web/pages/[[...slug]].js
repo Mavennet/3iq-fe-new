@@ -28,8 +28,7 @@ import {
   TAB_ITEMS,
   TEAMS,
   TIMELINES,
-  FUND_CARDS,
-  ALL_ARTICLES
+  FUND_CARDS
 } from '../utils/groqQueries'
 
 export const getServerSideProps = async ({params}) => {
