@@ -10,7 +10,7 @@ import Link from 'next/link'
 import YouTube from 'react-youtube'
 
 function Post(props) {
-  const {body, currentLanguage, categories, videoSrc, videoText} = props
+  const {body, currentLanguage, categories, videoSrc, videoText, currentCountry, caDisclaimer, aeDisclaimer, usDisclaimer} = props
 
   const [relatedArticles, setRelatedArticles] = React.useState(null)
 
@@ -28,6 +28,14 @@ function Post(props) {
       playlist: videoSrc,
     },
   }
+
+  const disclaimerText = caDisclaimer && currentCountry.urlTag === 'ca' 
+                          ? caDisclaimer 
+                          : aeDisclaimer && currentCountry.urlTag === 'ae' 
+                            ? aeDisclaimer 
+                            : usDisclaimer && currentCountry.urlTag === 'us' 
+                              ? usDisclaimer 
+                              : '' 
 
   const fetchRelatedArticles = async () => {
     await client
@@ -196,6 +204,23 @@ function Post(props) {
           </Grid>
         </Grid>
       </Grid>
+        <Box>
+          <Grid container>
+            <Grid item sm={videoSrc ? 8 : 12} xs={12}>
+              <Box sx={{ pt: 5, pr: videoSrc && { md: 20, sm: 0 }, align: 'left' }}>
+                <div style={{padding: '30px 15px' }}>
+                  {disclaimerText && (
+                    <Grid className={styles.textSection} container spacing={2}>
+                      <div className={styles.simple__block__content}>
+                        <SimpleBlockContent blocks={disclaimerText} />
+                      </div>
+                    </Grid>
+                  )}
+                </div>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
     </Container>
   )
 }
@@ -206,6 +231,10 @@ Post.propTypes = {
   categories: PropTypes.object,
   videoSrc: PropTypes.string,
   videoText: PropTypes.string,
+  currentCountry: PropTypes.object,
+  caDisclaimer: PropTypes.object,
+  aeDisclaimer: PropTypes.object,
+  usDisclaimer: PropTypes.object,
 }
 
 export default Post
