@@ -34,7 +34,7 @@ function CategoriesList(props) {
           { categorieRef: ids }
         )
         .then((response) => {
-          response.map((item) => {item.searchId = currentCountry.urlTag + '/' + item.searchId })
+          response.map((item) => { item.searchId = currentCountry.urlTag + '/' + item.searchId })
           setCategoriesList(response)
         })
     }

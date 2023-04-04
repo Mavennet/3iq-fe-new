@@ -20,8 +20,7 @@ function AutomatedNewsCard(props) {
   const renderCards = () => {
     if (category && newsCard) {
       if (
-        category.searchId == 'videos' ||
-        category.searchId == 'webinars' ||
+        category.searchId == 'videos-webinars' ||
         category.searchId == 'podcasts'
       ) {
         return newsCard.map((item) => (
