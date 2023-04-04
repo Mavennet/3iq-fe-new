@@ -17,6 +17,7 @@ function Highlights(props) {
     secondButton,
     selectedPostCategory,
     currentLanguage,
+    currentCountry
   } = props
 
   const firstLocaleButton = firstButton && firstButton[currentLanguage?.languageTag]
@@ -90,6 +91,7 @@ function Highlights(props) {
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
+              res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setArticles(res)
             })
         }
@@ -184,6 +186,7 @@ Highlights.propTypes = {
   secondButton: PropTypes.object,
   selectedPostCategory: PropTypes.object,
   currentLanguage: PropTypes.object,
+  currentCountry: PropTypes.object
 }
 
 export default Highlights
