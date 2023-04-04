@@ -15,7 +15,11 @@ function AutomatedNewsCard(props) {
 
   const [newsCard, setNewsCard] = useState(null)
   const [category, setCategory] = useState(null)
-  const [maxQuantity, setMaxQuantity] = useState(6)
+  const [displayedItems, setDisplayedItems] = useState(6);
+
+  const handleViewMoreClick = () => {
+    setDisplayedItems(displayedItems + 6);
+  }
 
   const renderCards = () => {
     if (category && newsCard) {
@@ -23,14 +27,14 @@ function AutomatedNewsCard(props) {
         category.searchId == 'videos-webinars' ||
         category.searchId == 'podcasts'
       ) {
-        return newsCard.map((item) => (
+        return newsCard.slice(0, displayedItems).map((item) => (
           <Grid item xs={12} sm={6} mb={4}>
             <ArticleCard {...item} currentLanguage={currentLanguage} key={item._id} />
           </Grid>
         ))
       }
       if (category.searchId == 'newsletter') {
-        return newsCard.map((item) => (
+        return newsCard.slice(0, displayedItems).map((item) => (
           <Grid item xs={12} sm={6} mb={4}>
             <NewsletterCard {...item} currentLanguage={currentLanguage} key={item._id} />
           </Grid>
@@ -53,7 +57,7 @@ function AutomatedNewsCard(props) {
         category.searchId ==  'articles_ae' || 
         category.searchId ==  'pr-us'
       ) {
-        return newsCard.map((item) => (
+        return newsCard.slice(0, displayedItems).map((item) => (
           <Grid item xs={12} sm={4} p={2} mb={4}>
             <SearchCard {...item} currentLanguage={currentLanguage} key={item._id} />
           </Grid>
@@ -75,7 +79,7 @@ function AutomatedNewsCard(props) {
         _id,
         _type,
         publishedAt,
-      }[0..${maxQuantity}]`,
+      }`,
         {categoryId: selectedPostCategory._ref}
       )
       .then((response) => {
@@ -121,7 +125,7 @@ function AutomatedNewsCard(props) {
               profilePhoto,
             },
           },
-        }[0..${maxQuantity - 1}]`,
+        }`,
         {postsIds: id}
       )
       .then((res) => {
@@ -137,24 +141,19 @@ function AutomatedNewsCard(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    fetchPosts()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [maxQuantity])
-
   return (
     <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
       <Grid container spacing={6} my={8}>
         {renderCards()}
         {newsCard && newsCard.length > 0 && (
           <Grid item xs={12} align="center">
-            <Button
+            {displayedItems < newsCard.length && (<Button
               className={styles.button}
               size="xs"
               variant="outlined"
-              onClick={() => setMaxQuantity(maxQuantity + 6)}
+              onClick={handleViewMoreClick}
               title={buttonText || 'View More'}
-            />
+            />)}
           </Grid>
         )}
       </Grid>
