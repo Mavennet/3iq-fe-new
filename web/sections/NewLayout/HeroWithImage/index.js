@@ -35,12 +35,21 @@ function HeroWithImage(props) {
               <h2 className={styles.heading}>{heading}</h2>
               {description && <SimpleBlockContent blocks={description} />}
             </div>
-            {localeButton && (localeButton.route || localeButton.link) &&
+            {localeButton && (localeButton.route) &&
               (
                 <Button
                   variant={'solidOrange'}
                   className={styles.button}
                   {...localeButton}
+                ></Button>
+              )}
+              {localeButton && (localeButton.link) &&
+              (
+                <Button
+                  variant={'solidOrange'}
+                  className={styles.button}
+                  {...localeButton}
+                  target="_blank"
                 ></Button>
               )}
           </Grid>
