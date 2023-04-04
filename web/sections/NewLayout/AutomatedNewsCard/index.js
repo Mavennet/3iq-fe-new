@@ -20,8 +20,7 @@ function AutomatedNewsCard(props) {
   const renderCards = () => {
     if (category && newsCard) {
       if (
-        category.searchId == 'videos' ||
-        category.searchId == 'webinars' ||
+        category.searchId == 'videos-webinars' ||
         category.searchId == 'podcasts'
       ) {
         return newsCard.map((item) => (
@@ -38,7 +37,7 @@ function AutomatedNewsCard(props) {
         ))
       }
       if (
-        category.searchId == 'articles' ||
+        category.searchId == 'articles-reports' ||
         category.searchId == 'digital-markets-weekly' ||
         category.searchId == 'research-papers-blogs' ||
         category.searchId == 'metaverse' ||
