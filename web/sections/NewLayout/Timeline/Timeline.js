@@ -45,7 +45,7 @@ function Timeline(props) {
       <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
         <Grid container py={10}>
           <Grid item xs={12}>
-            <h2 className={styles.title}>{name}</h2>
+            <h2 className={styles.title}>{currentLanguage.name !== 'EN' ? 'Notre Histoire' : 'Our Story'}</h2>
           </Grid>
           <Grid item xs={12} mb={4}>
             <div className={styles.subtitle}>
