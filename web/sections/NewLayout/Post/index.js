@@ -174,7 +174,7 @@ function Post(props) {
                             pathname: `/${item.post?.localeHeading?.[currentLanguage.languageTag]}`,
                             query: {slug: item.route.slug.current},
                           }}
-                          as={`/${item.route.slug.current}`}
+                          as={`${currentCountry.urlTag}/${item.route.slug.current}`}
                         >
                           <a className={styles.no__decoration}>
                             <Typography
