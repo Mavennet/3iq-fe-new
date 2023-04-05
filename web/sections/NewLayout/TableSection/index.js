@@ -33,6 +33,9 @@ function TableSection(props) {
   const open = Boolean(anchorEl)
   const [date, setDate] = React.useState(null)
 
+  const downloadText = currentLanguage.name === 'EN' ? 'Download' : 'Télécharger'
+
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
   };
@@ -171,7 +174,7 @@ function TableSection(props) {
                         size={15}
                         className={styles.download__icon}
                       />
-                      Download
+                      {downloadText}
                     </Button>
                     <Menu
                       id={`menu-${_id}`}

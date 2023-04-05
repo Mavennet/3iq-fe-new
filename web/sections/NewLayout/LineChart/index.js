@@ -29,6 +29,8 @@ function LineChart(props) {
 
   const canvasEl = React.useRef(null)
 
+  const downloadText = currentLanguage.name === 'EN' ? 'Download' : 'Télécharger'
+
   const convertDate = (value) => {
     const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
     const dt = value.split('/')
@@ -175,7 +177,7 @@ function LineChart(props) {
                 size={15}
                 className={styles.download__icon}
               />
-              Download
+              {downloadText}
             </CSVLink>
           </Grid>
         )}

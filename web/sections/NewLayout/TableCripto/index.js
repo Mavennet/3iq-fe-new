@@ -18,6 +18,8 @@ function TableCripto(props) {
 
   const [data, setData] = React.useState([])
 
+  const downloadText = currentLanguage.name === 'EN' ? 'Download' : 'Télécharger'
+
   const getTableData = (endpoint) => {
     axios.get(endpoint)
       .then(response => setData(response.data))
@@ -68,7 +70,7 @@ function TableCripto(props) {
                 size={15}
                 className={styles.download__icon}
               />
-              Download
+              {downloadText}
             </CSVLink>
           </>
         </Grid>
