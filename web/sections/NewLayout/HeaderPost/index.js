@@ -18,6 +18,8 @@ function HeaderPost(props) {
   const [publishedDate, setPublishedDate] = React.useState('')
   const [categorie, setCategorie] = React.useState(null)
 
+  const byLocaleText = currentLanguage.name === 'EN' ? 'by' : 'par'
+
   // currentCountry.urlTag === 'ae' && body.forEach(block => {
   //   if (block._type === 'block') {
   //     block.markDefs.length > 0 && block.markDefs.forEach(m => {
@@ -126,7 +128,7 @@ function HeaderPost(props) {
                   <strong className={styles.blue}>
                     {categorie?.name?.[currentLanguage.languageTag] + ' '}
                   </strong>
-                  by {post?.author?.name}
+                  {byLocaleText} {post?.author?.name}
                 </Typography>
               )}
             </Grid>
