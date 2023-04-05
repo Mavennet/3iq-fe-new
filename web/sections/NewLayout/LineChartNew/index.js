@@ -28,6 +28,8 @@ function LineChart(props) {
 
   const colors = [chartColor ? chartColor : '#0082E5', '#DC6E19', '#869D7A', '#FF2205']
 
+  const downloadText = currentLanguage.name === 'EN' ? 'Download' : 'Télécharger'
+
   const [data, setData] = React.useState()
   const [formattedData, setFormattedData] = React.useState()
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -192,7 +194,7 @@ function LineChart(props) {
               }}
             >
               <TfiDownload size={15} className={styles.download__icon} />
-              Download
+              {downloadText}
             </Button>
             <Menu
               id={`menu-${_id}`}
