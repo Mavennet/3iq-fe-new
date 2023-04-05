@@ -80,7 +80,7 @@ function ReadMoreCard(props) {
                   variant="h4"
                   style={{fontWeight: 'bold', color: '#0082E5'}}
                 >
-                  {heading}
+                {heading && currentLanguage.name === 'EN' ? heading : <div>Découvrez notre 3iQ Outsourced Crypto Investment Office (OCIO<span style={{verticalAlign: "super", fontSize:'medium', fontWeight: 'bold'}} >MC</span>)</div>}
                 </Typography>
               )}
               {description && (
