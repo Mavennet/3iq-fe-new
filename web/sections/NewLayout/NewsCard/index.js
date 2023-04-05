@@ -22,6 +22,8 @@ function NewsCard(props) {
 
   const localeHeading = post.heading[currentLanguage.languageTag]
 
+  const byLocaleText = currentLanguage.name === 'EN' ? 'by' : 'par'
+
   const [publishedDate, setPublishedDate] = React.useState('')
   const [categorie, setCategorie] = React.useState(null)
 
@@ -92,7 +94,7 @@ function NewsCard(props) {
                       <span>
                         {categorie && categorie.singularName[currentLanguage.languageTag]}
                       </span>
-                      {` by ${post.author.name}`}
+                      {` ${byLocaleText} ${post.author.name}`}
                     </div>
                     <span></span>
                     <h4>{post.heading[currentLanguage.languageTag]}</h4>
@@ -208,7 +210,7 @@ function NewsCard(props) {
                         <span className={styles.blue}>
                           {categorie?.singularName?.[currentLanguage.languageTag] + ' '}
                         </span>
-                        by {post?.author?.name}
+                        {byLocaleText} {post?.author?.name}
                       </Typography>
                     )}
                     {localeHeading && (
@@ -359,7 +361,7 @@ function NewsCard(props) {
                         <span className={styles.blue}>
                           {categorie?.singularName?.[currentLanguage.languageTag] + ' '}
                         </span>
-                        by {post?.author?.name}
+                        {byLocaleText} {post?.author?.name}
                       </Typography>
                     )}
                     {localeHeading && (

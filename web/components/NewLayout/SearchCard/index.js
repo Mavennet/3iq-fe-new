@@ -16,6 +16,8 @@ function SearchCard(props) {
 
   const builder = imageUrlBuilder(client)
 
+  const byLocaleText = currentLanguage.name === 'EN' ? 'by' : 'par'
+
   React.useEffect(() => {
     if (currentLanguage.languageTag) {
       const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
@@ -77,7 +79,7 @@ function SearchCard(props) {
                     }}
                   >
                     <strong className={styles.blue}>{post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}</strong>
-                    by {post?.author?.name}
+                    {byLocaleText} {post?.author?.name}
                   </Typography>
                 )}
                 {post?.localeHeading && route && (
