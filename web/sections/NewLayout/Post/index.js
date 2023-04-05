@@ -206,8 +206,8 @@ function Post(props) {
       </Grid>
         <Box>
           <Grid container>
-            <Grid item sm={videoSrc ? 8 : 12} xs={12}>
-              <Box sx={{ pt: 5, pr: videoSrc && { md: 20, sm: 0 }, align: 'left' }}>
+            <Grid item sm={12} xs={12}>
+              <Box sx={{ pt: 5, align: 'left' }}>
                 <div style={{padding: '30px 15px' }}>
                   {disclaimerText && (
                     <Grid className={styles.textSection} container spacing={2}>
