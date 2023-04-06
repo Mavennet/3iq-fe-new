@@ -116,6 +116,14 @@ function HeaderPost(props) {
                 {post?.heading[currentLanguage.languageTag]}
               </Typography>
               {post?.author?.name && categorie?.name && (
+                <Link
+                href={{
+                  pathname: `/${categorie.searchId}`,
+                  query: { slug: categorie.searchId },
+                }}
+                as={`${currentCountry.urlTag}/${categorie.searchId}`}
+              >
+                <a className={styles.no__decoration}>
                 <Typography
                   my={2}
                   variant="h5"
@@ -130,6 +138,8 @@ function HeaderPost(props) {
                   </strong>
                   {byLocaleText} {post?.author?.name}
                 </Typography>
+                </a>
+              </Link>
               )}
             </Grid>
             {
