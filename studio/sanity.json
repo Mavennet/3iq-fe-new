@@ -4,8 +4,8 @@
     "name": "3IQ Website"
   },
   "api": {
-    "projectId": "1wgg5qqs",
-    "dataset": "merging"
+    "projectId": "f4hjjbpz",
+    "dataset": "production"
   },
   "plugins": [
     "@sanity/base",
