@@ -36,6 +36,31 @@ function TeamsDisplay(props) {
     setMemberSelected(member)
   }
 
+  const [offset, setOffset] = React.useState(0);
+  
+  React.useEffect(() => {
+    const onScroll = () => {
+      setOffset(window.pageYOffset);
+    };
+    window.removeEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  
+  React.useEffect(() => {
+    const updateCategorie = () => {
+      if (0 <= offset && offset <= 500) {
+        setCategorie(teams[0]._id);
+      } else if (500 <= offset && offset <= 1000) {
+        setCategorie(teams[1]._id);
+      } else if (offset >= 1000) {
+        setCategorie(teams[2]._id);
+      }
+    };
+    updateCategorie();
+  }, [offset]);
+
+
   const modalStyle = {
     position: 'absolute',
     top: '50%',

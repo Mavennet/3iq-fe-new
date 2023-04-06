@@ -7,6 +7,7 @@ import Button from '../../../components/NewLayout/Button'
 import axios from 'axios'
 
 function renderCards(items, languageTag) {
+
   const cardStyles = [
     {
       card: styles.box__container__card,
@@ -48,7 +49,6 @@ function renderCards(items, languageTag) {
         fetchData()
       }
     }, [item.endpoint])
-    
     return (
       <Box
         sx={{minWidth: {sm: '500px', xs: '300px'}}}
@@ -79,7 +79,7 @@ function renderCards(items, languageTag) {
             {item.localeDailyNav?.[languageTag] && (
               <div className={styles.box__container__price}>
                 <span className="p__secondary__sm">
-                  {item.localeDailyNavlabel ? item.localeDailyNavlabel[languageTag] : 'Daily NAV:'}
+                  {item.localeDailyNavlabel ? item.localeDailyNavlabel[languageTag] : languageTag !== 'fr_CA' ? 'Daily NAV:' : 'VL Quotidienne:'}
                 </span>
                 <h5> { data?.dailyNavCad ? 'CAD $' + data?.dailyNavCad : ''}</h5>
                 {data?.TIQ101 && (<h5>{'TIQ 101: CAD ' + data?.TIQ101}</h5>)}

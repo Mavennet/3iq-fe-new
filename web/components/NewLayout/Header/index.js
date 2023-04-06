@@ -34,7 +34,6 @@ function Header(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage.languageTag, size])
 
-
   React.useEffect(() => {
     pageType == 'search' && setShowSearchIcon(false)
   }, [pageType])
@@ -69,7 +68,6 @@ function Header(props) {
                 <IoMdClose />
               </IconButton>
             </Box>
-
             <Box pl={4} pt={3} pb={3}>
               <Logo
                 logo={
@@ -78,15 +76,14 @@ function Header(props) {
               />
             </Box>
             <Box pl={2}>
-              <Box m={1.5}>
+              {/* <Box m={1.5}>
                 <Form
                   value={searchTerm}
                   onKeyDown={(e) => watchKey(e)}
                   onChange={(e) => handleSearch(e)}
                   placeholder={'Type something and press enter to search'}
                 />
-              </Box>
-
+              </Box> */}
               <ul>
                 {navItems &&
                   navItems.map((item) =>
@@ -164,8 +161,14 @@ function Header(props) {
                 ></Box>
               </Box>
               {/* NavBar Menu - Desktop */}
-              <Box sx={{ml: 'auto', alignItems: {lg: 'center'}, display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'}}}>
-                {showSearchIcon && (
+              <Box
+                sx={{
+                  ml: 'auto',
+                  alignItems: {lg: 'center'},
+                  display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'},
+                }}
+              >
+                {/* {showSearchIcon && (
                   <>
                     <FiSearch
                       className={styles.searchIcon}
@@ -173,7 +176,7 @@ function Header(props) {
                     />
                     <div className={styles.separator}></div>
                   </>
-                 )}
+                )} */}
 
                 {navItems &&
                   navItems.map(
@@ -241,7 +244,7 @@ function Header(props) {
             </Box>
           </Toolbar>
         </Container>
-        {showSearch && (
+        {/* {showSearch && (
           <Container maxWidth="xl" sx={{borderTop: '0.8px solid var(--gray)'}}>
             <Box my={2.5}>
               <Form
@@ -252,7 +255,7 @@ function Header(props) {
               />
             </Box>
           </Container>
-        )}
+        )} */}
       </AppBar>
     </>
   )

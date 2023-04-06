@@ -64,6 +64,21 @@ export default {
       description: 'Optional text talking about video.'
     },
     {
+      name: 'caDisclaimer',
+      type: 'localePortableText',
+      title: 'CA Disclaimer (*)',
+    },
+    {
+      name: 'aeDisclaimer',
+      type: 'localePortableText',
+      title: 'AE Disclaimer (*)',
+    },
+    {
+      name: 'usDisclaimer',
+      type: 'localePortableText',
+      title: 'US Disclaimer (*)',
+    },
+    {
       name: 'categories',
       type: 'array',
       title: 'Categories',

@@ -14,6 +14,8 @@ function CustomPostCard(props) {
 
   const [publishedDate, setPublishedDate] = React.useState('')
 
+  const byLocaleText = currentLanguage.name === 'EN' ? 'by' : 'par'
+
   const builder = imageUrlBuilder(client)
 
   React.useEffect(() => {
@@ -78,7 +80,7 @@ function CustomPostCard(props) {
                 <span className={styles.blue}>
                   {post?.categories[0]?.localeName[currentLanguage.languageTag] + ' '}
                 </span>
-                by {post?.author?.name}
+                {byLocaleText} {post?.author?.name}
               </Typography>
             )}
             {post?.localeHeading && route && (

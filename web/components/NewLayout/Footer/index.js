@@ -127,12 +127,7 @@ function Footer(props) {
                 <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5', display: 'flex'}}>
                   <BiMap />
                 </Grid>
-                <Grid
-                  item
-                  md={10}
-                  xs={11}
-                  className={styles.simpleBlockContent}
-                >
+                <Grid item md={10} xs={11} className={styles.simpleBlockContent}>
                   {footerAddress && footerAddress[currentLanguage?.languageTag] && (
                     <SimpleBlockContent blocks={footerAddress[currentLanguage?.languageTag]} />
                   )}
@@ -162,12 +157,7 @@ function Footer(props) {
                 <Grid item md={2} xs={1} pt={1.5} sx={{color: '#0082E5', display: 'flex'}}>
                   <BiTime />
                 </Grid>
-                <Grid
-                  item
-                  md={10}
-                  xs={11}
-                  className={styles.simpleBlockContent}
-                >
+                <Grid item md={10} xs={11} className={styles.simpleBlockContent}>
                   {footerSchedule && footerSchedule[currentLanguage?.languageTag] && (
                     <SimpleBlockContent blocks={footerSchedule[currentLanguage?.languageTag]} />
                   )}
@@ -198,7 +188,7 @@ function Footer(props) {
                   sx={{
                     paddingBottom: {md: '100px', xs: '25px'},
                     paddingTop: {md: '0px', xs: '25px'},
-                    display: 'flex'
+                    display: 'flex',
                   }}
                 >
                   <Button
@@ -234,16 +224,9 @@ function Footer(props) {
                   />
                 </div>
               )}
-              {currentCountry.urlTag === 'ca' && currentCountry.newsletterSubscribeSrc && (
-                <iframe
-                  src={currentCountry.newsletterSubscribeSrc}
-                  width="100%"
-                  height="280"
-                  type="text/html"
-                  frameBorder="0"
-                  aria-label="newsletter subscription"
-                ></iframe>
-              )}
+              <Box sx={{display: 'flex', justifyContent: 'flex-start'}}>
+                <Button link={`/${currentCountry.urlTag}/subscribe`} title="Subscribe" />
+              </Box>
             </Grid>
           </Grid>
         </Grid>

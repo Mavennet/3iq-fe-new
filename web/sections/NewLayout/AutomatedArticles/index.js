@@ -15,7 +15,7 @@ import ArticleCard from '../../../components/NewLayout/ArticleCard'
 import { IoIosArrowDropleft, IoIosArrowDropright } from 'react-icons/io'
 
 function AutomatedArticles(props) {
-  const { selectedPostCategory, currentLanguage, button, name, align, buttonInHeader, articlesCount = 3 } = props
+  const { selectedPostCategory, currentLanguage, button, name, align, buttonInHeader, articlesCount = 3, currentCountry } = props
 
   const localeButton = button && button[currentLanguage?.languageTag]
 
@@ -82,6 +82,7 @@ function AutomatedArticles(props) {
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
+              res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setArticles(res.slice(0, articlesCount))
             })
         }
@@ -196,7 +197,8 @@ AutomatedArticles.propTypes = {
   buttonInHeader: PropTypes.bool,
   selectedPostCategory: PropTypes.object,
   currentLanguage: PropTypes.object,
-  button: PropTypes.object
+  button: PropTypes.object,
+  currentCountry: PropTypes.object
 }
 
 export default AutomatedArticles

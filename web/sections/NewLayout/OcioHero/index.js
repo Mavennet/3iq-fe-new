@@ -82,7 +82,7 @@ function OcioHero(props) {
           <Grid container spacing={2} pt={3} pb={3}>
             <Grid item xs={12} md={6}>
             <Typography component="h1" variant="h3" style={{fontWeight: 'bold', color: 'white'}} gutterBottom>
-                {heading}
+                {heading && currentLanguage.name === 'EN' ? heading : <div>Découvrez notre 3iQ Outsourced Crypto Investment Office (OCIO<span style={{verticalAlign: "super", fontSize:'large'}} >MC</span>)</div>}
               </Typography>
               <div className={styles.simpleBlockContent} style={{color: 'white'}}>
                 {description && <SimpleBlockContent blocks={description} />}
