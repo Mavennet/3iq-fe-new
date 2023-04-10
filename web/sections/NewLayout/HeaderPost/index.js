@@ -217,17 +217,21 @@ function HeaderPost(props) {
         py={{ xs: 28, md: 0 }}
         md={6}
         sx={{
-          background:
-            post?.mainImage &&
-            `url("${builder.image(post?.mainImage).url()}") no-repeat center center`,
-          backgroundSize: 'cover',
-          bgcolor: '#091b3f',
+          background: '#091b3f',
           display: 'flex',
+          height: 'auto',
           flexDirection: 'column',
           justifyContent: { xs: 'flex-end', md: 'center' },
           alignItems: 'center',
         }}
       >
+        {post?.mainImage && (
+          <img
+            src={builder.image(post?.mainImage).url()}
+            alt={post?.mainImage?.altText || ''}
+            style={{ maxWidth: '100%', height: 'auto' }}
+          />
+        )}
       </Grid>
     </Grid>
   )
