@@ -42,32 +42,32 @@ function ArticleCard(props) {
       <a>
         <div className={`${styles.article__card} ${className}`}>
           <Grid container>
-            {
-              !hideImage && (
-                <Grid item xs={12}>
-                  <div className={styles.imgGrid}>
-                    {
-                      post?.mainImage && route && (
-                        <Image
-                          src={builder.image(post?.mainImage.asset._ref).url()}
-                          alt={post?.heading}
-                          layout='fill'
-                          objectFit='cover'
-                        />
-                      )
-                    }
-                    {
-                      (post?.categories[0]?.searchId === 'videos' || post?.categories[0]?.searchId === 'podcasts' )  && (
-                        <div className={styles.play}>
-                          <AiFillPlayCircle
-                            size={90}
-                            color={'var(--white)'}
-                          />
-                        </div>
-                      )
-                    }
-                  </div>
-                </Grid>
+          {
+          !hideImage && (
+            <Grid item xs={12}>
+              <div className={styles.imgGrid}>
+                {
+                  post?.mainImage && route && (
+                    <Image
+                      src={builder.image(post?.mainImage.asset._ref).url()}
+                      alt={post?.heading}
+                      layout='fill'
+                      objectFit='contain'
+                    />
+                  )
+                }
+                {
+                  (post?.categories[0]?.searchId === 'videos' || post?.categories[0]?.searchId === 'podcasts' )  && (
+                    <div className={styles.play}>
+                      <AiFillPlayCircle
+                        size={90}
+                        color={'var(--white)'}
+                      />
+                    </div>
+                  )
+                }
+              </div>
+            </Grid>
               )
             }
             <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'flex-start' }}>
