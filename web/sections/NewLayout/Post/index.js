@@ -10,7 +10,17 @@ import Link from 'next/link'
 import YouTube from 'react-youtube'
 
 function Post(props) {
-  const {body, currentLanguage, categories, videoSrc, videoText, currentCountry, caDisclaimer, aeDisclaimer, usDisclaimer} = props
+  const {
+    body,
+    currentLanguage,
+    categories,
+    videoSrc,
+    videoText,
+    currentCountry,
+    caDisclaimer,
+    aeDisclaimer,
+    usDisclaimer,
+  } = props
 
   const [relatedArticles, setRelatedArticles] = React.useState(null)
 
@@ -31,23 +41,24 @@ function Post(props) {
     },
   }
 
-  const disclaimerText = caDisclaimer && currentCountry.urlTag === 'ca' 
-                          ? caDisclaimer 
-                          : aeDisclaimer && currentCountry.urlTag === 'ae' 
-                            ? aeDisclaimer 
-                            : usDisclaimer && currentCountry.urlTag === 'us' 
-                              ? usDisclaimer 
-                              : '' 
+  const disclaimerText =
+    caDisclaimer && currentCountry.urlTag === 'ca'
+      ? caDisclaimer
+      : aeDisclaimer && currentCountry.urlTag === 'ae'
+      ? aeDisclaimer
+      : usDisclaimer && currentCountry.urlTag === 'us'
+      ? usDisclaimer
+      : ''
 
   const fetchRelatedArticles = async () => {
     await client
       .fetch(
-        groq`*[_type == 'post' && !(_id in path('drafts.**')) && $categoryId in categories[]._ref] | order(dateTime(publishedAt) desc) {
-          _id,
-          _type,
-          publishedAt,
-        }[0..10]`,
-        {categoryId: categories[0]?._ref}
+        groq`*[_type == 'post' && !(_id in path('drafts.**')) && $categoryId in categories[]._ref && _id != $postId] | order(dateTime(publishedAt) desc) {
+                                      _id,
+                                      _type,
+                                      publishedAt,
+                                    }[0..10]`,
+        {categoryId: categories[0]?._ref, postId: props._id}
       )
       .then((response) => {
         const postsId = []
@@ -58,36 +69,36 @@ function Post(props) {
           await client
             .fetch(
               groq`
-              *[_type == 'newsCard' && !(_id in path('drafts.**')) && post._ref in $postsIds] {
-                _id,
-                _type,
-                _rev,
-                'localeButtonText': buttonText,
-                'localeShortDescription': shortDescription,
-                'localeSmallCardText': smallCardText,
-                newsletterNumber,
-                route->,
-                post-> {
-                  _id,
-                  _type,
-                  mainImage,
-                  'localeHeading': heading,
-                  publishedAt,
-                  categories[]-> {
-                    _id,
-                    _type,
-                    singularName,
-                    'localeName': name,
-                  },
-                  author-> {
-                    _id,
-                    _type,
-                    name,
-                    email,
-                    profilePhoto,
-                  },
-                },
-              }[3...8]`,
+                                          *[_type == 'newsCard' && !(_id in path('drafts.**')) && post._ref in $postsIds] {
+                                            _id,
+                                            _type,
+                                            _rev,
+                                            'localeButtonText': buttonText,
+                                            'localeShortDescription': shortDescription,
+                                            'localeSmallCardText': smallCardText,
+                                            newsletterNumber,
+                                            route->,
+                                            post-> {
+                                              _id,
+                                              _type,
+                                              mainImage,
+                                              'localeHeading': heading,
+                                              publishedAt,
+                                              categories[]-> {
+                                                _id,
+                                                _type,
+                                                singularName,
+                                                'localeName': name,
+                                              },
+                                              author-> {
+                                                _id,
+                                                _type,
+                                                name,
+                                                email,
+                                                profilePhoto,
+                                              },
+                                            },
+                                          }[0...8]`,
               {postsIds: postsId}
             )
             .then((res) => {
@@ -206,23 +217,23 @@ function Post(props) {
           </Grid>
         </Grid>
       </Grid>
-        <Box>
-          <Grid container>
-            <Grid item sm={12} xs={12}>
-              <Box sx={{ pt: 5, align: 'left' }}>
-                <div style={{padding: '30px 15px' }}>
-                  {disclaimerText && (
-                    <Grid className={styles.textSection} container spacing={2}>
-                      <div className={styles.simple__block__content}>
-                        <SimpleBlockContent blocks={disclaimerText} />
-                      </div>
-                    </Grid>
-                  )}
-                </div>
-              </Box>
-            </Grid>
+      <Box>
+        <Grid container>
+          <Grid item sm={12} xs={12}>
+            <Box sx={{pt: 5, align: 'left'}}>
+              <div style={{padding: '30px 15px'}}>
+                {disclaimerText && (
+                  <Grid className={styles.textSection} container spacing={2}>
+                    <div className={styles.simple__block__content}>
+                      <SimpleBlockContent blocks={disclaimerText} />
+                    </div>
+                  </Grid>
+                )}
+              </div>
+            </Box>
           </Grid>
-        </Box>
+        </Grid>
+      </Box>
     </Container>
   )
 }
