@@ -26,6 +26,8 @@ function AccordionLayout(props) {
   const [articles, setArticles] = useState([])
   const containerRef = useRef(null)
 
+  const localePressReleaseHeading = currentLanguage.name === 'EN' ? 'Press Release' : 'Communiqué de presse'
+
   const fetchCategory = async () => {
     await client
       .fetch(
@@ -135,7 +137,7 @@ function AccordionLayout(props) {
               </div>
               <Box mt={3}>
                 <Grid contianer xs={12} sx={{display: 'flex', justifyContent: 'space-between'}}>
-                  <h3>Press Releases</h3>
+                  <h3>{localePressReleaseHeading}</h3>
                   {tabItems[selected].localeButton &&
                     tabItems[selected].localeButton[currentLanguage.languageTag] && (
                       <Button
