@@ -14,6 +14,8 @@ function Post(props) {
 
   const [relatedArticles, setRelatedArticles] = React.useState(null)
 
+  const localeRelatedContent = currentLanguage.name === 'EN' ? 'Related Content' : 'Contenu Connexe'
+
   const opts = {
     width: '100%',
     height: '220',
@@ -44,7 +46,7 @@ function Post(props) {
           _id,
           _type,
           publishedAt,
-        }[0..2]`,
+        }[0..10]`,
         {categoryId: categories[0]?._ref}
       )
       .then((response) => {
@@ -85,7 +87,7 @@ function Post(props) {
                     profilePhoto,
                   },
                 },
-              }[0..2]`,
+              }[3...8]`,
               {postsIds: postsId}
             )
             .then((res) => {
@@ -163,7 +165,7 @@ function Post(props) {
                     fontFamily: 'var(--font-family-primary)',
                   }}
                 >
-                  Related content
+                  {localeRelatedContent}
                 </Typography>
                 <ul className={styles.related__articles}>
                   {relatedArticles.map((item) => {
