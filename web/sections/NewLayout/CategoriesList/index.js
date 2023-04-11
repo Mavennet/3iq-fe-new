@@ -74,14 +74,15 @@ function CategoriesList(props) {
             </li>
             {
               categoriesList.map((item, i) => {
+                const itemSlug = item.searchId.replaceAll('_', '-')
                 return (
                   <li key={item._id}>
                     <Link
                       href={{
-                        pathname: `/${item.searchId}`,
-                        query: { slug: item.searchId },
+                        pathname: `/${itemSlug}`,
+                        query: { slug: itemSlug },
                       }}
-                      as={`/${item.searchId}`}
+                      as={`/${itemSlug}`}
                     >
                       <a className={styles.no__decoration}>
                         <div className={styles.box}>
