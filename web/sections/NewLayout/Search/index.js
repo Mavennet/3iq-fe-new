@@ -515,7 +515,7 @@ function Search(props) {
               <SimpleBlockContent blocks={notFoundText} />
             </div>
           )}
-          {showSection('research_papers_blogs') && (
+          {currCountry == 'ca' && showSection('research_papers_blogs') && (
             <Box my={6}>
               {renderHeader('Articles & Reports', 'research_papers_blogs')}
               <Grid container spacing={6}>
@@ -661,7 +661,7 @@ function Search(props) {
               </Grid>
             </Box>
           )}
-          {showSection('press_media') && (
+          {currCountry == 'ca' && showSection('press_media') && (
             <Box my={6}>
               {renderHeader('Press Releases', 'press_media')}
               <Grid container spacing={6}>
@@ -681,7 +681,7 @@ function Search(props) {
               </Grid>
             </Box>
           )}
-          {showSection('pr_bitcoin_etf') && (
+          {currCountry == 'ca' && showSection('pr_bitcoin_etf') && (
             <Box my={6}>
               {renderHeader('Press Release 3iQ Bitcoin ETF', 'pr_bitcoin_etf')}
               <Grid container spacing={6}>
@@ -701,7 +701,7 @@ function Search(props) {
               </Grid>
             </Box>
           )}
-          {showSection('pr_ether_etf') && (
+          {currCountry == 'ca' && showSection('pr_ether_etf') && (
             <Box my={6}>
               {renderHeader('Press Release 3iQ Ether ETF', 'pr_ether_etf')}
               <Grid container spacing={6}>
@@ -721,7 +721,7 @@ function Search(props) {
               </Grid>
             </Box>
           )}
-          {showSection('pr_bitcoin_fund') && (
+          {currCountry == 'ca' && showSection('pr_bitcoin_fund') && (
             <Box my={6}>
               {renderHeader('Press Release The Bitcoin Fund', 'pr_bitcoin_fund')}
               <Grid container spacing={6}>
@@ -741,7 +741,7 @@ function Search(props) {
               </Grid>
             </Box>
           )}
-          {showSection('pr_ether_fund') && (
+          {currCountry == 'ca' && showSection('pr_ether_fund') && (
             <Box my={6}>
               {renderHeader('Press Release The Ether Fund', 'pr_ether_fund')}
               <Grid container spacing={6}>
@@ -761,7 +761,7 @@ function Search(props) {
               </Grid>
             </Box>
           )}
-          {showSection('pr_global_asset') && (
+          {currCountry == 'ca' && showSection('pr_global_asset') && (
             <Box my={6}>
               {renderHeader('Press Release 3iQ Global Cryptoasset Fund', 'pr_global_asset')}
               <Grid container spacing={6}>
