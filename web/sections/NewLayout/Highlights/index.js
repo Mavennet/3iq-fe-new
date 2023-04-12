@@ -86,7 +86,7 @@ function Highlights(props) {
                     profilePhoto,
                   },
                 },
-              }[0..2]`,
+              } | order(dateTime(post.publishedAt) desc)[0..2]`,
               { postsIds: postsId }
             )
             .then((res) => {
