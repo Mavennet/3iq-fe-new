@@ -217,7 +217,7 @@ function HeaderPost(props) {
         py={{ xs: 28, md: 0 }}
         md={6}
         sx={{
-          background: '#091b3f',
+          background: '#EBEBEB',
           display: 'flex',
           height: 'auto',
           flexDirection: 'column',
