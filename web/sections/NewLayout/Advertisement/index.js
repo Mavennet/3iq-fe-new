@@ -10,8 +10,15 @@ function Advertisement(props) {
 
   const localeButton = button[currentLanguage?.languageTag]
 
-  const handleClickScroll = () => {
+  const handleClickScrollGrapes = () => {
     const element = document.getElementById('grapesCta')
+    if (element) {
+      element.scrollIntoView({behavior: 'smooth'})
+    }
+  }
+
+  const handleClickScrollCareers = () => {
+    const element = document.getElementById('BambooHR')
     if (element) {
       element.scrollIntoView({behavior: 'smooth'})
     }
@@ -36,10 +43,20 @@ function Advertisement(props) {
               {...localeButton}
               size="md"
               title={localeButton.title}
-              onClick={handleClickScroll}
+              onClick={handleClickScrollGrapes}
             />
           )}
-          {localeButton.link !== '#grapesCta' && (
+            {localeButton.link === '#BambooHR' && (
+            <Button
+              variant={buttonColor}
+              className={`${styles.advertisement__button}`}
+              {...localeButton}
+              size="md"
+              title={localeButton.title}
+              onClick={handleClickScrollCareers}
+            />
+          )}
+          {(localeButton.link !== '#grapesCta' && localeButton.link !== '#BambooHR') && (
             <Button
               variant={buttonColor}
               className={`${styles.advertisement__button}`}
