@@ -424,7 +424,7 @@ function NewsCard(props) {
                     backgroundSize: 'contain', 
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center center',
-                    bgcolor: '#091b3f',
+                    bgcolor: '#EBEBEB',
                     display: {xs: hideImage && 'none', md: 'flex'},
                     flexDirection: 'column',
                     justifyContent: {xs: 'flex-end', md: 'center'},
