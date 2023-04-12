@@ -525,7 +525,7 @@ function Search(props) {
 
           {showNotFoundText() && (
             <div className={styles.notFound}>
-              <p>Sorry, there are no results for {searchTerm}.</p>
+              <p>Sorry, there are no results for {searchTerm}. Please try again.</p>
               <SimpleBlockContent blocks={notFoundText} />
             </div>
           )}
