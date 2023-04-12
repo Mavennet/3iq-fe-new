@@ -529,7 +529,7 @@ function Search(props) {
               <SimpleBlockContent blocks={notFoundText} />
             </div>
           )}
-          {(currCountry == 'ca' && currCountry == 'us' )&& showSection('research_papers_blogs') && (
+          {(currCountry == 'ca' || currCountry == 'us' )&& showSection('research_papers_blogs') && (
             <Box my={6}>
               {renderHeader('Articles & Reports', 'research_papers_blogs')}
               <Grid container spacing={6}>
