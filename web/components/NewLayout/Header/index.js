@@ -168,17 +168,19 @@ function Header(props) {
                   display: {xs: 'none', sm: 'none', md: 'none', lg: 'flex'},
                 }}
               >
-                {/* {showSearchIcon && (
+                {showSearchIcon && (
                   <>
                     <FiSearch
                       className={styles.searchIcon}
-                      onClick={() => router.replace(
-                        `/${currentCountry.urlTag}/${currentCountry.searchPageRoute.slug.current}`
-                      )}
+                      onClick={() =>
+                        router.replace(
+                          `/${currentCountry.urlTag}/${currentCountry.searchPageRoute.slug.current}`
+                        )
+                      }
                     />
                     <div className={styles.separator}></div>
                   </>
-                )} */}
+                )}
 
                 {navItems &&
                   navItems.map(
@@ -221,7 +223,7 @@ function Header(props) {
                   sx={{
                     mr: 2.5,
                     alignItems: 'center',
-                    display: {xs: 'flex', sm: 'none', md: 'none'},
+                    display: {xs: 'flex', sm: 'flfex', md: 'flex'},
                   }}
                 >
                   <CountryAndLanguageSwitch
@@ -246,18 +248,18 @@ function Header(props) {
             </Box>
           </Toolbar>
         </Container>
-        {/* {showSearch && (
+        {showSearch && (
           <Container maxWidth="xl" sx={{borderTop: '0.8px solid var(--gray)'}}>
-            <Box my={2.5}>
+            {/* <Box my={2.5}>
               <Form
                 value={searchTerm}
                 onKeyDown={(e) => watchKey(e)}
                 onChange={(e) => handleSearch(e)}
                 placeholder={'Type something and press enter to search'}
               />
-            </Box>
+            </Box> */}
           </Container>
-        )} */}
+        )}
       </AppBar>
     </>
   )
