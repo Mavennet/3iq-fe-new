@@ -226,6 +226,19 @@ function Header(props) {
                     display: {xs: 'flex', sm: 'flfex', md: 'flex'},
                   }}
                 >
+                  {showSearchIcon && (
+                    <>
+                      <FiSearch
+                        className={styles.searchIcon}
+                        onClick={() =>
+                          router.replace(
+                            `/${currentCountry.urlTag}/${currentCountry.searchPageRoute.slug.current}`
+                          )
+                        }
+                      />
+                      <div className={styles.separator}></div>
+                    </>
+                  )}
                   <CountryAndLanguageSwitch
                     currentCountry={currentCountry}
                     currentLanguage={currentLanguage}
