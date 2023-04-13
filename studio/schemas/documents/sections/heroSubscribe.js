@@ -30,6 +30,11 @@ export default {
       },
     },
     {
+      name: 'newsletterSubscribeSrc',
+      type: 'url',
+      title: 'Newsletter Subscribe Link',
+    },
+    {
       name: 'button',
       type: 'localeCta',
       title: 'Optional button',

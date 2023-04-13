@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {withRouter} from 'next/router'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
-import {Grid, Box, Typography, CssBaseline, Link, Container, AppBar} from '@mui/material'
+import {Grid, Box, Typography, CssBaseline, Link, Container, AppBar, Modal} from '@mui/material'
 import {FaTwitter, FaLinkedinIn, FaYoutube} from 'react-icons/fa'
 import {RiMailSendLine} from 'react-icons/ri'
 import {BiMap, BiTime, BiGlobe} from 'react-icons/bi'
@@ -48,10 +48,27 @@ const breakArray = (array) => {
 function Footer(props) {
   const {currentCountry, currentLanguage} = props
 
-  const {footerAddress, footerPhoneNumber, footerEmail, footerSchedule} = currentCountry
+  const {footerAddress, footerPhoneNumber, footerEmail, footerSchedule, newsletterSubscribeSrc} =
+    currentCountry
 
   const [logoLanguage, setLogoLanguage] = React.useState(null)
 
+  const IFrameModal = ({iframeUrl}) => {
+    console.log(iframeUrl)
+    return <iframe src={iframeUrl} width="100%" height="100%"></iframe>
+  }
+
+  const [open, setOpen] = React.useState(false)
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const localeSubscribeText = currentLanguage.name === 'EN' ? 'Subscribe' : "S'abonner"
   React.useEffect(() => {
     if (currentLanguage.languageTag) {
       setLogoLanguage(currentLanguage.languageTag)
@@ -225,7 +242,34 @@ function Footer(props) {
                 </div>
               )}
               <Box sx={{display: 'flex', justifyContent: 'flex-start'}}>
-                <Button link={`/${currentCountry.urlTag}/subscribe`} title="Subscribe" />
+                <div>
+                  <Button onClick={handleOpen} title={localeSubscribeText}></Button>
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-title"
+                    aria-describedby="modal-description"
+                  >
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        backgroundColor: 'white',
+                        boxShadow: 24,
+                        padding: 24,
+                        width: '80%',
+                        maxWidth: 800,
+                        height: '80%',
+                        borderRadius: 4,
+                        outline: 0,
+                      }}
+                    >
+                      <IFrameModal iframeUrl={newsletterSubscribeSrc} />
+                    </div>
+                  </Modal>
+                </div>
               </Box>
             </Grid>
           </Grid>
@@ -251,6 +295,7 @@ function Footer(props) {
 Footer.propTypes = {
   currentLanguage: PropTypes.object,
   currentCountry: PropTypes.object,
+  newsletterSubscribeSrc: PropTypes.object,
 }
 
 export default withRouter(Footer)
