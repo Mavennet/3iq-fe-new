@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { AiFillPlayCircle } from 'react-icons/ai'
 
 function SearchCard(props) {
-  const { post, route, currentLanguage } = props
+  const { post, route, currentLanguage, currentCountry } = props
 
   const [publishedDate, setPublishedDate] = React.useState('')
 
@@ -34,10 +34,10 @@ function SearchCard(props) {
   return (
     <Link
       href={{
-        pathname: `/${post?.localeHeading[currentLanguage.languageTag]}`,
+        pathname: `${currentCountry?.urlTag}/${post?.localeHeading[currentLanguage.languageTag]}`,
         query: { slug: route.slug.current },
       }}
-      as={`/${route.slug.current}`}
+      as={`${currentCountry?.urlTag}/${route.slug.current}`}
     >
       <a>
         <div className={styles.article__card}>
@@ -133,6 +133,7 @@ SearchCard.propTypes = {
   currentLanguage: PropTypes.object,
   localeButtonText: PropTypes.string,
   localeSmallCardText: PropTypes.string,
+  currentCountry: PropTypes.object,
 }
 
 export default SearchCard
