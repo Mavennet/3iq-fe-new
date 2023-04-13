@@ -14,7 +14,6 @@ import {
 } from '../../../utils/groqQueries'
 import SearchCard from '../../../components/NewLayout/SearchCard'
 import Card from '../../../components/NewLayout/Card'
-import NewsletterCard from '../../../components/NewLayout/NewletterCard'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import Link from 'next/link'
 import {IoIosArrowDropleft} from 'react-icons/io'
@@ -25,13 +24,21 @@ function Search(props) {
     notFoundText,
     buttonText,
     articlesLabel,
-    whitePapersLabel,
     videosLabel,
     podcastsLabel,
-    webinarsLabel,
-    newslettersLabel,
-    newsLabel,
+    digitalMarketsWeeklyLabel,
+    metaverseLabel,
     pressReleasesLabel,
+    digitalAssetBulletinLabel,
+    prBitcoinEtfLabel,
+    prEtherEtfLabel,
+    prBitcoinFundLabel,
+    prEtherFundLabel,
+    prGlobalCryptoLabel,
+    prBitcoinFundDubaiLabel,
+    prDubaiLabel,
+    articlesAeLabel,
+    prUsLabel,
     currentLanguage,
     currentCountry,
   } = props
@@ -52,6 +59,8 @@ function Search(props) {
   const urlSearchTerm = urlParams.get('searchTerm')
   categories.length > 0 && urlSearchTerm && searchTerm == null && setSearchTerm(urlSearchTerm)
 
+  const currCountry = currentCountry.urlTag // Canada, United States
+
   function showNotFoundText() {
     let show = false
     let hasData = []
@@ -66,35 +75,65 @@ function Search(props) {
   }
 
   const localeArticlesLabel =
-    (articlesLabel && articlesLabel[currentLanguage].languageTag) || 'Articles'
-  const localeWhitePapersLabel =
-    (whitePapersLabel && whitePapersLabel[currentLanguage].languageTag) || 'White Papers'
-  const localeVideosLabel = (videosLabel && videosLabel[currentLanguage].languageTag) || 'Videos'
+    (articlesLabel && articlesLabel[currentLanguage].languageTag) || 'Articles & Reports'
+  const localeVideosLabel =
+    (videosLabel && videosLabel[currentLanguage].languageTag) || 'Videos & Webinars'
   const localePodcastsLabel =
     (podcastsLabel && podcastsLabel[currentLanguage].languageTag) || 'Podcasts'
-  const localeWebinarsLabel =
-    (webinarsLabel && webinarsLabel[currentLanguage].languageTag) || 'Webinars'
-  const localeNewsletterLabel =
-    (newslettersLabel && newslettersLabel[currentLanguage].languageTag) || 'Newsletters'
-  const localeNewsLabel = (newsLabel && newsLabel[currentLanguage].languageTag) || 'News'
+  const localeDigitalMarketWeeklyLabel =
+    (digitalMarketsWeeklyLabel && digitalMarketsWeeklyLabel[currentLanguage].languageTag) ||
+    'Digital Markets Weekly'
+  const localeMetaverseLabel =
+    (metaverseLabel && metaverseLabel[currentLanguage].languageTag) || 'Metaverse'
   const localePressReleasesLabel =
     (pressReleasesLabel && pressReleasesLabel[currentLanguage].languageTag) || 'Press Releases'
+  const localeDigitalAssetBulletin =
+    (digitalAssetBulletinLabel && digitalAssetBulletinLabel[currentLanguage].languageTag) ||
+    'Digital Asset Bulletin'
+  const localePrBitcoinEtfLabel =
+    (prBitcoinEtfLabel && prBitcoinEtfLabel[currentLanguage].languageTag) ||
+    'Press Release 3iQ Bitcoin ETF'
+  const localePrEtherEtfLabel =
+    (prEtherEtfLabel && prEtherEtfLabel[currentLanguage].languageTag) ||
+    'Press Release 3iQ Bitcoin ETF'
+  const localePrBitcoinFundLabel =
+    (prBitcoinFundLabel && prBitcoinFundLabel[currentLanguage].languageTag) ||
+    'Press Release The Bitcoin Fund'
+  const localePrEtherFundLabel =
+    (prEtherFundLabel && prEtherFundLabel[currentLanguage].languageTag) ||
+    'Press Release The Ether Fund'
+  const localeGlobalCryptoLabel =
+    (prGlobalCryptoLabel && prGlobalCryptoLabel[currentLanguage].languageTag) ||
+    'Press Release 3iQ Global CryptoAsset Fund'
+  const localePrBitcoinFundDubaiLabel =
+    (prBitcoinFundDubaiLabel && prBitcoinFundDubaiLabel[currentLanguage].languageTag) ||
+    'Press Release The Bitcoin Fund'
+  const localePrDubaiLabel =
+    (prDubaiLabel && prDubaiLabel[currentLanguage].languageTag) || 'Press Releases'
+  const localeArticlesAeLabel =
+    (articlesAeLabel && articlesAeLabel[currentLanguage].languageTag) || 'Articles & Reports'
+  const localePrUsLabel = (prUsLabel && prUsLabel[currentLanguage].languageTag) || 'Press Releases'
 
-  const sectionDropdownItems = [
+  const caSectionDropdownItems = [
     {
-      name: 'articles',
+      name: 'research_papers_blogs',
       label: localeArticlesLabel,
-      value: 'articles',
+      value: 'research_papers_blogs',
     },
     {
-      name: 'white_papers',
-      label: localeWhitePapersLabel,
-      value: 'white_papers',
+      name: 'digital_asset_bulletin',
+      label: localeDigitalAssetBulletin,
+      value: 'videos_webinarss',
     },
     {
-      name: 'videos',
+      name: 'digital_markets_weekly',
+      label: localeDigitalMarketWeeklyLabel,
+      value: 'digital_markets_weekly',
+    },
+    {
+      name: 'videos_webinars',
       label: localeVideosLabel,
-      value: 'videos',
+      value: 'videos_webinarss',
     },
     {
       name: 'podcasts',
@@ -102,26 +141,131 @@ function Search(props) {
       value: 'podcasts',
     },
     {
-      name: 'webinar',
-      label: localeWebinarsLabel,
-      value: 'webinar',
+      name: 'metaverse',
+      label: localeMetaverseLabel,
+      value: 'metaverse',
     },
     {
-      name: 'newsletter',
-      label: localeNewsletterLabel,
-      value: 'newsletter',
-    },
-    {
-      name: 'news',
-      label: localeNewsLabel,
-      value: 'news',
-    },
-    {
-      name: 'press_releases',
+      name: 'press_media',
       label: localePressReleasesLabel,
-      value: 'press_releases',
+      value: 'press_media',
+    },
+    {
+      name: 'pr_bitcoin_etf',
+      label: localePrBitcoinEtfLabel,
+      value: 'pr_bitcoin_etf',
+    },
+    {
+      name: 'pr_ether_etf',
+      label: localePrEtherEtfLabel,
+      value: 'pr_ether_etf',
+    },
+    {
+      name: 'pr_bitcoin_fund',
+      label: localePrBitcoinFundLabel,
+      value: 'pr_bitcoin_fund',
+    },
+    {
+      name: 'pr_ether_fund',
+      label: localePrEtherFundLabel,
+      value: 'pr_ether_fund',
+    },
+    {
+      name: 'pr_global_crypto',
+      label: localeGlobalCryptoLabel,
+      value: 'pr_global_crypto',
     },
   ]
+
+  const aeSectionDropdownItems = [
+    {
+      name: 'digital_asset_bulletin',
+      label: localeDigitalAssetBulletin,
+      value: 'videos_webinarss',
+    },
+    {
+      name: 'digital_markets_weekly',
+      label: localeDigitalMarketWeeklyLabel,
+      value: 'digital_markets_weekly',
+    },
+    {
+      name: 'videos_webinars',
+      label: localeVideosLabel,
+      value: 'videos_webinarss',
+    },
+    {
+      name: 'podcasts',
+      label: localePodcastsLabel,
+      value: 'podcasts',
+    },
+    {
+      name: 'metaverse',
+      label: localeMetaverseLabel,
+      value: 'metaverse',
+    },
+    {
+      name: 'pr_dubai',
+      label: localePrDubaiLabel,
+      value: 'pr_dubai',
+    },
+    {
+      name: 'pr_bitcoin_fund_dubai',
+      label: localePrBitcoinFundDubaiLabel,
+      value: 'pr_bitcoin_fund_dubai',
+    },
+    {
+      name: 'articles_ae',
+      label: localeArticlesAeLabel,
+      value: 'articles_ae',
+    },
+  ]
+
+  const usSectionDropdownItems = [
+    {
+      name: 'digital_asset_bulletin',
+      label: localeDigitalAssetBulletin,
+      value: 'videos_webinarss',
+    },
+    {
+      name: 'digital_markets_weekly',
+      label: localeDigitalMarketWeeklyLabel,
+      value: 'digital_markets_weekly',
+    },
+    {
+      name: 'videos_webinars',
+      label: localeVideosLabel,
+      value: 'videos_webinarss',
+    },
+    {
+      name: 'podcasts',
+      label: localePodcastsLabel,
+      value: 'podcasts',
+    },
+    {
+      name: 'metaverse',
+      label: localeMetaverseLabel,
+      value: 'metaverse',
+    },
+    {
+      name: 'articles_ae',
+      label: localeArticlesAeLabel,
+      value: 'articles_ae',
+    },
+    {
+      name: 'pr_us',
+      label: localePrUsLabel,
+      value: 'pr_us',
+    },
+  ]
+
+  const localeSectionDropdownItems =
+    currCountry === 'ca'
+      ? caSectionDropdownItems
+      : currCountry === 'ae'
+      ? aeSectionDropdownItems
+      : currCountry === 'us'
+      ? usSectionDropdownItems
+      : []
 
   const filterDropdownItems = [
     {
@@ -202,7 +346,6 @@ function Search(props) {
             Found: <strong>{posts[section] ? posts[section].length : 0}</strong> items
           </span>
         </Box>
-
         {!singleSection && (
           <Box>
             <Button
@@ -314,14 +457,14 @@ function Search(props) {
                     itens={filterDropdownItems}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={10}>
                   <Dropdown
                     value={sectionDropdownValue}
                     className={styles.search__dropdown__mobile}
                     title="All"
                     isMulti
                     onChange={(e) => filterSections(e)}
-                    itens={sectionDropdownItems}
+                    itens={localeSectionDropdownItems}
                   />
                 </Grid>
               </Grid>
@@ -357,7 +500,7 @@ function Search(props) {
                       title="All"
                       isMulti
                       onChange={(e) => filterSections(e)}
-                      itens={sectionDropdownItems}
+                      itens={localeSectionDropdownItems}
                     />
                   </Box>
                 </Box>
@@ -382,22 +525,62 @@ function Search(props) {
 
           {showNotFoundText() && (
             <div className={styles.notFound}>
-              <p>Sorry, there are no results for {searchTerm}.</p>
+              {/* <p>Sorry, there are no results for {searchTerm}. Please try again.</p> */}
               <SimpleBlockContent blocks={notFoundText} />
             </div>
           )}
-          {showSection('articles') && (
+          {(currCountry == 'ca' || currCountry == 'us' )&& showSection('research_papers_blogs') && (
             <Box my={6}>
-              {renderHeader('Articles', 'articles')}
+              {renderHeader('Articles & Reports', 'research_papers_blogs')}
               <Grid container spacing={6}>
                 {posts &&
-                  posts.articles &&
-                  filterQuantity(posts.articles).map((item) => (
+                  posts.research_papers_blogs &&
+                  filterQuantity(posts.research_papers_blogs).map((item) => (
                     <Grid
                       item
                       xs={12}
                       sm={6}
-                      md={handleCardSize(posts.articles.length)}
+                      md={handleCardSize(posts.research_papers_blogs.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {currCountry == 'ae' && showSection('articles_ae') && (
+            <Box my={6}>
+              {renderHeader('Articles & Reports', 'articles_ae')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.articles_ae &&
+                  filterQuantity(posts.articles_ae).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.articles_ae.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {/* {showSection('research_papers_blogs') && (
+            <Box my={6}>
+              {renderHeader('Articles & Reports', 'research_papers_blogs')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.research_papers_blogs &&
+                  filterQuantity(posts.research_papers_blogs).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.research_papers_blogs.length)}
                       key={item._id}
                     >
                       {singleSection ? (
@@ -409,14 +592,14 @@ function Search(props) {
                   ))}
               </Grid>
             </Box>
-          )}
-          {showSection('white_papers') && (
+          )} */}
+          {showSection('digital_asset_bulletin') && (
             <Box my={6}>
-              {renderHeader('White Papers', 'white_papers')}
+              {renderHeader('Digital Asset Bulletin', 'digital_asset_bulletin')}
               <Grid container spacing={6}>
                 {posts &&
-                  posts.white_papers &&
-                  filterQuantity(posts.white_papers, 2).map((item) => (
+                  posts.digital_asset_bulletin &&
+                  filterQuantity(posts.digital_asset_bulletin, 2).map((item) => (
                     <Grid item xs={12} md={6} key={item._id}>
                       <Card {...item} imageLayout currentLanguage={currentLanguage} />
                     </Grid>
@@ -424,14 +607,34 @@ function Search(props) {
               </Grid>
             </Box>
           )}
-          {showSection('videos') && (
+          {showSection('digital_markets_weekly') && (
             <Box my={6}>
-              {renderHeader('Videos', 'videos')}
+              {renderHeader('Digital Markets Weekly', 'digital_markets_weekly')}
               <Grid container spacing={6}>
                 {posts &&
-                  posts.videos &&
-                  filterQuantity(posts.videos, 2).map((item) => (
+                  posts.digital_markets_weekly &&
+                  filterQuantity(posts.digital_markets_weekly, 2).map((item) => (
                     <Grid item xs={12} md={6} key={item._id}>
+                      <Card {...item} imageLayout currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {showSection('videos_webinars') && (
+            <Box my={6}>
+              {renderHeader('Videos', 'videos_webinars')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.videos_webinars &&
+                  filterQuantity(posts.videos_webinars).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.videos_webinars.length)}
+                      key={item._id}
+                    >
                       <SearchCard {...item} currentLanguage={currentLanguage} />
                     </Grid>
                   ))}
@@ -472,46 +675,178 @@ function Search(props) {
               </Grid>
             </Box>
           )}
-          {showSection('newsletter') && (
+          {showSection('metaverse') && (
             <Box my={6}>
-              {renderHeader('Newsletters', 'newsletter')}
+              {renderHeader('Metaverse', 'metaverse')}
               <Grid container spacing={6}>
                 {posts &&
-                  posts.newsletter &&
-                  filterQuantity(posts.newsletter, 3).map((item) => (
-                    <Grid item xs={12} sm={6} md={4} key={item._id}>
-                      <NewsletterCard {...item} currentLanguage={currentLanguage} />
-                    </Grid>
-                  ))}
-              </Grid>
-            </Box>
-          )}
-          {showSection('news') && (
-            <Box my={6}>
-              {renderHeader('News', 'news')}
-              <Grid container spacing={6}>
-                {posts &&
-                  posts.news &&
-                  filterQuantity(posts.news).map((item) => (
-                    <Grid item xs={12} sm={6} md={handleCardSize(posts.news.length)} key={item._id}>
+                  posts.metaverse &&
+                  filterQuantity(posts.metaverse).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.metaverse.length)}
+                      key={item._id}
+                    >
                       <SearchCard {...item} currentLanguage={currentLanguage} />
                     </Grid>
                   ))}
               </Grid>
             </Box>
           )}
-          {showSection('press_releases') && (
+          {(currCountry == 'ca' || currCountry == 'ae') && showSection('press_media') && (
             <Box my={6}>
-              {renderHeader('Press Releases', 'press_releases')}
+              {renderHeader('Press Releases', 'press_media')}
               <Grid container spacing={6}>
                 {posts &&
-                  posts.press_releases &&
-                  filterQuantity(posts.press_releases).map((item) => (
+                  posts.press_media &&
+                  filterQuantity(posts.press_media).map((item) => (
                     <Grid
                       item
                       xs={12}
                       sm={6}
-                      md={handleCardSize(posts.press_releases.length)}
+                      md={handleCardSize(posts.press_media.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {currCountry == 'us' && showSection('pr_us') && (
+            <Box my={6}>
+              {renderHeader('Press Releases', 'pr_us')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.pr_us &&
+                  filterQuantity(posts.pr_us).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.pr_us.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {currCountry == 'ca' && showSection('pr_bitcoin_etf') && (
+            <Box my={6}>
+              {renderHeader('Press Release 3iQ Bitcoin ETF', 'pr_bitcoin_etf')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.pr_bitcoin_etf &&
+                  filterQuantity(posts.pr_bitcoin_etf).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.pr_bitcoin_etf.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {currCountry == 'ca' && showSection('pr_ether_etf') && (
+            <Box my={6}>
+              {renderHeader('Press Release 3iQ Ether ETF', 'pr_ether_etf')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.pr_ether_etf &&
+                  filterQuantity(posts.pr_ether_etf).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.pr_ether_etf.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {currCountry == 'ca' && showSection('pr_bitcoin_fund') && (
+            <Box my={6}>
+              {renderHeader('Press Release The Bitcoin Fund', 'pr_bitcoin_fund')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.pr_bitcoin_fund &&
+                  filterQuantity(posts.pr_bitcoin_fund).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.pr_bitcoin_fund.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {currCountry == 'ca' && showSection('pr_ether_fund') && (
+            <Box my={6}>
+              {renderHeader('Press Release The Ether Fund', 'pr_ether_fund')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.pr_ether_fund &&
+                  filterQuantity(posts.pr_ether_fund).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.pr_ether_fund.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {currCountry == 'ca' && showSection('pr_global_asset') && (
+            <Box my={6}>
+              {renderHeader('Press Release 3iQ Global Cryptoasset Fund', 'pr_global_asset')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.pr_global_asset &&
+                  filterQuantity(posts.pr_global_asset).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.pr_global_asset.length)}
+                      key={item._id}
+                    >
+                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                    </Grid>
+                  ))}
+              </Grid>
+            </Box>
+          )}
+          {currCountry == 'ae' && showSection('pr_bitcoin_fund_dubai') && (
+            <Box my={6}>
+              {renderHeader('Press Release The Bitcoin Fund', 'pr_bitcoin_fund_dubai')}
+              <Grid container spacing={6}>
+                {posts &&
+                  posts.pr_bitcoin_fund_dubai &&
+                  filterQuantity(posts.pr_bitcoin_fund_dubai).map((item) => (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={handleCardSize(posts.pr_bitcoin_fund_dubai.length)}
                       key={item._id}
                     >
                       <SearchCard {...item} currentLanguage={currentLanguage} />

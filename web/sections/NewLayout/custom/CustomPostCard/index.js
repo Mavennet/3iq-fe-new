@@ -49,7 +49,7 @@ function CustomPostCard(props) {
                     src={builder.image(post?.mainImage.asset._ref).url()}
                     alt={post?.heading}
                     layout="fill"
-                    objectFit="cover"
+                    objectFit="contain"
                   />
                 </a>
               </Link>

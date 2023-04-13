@@ -10,8 +10,22 @@ function Advertisement(props) {
 
   const localeButton = button[currentLanguage?.languageTag]
 
+  const handleClickScrollGrapes = () => {
+    const element = document.getElementById('grapesCta')
+    if (element) {
+      element.scrollIntoView({behavior: 'smooth'})
+    }
+  }
+
+  const handleClickScrollCareers = () => {
+    const element = document.getElementById('BambooHR')
+    if (element) {
+      element.scrollIntoView({behavior: 'smooth'})
+    }
+  }
+
   return (
-    <Container sx={{maxWidth: { sm: 'md', md: 'lg', lg: 'xl' }, my: 4}}>
+    <Container sx={{maxWidth: {sm: 'md', md: 'lg', lg: 'xl'}, my: 4}}>
       <Grid
         container
         className={styles.advertisement}
@@ -22,7 +36,27 @@ function Advertisement(props) {
           <SimpleBlockContent blocks={text} />
         </Grid>
         <Grid item xs={12} sm={12} md={3} pl={3} pt={{xs: 3, md: 0}}>
-          {localeButton && (
+          {localeButton.link === '#grapesCta' && (
+            <Button
+              variant={buttonColor}
+              className={`${styles.advertisement__button}`}
+              {...localeButton}
+              size="md"
+              title={localeButton.title}
+              onClick={handleClickScrollGrapes}
+            />
+          )}
+            {localeButton.link === '#BambooHR' && (
+            <Button
+              variant={buttonColor}
+              className={`${styles.advertisement__button}`}
+              {...localeButton}
+              size="md"
+              title={localeButton.title}
+              onClick={handleClickScrollCareers}
+            />
+          )}
+          {(localeButton.link !== '#grapesCta' && localeButton.link !== '#BambooHR') && (
             <Button
               variant={buttonColor}
               className={`${styles.advertisement__button}`}

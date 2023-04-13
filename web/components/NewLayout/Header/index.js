@@ -172,7 +172,9 @@ function Header(props) {
                   <>
                     <FiSearch
                       className={styles.searchIcon}
-                      onClick={() => setShowSearch(!showSearch)}
+                      onClick={() => router.replace(
+                        `/${currentCountry.urlTag}/${currentCountry.searchPageRoute.slug.current}`
+                      )}
                     />
                     <div className={styles.separator}></div>
                   </>

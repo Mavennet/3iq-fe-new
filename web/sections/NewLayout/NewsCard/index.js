@@ -171,7 +171,7 @@ function NewsCard(props) {
                           background:
                             post.mainImage &&
                             `url("${urlFor(post.mainImage).url()}") no-repeat center center`,
-                          backgroundSize: 'cover',
+                          backgroundSize: 'contain',
                           bgcolor: '#091b3f',
                           display: {xs: 'flex', md: 'none'},
                           flexDirection: 'column',
@@ -181,7 +181,6 @@ function NewsCard(props) {
                         }}
                       >
                         {categorie.searchId == 'videos' || categorie.searchId == 'podcasts' || categorie.searchId == 'webinars' &&  <AiFillPlayCircle size={90} color={'var(--white)'} />}
-                       
                       </Box>
                     </>
                   )}
@@ -259,18 +258,27 @@ function NewsCard(props) {
                   py={{xs: 28, md: 0}}
                   md={6}
                   sx={{
-                    background:
-                      post.mainImage &&
-                      `url("${urlFor(post.mainImage).url()}") no-repeat center center`,
-                    backgroundSize: 'cover',
-                    bgcolor: '#091b3f',
-                    display: {xs: 'none', md: 'flex'},
+                    display: 'flex',
                     flexDirection: 'column',
                     justifyContent: {xs: 'flex-end', md: 'center'},
                     alignItems: 'center',
+                    height: 'auto',
+                    maxWidth: '100%',
+                    overflow: 'hidden', // to crop image overflow
                   }}
                 >
-                   {categorie.searchId == 'videos' || categorie.searchId == 'podcasts' || categorie.searchId == 'webinars' &&  <AiFillPlayCircle size={90} color={'var(--white)'} />}
+                  {post?.mainImage && (
+                    <img
+                      src={urlFor(post?.mainImage).url()}
+                      alt={post?.heading}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover', // to maintain aspect ratio
+                      }}
+                    />
+                  )}
+                  {categorie.searchId == 'videos' || categorie.searchId == 'podcasts' || categorie.searchId == 'webinars' && <AiFillPlayCircle size={90} color={'var(--white)'} />}
                 </Grid>
               </Grid>
             </a>
@@ -413,14 +421,16 @@ function NewsCard(props) {
                     background:
                       post.mainImage &&
                       `url("${urlFor(post.mainImage).url()}")`,
-                    backgroundSize: 'cover', 
-                    bgcolor: '#091b3f',
+                    backgroundSize: 'contain', 
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center center',
+                    bgcolor: '#EBEBEB',
                     display: {xs: hideImage && 'none', md: 'flex'},
                     flexDirection: 'column',
                     justifyContent: {xs: 'flex-end', md: 'center'},
                     alignItems: 'center',
                   }}
-                >
+                  >
                   {categorie.searchId == 'videos' || categorie.searchId == 'podcasts' || categorie.searchId == 'webinars' &&  <AiFillPlayCircle size={90} color={'var(--white)'} />}
                 </Grid>
               </Grid>
