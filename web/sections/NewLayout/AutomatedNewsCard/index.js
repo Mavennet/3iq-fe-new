@@ -58,7 +58,7 @@ function AutomatedNewsCard(props) {
       ) {
         return newsCard.slice(0, displayedItems).map((item) => (
           <Grid item xs={12} sm={4} p={2} mb={4}>
-            <SearchCard {...item} currentLanguage={currentLanguage} key={item._id} />
+            <SearchCard {...item} currentLanguage={currentLanguage} currentCountry={currentCountry} key={item._id} />
           </Grid>
         ))
       }
@@ -130,7 +130,7 @@ function AutomatedNewsCard(props) {
       .then((res) => {
         res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
         res.map((item) => {
-          item.route.slug.current = currentCountry.urlTag + '/' + item.route.slug.current
+          item.route.slug.current = '/' + item.route.slug.current
         })
         setNewsCard(res)
       })
