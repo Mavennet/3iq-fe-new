@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import {getPathFromSlug} from '../../../../utils/urls'
 import styles from './styles.module.scss'
-import {BiChevronDown} from 'react-icons/bi'
+import {BiChevronDown, BiChevronUp} from 'react-icons/bi'
 import PropTypes from 'prop-types'
 
 function NavItemDropdown(props) {
@@ -94,11 +94,11 @@ function NavItemDropdown(props) {
               position: 'relative',
             }}
             className={styles.menuItem}
-            // onMouseOver={handleOpen}
+            onMouseOver={handleOpen}
           >
             {title || 'Missing'}
             <span className={styles.subArrow} onMouseOver={handleOpen}>
-              <BiChevronDown />
+              {open ? <BiChevronDown /> : <BiChevronUp />}
             </span>
           </Box>
         </Link>
