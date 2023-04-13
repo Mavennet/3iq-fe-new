@@ -223,7 +223,7 @@ function Header(props) {
                   sx={{
                     mr: 2.5,
                     alignItems: 'center',
-                    display: {xs: 'flex', sm: 'none', md: 'none'},
+                    display: {xs: 'flex', sm: 'flfex', md: 'flex'},
                   }}
                 >
                   <CountryAndLanguageSwitch
