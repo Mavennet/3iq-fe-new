@@ -3,7 +3,7 @@ import {PropTypes} from 'prop-types'
 import styles from './styles.module.scss'
 import {Container, Grid, Box, useMediaQuery, useTheme} from '@mui/material'
 import {FaTwitter, FaYoutube, FaLinkedin, FaEthereum} from 'react-icons/fa'
-import {SiAlgorand} from "react-icons/si";
+import {SiAlgorand} from 'react-icons/si'
 import {BsCurrencyBitcoin} from 'react-icons/bs'
 import Link from 'next/link'
 import Button from '../../../components/NewLayout/Button'
@@ -12,6 +12,8 @@ import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../client'
 import Rotating3DLogo from '../Rotating3DLogo'
 import Image from 'next/image'
+import {Carousel} from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -45,6 +47,66 @@ function MainHero(props) {
 
   const theme = useTheme()
   const mobile = useMediaQuery(theme.breakpoints.down('md'))
+
+  const firstLink = (
+    <Link
+      href={{
+        pathname: `/${firstRoute[currentLanguage?.languageTag]?.title}`,
+        query: {slug: firstRoute[currentLanguage?.languageTag]?.route?.slug?.current},
+      }}
+      as={`/${firstRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
+    >
+      <a>
+        <div className={styles.box__main__hero}>
+          <div className={styles.box__title}>
+            <FaEthereum />
+            {firstBoxTitle && <h5>{firstBoxTitle}</h5>}
+          </div>
+          {firstBoxDescription && <p>{firstBoxDescription}</p>}
+        </div>
+      </a>
+    </Link>
+  )
+
+  const secondLink = (
+    <Link
+      href={{
+        pathname: `/${secondRoute[currentLanguage?.languageTag]?.title}`,
+        query: {slug: secondRoute[currentLanguage?.languageTag]?.route?.slug?.current},
+      }}
+      as={`/${secondRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
+    >
+      <a>
+        <div className={`${styles.box__main__hero}`}>
+          <div className={styles.box__title}>
+            <BsCurrencyBitcoin />
+            {secondBoxTitle && <h5>{secondBoxTitle}</h5>}
+          </div>
+          {secondBoxDescription && <p>{secondBoxDescription}</p>}
+        </div>
+      </a>
+    </Link>
+  )
+
+  const thirdLink = (
+    <Link
+      href={{
+        pathname: `/${thirdRoute[currentLanguage?.languageTag]?.title}`,
+        query: {slug: thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current},
+      }}
+      as={`/${thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
+    >
+      <a>
+        <div className={styles.box__main__hero}>
+          <div className={styles.box__title}>
+            <SiAlgorand />
+            {thirdBoxTitle && <h5>{thirdBoxTitle}</h5>}
+          </div>
+          {thirdBoxDescription && <p>{thirdBoxDescription}</p>}
+        </div>
+      </a>
+    </Link>
+  )
 
   return (
     <Box
@@ -119,59 +181,68 @@ function MainHero(props) {
             </div>
           </Grid>
         </Grid>
-        <div className={styles.box__container}>
-          <Link
-            href={{
-              pathname: `/${firstRoute[currentLanguage?.languageTag]?.title}`,
-              query: {slug: firstRoute[currentLanguage?.languageTag]?.route?.slug?.current},
-            }}
-            as={`/${firstRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
-          >
-            <a>
-              <div className={styles.box__main__hero}>
-                <div className={styles.box__title}>
-                  <FaEthereum />
-                  {firstBoxTitle && <h5>{firstBoxTitle}</h5>}
+        {mobile && (
+          <Carousel infiniteLoop="true" swipeable={true} showThumbs={false} showStatus={false}>
+            <div className={styles.box__container}>{firstLink}</div>
+            <div className={styles.box__container}>{secondLink}</div>
+            <div className={styles.box__container}>{thirdLink}</div>
+          </Carousel>
+        )}
+        {!mobile && (
+          <div className={styles.box__container}>
+            <Link
+              href={{
+                pathname: `/${firstRoute[currentLanguage?.languageTag]?.title}`,
+                query: {slug: firstRoute[currentLanguage?.languageTag]?.route?.slug?.current},
+              }}
+              as={`/${firstRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
+            >
+              <a>
+                <div className={styles.box__main__hero}>
+                  <div className={styles.box__title}>
+                    <FaEthereum />
+                    {firstBoxTitle && <h5>{firstBoxTitle}</h5>}
+                  </div>
+                  {firstBoxDescription && <p>{firstBoxDescription}</p>}
                 </div>
-                {firstBoxDescription && <p>{firstBoxDescription}</p>}
-              </div>
-            </a>
-          </Link>
-          <Link
-            href={{
-              pathname: `/${secondRoute[currentLanguage?.languageTag]?.title}`,
-              query: {slug: secondRoute[currentLanguage?.languageTag]?.route?.slug?.current},
-            }}
-            as={`/${secondRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
-          >
-            <a>
-              <div className={`${styles.box__main__hero}`}>
-                <div className={styles.box__title}>
-                  <BsCurrencyBitcoin />
-                  {secondBoxTitle && <h5>{secondBoxTitle}</h5>}
+              </a>
+            </Link>
+            <Link
+              href={{
+                pathname: `/${secondRoute[currentLanguage?.languageTag]?.title}`,
+                query: {slug: secondRoute[currentLanguage?.languageTag]?.route?.slug?.current},
+              }}
+              as={`/${secondRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
+            >
+              <a>
+                <div className={`${styles.box__main__hero}`}>
+                  <div className={styles.box__title}>
+                    <BsCurrencyBitcoin />
+                    {secondBoxTitle && <h5>{secondBoxTitle}</h5>}
+                  </div>
+                  {secondBoxDescription && <p>{secondBoxDescription}</p>}
                 </div>
-                {secondBoxDescription && <p>{secondBoxDescription}</p>}
-              </div>
-            </a>
-          </Link>
-          <Link
-            href={{
-              pathname: `/${thirdRoute[currentLanguage?.languageTag]?.title}`,
-              query: {slug: thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current},
-            }}
-            as={`/${thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
-          >
-            <a>
-              <div className={styles.box__main__hero}>
-                <div className={styles.box__title}>
-                  <SiAlgorand/>
-                  {thirdBoxTitle && <h5>{thirdBoxTitle}</h5>}
+              </a>
+            </Link>
+            <Link
+              href={{
+                pathname: `/${thirdRoute[currentLanguage?.languageTag]?.title}`,
+                query: {slug: thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current},
+              }}
+              as={`/${thirdRoute[currentLanguage?.languageTag]?.route?.slug?.current}`}
+            >
+              <a>
+                <div className={styles.box__main__hero}>
+                  <div className={styles.box__title}>
+                    <SiAlgorand />
+                    {thirdBoxTitle && <h5>{thirdBoxTitle}</h5>}
+                  </div>
+                  {thirdBoxDescription && <p>{thirdBoxDescription}</p>}
                 </div>
-                {thirdBoxDescription && <p>{thirdBoxDescription}</p>}
-              </div>
-            </a>
-          </Link>
-        </div>
+              </a>
+            </Link>
+          </div>
+        )}
       </Container>
     </Box>
   )
