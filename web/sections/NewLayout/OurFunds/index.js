@@ -1,12 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.module.scss'
-import {Container, Grid, Box} from '@mui/material'
+import {Container, Grid, Box, useMediaQuery, useTheme} from '@mui/material'
 import {RiArrowRightSLine, RiArrowLeftSLine} from 'react-icons/ri'
 import Button from '../../../components/NewLayout/Button'
 import axios from 'axios'
+import {Carousel} from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
 function renderCards(items, languageTag) {
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down('md'))
 
   const cardStyles = [
     {
@@ -27,14 +31,20 @@ function renderCards(items, languageTag) {
   ]
 
   const cards = items.map((item) => {
-
     const [data, setData] = React.useState(null)
 
     const fetchData = async () => {
       const data = {}
       const r = await axios.get(item.endpoint)
-      if ((item.localeHeading[languageTag] != '3iQ Global Cryptoasset Fund' && item.localeHeading[languageTag] != "Fonds mondial de cryptoactifs 3iQ") && r.data) {
-        data["dailyNavCad"] = Number(r.data[0].cad).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      if (
+        item.localeHeading[languageTag] != '3iQ Global Cryptoasset Fund' &&
+        item.localeHeading[languageTag] != 'Fonds mondial de cryptoactifs 3iQ' &&
+        r.data
+      ) {
+        data['dailyNavCad'] = Number(r.data[0].cad)
+          .toFixed(2)
+          .toString()
+          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
         setData(data)
       } else {
         data['TIQ101'] = r.data[0].Daily
@@ -43,15 +53,18 @@ function renderCards(items, languageTag) {
         setData(data)
       }
     }
-    
+
     React.useEffect(() => {
       if (item.endpoint) {
         fetchData()
       }
     }, [item.endpoint])
+
     return (
       <Box
-        sx={{minWidth: {sm: '500px', xs: '300px'}}}
+        sx={{
+          minWidth: {sm: '500px', xs: '300px'}
+        }}
         className={item.cardColor ? cardStyles[item.cardColor].card : cardStyles[0].card}
       >
         <div
@@ -79,12 +92,16 @@ function renderCards(items, languageTag) {
             {item.localeDailyNav?.[languageTag] && (
               <div className={styles.box__container__price}>
                 <span className="p__secondary__sm">
-                  {item.localeDailyNavlabel ? item.localeDailyNavlabel[languageTag] : languageTag !== 'fr_CA' ? 'Daily NAV:' : 'VL Quotidienne:'}
+                  {item.localeDailyNavlabel
+                    ? item.localeDailyNavlabel[languageTag]
+                    : languageTag !== 'fr_CA'
+                    ? 'Daily NAV:'
+                    : 'VL Quotidienne:'}
                 </span>
-                <h5> { data?.dailyNavCad ? 'CAD $' + data?.dailyNavCad : ''}</h5>
-                {data?.TIQ101 && (<h5>{'TIQ 101: CAD ' + data?.TIQ101}</h5>)}
-                {data?.TIQ111 && (<h5>{'TIQ 111: CAD ' + data?.TIQ111}</h5>)}
-                {data?.TIQ103 && (<h5>{'TIQ 103: CAD ' + data?.TIQ103}</h5>)}
+                <h5> {data?.dailyNavCad ? 'CAD $' + data?.dailyNavCad : ''}</h5>
+                {data?.TIQ101 && <h5>{'TIQ 101: CAD ' + data?.TIQ101}</h5>}
+                {data?.TIQ111 && <h5>{'TIQ 111: CAD ' + data?.TIQ111}</h5>}
+                {data?.TIQ103 && <h5>{'TIQ 103: CAD ' + data?.TIQ103}</h5>}
               </div>
             )}
 
@@ -109,7 +126,13 @@ function renderCards(items, languageTag) {
     )
   })
 
-  return cards
+  return mobile ? (
+    <Carousel dynamicHeight	={true} infiniteLoop="true" swipeable={true} showThumbs={false} showStatus={false}>
+      {cards}
+    </Carousel>
+  ) : (
+    cards
+  )
 }
 
 function OurFunds(props) {
@@ -134,6 +157,9 @@ function OurFunds(props) {
     }
   }
 
+  const theme = useTheme()
+  const mobile = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
     <section className={styles.our__funds__section}>
       <Container sx={{maxWidth: {sm: 'md', md: 'lg', lg: 'xl'}}}>
@@ -144,22 +170,27 @@ function OurFunds(props) {
             sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}
           >
             <h3>{heading}</h3>
-            <div className={styles.arrows}>
-              <RiArrowLeftSLine
-                className={styles.arrow}
-                size={40}
-                onClick={() => handleArrow('prev')}
-              />
-              <RiArrowRightSLine
-                className={styles.arrow}
-                size={40}
-                onClick={() => handleArrow('next')}
-              />
-            </div>
+            {!mobile && (
+              <div className={styles.arrows}>
+                <RiArrowLeftSLine
+                  className={styles.arrow}
+                  size={40}
+                  onClick={() => handleArrow('prev')}
+                />
+                <RiArrowRightSLine
+                  className={styles.arrow}
+                  size={40}
+                  onClick={() => handleArrow('next')}
+                />{' '}
+              </div>
+            )}
           </Grid>
         </Grid>
         <div className={styles.box}>
-          <div className={styles.box__container} ref={containerRef}>
+          <div
+            className={mobile ? styles.box__container_mobile : styles.box__container}
+            ref={containerRef}
+          >
             {renderCards(fundCards, currentLanguage.languageTag)}
           </div>
         </div>

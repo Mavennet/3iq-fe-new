@@ -49,29 +49,30 @@
   overflow-y: hidden;
   display: flex;
 
-  /* For WebKit based browsers */
-  &::-webkit-scrollbar {
-  width: 10px;
+  /* Styles for WebKit-based browsers */
+  .box__container::-webkit-scrollbar {
+    display: none; /* hide by default */
   }
 
-  &::-webkit-scrollbar-track {
-    background-color: #f5f5f5;
+  @media (max-width: 768px) {
+    overflow-y: auto !important;
+    .box__container {
+      margin-top: 40px;
+      overflow-y: auto;
+
+      /* Styles for WebKit-based browsers */
+      .box__container::-webkit-scrollbar {
+        display: none; /* hide by default */
+      }
+    }
   }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 5px;
-}
-
-/* For Firefox */
-scrollbar-width: thin;
-scrollbar-color: #ccc #f5f5f5;
 
   &:last-child {
     margin-right: 0;
   }
+
   .box__main__hero {
-    min-width: 400px;
+    min-width: 350px;
     max-width: 500px;
     min-height: 180px;
     margin-right: 10px;
@@ -83,8 +84,10 @@ scrollbar-color: #ccc #f5f5f5;
     border: 1px solid transparent;
     transition: 0.3s;
     transition: 0.3s;
+    flex: none;
+
     &:hover {
-      border-color: var(--light-orange)!important;
+      border-color: var(--light-orange) !important;
       transition: 0.3s;
       p {
         &::after {
@@ -92,6 +95,22 @@ scrollbar-color: #ccc #f5f5f5;
         }
       }
     }
+
+    @media (max-width: 360px) {
+      overflow-y: auto !important;
+      min-width: 200px;
+      max-width: 500px;
+      .box__container {
+        margin-top: 40px;
+        overflow-y: auto;
+
+        /* Styles for WebKit-based browsers */
+        .box__container::-webkit-scrollbar {
+          display: none; /* hide by default */
+        }
+      }
+    }
+
     .box__title {
       display: flex;
       align-items: center;
@@ -114,7 +133,7 @@ scrollbar-color: #ccc #f5f5f5;
       border-bottom: 1px solid var(--component-light-gray);
       padding-bottom: 20px;
       margin-bottom: 0px;
-      position:relative;
+      position: relative;
       &::after {
         content: '';
         display: block;
@@ -129,13 +148,10 @@ scrollbar-color: #ccc #f5f5f5;
 }
 
 .blue {
-
   p {
-
-
   }
   &:hover {
-    border-color: var(--light-orange)!important;
+    border-color: var(--light-orange) !important;
     transition: 0.3s;
     p {
       &::after {
@@ -144,4 +160,3 @@ scrollbar-color: #ccc #f5f5f5;
     }
   }
 }
-

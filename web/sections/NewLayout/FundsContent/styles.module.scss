@@ -75,6 +75,23 @@
   position: relative;
   scrollbar-color: var(--light-blue) var(--gray);
   -webkit-overflow-scrolling: auto;
+  @media screen and (max-width: 300px) {
+    margin: 10px 0px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: var(--medium-gray);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--light-blue);
+    border-radius: 10px;
+    border: 3px solid var(--gray);
+  }
   @media (--media-max-large) {
     margin: 10px 0px;
     background-color: transparent;
