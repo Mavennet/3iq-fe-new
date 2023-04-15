@@ -65,11 +65,19 @@
 .arrow__dark__blue {
   background: #0d1c3d;
   color: var(--white);
+  @media (--media-max-large) {
+    background: lightgrey;
+    color: #28373c;
+  }
 }
 
 .arrow__light__blue {
   background: var(--light-blue);
   color: var(--white);
+  @media (--media-max-large) {
+    background: lightgrey;
+    color: #28373c;
+  }
 }
 
 .menu {
@@ -104,7 +112,6 @@
     border: 3px solid var(--gray);
   }
   @media (--media-max-large) {
-
     background-color: transparent;
   }
   &::-webkit-scrollbar {
@@ -154,7 +161,7 @@
 .light__blue {
   background: var(--light-blue);
   @media (--media-max-large) {
-    background: transparent;
+    background: lightgrey;
   }
   ul {
     li {
@@ -177,7 +184,7 @@
 .dark__blue {
   background: #0d1c3d;
   @media (--media-max-large) {
-    background: transparent;
+    background: lightgrey;
   }
   ul {
     li {
