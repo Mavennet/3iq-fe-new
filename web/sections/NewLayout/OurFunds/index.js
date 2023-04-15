@@ -63,9 +63,7 @@ function renderCards(items, languageTag) {
     return (
       <Box
         sx={{
-          minWidth: {sm: '500px', xs: '300px'},
-          maxWidth: {sm: '550px', xs: '350px'},
-          minHeight: {sm: '500px', xs: '1000px'},
+          minWidth: {sm: '500px', xs: '300px'}
         }}
         className={item.cardColor ? cardStyles[item.cardColor].card : cardStyles[0].card}
       >
