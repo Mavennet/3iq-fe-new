@@ -182,7 +182,7 @@ function MainHero(props) {
           </Grid>
         </Grid>
         {mobile && (
-          <Carousel infiniteLoop="true" swipeable={true} showThumbs={false} showStatus={false}>
+          <Carousel infiniteLoop="true" swipeable={true} showThumbs={false} showStatus={false} showArrows={false}>
             <div className={styles.box__container}>{firstLink}</div>
             <div className={styles.box__container}>{secondLink}</div>
             <div className={styles.box__container}>{thirdLink}</div>

@@ -127,7 +127,7 @@ function renderCards(items, languageTag) {
   })
 
   return mobile ? (
-    <Carousel dynamicHeight	={true} infiniteLoop="true" swipeable={true} showThumbs={false} showStatus={false}>
+    <Carousel dynamicHeight	={true} infiniteLoop="true" swipeable={true} showThumbs={false} showStatus={false} showArrows={false}>
       {cards}
     </Carousel>
   ) : (
