@@ -11,6 +11,7 @@ import {
   CATEGORIES,
   NEWS_CARD_BY_TERM,
   POSTS_BY_TERM,
+  POSTS_BY_SEARCH_TERM,
 } from '../../../utils/groqQueries'
 import SearchCard from '../../../components/NewLayout/SearchCard'
 import Card from '../../../components/NewLayout/Card'
@@ -365,8 +366,8 @@ function Search(props) {
     if (categories.length > 0) {
       // let webinars =
       if (
-        searchTerm &&
-        (searchTerm.length == 3 || (searchTerm.length > 3 && (searchTerm.length - 3) % 3 == 0))
+        searchTerm
+        //&& (searchTerm.length == 3 || (searchTerm.length > 3 && (searchTerm.length - 3) % 3 == 0))
       ) {
         await client
           .fetch(ROUTES_BY_TERM, {term: searchTerm, urlTag: currentCountry.urlTag})
@@ -609,7 +610,12 @@ function Search(props) {
                   posts.digital_asset_bulletin &&
                   filterQuantity(posts.digital_asset_bulletin, 2).map((item) => (
                     <Grid item xs={12} md={6} key={item._id}>
-                      <Card {...item} imageLayout currentLanguage={currentLanguage} currentCountry={currentCountry} />
+                      <Card
+                        {...item}
+                        imageLayout
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>

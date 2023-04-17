@@ -34,10 +34,10 @@ function Card(props) {
   return (
     <Link
       href={{
-        pathname: `${currentCountry.urlTag}/${post?.localeHeading[currentLanguage.languageTag]}`,
+        pathname: `${currentCountry?.urlTag}/${post?.localeHeading[currentLanguage.languageTag]}`,
         query: {slug: route.slug.current},
       }}
-      as={`${currentCountry.urlTag}/${route.slug.current}`}
+      as={`${currentCountry?.urlTag}/${route.slug.current}`}
     >
       <a>
         <div className={styles.article__card}>
