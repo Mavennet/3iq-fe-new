@@ -54,7 +54,6 @@ function Footer(props) {
   const [logoLanguage, setLogoLanguage] = React.useState(null)
 
   const IFrameModal = ({iframeUrl}) => {
-    console.log(iframeUrl)
     return <iframe src={iframeUrl} width="100%" height="100%"></iframe>
   }
 

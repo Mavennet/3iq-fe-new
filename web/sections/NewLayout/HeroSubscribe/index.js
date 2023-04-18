@@ -15,7 +15,6 @@ function HeroSubscribe(props) {
   const localeButton = button && button[currentLanguage?.languageTag]
 
   const IFrameModal = ({iframeUrl}) => {
-    console.log(iframeUrl)
     return <iframe src={iframeUrl} width="100%" height="100%"></iframe>
   }
 

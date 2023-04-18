@@ -23,7 +23,7 @@ function LineChart(props) {
     chartColor,
     endpoint,
     currentLanguage,
-    downloadFileName
+    downloadFileName,
   } = props
 
   const colors = [chartColor ? chartColor : '#0082E5', '#DC6E19', '#869D7A', '#FF2205']
@@ -133,6 +133,12 @@ function LineChart(props) {
             })
           }
         })
+        if (currentLanguage.name !== 'EN') {
+          if (item.label === 'Index Value^') item.label = 'Valeur de l’indice^'
+          if (item.label === 'Units Outstanding^^') item.label = 'Parts En Circulation^^'
+          if (item.label === 'Market Price **') item.label = 'Cours Du Marché **'
+          if (item.label === 'NAVPU *') item.label = 'VLPU *'
+        }
         datasets.push({
           id: item.label,
           color: colors[count],
