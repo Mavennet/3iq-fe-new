@@ -26,7 +26,7 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
   const getOrangeData = async (endpoint) => {
     const data = {}
     const r = await axios.get(endpoint)
-    console.log(r)
+    // console.log(r)
     if (r.data?.results) {
       data["longname"] = r.data.results.quote[0].equityinfo.longname
       data["symbolstring"] = r.data.results.quote[0].symbolstring
@@ -53,7 +53,7 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
   const getGreenData = async (endpoint) => {
     const data = {}
     const r = await axios.get(endpoint)
-    console.log(r)
+    // console.log(r)
     if (r.data?.results) {
       data["longname"] = r.data.results.quote[0].equityinfo.longname
       data["symbolstring"] = r.data.results.quote[0].symbolstring
