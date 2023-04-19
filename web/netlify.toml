@@ -3,7 +3,7 @@ package = "@netlify/plugin-nextjs"
 
 [[redirects]]
   from = "https://3iq.io/files/*"
-  to ="https://3iq-webdocs.s3.ca-central-1.amazonaws.com"
+  to ="https://3iq-webdocs.s3.ca-central-1.amazonaws.com/:splat"
   status = 200
   force = true
 
