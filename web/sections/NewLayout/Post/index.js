@@ -8,6 +8,7 @@ import {MdOutlineArrowForward} from 'react-icons/md'
 import groq from 'groq'
 import Link from 'next/link'
 import YouTube from 'react-youtube'
+import {NEWSCARD_BY_ID, POST_BY_ID} from '../../../utils/groqQueries'
 
 function Post(props) {
   const {
@@ -17,6 +18,7 @@ function Post(props) {
     videoSrc,
     videoText,
     currentCountry,
+    relatedContent,
     caDisclaimer,
     aeDisclaimer,
     usDisclaimer,
@@ -50,14 +52,68 @@ function Post(props) {
       ? usDisclaimer
       : ''
 
-  const fetchRelatedArticles = async () => {
+  const fetchRelatedPosts = async (relatedContent) => {
+    let relatedPostIds = []
+
+    await Promise.all(
+      relatedContent.map(async (item) => {
+        const response = await client.fetch(POST_BY_ID, {id: item._ref})
+        relatedPostIds.push(response._id)
+      })
+    )
+
+    const fetchArticles = async () => {
+      await client
+        .fetch(
+          groq`
+            *[_type == 'newsCard' && !(_id in path('drafts.**')) && post._ref in $postsIds] {
+              _id,
+              _type,
+              _rev,
+              'localeButtonText': buttonText,
+              'localeShortDescription': shortDescription,
+              'localeSmallCardText': smallCardText,
+              newsletterNumber,
+              route->,
+              post-> {
+                _id,
+                _type,
+                mainImage,
+                'localeHeading': heading,
+                publishedAt,
+                categories[]-> {
+                  _id,
+                  _type,
+                  singularName,
+                  'localeName': name,
+                },
+                author-> {
+                  _id,
+                  _type,
+                  name,
+                  email,
+                  profilePhoto,
+                },
+              },
+            }`,
+          {postsIds: relatedPostIds}
+        )
+        .then((res) => {
+          res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
+          setRelatedArticles(res)
+        })
+    }
+    fetchArticles()
+  }
+
+  const fetchRecentdArticles = async () => {
     await client
       .fetch(
         groq`*[_type == 'post' && !(_id in path('drafts.**')) && $categoryId in categories[]._ref && _id != $postId] | order(dateTime(publishedAt) desc) {
-                                      _id,
-                                      _type,
-                                      publishedAt,
-                                    }[0..10]`,
+              _id,
+              _type,
+              publishedAt,
+            }[0..10]`,
         {categoryId: categories[0]?._ref, postId: props._id}
       )
       .then((response) => {
@@ -65,40 +121,41 @@ function Post(props) {
         response.map((item) => {
           return postsId.push(item._id)
         })
+        console.log(postsId)
         const fetchArticles = async () => {
           await client
             .fetch(
               groq`
-                                          *[_type == 'newsCard' && !(_id in path('drafts.**')) && post._ref in $postsIds] {
-                                            _id,
-                                            _type,
-                                            _rev,
-                                            'localeButtonText': buttonText,
-                                            'localeShortDescription': shortDescription,
-                                            'localeSmallCardText': smallCardText,
-                                            newsletterNumber,
-                                            route->,
-                                            post-> {
-                                              _id,
-                                              _type,
-                                              mainImage,
-                                              'localeHeading': heading,
-                                              publishedAt,
-                                              categories[]-> {
-                                                _id,
-                                                _type,
-                                                singularName,
-                                                'localeName': name,
-                                              },
-                                              author-> {
-                                                _id,
-                                                _type,
-                                                name,
-                                                email,
-                                                profilePhoto,
-                                              },
-                                            },
-                                          }[0...8]`,
+                *[_type == 'newsCard' && !(_id in path('drafts.**')) && post._ref in $postsIds] {
+                  _id,
+                  _type,
+                  _rev,
+                  'localeButtonText': buttonText,
+                  'localeShortDescription': shortDescription,
+                  'localeSmallCardText': smallCardText,
+                  newsletterNumber,
+                  route->,
+                  post-> {
+                    _id,
+                    _type,
+                    mainImage,
+                    'localeHeading': heading,
+                    publishedAt,
+                    categories[]-> {
+                      _id,
+                      _type,
+                      singularName,
+                      'localeName': name,
+                    },
+                    author-> {
+                      _id,
+                      _type,
+                      name,
+                      email,
+                      profilePhoto,
+                    },
+                  },
+                }[0...8]`,
               {postsIds: postsId}
             )
             .then((res) => {
@@ -111,7 +168,7 @@ function Post(props) {
   }
 
   React.useEffect(() => {
-    fetchRelatedArticles()
+    relatedContent ? fetchRelatedPosts(relatedContent) : fetchRecentdArticles()
   }, [])
 
   return (
