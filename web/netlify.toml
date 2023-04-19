@@ -2,6 +2,12 @@
 package = "@netlify/plugin-nextjs"
 
 [[redirects]]
+  from = "/files/*"
+  to ="https://3iq-webdocs.s3.ca-central-1.amazonaws.com"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "https://3iq.ae/*"
   to = "https://3iq.io/ae/home"
   status = 301
