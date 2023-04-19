@@ -1,21 +1,36 @@
 @import '../../../styles/custom-media.css';
 
 .simpleBlockContent {
-    padding: 0 1em 0 0;
-  }
+  padding: 0 1em 0 0;
+}
 
-  .simpleBlockContent p {
-    font-family: 'Europa';
-    font-size: 16px;
-  }
+.simpleBlockContent p {
 
-  .simpleBlockContent strong {
-    font-family: 'Europa';
-    color: #0082E5;
-    text-decoration: none;
-    font-weight: 600;
-  }
+  font-family: 'Europa';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  /* or 167% */
 
-  .simpleBlockContent a:hover {
-    text-decoration: underline;
-  }
+  display: flex;
+  align-items: center;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+
+  color: #28373c;
+}
+
+.simpleBlockContent strong {
+  font-family: 'Europa';
+  color: #0082e5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.simpleBlockContent a:hover {
+  text-decoration: underline;
+}
