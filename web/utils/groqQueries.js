@@ -301,6 +301,9 @@ export const CATEGORIES = groq`
 export const CATEGORY_BY_ID = groq`
 *[_type == 'category' && _id == $id] {...}[0]`
 
+export const POST_BY_ID = groq`
+*[_type == 'post' && _id == $id] {...}[0]`
+
 export const SITE_CONFIG_QUERY = `
   *[_id == "global-config"] {
     ...,
