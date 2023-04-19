@@ -43,7 +43,6 @@ export default {
               }
             ]
           },
-          { type: "fileURL" },
           { name: "color", title: "Color", type: "color" }
           // { type: 'internalLink' }
         ]

@@ -103,7 +103,6 @@ import embedHTML from "./objects/embedHTML";
 import figure from "./objects/figure";
 import internalLink from "./objects/internalLink";
 import link from "./objects/link";
-import fileLink from "./objects/fileLink.js";
 import portableText from "./objects/portableText";
 import simplePortableText from "./objects/simplePortableText";
 import bioPortableText from "./objects/bioPortableText";
@@ -130,7 +129,6 @@ export default createSchema({
     imageWithText,
     internalLink,
     link,
-    fileLink,
     mailchimp,
     advertisement,
     mainHero,
