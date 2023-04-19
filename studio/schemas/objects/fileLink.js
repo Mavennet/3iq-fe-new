@@ -24,7 +24,7 @@ export default {
     }
   ],
   blockEditor: {
-    icon: () => "🌍",
+    icon: () => "📁",
     render: LinkRender
   }
 };
