@@ -9,7 +9,7 @@ package = "@netlify/plugin-nextjs"
 
 [[redirects]]
   from = "/files/videos/*"
-  to ="https://3iq-videos-web.s3.ca-central-1.amazonaws.com/:splat"
+  to ="https://3iq-videos.s3.ca-central-1.amazonaws.com/:splat"
   status = 200
   force = true
 
