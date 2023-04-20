@@ -48,8 +48,14 @@ const breakArray = (array) => {
 function Footer(props) {
   const {currentCountry, currentLanguage} = props
 
-  const {footerAddress, footerPhoneNumber, footerEmail, footerSchedule, newsletterSubscribeSrc} =
-    currentCountry
+  const {
+    footerAddress,
+    footerPhoneNumber,
+    footerEmail,
+    footerSchedule,
+    newsletterSubscribeSrc,
+    braveError,
+  } = currentCountry
 
   const [logoLanguage, setLogoLanguage] = React.useState(null)
 
@@ -260,11 +266,17 @@ function Footer(props) {
                         padding: 24,
                         width: '80%',
                         maxWidth: 800,
-                        height: '80%',
+                        height: '85%',
                         borderRadius: 4,
                         outline: 0,
+                        overflow: 'auto',
                       }}
                     >
+                      <div style={{fontSize: '10px', paddingBottom: '10px'}}>
+                        <SimpleBlockContent
+                          blocks={currentCountry?.braveError[currentLanguage?.languageTag]}
+                        />
+                      </div>
                       <IFrameModal iframeUrl={newsletterSubscribeSrc} />
                     </div>
                   </Modal>
@@ -295,6 +307,7 @@ Footer.propTypes = {
   currentLanguage: PropTypes.object,
   currentCountry: PropTypes.object,
   newsletterSubscribeSrc: PropTypes.object,
+  braveError: PropTypes.object,
 }
 
 export default withRouter(Footer)

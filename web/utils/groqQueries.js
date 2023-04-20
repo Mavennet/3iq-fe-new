@@ -32,6 +32,7 @@ export const DATA_COUNTRIES = groq`
   footerSchedule,
   searchPageRoute  -> {page, slug, ...},
   footerSecondLeftBlockButton,
+  braveError,
   footerBottomContent,
   newsletterBody,
   newsletterSubscribeSrc,
