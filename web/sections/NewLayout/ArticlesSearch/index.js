@@ -135,7 +135,7 @@ function ArticlesSearch(props) {
                       md={4}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard {...item} currentLanguage={currentLanguage} currentCountry={currentCountry} />
                     </Grid>
                   ))}
               </Grid>

@@ -5,8 +5,6 @@ import styles from './styles.module.scss'
 function TextArea(props) {
     const {placeholder, size = 'lg', disabled = false, actionUrl} = props
 
-    console.log(actionUrl)
-
     return (
 
         <div className={styles.form}>

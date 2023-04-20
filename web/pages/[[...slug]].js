@@ -193,11 +193,8 @@ function search(origCountry, obj, fn, results = []) {
       if (fn(obj)) {
         let route = obj
           let temp = obj.toString()
-          console.log(temp)
           if (temp[0] === '/') {
             route = 'ca'+ route
-            console.log("hehehe")
-            console.log(route)
             obj = route
           }
       }

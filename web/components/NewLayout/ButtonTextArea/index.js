@@ -5,7 +5,7 @@ import styles from './styles.module.scss'
 function ButtonTextArea(props) {
   const { buttonTitle, placeholder, size = 'sm', disabled, actionUrl, className } = props
 
-  console.log(actionUrl)
+  // console.log(actionUrl)
 
   return (
     <div className={`${styles.button__text__area} ${className}`}>

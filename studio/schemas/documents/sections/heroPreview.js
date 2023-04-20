@@ -40,8 +40,16 @@ export default {
     {
       name: 'backgroundImage',
       type: 'image',
-      title: 'Background image',
+      title: 'Hero image (EN)',
       validation: Rule => Rule.error('Information required.').required(),
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'additionalBackgroundImage',
+      type: 'image',
+      title: 'Hero image (FR)',
       options: {
         hotspot: true,
       },

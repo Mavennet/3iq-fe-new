@@ -50,6 +50,7 @@ function ArticleCard(props) {
                       src={builder.image(post?.mainImage.asset._ref).url()}
                       alt={post?.heading}
                       layout="fill"
+                      objectFit="contain"
                     />
                   )}
                   {(post?.categories[0]?.searchId === 'videos' ||

@@ -43,7 +43,7 @@ function LineChart(props) {
     return formattedDate
   }
 
-  const dataSet = (value) => {
+  let dataSet = (value) => {
     const datasets = []
     let count = 0
     if (value) {
@@ -83,7 +83,7 @@ function LineChart(props) {
   }
 
   React.useEffect(() => {
-    getChartData()
+    // getChartData()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -91,7 +91,7 @@ function LineChart(props) {
     if (data) {
       const ctx = canvasEl.current.getContext('2d')
 
-      const dataChart = dataSet(data)
+      let dataChart = dataSet(data)
 
       const config = {
         type: 'line',
@@ -108,6 +108,12 @@ function LineChart(props) {
               ticks: {
                 // Include a dollar sign in the ticks
                 callback: function (value, index, values) {
+                  if (currentLanguage.name !== 'EN') {
+                    if (dataChart.datasets[0].label === 'Index Value^')  dataChart.datasets[0].label = 'Valeur de l’indice^'
+                    if (dataChart.datasets[0].label === 'Units Outstanding^^')  dataChart.datasets[0].label = 'Parts En Circulation^^'
+                    if (dataChart.datasets[0].label === 'Market Price **')  dataChart.datasets[0].label = 'Cours Du Marché **'
+                    if (dataChart.datasets[0].label === 'NAVPU *')  dataChart.datasets[0].label = 'VLPU *'
+                  } 
                   const label = dataChart.datasets[0].label
                   const hasDollar =
                     label === 'Index Value^' || label === 'NAVPU *' || label === 'Market Price **'

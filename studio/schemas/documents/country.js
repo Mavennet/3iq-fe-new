@@ -126,6 +126,12 @@ export default {
       description: "Content that will be shown above the user's e-mail input field",
     },
     {
+      name: 'braveError',
+      type: 'localePortableText',
+      title: 'Brave Error Message',
+      description: "Content that will be shown above the user's e-mail input field",
+    },
+    {
       name: 'newsletterSubscribeSrc',
       type: 'url',
       title: 'Newsletter Subscribe Link',

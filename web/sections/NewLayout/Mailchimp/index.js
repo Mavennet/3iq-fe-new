@@ -6,9 +6,8 @@ import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent
 import ButtonTextArea from '../../../components/NewLayout/ButtonTextArea'
 import Button from '../../../components/NewLayout/Button'
 
-
 function Mailchimp(props) {
-  const {text, button, currentLanguage} = props
+  const {text, button, currentLanguage, currentCountry} = props
 
   const localeButton = button && button[currentLanguage?.languageTag]
 
@@ -27,7 +26,7 @@ function Mailchimp(props) {
         </Grid>
         {localeButton && (
           <Box sx={{display: 'flex', justifyContent: 'flex-start'}}>
-            <Button {...localeButton} title={localeButton.title} />
+            <Button title={localeButton.title} link={localeButton.route.slug.current.slice(3)} />
           </Box>
         )}
       </Grid>
@@ -42,6 +41,7 @@ Mailchimp.propTypes = {
   disabled: PropTypes.boolean,
   arrow: PropTypes.boolean,
   button: PropTypes.object,
+  currentCountry: PropTypes.object,
 }
 
 export default Mailchimp

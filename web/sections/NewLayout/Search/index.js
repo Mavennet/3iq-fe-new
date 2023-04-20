@@ -11,6 +11,7 @@ import {
   CATEGORIES,
   NEWS_CARD_BY_TERM,
   POSTS_BY_TERM,
+  POSTS_BY_SEARCH_TERM,
 } from '../../../utils/groqQueries'
 import SearchCard from '../../../components/NewLayout/SearchCard'
 import Card from '../../../components/NewLayout/Card'
@@ -365,8 +366,8 @@ function Search(props) {
     if (categories.length > 0) {
       // let webinars =
       if (
-        searchTerm &&
-        (searchTerm.length == 3 || (searchTerm.length > 3 && (searchTerm.length - 3) % 3 == 0))
+        searchTerm
+        //&& (searchTerm.length == 3 || (searchTerm.length > 3 && (searchTerm.length - 3) % 3 == 0))
       ) {
         await client
           .fetch(ROUTES_BY_TERM, {term: searchTerm, urlTag: currentCountry.urlTag})
@@ -529,7 +530,7 @@ function Search(props) {
               <SimpleBlockContent blocks={notFoundText} />
             </div>
           )}
-          {(currCountry == 'ca' || currCountry == 'us' )&& showSection('research_papers_blogs') && (
+          {(currCountry == 'ca' || currCountry == 'us') && showSection('research_papers_blogs') && (
             <Box my={6}>
               {renderHeader('Articles & Reports', 'research_papers_blogs')}
               <Grid container spacing={6}>
@@ -543,7 +544,11 @@ function Search(props) {
                       md={handleCardSize(posts.research_papers_blogs.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -563,7 +568,11 @@ function Search(props) {
                       md={handleCardSize(posts.articles_ae.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -601,7 +610,12 @@ function Search(props) {
                   posts.digital_asset_bulletin &&
                   filterQuantity(posts.digital_asset_bulletin, 2).map((item) => (
                     <Grid item xs={12} md={6} key={item._id}>
-                      <Card {...item} imageLayout currentLanguage={currentLanguage} />
+                      <Card
+                        {...item}
+                        imageLayout
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -635,7 +649,11 @@ function Search(props) {
                       md={handleCardSize(posts.videos_webinars.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -655,7 +673,11 @@ function Search(props) {
                       md={handleCardSize(posts.podcasts.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -669,7 +691,11 @@ function Search(props) {
                   posts.webinar &&
                   filterQuantity(posts.webinar, 2).map((item) => (
                     <Grid item xs={12} md={6} key={item._id}>
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -689,7 +715,11 @@ function Search(props) {
                       md={handleCardSize(posts.metaverse.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -709,7 +739,11 @@ function Search(props) {
                       md={handleCardSize(posts.press_media.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -729,7 +763,11 @@ function Search(props) {
                       md={handleCardSize(posts.pr_us.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -749,7 +787,11 @@ function Search(props) {
                       md={handleCardSize(posts.pr_bitcoin_etf.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -769,7 +811,11 @@ function Search(props) {
                       md={handleCardSize(posts.pr_ether_etf.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -789,7 +835,11 @@ function Search(props) {
                       md={handleCardSize(posts.pr_bitcoin_fund.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -809,7 +859,11 @@ function Search(props) {
                       md={handleCardSize(posts.pr_ether_fund.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -829,7 +883,11 @@ function Search(props) {
                       md={handleCardSize(posts.pr_global_asset.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>
@@ -849,7 +907,11 @@ function Search(props) {
                       md={handleCardSize(posts.pr_bitcoin_fund_dubai.length)}
                       key={item._id}
                     >
-                      <SearchCard {...item} currentLanguage={currentLanguage} />
+                      <SearchCard
+                        {...item}
+                        currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
+                      />
                     </Grid>
                   ))}
               </Grid>

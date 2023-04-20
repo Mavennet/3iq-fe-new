@@ -10,7 +10,7 @@ import Link from 'next/link'
 import {AiFillPlayCircle} from 'react-icons/ai'
 
 function Card(props) {
-  const {post, route, currentLanguage, imageLayout} = props
+  const {post, route, currentLanguage, currentCountry, imageLayout} = props
 
   const [publishedDate, setPublishedDate] = React.useState('')
 
@@ -34,10 +34,10 @@ function Card(props) {
   return (
     <Link
       href={{
-        pathname: `/${post?.localeHeading[currentLanguage.languageTag]}`,
+        pathname: `${currentCountry?.urlTag}/${post?.localeHeading[currentLanguage.languageTag]}`,
         query: {slug: route.slug.current},
       }}
-      as={`/${route.slug.current}`}
+      as={`${currentCountry?.urlTag}/${route.slug.current}`}
     >
       <a>
         <div className={styles.article__card}>
@@ -69,7 +69,8 @@ function Card(props) {
                 >
                   <div>
                     {post?.author?.name &&
-                      post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] && (
+                      post?.categories[0]?.singularName &&
+                      post?.categories[0]?.singularName[currentLanguage.languageTag] && (
                         <Typography
                           variant="h5"
                           sx={{
@@ -79,7 +80,8 @@ function Card(props) {
                           }}
                         >
                           <strong className={styles.blue}>
-                            {post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}
+                            {post?.categories[0]?.singularName &&
+                              post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}
                           </strong>
                           {byLocaleText} {post?.author?.name}
                         </Typography>
@@ -136,7 +138,8 @@ function Card(props) {
               >
                 <div>
                   {post?.author?.name &&
-                    post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] && (
+                    post?.categories[0]?.singularName &&
+                    post?.categories[0]?.singularName[currentLanguage.languageTag] && (
                       <Typography
                         variant="h5"
                         sx={{
@@ -146,7 +149,8 @@ function Card(props) {
                         }}
                       >
                         <strong className={styles.blue}>
-                          {post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}
+                          {post?.categories[0]?.singularName &&
+                            post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}
                         </strong>
                         {byLocaleText} {post?.author?.name}
                       </Typography>
@@ -203,6 +207,7 @@ Card.propTypes = {
   currentLanguage: PropTypes.object,
   localeButtonText: PropTypes.string,
   localeSmallCardText: PropTypes.string,
+  currentCountry: PropTypes.object,
 }
 
 export default Card
