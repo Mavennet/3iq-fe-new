@@ -9,6 +9,7 @@ import groq from 'groq'
 import Link from 'next/link'
 import YouTube from 'react-youtube'
 import {NEWSCARD_BY_ID, POST_BY_ID} from '../../../utils/groqQueries'
+import {format} from 'date-fns'
 
 function Post(props) {
   const {
@@ -17,6 +18,7 @@ function Post(props) {
     categories,
     videoSrc,
     videoText,
+    publishedAt,
     currentCountry,
     relatedContent,
     caDisclaimer,
@@ -42,6 +44,12 @@ function Post(props) {
       playlist: videoSrc,
     },
   }
+
+  const newYears = new Date(publishedAt)
+  const formattedDate = format(newYears, 'MMMM dd, yyyy')
+  caDisclaimer?.map((item) => {
+    item.children[0].text = item.children[0]?.text?.replace('{{DATE}}', formattedDate)
+  })
 
   const disclaimerText =
     caDisclaimer && currentCountry.urlTag === 'ca'
