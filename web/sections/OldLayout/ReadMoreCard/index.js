@@ -106,11 +106,13 @@ function ReadMoreCard(props) {
               )}
             </Typography>
           )}
+          <Box>
           {description && (
             <Box className={styles.simpleBlockContent}>
               <SimpleBlockContent blocks={description} />
             </Box>
           )}
+          </Box>
           <Box
             sx={{
               display: 'flex',
