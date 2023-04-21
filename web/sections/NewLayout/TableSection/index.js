@@ -279,7 +279,7 @@ function TableSection(props) {
                       {data.map((item, i) => {
                         const keys = Object.keys(item)
                         return keys.map((item, i) => {
-                          const modifyHeader = item.includes('yr') ? item.replace('yr', 'YR') : item.includes('ans') ? item.replace('ans', 'Ans') : item
+                          const modifyHeader = item.includes('yr') ? item.replace('yr', 'YR') : item.includes('Ans') ? item.replace('Ans', 'ans') : item
                           return <th key={i}>{modifyHeader}</th>
                         })
                       })}
