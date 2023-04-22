@@ -64,6 +64,10 @@
   margin-right: 10px;
   height: 30px;
   border-left: 1px solid var(--gray);
+  @media (--media-max-large) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 }
 
 .searchIcon{

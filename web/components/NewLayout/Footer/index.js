@@ -246,7 +246,7 @@ function Footer(props) {
                   />
                 </div>
               )}
-              <Box sx={{display: 'flex', justifyContent: 'flex-start'}}>
+              <Box sx={{display: 'flex', justifyContent: 'flex-start', paddingTop: 2, paddingBottom: 2}}>
                 <div>
                   <Button onClick={handleOpen} title={localeSubscribeText}></Button>
                   <Modal

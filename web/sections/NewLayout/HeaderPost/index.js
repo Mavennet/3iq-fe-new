@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import imageUrlBuilder from '@sanity/image-url'
 import styles from './styles.module.scss'
 import client from '../../../client'
-import { Grid, Typography, Box } from '@mui/material'
+import { Grid, Typography, Box, useTheme, useMediaQuery } from '@mui/material'
 import { format } from 'date-fns'
 import { FaTwitter, FaLinkedinIn } from 'react-icons/fa'
 import groq from 'groq'
@@ -19,6 +19,9 @@ function HeaderPost(props) {
   const [categorie, setCategorie] = React.useState(null)
 
   const byLocaleText = currentLanguage.name === 'EN' ? 'by' : 'par'
+
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   // currentCountry.urlTag === 'ae' && body.forEach(block => {
   //   if (block._type === 'block') {
@@ -214,7 +217,7 @@ function HeaderPost(props) {
       <Grid
         item
         xs={12}
-        py={{ xs: 28, md: 0 }}
+        py={{ xs: 0, md: 0 }}
         md={6}
         sx={{
           background: '#EBEBEB',

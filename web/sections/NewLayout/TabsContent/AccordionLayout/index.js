@@ -99,7 +99,7 @@ function AccordionLayout(props) {
       <Container maxWidth={'lg'} bgcolor="#F6F6F6">
         <Grid container mt={10} mb={20}>
           <Grid item xs={12}>
-            <h4>Investment Funds</h4>
+            <h4>{currentLanguage.name === 'EN' ? 'Investment Funds' : "Fonds d'investissement"}</h4>
           </Grid>
           <Grid item xs={12} sx={{display: {sm: 'block', md: 'none'}}}>
             <div className={`${styles.menu} ${styles.light__blue}`} ref={containerRef}>
