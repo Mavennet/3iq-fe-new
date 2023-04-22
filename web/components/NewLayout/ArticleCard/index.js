@@ -10,13 +10,15 @@ import Link from 'next/link'
 import {AiFillPlayCircle} from 'react-icons/ai'
 
 function ArticleCard(props) {
-  const {post, route, hideImage = false, currentLanguage, className} = props
+  const {post, route, hideImage = false, currentLanguage, className, currentCountry} = props
 
   const [publishedDate, setPublishedDate] = React.useState('')
 
   const builder = imageUrlBuilder(client)
 
   const byLocaleText = currentLanguage.name === 'EN' ? 'by' : 'par'
+
+  const currCountry = currentCountry != undefined ? currentCountry.urlTag : ''
 
   React.useEffect(() => {
     if (currentLanguage.languageTag && post?.publishedAt) {
@@ -37,7 +39,7 @@ function ArticleCard(props) {
         pathname: `/${post?.localeHeading[currentLanguage.languageTag]}`,
         query: {slug: route?.slug?.current},
       }}
-      as={`/${route?.slug?.current}`}
+      as={`${currCountry}/${route?.slug?.current}`}
     >
       <a>
         <div className={`${styles.article__card} ${className}`}>
