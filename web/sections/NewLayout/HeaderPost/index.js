@@ -3,22 +3,24 @@ import PropTypes from 'prop-types'
 import imageUrlBuilder from '@sanity/image-url'
 import styles from './styles.module.scss'
 import client from '../../../client'
-import { Grid, Typography, Box } from '@mui/material'
-import { format } from 'date-fns'
-import { FaTwitter, FaLinkedinIn } from 'react-icons/fa'
+import {Grid, Typography, Box, useTheme, useMediaQuery} from '@mui/material'
+import {format} from 'date-fns'
+import {FaTwitter, FaLinkedinIn} from 'react-icons/fa'
 import groq from 'groq'
 import Link from 'next/link'
 
 const builder = imageUrlBuilder(client)
 
 function HeaderPost(props) {
-
-  const { post, fatherCategory, currentLanguage, currentCountry } = props
+  const {post, fatherCategory, currentLanguage, currentCountry} = props
 
   const [publishedDate, setPublishedDate] = React.useState('')
   const [categorie, setCategorie] = React.useState(null)
 
   const byLocaleText = currentLanguage.name === 'EN' ? 'by' : 'par'
+
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   // currentCountry.urlTag === 'ae' && body.forEach(block => {
   //   if (block._type === 'block') {
@@ -33,8 +35,10 @@ function HeaderPost(props) {
     if (currentLanguage.languageTag) {
       const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
       const newYears = new Date(post?.publishedAt)
-      const isEng = currentLanguage.name === "EN"
-      const formattedDate = format(newYears, isEng ? 'MMMM dd, yyyy' : "dd MMMM yyyy", { locale: getLocale(currentLanguage.languageTag.replace("_", "-")) })
+      const isEng = currentLanguage.name === 'EN'
+      const formattedDate = format(newYears, isEng ? 'MMMM dd, yyyy' : 'dd MMMM yyyy', {
+        locale: getLocale(currentLanguage.languageTag.replace('_', '-')),
+      })
       !isEng && formattedDate.toLocaleLowerCase('fr')
       setPublishedDate(formattedDate)
     }
@@ -52,7 +56,7 @@ function HeaderPost(props) {
         description
       }[0]
      `,
-        { categorieRef: ref }
+        {categorieRef: ref}
       )
       .then((response) => {
         setCategorie(response)
@@ -63,7 +67,9 @@ function HeaderPost(props) {
     fetchCategories(post?.categories[0]?._ref)
   }, [])
 
-  const shareHistoryText = currentCountry.shareThisStoryText && currentCountry.shareThisStoryText[currentLanguage.languageTag]
+  const shareHistoryText =
+    currentCountry.shareThisStoryText &&
+    currentCountry.shareThisStoryText[currentLanguage.languageTag]
 
   return (
     <Grid
@@ -76,13 +82,13 @@ function HeaderPost(props) {
         },
       }}
     >
-      <Grid item xs={12} md={6} sx={{ background: '#EBEBEB', position: 'relative' }} square>
+      <Grid item xs={12} md={6} sx={{background: '#EBEBEB', position: 'relative'}} square>
         <Box
           sx={{
             mt: 2,
-            mb: { xs: 0, md: 2 },
-            ml: { xs: 2, md: 10 },
-            mr: { xs: 0, md: 8 },
+            mb: {xs: 0, md: 2},
+            ml: {xs: 2, md: 10},
+            mr: {xs: 0, md: 8},
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'left',
@@ -110,92 +116,111 @@ function HeaderPost(props) {
                 variant="h1"
                 sx={{
                   fontSize: 'var(--font-size-primary-lg)',
-                  fontFamily: 'var(--font-family-primary),'
+                  fontFamily: 'var(--font-family-primary),',
                 }}
               >
                 {post?.heading[currentLanguage.languageTag]}
               </Typography>
               {post?.author?.name && categorie?.name && (
                 <Link
-                href={{
-                  pathname: `/${categorie.searchId}`,
-                  query: { slug: categorie.searchId },
-                }}
-                as={`${currentCountry.urlTag}/${categorie.searchId}`}
-              >
-                <a className={styles.no__decoration}>
-                <Typography
-                  my={2}
-                  variant="h5"
-                  sx={{
-                    fontSize: 'var(--font-size-secondary-sm)',
-                    fontFamily: 'var(--font-family-secondary)',
-                    color: 'var(--black)',
+                  href={{
+                    pathname: `/${categorie.searchId}`,
+                    query: {slug: categorie.searchId},
                   }}
+                  as={`${currentCountry.urlTag}/${
+                    categorie.searchId == 'digital_asset_bulletin' ||
+                    categorie.searchId == 'research_papers_blogs'
+                      ? 'articles-reports'
+                      : categorie.searchId
+                  }`}
                 >
-                  <strong className={styles.blue}>
-                    {categorie?.name?.[currentLanguage.languageTag] + ' '}
-                  </strong>
-                  {byLocaleText} {post?.author?.name}
-                </Typography>
-                </a>
-              </Link>
+                  <a className={styles.no__decoration}>
+                    <Typography
+                      my={2}
+                      variant="h5"
+                      sx={{
+                        fontSize: 'var(--font-size-secondary-sm)',
+                        fontFamily: 'var(--font-family-secondary)',
+                        color: 'var(--black)',
+                      }}
+                    >
+                      <strong className={styles.blue}>
+                        {categorie?.name?.[currentLanguage.languageTag] + ' '}
+                      </strong>
+                      {byLocaleText} {post?.author?.name}
+                    </Typography>
+                  </a>
+                </Link>
               )}
             </Grid>
-            {
-              publishedDate && (
-                <Grid item xs={12} my={2}>
-                  <div className={styles.publishedAt}>
-                    <Typography
-                      component="h2"
-                      variant="h2"
-                      sx={{
-                        fontWeight: 400,
-                        fontSize: 'var(--font-size-secondary-md)',
-                        fontFamily: 'var(--font-family-secondary)',
-                        color: '#8E8E8E'
-                      }}>
-                      {publishedDate}
-                    </Typography>
-                  </div>
-                </Grid>
-              )
-            }
-            {
-              shareHistoryText && (
-                <Grid item xs={12} my={8}>
+            {publishedDate && (
+              <Grid item xs={12} my={2}>
+                <div className={styles.publishedAt}>
                   <Typography
-                    component="h4"
-                    variant="h4"
-                    mb={2}
-                    style={{
-                      fontWeight: 600,
+                    component="h2"
+                    variant="h2"
+                    sx={{
+                      fontWeight: 400,
                       fontSize: 'var(--font-size-secondary-md)',
                       fontFamily: 'var(--font-family-secondary)',
-                      color: 'var(--black)',
-                      width: '100%'
-                    }}>
-                    {shareHistoryText}
+                      color: '#8E8E8E',
+                    }}
+                  >
+                    {publishedDate}
                   </Typography>
-                  <ul className={styles.social}>
-                    <Link href={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}&title=${post?.heading[currentLanguage.languageTag]}&summary=${post?.heading[currentLanguage.languageTag]}&source=LinkedIn`} color="inherit" target='_blank' rel="noopener">
-                      <a>
-                        <li>
-                          <FaLinkedinIn />
-                        </li>
-                      </a>
-                    </Link>
-                    <Link href={`http://twitter.com/share?text=${post?.heading[currentLanguage.languageTag]}&url=${window.location.href}`} color="inherit" target='_blank' rel="noopener">
-                      <a>
-                        <li>
-                          <FaTwitter />
-                        </li>
-                      </a>
-                    </Link>
-                  </ul>
-                </Grid>
-              )
-            }
+                </div>
+              </Grid>
+            )}
+            {shareHistoryText && (
+              <Grid item xs={12} my={8}>
+                <Typography
+                  component="h4"
+                  variant="h4"
+                  mb={2}
+                  style={{
+                    fontWeight: 600,
+                    fontSize: 'var(--font-size-secondary-md)',
+                    fontFamily: 'var(--font-family-secondary)',
+                    color: 'var(--black)',
+                    width: '100%',
+                  }}
+                >
+                  {shareHistoryText}
+                </Typography>
+                <ul className={styles.social}>
+                  <Link
+                    href={`https://www.linkedin.com/shareArticle?mini=true&url=${
+                      window.location.href
+                    }&title=${post?.heading[currentLanguage.languageTag]}&summary=${
+                      post?.heading[currentLanguage.languageTag]
+                    }&source=LinkedIn`}
+                    color="inherit"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <a>
+                      <li>
+                        <FaLinkedinIn />
+                      </li>
+                    </a>
+                  </Link>
+                  <Link
+                    href={`http://twitter.com/share?text=${
+                      post?.heading[currentLanguage.languageTag]
+                    }&url=${window.location.href}`}
+                    color="inherit"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <a>
+                      <li>
+                        <FaTwitter />
+                      </li>
+                    </a>
+                  </Link>
+                </ul>
+              </Grid>
+            )}
           </Grid>
         </Box>
         <Box
@@ -214,14 +239,14 @@ function HeaderPost(props) {
       <Grid
         item
         xs={12}
-        py={{ xs: 28, md: 0 }}
+        py={{xs: 0, md: 0}}
         md={6}
         sx={{
           background: '#EBEBEB',
           display: 'flex',
           height: 'auto',
           flexDirection: 'column',
-          justifyContent: { xs: 'flex-end', md: 'center' },
+          justifyContent: {xs: 'flex-end', md: 'center'},
           alignItems: 'center',
         }}
       >
@@ -229,7 +254,7 @@ function HeaderPost(props) {
           <img
             src={builder.image(post?.mainImage).url()}
             alt={post?.mainImage?.altText || ''}
-            style={{ maxWidth: '100%', height: 'auto' }}
+            style={{maxWidth: '100%', height: 'auto'}}
           />
         )}
       </Grid>
