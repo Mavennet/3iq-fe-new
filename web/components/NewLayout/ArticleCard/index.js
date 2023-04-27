@@ -98,12 +98,12 @@ function ArticleCard(props) {
                 {post?.localeHeading && route && (
                   <Link
                     href={{
-                      pathname: `${currentCountry.urlTag}/${
+                      pathname: `${currentCountry?.urlTag}/${
                         post?.localeHeading[currentLanguage.languageTag]
                       }`,
                       query: {slug: route.slug.current},
                     }}
-                    as={`${currentCountry.urlTag}/${route?.slug?.current}`}
+                    as={`${currentCountry?.urlTag}/${route?.slug?.current}`}
                   >
                     <a className={styles.noDecoration}>
                       <Typography
