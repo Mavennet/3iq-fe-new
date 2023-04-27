@@ -103,7 +103,7 @@ function ArticleCard(props) {
                       }`,
                       query: {slug: route.slug.current},
                     }}
-                    as={`${currCountry.urlTag}/${route?.slug?.current}`}
+                    as={`${currentCountry.urlTag}/${route?.slug?.current}`}
                   >
                     <a className={styles.noDecoration}>
                       <Typography
