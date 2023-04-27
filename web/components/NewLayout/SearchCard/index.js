@@ -34,10 +34,10 @@ function SearchCard(props) {
   return (
     <Link
       href={{
-        pathname: `${currentCountry?.urlTag}/${post?.localeHeading[currentLanguage.languageTag]}`,
+        pathname: `${post?.localeHeading[currentLanguage.languageTag]}`,
         query: { slug: route.slug.current },
       }}
-      as={`${currentCountry?.urlTag}/${route.slug.current}`}
+      as={`/${route.slug.current}`}
     >
       <a>
         <div className={styles.article__card}>
@@ -88,7 +88,7 @@ function SearchCard(props) {
                       pathname: `/${post?.localeHeading[currentLanguage.languageTag]}`,
                       query: { slug: route.slug.current },
                     }}
-                    as={`${currentCountry.urlTag}/${route?.slug?.current}`}
+                    as={`${route?.slug?.current}`}
                     >
                     <a className={styles.noDecoration}>
                       <Typography
