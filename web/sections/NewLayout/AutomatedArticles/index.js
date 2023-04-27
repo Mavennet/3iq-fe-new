@@ -156,12 +156,14 @@ function AutomatedArticles(props) {
                           <NewsletterCard
                             {...item}
                             currentLanguage={currentLanguage}
+                            currentCountry={currentCountry}
                             size={'md'}
                           />
                         ) : (
                           <ArticleCard
                             {...item}
                             currentLanguage={currentLanguage}
+                            currentCountry={currentCountry}
                             key={item._id}
                           />
                         )
