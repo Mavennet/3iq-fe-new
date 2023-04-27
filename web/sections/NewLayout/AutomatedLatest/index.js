@@ -296,6 +296,7 @@ function AutomatedLatest(props) {
                           <ArticleCard
                             {...item}
                             currentLanguage={currentLanguage}
+                            currentCountry={currentCountry}
                             key={item._id}
                             hideImage={true}
                           />
