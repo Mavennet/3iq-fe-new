@@ -103,7 +103,7 @@ function AutomatedLatest(props) {
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
-              res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
+              // res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setLeftArticles(res)
             })
         }
@@ -159,7 +159,7 @@ function AutomatedLatest(props) {
               { postId: response._id }
             )
             .then((res) => {
-              [res].map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
+              // [res].map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setRightArticles(res)
             })
         }
@@ -219,7 +219,7 @@ function AutomatedLatest(props) {
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
-              res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
+              // res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setBottomArticles(res)
             })
         }
@@ -366,6 +366,7 @@ function AutomatedLatest(props) {
                       <ArticleCard
                         {...rightArticles}
                         currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
                         hideImage={true}
                         className={styles.article__single}
                       />
@@ -432,6 +433,7 @@ function AutomatedLatest(props) {
                       <ArticleCard
                         {...bottomArticles[0]}
                         currentLanguage={currentLanguage}
+                        currentCountry={currentCountry}
                       />
                     )
                   }
@@ -444,6 +446,7 @@ function AutomatedLatest(props) {
                           <ArticleCard
                             {...bottomArticles[1]}
                             currentLanguage={currentLanguage}
+                            currentCountry={currentCountry}
                           />
                         )
                       }
@@ -457,6 +460,7 @@ function AutomatedLatest(props) {
                           <ArticleCard
                             {...bottomArticles[2]}
                             currentLanguage={currentLanguage}
+                            currentCountry={currentCountry}
                           />
                         )
                       }
@@ -475,6 +479,7 @@ function AutomatedLatest(props) {
                           <ArticleCard
                             {...item}
                             currentLanguage={currentLanguage}
+                            currentCountry={currentCountry}
                             key={item._id}
                           />
                         </Grid>

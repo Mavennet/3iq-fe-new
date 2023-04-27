@@ -82,7 +82,7 @@ function AutomatedArticles(props) {
             )
             .then((res) => {
               res.sort((a, b) => new Date(b.post.publishedAt) - new Date(a.post.publishedAt))
-              res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
+              // res.map((item) => { item.route.slug.current =  currentCountry.urlTag + '/' + item.route.slug.current })
               setArticles(res.slice(0, articlesCount))
             })
         }

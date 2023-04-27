@@ -37,8 +37,8 @@ function SearchCard(props) {
         pathname: `${post?.localeHeading[currentLanguage.languageTag]}`,
         query: { slug: route.slug.current },
       }}
-      as={`/${route.slug.current}`}
-    >
+      as={`${currentCountry.urlTag}/${route?.slug?.current}`}
+      >
       <a>
         <div className={styles.article__card}>
           <Grid container>
@@ -88,7 +88,7 @@ function SearchCard(props) {
                       pathname: `/${post?.localeHeading[currentLanguage.languageTag]}`,
                       query: { slug: route.slug.current },
                     }}
-                    as={`${route?.slug?.current}`}
+                    as={`${currentCountry.urlTag}/${route?.slug?.current}`}
                     >
                     <a className={styles.noDecoration}>
                       <Typography
