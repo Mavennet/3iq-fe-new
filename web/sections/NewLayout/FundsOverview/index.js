@@ -10,15 +10,62 @@ import axios from 'axios'
 import {format} from 'date-fns'
 import {Typography} from '@mui/material'
 import Button from '../../../components/NewLayout/Button'
+import client from '../../../client'
+import groq from 'groq'
 
 function FundsOverview(props) {
-  const {title, embed, fundSidebarItem, currentLanguage, endpoint, button, footer} = props
+  const {
+    title,
+    embed,
+    fundSidebarItem,
+    currentLanguage,
+    endpoint,
+    button,
+    footer,
+    keyFactsTableOne,
+    keyFactsTableTwo,
+  } = props
 
   const [data, setData] = React.useState(null)
 
   const getKeyFacts = (endpoint) => {
     axios.get(endpoint).then((response) => setData(response.data))
   }
+
+  const groqQuery = `*[_type == "keyFact" && _id in $ref]{
+    keyFactTitle,
+    keyFactValue
+  }`
+
+  const [tablePartOne, setTablePartOne] = React.useState([])
+
+  React.useEffect(() => {
+    const fetchData = async (refs) => {
+      const results = await client.fetch(groqQuery, {ref: refs})
+      console.log(results)
+      setTablePartOne(results)
+    }
+    if (keyFactsTableOne && tablePartOne.length == 0) {
+      let refs = []
+      keyFactsTableOne.forEach((keyFactsTableOne) => refs.push(keyFactsTableOne._ref))
+      console.log(refs)
+      fetchData(refs)
+    }
+  }, [])
+
+  const [tablePartTwo, setTableParTwo] = React.useState([])
+
+  React.useEffect(() => {
+    const fetchData = async (refs) => {
+      const results = await client.fetch(groqQuery, {ref: refs})
+      setTableParTwo(results)
+    }
+    if (keyFactsTableTwo && tablePartTwo.length == 0) {
+      let refs = []
+      keyFactsTableTwo.forEach((keyFactsTableOne) => refs.push(keyFactsTableTwo._ref))
+      fetchData(refs)
+    }
+  }, [])
 
   const convertDate = (value) => {
     const getLocale = (locale) => require(`date-fns/locale/${locale}/index.js`)
@@ -55,6 +102,15 @@ function FundsOverview(props) {
               <Box className={styles.key__table} my={6}>
                 <table>
                   <tbody>
+                    {tablePartOne &&
+                      tablePartOne.map((item, key) => (
+                        <tr key={key}>
+                          <td>
+                            <strong>{item.keyFactTitle[currentLanguage?.languageTag]}</strong>
+                          </td>
+                          <td>{item.keyFactValue[currentLanguage?.languageTag]}</td>
+                        </tr>
+                      ))}
                     {Object.entries(
                       data[0].en_CA
                         ? data[0][
@@ -115,6 +171,15 @@ function FundsOverview(props) {
                         </tr>
                       )
                     })}
+                    {tablePartTwo &&
+                      tablePartTwo.map((item, key) => (
+                        <tr key={key}>
+                          <td>
+                            <strong>{item.keyFactTitle[currentLanguage?.languageTag]}</strong>
+                          </td>
+                          <td>{item.keyFactValue[currentLanguage?.languageTag]}</td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </Box>

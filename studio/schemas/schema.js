@@ -26,6 +26,7 @@ import category from "./documents/category";
 import imagesContainer from "./documents/imagesContainer";
 import services from "./documents/services";
 import postV2 from "./documents/postV2";
+import keyFact from "./documents/keyFact";
 
 // Section documents
 import textSection from "./documents/sections/textSection";
@@ -146,6 +147,7 @@ export default createSchema({
     postPortableText,
     person,
     benefity,
+    keyFact,
     accordionItem,
     doubleOptions,
     keyBenefits,
