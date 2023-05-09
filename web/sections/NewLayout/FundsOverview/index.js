@@ -62,7 +62,7 @@ function FundsOverview(props) {
     }
     if (keyFactsTableTwo && tablePartTwo.length == 0) {
       let refs = []
-      keyFactsTableTwo.forEach((keyFactsTableOne) => refs.push(keyFactsTableTwo._ref))
+      keyFactsTableTwo.forEach((keyFactsTableTwo) => refs.push(keyFactsTableTwo._ref))
       fetchData(refs)
     }
   }, [])
