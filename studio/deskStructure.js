@@ -93,6 +93,7 @@ const hiddenDocTypes = listItem =>
     "fundSidebarItem",
     "product",
     "category",
+    "keyFact",
     "imagesContainer",
     "lineChart",
     "tableSection",
@@ -352,5 +353,6 @@ export default () =>
       S.documentTypeListItem("benefity").title("Benefitys"),
       S.documentTypeListItem("accordionItem").title("Accordion Item"),
       S.documentTypeListItem("services").title("Services"),
+      S.documentTypeListItem("keyFact").title("Key Fact"),
       ...S.documentTypeListItems().filter(hiddenDocTypes)
     ]);
