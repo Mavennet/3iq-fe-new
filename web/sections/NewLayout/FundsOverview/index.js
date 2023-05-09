@@ -32,7 +32,7 @@ function FundsOverview(props) {
     axios.get(endpoint).then((response) => setData(response.data))
   }
 
-  const groqQuery = `*[_type == "keyFact" && _id in $ref]{
+  const groqQuery = `*[_type == "keyFact" && _id in $ref] | order(priority asc) {
     keyFactTitle,
     keyFactValue
   }`
@@ -42,13 +42,11 @@ function FundsOverview(props) {
   React.useEffect(() => {
     const fetchData = async (refs) => {
       const results = await client.fetch(groqQuery, {ref: refs})
-      console.log(results)
       setTablePartOne(results)
     }
     if (keyFactsTableOne && tablePartOne.length == 0) {
       let refs = []
       keyFactsTableOne.forEach((keyFactsTableOne) => refs.push(keyFactsTableOne._ref))
-      console.log(refs)
       fetchData(refs)
     }
   }, [])

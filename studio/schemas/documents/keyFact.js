@@ -26,6 +26,12 @@ export default {
       type: 'localeString',
       title: 'Key Fact Value (*)',
     },
+    {
+      name: 'priority',
+      title: 'Priority',
+      type: 'number',
+      validation: Rule => Rule.min(0).integer().positive(),
+    },
   ],
   preview: {
     select: {
