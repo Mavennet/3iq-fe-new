@@ -88,6 +88,19 @@ export default {
       fieldset: 'tableComposition',
     },
     {
+      name: "additionalTableRows",
+      title: "Additional Table Rows",
+      description: 'Add new rows to the table. This is used for daily nav.',
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "dailyNav" }],
+          title: "Daily Nav"
+        }
+      ]
+    },
+    {
       name: 'endpoint',
       type: 'url',
       title: 'API Endpoint',
