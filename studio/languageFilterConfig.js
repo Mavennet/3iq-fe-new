@@ -60,6 +60,7 @@ export default {
     "person",
     "benefity",
     "keyFact",
+    "dailyNav",
     "accordionItem",
     "team",
     "contactUsForm",

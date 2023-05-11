@@ -94,6 +94,7 @@ const hiddenDocTypes = listItem =>
     "product",
     "category",
     "keyFact",
+    "dailyNav",
     "imagesContainer",
     "lineChart",
     "tableSection",
@@ -354,5 +355,6 @@ export default () =>
       S.documentTypeListItem("accordionItem").title("Accordion Item"),
       S.documentTypeListItem("services").title("Services"),
       S.documentTypeListItem("keyFact").title("Key Fact"),
+      S.documentTypeListItem("dailyNav").title("Daily Nav"),
       ...S.documentTypeListItems().filter(hiddenDocTypes)
     ]);
