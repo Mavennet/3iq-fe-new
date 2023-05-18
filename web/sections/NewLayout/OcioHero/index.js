@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from'./styles.module.scss'
+import styles from './styles.module.scss'
 import CssBaseline from '@mui/material/CssBaseline'
 import Typography from '@mui/material/Typography'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { Grid, Container, Modal, Button, Box } from '@mui/material'
+import {createTheme, ThemeProvider} from '@mui/material/styles'
+import {Grid, Container, Modal, Button, Box} from '@mui/material'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../client'
 import RedirectButton from '../../../components/OldLayout/RedirectButton'
-import { AiOutlineClose } from 'react-icons/ai'
+import {AiOutlineClose} from 'react-icons/ai'
 
 const builder = imageUrlBuilder(client)
 
@@ -21,12 +21,12 @@ const theme = createTheme({
     },
     h3: {
       fontSize: 50,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
     },
     h5: {
       fontSize: 20,
-      fontWeight: 'bold'
-    }
+      fontWeight: 'bold',
+    },
   },
 })
 
@@ -35,8 +35,18 @@ function urlFor(source) {
 }
 
 function OcioHero(props) {
-  const {heading, description, backgroundImage, button, isSubscriptionSrcLink, isButtonReverse, currentLanguage } = props
-
+  const {
+    heading,
+    description,
+    backgroundImage,
+    button,
+    isSubscriptionSrcLink,
+    isButtonReverse,
+    currentLanguage,
+    backgroundColor,
+    fontColor,
+  } = props
+  console.log(backgroundColor)
   const [open, setOpen] = React.useState(false)
   const [iframeSelected, setIframeSelected] = React.useState(null)
 
@@ -50,7 +60,7 @@ function OcioHero(props) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: { xs: '95%', md: '60%', lg: '40%' },
+    width: {xs: '95%', md: '60%', lg: '40%'},
     height: 'auto',
     maxWidth: '1024px',
     maxHeight: '95%',
@@ -59,7 +69,7 @@ function OcioHero(props) {
     overflowY: 'scroll',
     border: '8px solid #091B3F',
     p: 2,
-  };
+  }
 
   const localeButton = button && button[currentLanguage?.languageTag]
 
@@ -72,19 +82,34 @@ function OcioHero(props) {
           // backgroundImage &&
           // `url("${urlFor(backgroundImage)
           //   .url()}") no-repeat center center`,
-        backgroundSize: 'cover',
-          bgcolor: '#091b3f',
+          backgroundSize: 'cover',
+          bgcolor: backgroundColor ? backgroundColor : '#091b3f',
           // pt: {lg: 12, xs: 8},
           // pb: {lg: 18, xs: 14},
         }}
       >
-        <Container sx={{ maxWidth: {sm: 'md', lg: 'lg'} }}>
+        <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
           <Grid container spacing={2} pt={3} pb={3}>
             <Grid item xs={12} md={6}>
-            <Typography component="h1" variant="h3" style={{fontWeight: 'bold', color: 'white'}} gutterBottom>
-                {heading && currentLanguage.name === 'EN' ? heading : <div>Découvrez notre 3iQ Outsourced Crypto Investment Office (OCIO<span style={{verticalAlign: "super", fontSize:'large'}} >MC</span>)</div>}
+              <Typography
+                component="h1"
+                variant="h3"
+                style={{fontWeight: 'bold', color: fontColor ? fontColor : 'white'}}
+                gutterBottom
+              >
+                {heading && currentLanguage.name === 'EN' ? (
+                  heading
+                ) : (
+                  <div>
+                    Découvrez notre 3iQ Outsourced Crypto Investment Office (OCIO
+                    <span style={{verticalAlign: 'super', fontSize: 'large'}}>MC</span>)
+                  </div>
+                )}
               </Typography>
-              <div className={styles.simpleBlockContent} style={{color: 'white'}}>
+              <div
+                className={styles.simpleBlockContent}
+                style={{color: fontColor ? fontColor : 'white'}}
+              >
                 {description && <SimpleBlockContent blocks={description} />}
               </div>
             </Grid>
@@ -113,6 +138,8 @@ OcioHero.propTypes = {
   isSubscriptionSrcLink: PropTypes.bool,
   isButtonReverse: PropTypes.bool,
   currentLanguage: PropTypes.object,
+  backgroundColor: PropTypes.string,
+  fontColor: PropTypes.string,
 }
 
 export default OcioHero
