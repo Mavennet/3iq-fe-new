@@ -40,13 +40,11 @@ function OcioHero(props) {
     description,
     backgroundImage,
     button,
-    isSubscriptionSrcLink,
-    isButtonReverse,
     currentLanguage,
     backgroundColor,
     fontColor,
   } = props
-  console.log(backgroundColor)
+
   const [open, setOpen] = React.useState(false)
   const [iframeSelected, setIframeSelected] = React.useState(null)
 
