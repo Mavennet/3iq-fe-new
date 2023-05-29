@@ -23,7 +23,7 @@ function Hero(props) {
     bottomImage,
   } = props
 
-  return sideImage && bottomImage ? (
+  return sideImage || bottomImage ? (
     <Box
       sx={{
         bgcolor: backgroundColor ? backgroundColor : '#091b3f',
