@@ -10,6 +10,8 @@ import * as XLSX from 'xlsx'
 import {RiFileExcel2Line, RiTable2} from 'react-icons/ri'
 import {TfiDownload} from 'react-icons/tfi'
 import {Scrollbars} from 'react-custom-scrollbars-2'
+import client from '../../../client'
+import groq from 'groq'
 
 function TableSection(props) {
   const {
@@ -25,6 +27,7 @@ function TableSection(props) {
     headerFundPerformance,
     downloadFileName,
     languageTag,
+    additionalTableRows,
     _id,
   } = props
 
@@ -51,6 +54,27 @@ function TableSection(props) {
     XLSX.writeFile(workbook, fileName)
     handleClose()
   }
+
+  const groqQuery = `*[_type == "dailyNav" && _id in $ref] | order(priority asc) {
+    dailyNavTitle,
+    columnOne,
+    columnTwo,
+    columnThree
+  }`
+
+  const [tableRow, setTableRows] = React.useState([])
+
+  React.useEffect(() => {
+    const fetchData = async (refs) => {
+      const results = await client.fetch(groqQuery, {ref: refs})
+      setTableRows(results)
+    }
+    if (additionalTableRows && tableRow.length == 0) {
+      let refs = []
+      additionalTableRows.forEach((row) => refs.push(row._ref))
+      fetchData(refs)
+    }
+  }, [])
 
   const submenuStyle = {
     //width: '160px',
@@ -279,7 +303,11 @@ function TableSection(props) {
                       {data.map((item, i) => {
                         const keys = Object.keys(item)
                         return keys.map((item, i) => {
-                          const modifyHeader = item.includes('yr') ? item.replace('yr', 'YR') : item.includes('Ans') ? item.replace('Ans', 'ans') : item
+                          const modifyHeader = item.includes('yr')
+                            ? item.replace('yr', 'YR')
+                            : item.includes('Ans')
+                            ? item.replace('Ans', 'ans')
+                            : item
                           return <th key={i}>{modifyHeader}</th>
                         })
                       })}
@@ -329,6 +357,17 @@ function TableSection(props) {
                       </tr>
                     )
                   })}
+                  {tableRow &&
+                    tableRow.map((item, key) => (
+                      <tr key={key}>
+                        <td>
+                          <strong>{item.dailyNavTitle[currentLanguage?.languageTag]}</strong>
+                        </td>
+                        <td>{item.columnOne[currentLanguage?.languageTag]}</td>
+                        <td>{item.columnTwo[currentLanguage?.languageTag]}</td>
+                        <td>{item.columnThree[currentLanguage?.languageTag]}</td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
               {data[0].dateDaily && (

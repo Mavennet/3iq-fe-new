@@ -1,111 +1,85 @@
-import supportedLanguages from '../../supportedLanguages';
-import { SplitHorizontalIcon } from '@sanity/icons'
+import supportedLanguages from "../../supportedLanguages";
+import { SplitHorizontalIcon } from "@sanity/icons";
 
 const baseLanguage = supportedLanguages.find(l => l.isDefault);
 
 export default {
-  type: 'document',
-  name: 'ocioHero',
-  title: 'Ocio Hero',
+  type: "document",
+  name: "ocioHero",
+  title: "Ocio Hero",
   icon: SplitHorizontalIcon,
   fields: [
     {
-      name: 'heading',
-      type: 'localeString',
-      title: 'Heading (*)',
-      validation: Rule => Rule.error('Information required.').required(),
+      name: "heading",
+      type: "localeString",
+      title: "Heading (*)",
+      validation: Rule => Rule.error("Information required.").required()
     },
     {
-      name: 'description',
-      type: 'localePortableText',
-      title: 'Description',
+      name: "description",
+      type: "localePortableText",
+      title: "Description"
     },
     {
-      name: 'fontColor',
-      type: 'string',
-      title: 'Font color',
-      description: 'Default: #FFF (White)',
+      name: "fontColor",
+      type: "string",
+      title: "Font color",
+      description: "Default: #FFF (White)",
       options: {
         list: [
           { title: "Blue", value: "#0082E5" },
+          { title: "Dark Blue", value: "#091B3F" },
           { title: "Black", value: "#28373C" },
           { title: "Green", value: "#008C86" },
           { title: "Orange", value: "#F59B1E" },
-          { title: "White", value: "#FFFFFF" }
+          { title: "White", value: "#FFFFFF" },
+          { title: "Grey", value: "##ebebeb" }
         ],
         layout: "radio"
       }
     },
     {
-      name: 'backgroundImage',
-      type: 'image',
-      title: 'Background image',
+      name: "backgroundImage",
+      type: "image",
+      title: "Background image",
       options: {
-        hotspot: true,
-      },
+        hotspot: true
+      }
     },
     {
-      name: 'backgroundColor',
-      type: 'string',
-      title: 'Background color',
-      description: 'Default: #091b3f (Blue)',
+      name: "backgroundColor",
+      type: "string",
+      title: "Background color",
+      description: "Default: #091b3f (Blue)",
       options: {
         list: [
           { title: "Blue", value: "#0082E5" },
+          { title: "Dark Blue", value: "#091B3F" },
           { title: "Green", value: "#008C86" },
           { title: "Orange", value: "#F59B1E" },
-          { title: "White", value: "#FFFFFF" }
+          { title: "White", value: "#FFFFFF" },
+          { title: "Grey", value: "##ebebeb" }
         ],
         layout: "radio"
       }
     },
     {
-      name: 'sideImage',
-      type: 'image',
-      title: 'Optional Side Image',
-      options: {
-        hotspot: true,
-      },
-    },
-    {
-      name: 'bottomImage',
-      type: 'image',
-      title: 'Optional Bottom Image',
-      options: {
-        hotspot: true,
-      },
-    },
-    {
-      name: 'button',
-      type: 'localeCta',
-      title: 'Optional button',
-    },
-    {
-      name: 'isSubscriptionSrcLink',
-      type: 'boolean',
-      title: 'Is the button external link a Subscription SRC?',
-      description: 'Enable this option if you inserted a subscription SRC link in the button external link',
-      initialValue: false,
-    },
-    {
-      name: 'isButtonReverse',
-      type: 'boolean',
-      title: 'Reverse button Style?',
-      description: 'Enable this option to invert the button layout',
-      initialValue: false,
-    },
+      name: "button",
+      type: "localeCta",
+      title: "Optional button"
+    }
   ],
   preview: {
     select: {
       title: `heading.${baseLanguage.id}`,
-      media: 'backgroundImage',
+      media: "backgroundImage"
     },
     prepare({ title, media }) {
       return {
         title,
-        subtitle: 'Ocio Hero section',
-        media,
+        subtitle: "Ocio Hero section",
+        media
       };
-    },
-  },
+    }
+  }
 };
