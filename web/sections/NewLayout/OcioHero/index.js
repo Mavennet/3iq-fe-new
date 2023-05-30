@@ -40,9 +40,9 @@ function OcioHero(props) {
     description,
     backgroundImage,
     button,
+    isSubscriptionSrcLink,
+    isButtonReverse,
     currentLanguage,
-    backgroundColor,
-    fontColor,
   } = props
 
   const [open, setOpen] = React.useState(false)
@@ -81,7 +81,7 @@ function OcioHero(props) {
           // `url("${urlFor(backgroundImage)
           //   .url()}") no-repeat center center`,
           backgroundSize: 'cover',
-          bgcolor: backgroundColor ? backgroundColor : '#091b3f',
+          bgcolor: '#091b3f',
           // pt: {lg: 12, xs: 8},
           // pb: {lg: 18, xs: 14},
         }}
@@ -92,22 +92,21 @@ function OcioHero(props) {
               <Typography
                 component="h1"
                 variant="h3"
-                style={{fontWeight: 'bold', color: fontColor ? fontColor : 'white'}}
+                style={{fontWeight: 'bold', color: 'white'}}
                 gutterBottom
               >
                 {heading && currentLanguage.name === 'EN' ? (
                   heading
-                ) : (
+                ) : heading?.includes('OCIO') ? (
                   <div>
                     Découvrez notre 3iQ Outsourced Crypto Investment Office (OCIO
                     <span style={{verticalAlign: 'super', fontSize: 'large'}}>MC</span>)
                   </div>
+                ) : (
+                  heading
                 )}
               </Typography>
-              <div
-                className={styles.simpleBlockContent}
-                style={{color: fontColor ? fontColor : 'white'}}
-              >
+              <div className={styles.simpleBlockContent} style={{color: 'white'}}>
                 {description && <SimpleBlockContent blocks={description} />}
               </div>
             </Grid>
@@ -136,8 +135,6 @@ OcioHero.propTypes = {
   isSubscriptionSrcLink: PropTypes.bool,
   isButtonReverse: PropTypes.bool,
   currentLanguage: PropTypes.object,
-  backgroundColor: PropTypes.string,
-  fontColor: PropTypes.string,
 }
 
 export default OcioHero
