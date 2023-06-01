@@ -230,7 +230,6 @@ function FundsContent(props) {
             key={`fundItem${index}`}
             style={{
               backgroundColor: fundItem.bgColor ? fundItem.bgColor : 'var(--background-color)',
-              paddingTop: '70px',
             }}
           >
             <Container sx={{maxWidth: {sm: 'md', md: 'lg', xl: 'xl'}}}>
