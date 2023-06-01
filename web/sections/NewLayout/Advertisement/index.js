@@ -11,7 +11,7 @@ function Advertisement(props) {
   const localeButton = button[currentLanguage?.languageTag]
 
   const handleClickScrollGrapes = () => {
-    const element = document.getElementById('grapesCta')
+    const element = document.getElementById('onboarding')
     if (element) {
       element.scrollIntoView({behavior: 'smooth'})
     }
@@ -36,7 +36,7 @@ function Advertisement(props) {
           <SimpleBlockContent blocks={text} />
         </Grid>
         <Grid item xs={12} sm={12} md={3} pl={3} pt={{xs: 3, md: 0}}>
-          {localeButton.link === '#grapesCta' && (
+          {localeButton.link === '#onboarding' && (
             <Button
               variant={buttonColor}
               className={`${styles.advertisement__button}`}
@@ -56,7 +56,7 @@ function Advertisement(props) {
               onClick={handleClickScrollCareers}
             />
           )}
-          {(localeButton.link !== '#grapesCta' && localeButton.link !== '#BambooHR') && (
+          {(localeButton.link !== '#onboarding' && localeButton.link !== '#BambooHR') && (
             <Button
               variant={buttonColor}
               className={`${styles.advertisement__button}`}
