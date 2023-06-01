@@ -47,7 +47,7 @@ function HeroFirstVariation(props) {
   }
 
   return (
-    <Container id="grapesCta" sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
+    <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
       <Grid container my={6}>
         <Grid item xs={12}>
           <Box
