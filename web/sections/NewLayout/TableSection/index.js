@@ -315,7 +315,7 @@ function TableSection(props) {
                   </thead>
                 )}
                 <tbody className={colorfulLayout && `${styles.tableColorful} ${typesStyle[color]}`}>
-                  {data.length != 4 &&
+                  {tableRow.length != 4 &&
                     data.map((item, i) => {
                       const values = Object.values(item)
                       const keys = Object.keys(item)
@@ -368,7 +368,7 @@ function TableSection(props) {
                         <td>{item.columnTwo[currentLanguage?.languageTag]}</td>
                         <td>{item.columnThree[currentLanguage?.languageTag]}</td>
                         {/* Add new column - for Global Cryptoasset Fund */}
-                        <td>{data.length == 4 && data[key].Daily}</td>
+                        <td>{tableRow.length == 4 && data[key].Daily}</td>
                       </tr>
                     ))}
                 </tbody>
