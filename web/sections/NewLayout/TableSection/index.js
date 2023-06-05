@@ -315,48 +315,49 @@ function TableSection(props) {
                   </thead>
                 )}
                 <tbody className={colorfulLayout && `${styles.tableColorful} ${typesStyle[color]}`}>
-                  {data.map((item, i) => {
-                    const values = Object.values(item)
-                    const keys = Object.keys(item)
-                    return (
-                      <tr key={i}>
-                        {values.map((item, i) => {
-                          return (
-                            keys[i] !== 'dateDaily' && (
-                              <td key={i}>
-                                <div className={styles.bg}>
-                                  {(keys[i] === 'cad' || keys[i] === 'usd') &&
-                                  parseFloat(item) > 1000
-                                    ? `$ ${parseFloat(item)
-                                        .toFixed(2)
-                                        .toString()
-                                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
-                                    : (keys[i] === 'cad' || keys[i] === 'usd') &&
-                                      parseFloat(item) < 1000
-                                    ? `$ ${parseFloat(item).toFixed(4)}`
-                                    : isDate(item)
-                                    ? convertDate(item)
-                                    : item == 'NAV' && currentLanguage.name != 'EN'
-                                    ? 'VL'
-                                    : item == 'NAVPU' && currentLanguage.name != 'EN'
-                                    ? 'VLPU'
-                                    : item == 'Index value' && currentLanguage.name != 'EN'
-                                    ? 'Valeur De L’index'
-                                    : item == 'Units outstanding' && currentLanguage.name != 'EN'
-                                    ? 'Arts En Circulation'
-                                    : item == 'Market Price' && currentLanguage.name != 'EN'
-                                    ? 'Cours Du Marché'
-                                    : item == 'Inception' && currentLanguage.name != 'EN'
-                                    ? 'Création'
-                                    : item}
-                                </div>
-                              </td>
+                  {data.length != 4 &&
+                    data.map((item, i) => {
+                      const values = Object.values(item)
+                      const keys = Object.keys(item)
+                      return (
+                        <tr key={i}>
+                          {values.map((item, i) => {
+                            return (
+                              keys[i] !== 'dateDaily' && (
+                                <td key={i}>
+                                  <div className={styles.bg}>
+                                    {(keys[i] === 'cad' || keys[i] === 'usd') &&
+                                    parseFloat(item) > 1000
+                                      ? `$ ${parseFloat(item)
+                                          .toFixed(2)
+                                          .toString()
+                                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
+                                      : (keys[i] === 'cad' || keys[i] === 'usd') &&
+                                        parseFloat(item) < 1000
+                                      ? `$ ${parseFloat(item).toFixed(4)}`
+                                      : isDate(item)
+                                      ? convertDate(item)
+                                      : item == 'NAV' && currentLanguage.name != 'EN'
+                                      ? 'VL'
+                                      : item == 'NAVPU' && currentLanguage.name != 'EN'
+                                      ? 'VLPU'
+                                      : item == 'Index value' && currentLanguage.name != 'EN'
+                                      ? 'Valeur De L’index'
+                                      : item == 'Units outstanding' && currentLanguage.name != 'EN'
+                                      ? 'Arts En Circulation'
+                                      : item == 'Market Price' && currentLanguage.name != 'EN'
+                                      ? 'Cours Du Marché'
+                                      : item == 'Inception' && currentLanguage.name != 'EN'
+                                      ? 'Création'
+                                      : item}
+                                  </div>
+                                </td>
+                              )
                             )
-                          )
-                        })}
-                      </tr>
-                    )
-                  })}
+                          })}
+                        </tr>
+                      )
+                    })}
                   {tableRow &&
                     tableRow.map((item, key) => (
                       <tr key={key}>
@@ -366,6 +367,8 @@ function TableSection(props) {
                         <td>{item.columnOne[currentLanguage?.languageTag]}</td>
                         <td>{item.columnTwo[currentLanguage?.languageTag]}</td>
                         <td>{item.columnThree[currentLanguage?.languageTag]}</td>
+                        {/* Add new column - for Global Cryptoasset Fund */}
+                        <td>{data.length == 4 && data[key].Daily}</td>
                       </tr>
                     ))}
                 </tbody>
