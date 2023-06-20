@@ -148,7 +148,6 @@ function TabMenu(props) {
           )}
         </TabPanel>
       </Container>
-      {console.log(tabMenus[0]?.newTabItems)}
     </Box>
   )
 }
