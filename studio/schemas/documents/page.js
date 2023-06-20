@@ -38,6 +38,7 @@ export default {
             { type: "post" },
             { type: "newsCard" },
             { type: "automatedNewsCard" },
+            { type: "tabMenu" },
             { type: "automatedArticles" },
             { type: "automatedLatest" },
             { type: "readMoreCard" },
@@ -94,13 +95,13 @@ export default {
             { type: "imageBesideText" },
             { type: "overflowHero" },
             { type: "articles" },
-            { type: "howWePartnerClients"},
-            { type: "serviceAndSolutions"},
-            { type: "ocioServices"},
+            { type: "howWePartnerClients" },
+            { type: "serviceAndSolutions" },
+            { type: "ocioServices" },
             { type: "why3iQ" },
             { type: "ocioHero" },
-            { type: "textAndThreeImages"},
-            { type: "textAndFourImages"}
+            { type: "textAndThreeImages" },
+            { type: "textAndFourImages" }
           ]
         }
       ]
