@@ -80,6 +80,7 @@ function TabMenu(props) {
     }
   }
   // End here
+  
   const createSection = (content) => {
     const contentWithDefaultLanguage = []
     content &&
