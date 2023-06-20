@@ -1,16 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  Container,
-  Typography,
-  Box,
-  Tabs,
-  Tab,
-  useMediaQuery,
-  useTheme,
-  IconButton,
-} from '@mui/material'
-import {ChevronLeft, ChevronRight} from '@mui/icons-material'
+import {Container, Typography, Box, Tabs, Tab, useMediaQuery, useTheme} from '@mui/material'
 import client from '../../../client'
 import RenderSections from '../../../components/RenderSections'
 import {useState, useEffect} from 'react'
@@ -103,20 +93,11 @@ function TabMenu(props) {
     padding: '20px',
     justifyContent: isMobile ? 'flex-start' : 'space-evenly', // Adjust alignment for mobile devices
     overflowX: isMobile ? 'auto' : 'unset', // Allow horizontal scrolling on mobile
-    position: 'relative', // Position relative for arrow icons
   }
 
   const tabItemStyle = {
     margin: '0 40px', // Add spacing between the tab items
   }
-  
-const arrowButtonStyle = {
-  position: 'absolute',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  color: 'white',
-}
-
   return (
     <Box pt={12}>
       <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
@@ -127,7 +108,7 @@ const arrowButtonStyle = {
             aria-label="basic tabs example"
             centered={true} // Center the tabs on non-mobile devices
             sx={tabsContainerStyle}
-            variant={isMobile ? 'scrollable' : null}
+            variant={isMobile ? "scrollable" : null}
             scrollButtons="auto"
           >
             <Tab
@@ -150,26 +131,6 @@ const arrowButtonStyle = {
               sx={tabItemStyle}
             />
           </Tabs>
-          {isMobile && (
-            <IconButton
-              aria-label="Previous Tab"
-              onClick={() => handleChange(null, value - 1)}
-              disabled={value === 0}
-              sx={{...arrowButtonStyle, left: 0}}
-            >
-              <ChevronLeft />
-            </IconButton>
-          )}
-          {isMobile && (
-            <IconButton
-              aria-label="Next Tab"
-              onClick={() => handleChange(null, value + 1)}
-              disabled={value === tabMenus[0]?.newTabItems.length - 1}
-              sx={{...arrowButtonStyle, right: 0}}
-            >
-              <ChevronRight />
-            </IconButton>
-          )}
         </Box>
         <TabPanel value={value} index={0}>
           {tabMenus[0]?.newTabItems[0].pageSections && (
