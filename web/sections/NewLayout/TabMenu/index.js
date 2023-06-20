@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Container, Typography, Box, Tabs, Tab} from '@mui/material'
+import {Container, Typography, Box, Tabs, Tab, useMediaQuery, useTheme} from '@mui/material'
 import client from '../../../client'
 import RenderSections from '../../../components/RenderSections'
 import {useState, useEffect} from 'react'
@@ -8,6 +8,8 @@ import {useState, useEffect} from 'react'
 function TabMenu(props) {
   const {name, newTabItems, currentLanguage, currentCountry} = props
   const [tabMenus, setTabMenus] = useState([])
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   useEffect(() => {
     const fetchTabMenus = async () => {
@@ -89,7 +91,8 @@ function TabMenu(props) {
   const tabsContainerStyle = {
     backgroundColor: '#28373c',
     padding: '20px',
-    justifyContent: 'space-evenly', // Evenly space the tab items
+    justifyContent: isMobile ? 'flex-start' : 'space-evenly', // Adjust alignment for mobile devices
+    overflowX: isMobile ? 'auto' : 'unset', // Allow horizontal scrolling on mobile
   }
 
   const tabItemStyle = {
@@ -103,8 +106,10 @@ function TabMenu(props) {
             value={value}
             onChange={handleChange}
             aria-label="basic tabs example"
-            centered
+            centered={true} // Center the tabs on non-mobile devices
             sx={tabsContainerStyle}
+            variant={isMobile ? "scrollable" : null}
+            scrollButtons="auto"
           >
             <Tab
               label={tabMenus[0]?.newTabItems[0].name[currentLanguage.languageTag]}
