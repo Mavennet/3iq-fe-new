@@ -241,6 +241,7 @@ function FundsContent(props) {
                     </h2>
                   </Grid>
                 )}
+                {console.log('fundItem', fundItem)}
                 {fundItem.fundSections && (
                   <RenderSections
                     sections={createSection(fundItem.fundSections)}

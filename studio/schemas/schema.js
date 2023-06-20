@@ -121,6 +121,8 @@ import localeBioPortableText from "./objects/locale/localeBioPortableText";
 import localeFigure from "./objects/locale/localeFigure";
 import accordionText from "./documents/sections/accordionText";
 import why3iQ from "./documents/sections/why3iQ";
+import newTabItem from './documents/sections/newTabItem';
+import tabMenu from './documents/sections/tabMenu';
 
 export default createSchema({
   name: "default",
@@ -133,6 +135,8 @@ export default createSchema({
     link,
     mailchimp,
     advertisement,
+    tabMenu,
+    newTabItem,
     mainHero,
     podcasts,
     search,

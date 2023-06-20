@@ -64,9 +64,14 @@ export default {
       }
     },
     {
-      name: "button",
+      name: "buttonOne",
       type: "localeCta",
-      title: "Optional button"
+      title: "Optional button One"
+    },
+    {
+      name: "buttonTwo",
+      type: "localeCta",
+      title: "Optional button Two"
     }
   ],
   preview: {

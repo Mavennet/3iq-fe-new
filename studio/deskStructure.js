@@ -101,6 +101,8 @@ const hiddenDocTypes = listItem =>
     "tableCripto",
     "articles",
     "why3iQ",
+    "tabMenu",
+    "newTabItem",
     "howWePartnerClients",
     "serviceAndSolutions",
     "ocioServices",
@@ -239,6 +241,7 @@ export default () =>
               S.documentTypeListItem("textSeparator").title("Text Separator"),
               S.documentTypeListItem("timeline").title("Timeline"),
               S.documentTypeListItem("why3iQ").title("Why 3iQ"),
+              S.documentTypeListItem("tabMenu").title("Tab Menu"),
               S.documentTypeListItem("howWePartnerClients").title(
                 "How We Partner Clients"
               ),

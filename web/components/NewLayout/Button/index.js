@@ -21,6 +21,8 @@ function Button(props) {
     link,
     target,
     className,
+    marginLeft,
+    marginRight,
   } = props
 
   const typesStyle = {
@@ -31,6 +33,11 @@ function Button(props) {
     outlined: styles.button__outlined,
     outlinedBlack: styles.button__outlined__black,
     outlinedWhite: styles.button__outlined__white,
+  }
+
+  const buttonStyle = {
+    marginLeft: marginLeft ? `${marginLeft}px` : null,
+    marginRight: marginRight ? `${marginRight}px` : null,
   }
 
   if (route && route.slug && route.slug.current) {
@@ -46,6 +53,7 @@ function Button(props) {
           <button
             className={`${styles.button} ${typesStyle[variant]} ${size} ${className}`}
             disabled={disabled}
+            style={buttonStyle}
           >
             {redirectArrowLeft && <BsBoxArrowUpRight className={styles.redirect__arrow__left} />}
             {map && <BiMap className={styles.map} />}
@@ -64,6 +72,7 @@ function Button(props) {
         <button
           className={`${styles.button} ${typesStyle[variant]} ${size} ${className}`}
           disabled={disabled}
+          style={buttonStyle}
         >
           {redirectArrowLeft && <BsBoxArrowUpRight className={styles.redirect__arrow__left} />}
           {map && <BiMap className={styles.map} />}
@@ -80,6 +89,7 @@ function Button(props) {
       className={`${styles.button} ${typesStyle[variant]} ${size} ${className}`}
       disabled={disabled}
       onClick={onClick}
+      style={buttonStyle}
     >
       {redirectArrowLeft && <BsBoxArrowUpRight className={styles.redirect__arrow__left} />}
       {map && <BiMap className={styles.map} />}
@@ -105,6 +115,8 @@ Button.propTypes = {
   link: PropTypes.string,
   target: PropTypes.string,
   className: PropTypes.string,
+  marginLeft: PropTypes.number,
+  marginRight: PropTypes.number,
 }
 
 export default Button
