@@ -10,7 +10,6 @@ import {
   useTheme,
   IconButton,
 } from '@mui/material'
-import {ChevronLeft, ChevronRight} from '@mui/icons-material'
 import client from '../../../client'
 import RenderSections from '../../../components/RenderSections'
 import {useState, useEffect} from 'react'
@@ -157,7 +156,6 @@ const arrowButtonStyle = {
               disabled={value === 0}
               sx={{...arrowButtonStyle, left: 0}}
             >
-              <ChevronLeft />
             </IconButton>
           )}
           {isMobile && (
@@ -167,7 +165,6 @@ const arrowButtonStyle = {
               disabled={value === tabMenus[0]?.newTabItems.length - 1}
               sx={{...arrowButtonStyle, right: 0}}
             >
-              <ChevronRight />
             </IconButton>
           )}
         </Box>
