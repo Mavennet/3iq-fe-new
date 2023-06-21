@@ -9,7 +9,7 @@ function TabMenu(props) {
   const {name, newTabItems, currentLanguage, currentCountry} = props
   const [tabMenus, setTabMenus] = useState([])
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   useEffect(() => {
     const fetchTabMenus = async () => {
@@ -78,7 +78,7 @@ function TabMenu(props) {
   }
 
   const tabStyle = {
-    fontSize: '20px',
+    fontSize: isMobile ? '15px' : '20px',
     textTransform: 'none',
     color: 'white',
     fontWeight: 'normal', // Default font weight
@@ -96,7 +96,7 @@ function TabMenu(props) {
   }
 
   const tabItemStyle = {
-    margin: '0 40px', // Add spacing between the tab items
+    margin: '0 0px', // Add spacing between the tab items
   }
   return (
     <Box pt={12}>
