@@ -4,12 +4,11 @@ import styles from './styles.module.scss'
 import CssBaseline from '@mui/material/CssBaseline'
 import Typography from '@mui/material/Typography'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
-import {Grid, Container, Modal, Button, Box} from '@mui/material'
+import {Grid, Container, Modal, Box} from '@mui/material'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import imageUrlBuilder from '@sanity/image-url'
 import client from '../../../client'
-import RedirectButton from '../../../components/OldLayout/RedirectButton'
-import {AiOutlineClose} from 'react-icons/ai'
+import Button from '../../../components/NewLayout/Button'
 
 const builder = imageUrlBuilder(client)
 
@@ -35,15 +34,7 @@ function urlFor(source) {
 }
 
 function OcioHero(props) {
-  const {
-    heading,
-    description,
-    backgroundImage,
-    button,
-    isSubscriptionSrcLink,
-    isButtonReverse,
-    currentLanguage,
-  } = props
+  const {heading, description, backgroundImage, buttonOne, buttonTwo, currentLanguage} = props
 
   const [open, setOpen] = React.useState(false)
   const [iframeSelected, setIframeSelected] = React.useState(null)
@@ -69,7 +60,8 @@ function OcioHero(props) {
     p: 2,
   }
 
-  const localeButton = button && button[currentLanguage?.languageTag]
+  const localeButtonOne = buttonOne && buttonOne[currentLanguage?.languageTag]
+  const localeButtonTwo = buttonTwo && buttonTwo[currentLanguage?.languageTag]
 
   return (
     <ThemeProvider theme={theme}>
@@ -109,6 +101,21 @@ function OcioHero(props) {
               <div className={styles.simpleBlockContent} style={{color: 'white'}}>
                 {description && <SimpleBlockContent blocks={description} />}
               </div>
+              <Box display="flex" justifyContent="left">
+                {localeButtonOne && (localeButtonOne.route || localeButtonOne.link) && (
+                  <Button
+                    {...localeButtonOne}
+                    title={localeButtonOne.title}
+                    marginRight={10}
+                  />
+                )}
+                {localeButtonTwo && (localeButtonTwo.route || localeButtonTwo.link) && (
+                  <Button
+                    {...localeButtonTwo}
+                    title={localeButtonTwo.title}
+                  />
+                )}
+              </Box>
             </Grid>
             <Grid alignSelf={'center'} item xs={12} md={6}>
               <Box
