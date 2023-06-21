@@ -41,7 +41,6 @@ function TabMenu(props) {
         console.error('Error fetching tab menus:', error)
       }
     }
-
     fetchTabMenus()
   }, [])
 
