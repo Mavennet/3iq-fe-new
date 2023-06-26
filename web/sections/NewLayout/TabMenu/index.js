@@ -89,7 +89,7 @@ function TabMenu(props) {
   }
 
   const tabsContainerStyle = {
-    backgroundColor: '#28373c',
+    backgroundColor: '#091b3f',
     padding: '20px',
     justifyContent: isMobile ? 'flex-start' : 'space-evenly', // Adjust alignment for mobile devices
     overflowX: isMobile ? 'auto' : 'unset', // Allow horizontal scrolling on mobile
