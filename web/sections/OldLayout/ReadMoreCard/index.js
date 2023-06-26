@@ -34,7 +34,15 @@ function urlFor(source) {
 }
 
 function ReadMoreCard(props) {
-  const {button, heading, backgroundImage, description, currentLanguage} = props
+  const {
+    button,
+    heading,
+    backgroundImage,
+    description,
+    currentLanguage,
+    backgroundColor,
+    isInvertedLayout,
+  } = props
 
   const localeButton = button[currentLanguage?.languageTag]
 
@@ -63,14 +71,23 @@ function ReadMoreCard(props) {
   )
 
   const page = (
-    <Grid container component="main">
+    <Grid
+      container
+      component="main"
+      sx={{
+        flexDirection: {
+          xs: 'column-reverse',
+          md: !isInvertedLayout ? 'unset' : 'row-reverse',
+        },
+      }}
+    >
       {mobile && heroImage}
       <Grid item xs={12} sm={8} md={6} elevation={6} square>
         <Box
           sx={{
             mt: mobile ? 5 : 15,
             mb: mobile ? 12 : 15,
-            ml: {xs: 0, md: 'auto'},
+            ml: {xs: 0, md: isInvertedLayout ? 15 : 'auto'},
             mr: {xs: 0, md: 15},
             display: 'flex',
             flexDirection: 'column',
@@ -107,11 +124,11 @@ function ReadMoreCard(props) {
             </Typography>
           )}
           <Box>
-          {description && (
-            <Box className={styles.simpleBlockContent}>
-              <SimpleBlockContent blocks={description} />
-            </Box>
-          )}
+            {description && (
+              <Box className={styles.simpleBlockContent}>
+                <SimpleBlockContent blocks={description} />
+              </Box>
+            )}
           </Box>
           <Box
             sx={{
@@ -156,8 +173,8 @@ function ReadMoreCard(props) {
             backgroundImage.asset._ref &&
             `url("${urlFor(backgroundImage.asset._ref).url()}") no-repeat`,
           backgroundSize: '50% 100%',
-          backgroundPosition: 'right',
-          bgcolor: '#EBEBEB',
+          backgroundPosition: isInvertedLayout ? 'left' : 'right', // Align the background image to the right if isInvertedLayout is true
+          bgcolor: backgroundColor,
         }}
       >
         {!mobile && <Container sx={{maxWidth: {sm: 'md', lg: 'lg', xl: 'xl'}}}>{page}</Container>}
