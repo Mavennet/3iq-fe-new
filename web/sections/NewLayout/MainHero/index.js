@@ -14,6 +14,7 @@ import Rotating3DLogo from '../Rotating3DLogo'
 import Image from 'next/image'
 import {Carousel} from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css' // requires a loader
+import {RiBuilding2Fill} from 'react-icons/ri'
 
 function urlFor(source) {
   return imageUrlBuilder(client).image(source)
@@ -99,7 +100,7 @@ function MainHero(props) {
       <a>
         <div className={styles.box__main__hero}>
           <div className={styles.box__title}>
-            <SiAlgorand />
+            <RiBuilding2Fill />
             {thirdBoxTitle && <h5>{thirdBoxTitle}</h5>}
           </div>
           {thirdBoxDescription && <p>{thirdBoxDescription}</p>}
@@ -182,7 +183,13 @@ function MainHero(props) {
           </Grid>
         </Grid>
         {mobile && (
-          <Carousel infiniteLoop="true" swipeable={true} showThumbs={false} showStatus={false} showArrows={false}>
+          <Carousel
+            infiniteLoop="true"
+            swipeable={true}
+            showThumbs={false}
+            showStatus={false}
+            showArrows={false}
+          >
             <div className={styles.box__container}>{firstLink}</div>
             <div className={styles.box__container}>{secondLink}</div>
             <div className={styles.box__container}>{thirdLink}</div>
@@ -234,7 +241,7 @@ function MainHero(props) {
               <a>
                 <div className={styles.box__main__hero}>
                   <div className={styles.box__title}>
-                    <SiAlgorand />
+                    <RiBuilding2Fill />
                     {thirdBoxTitle && <h5>{thirdBoxTitle}</h5>}
                   </div>
                   {thirdBoxDescription && <p>{thirdBoxDescription}</p>}
