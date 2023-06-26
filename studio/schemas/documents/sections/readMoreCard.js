@@ -48,7 +48,7 @@ export default {
       type: "boolean",
       title: "Invert layout?",
       description:
-        "Enable this option to invert the content and show the image on the right side",
+        "Enable this option to invert the content and show the image on the left side",
       initialValue: false
     }
   ],
