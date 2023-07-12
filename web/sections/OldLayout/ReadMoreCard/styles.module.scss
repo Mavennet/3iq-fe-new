@@ -1,5 +1,3 @@
-@import '../../../styles/custom-media.css';
-
 .simpleBlockContent {
   padding: 0 1em 0 0;
 }
@@ -47,4 +45,16 @@
 
 .simpleBlockContent a:hover {
   text-decoration: underline;
+}
+
+@media screen and (min-width: 960px) {
+  .heroImage {
+    background-position: right center;
+  }
+}
+
+@media screen and (max-width: 959px) {
+  .heroImage {
+    background-position: center center;
+  }
 }
