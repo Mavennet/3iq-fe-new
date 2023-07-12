@@ -59,7 +59,7 @@ function ReadMoreCard(props) {
         background:
           backgroundImage.asset._ref &&
           `url("${urlFor(backgroundImage.asset._ref).url()}") no-repeat center center`,
-        backgroundSize: 'cover',
+        backgroundSize: 'contain', 
         bgcolor: '#091b3f',
         display: 'flex',
         flexDirection: 'column',
