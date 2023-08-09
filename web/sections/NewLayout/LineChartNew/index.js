@@ -153,7 +153,7 @@ function LineChart(props) {
 
   return (
     <Grid item xs={mobileSize} md={desktopSize} py={6} sx={{fontFamily: 'Europa'}}>
-      <Grid container sx={{flexDirection: 'unset'}}>
+      <Grid id={heading} container sx={{flexDirection: 'unset'}}>
         {heading && (
           <Grid item mb={4}>
             <Typography

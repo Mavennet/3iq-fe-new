@@ -152,7 +152,7 @@ function TableSection(props) {
 
   return (
     <Container sx={{maxWidth: {sm: 'md', md: 'lg', lg: 'xl'}}}>
-      <Grid container my={6}>
+      <Grid container my={6} id={heading}>
         {heading && (
           <Grid
             item
@@ -165,6 +165,7 @@ function TableSection(props) {
             }}
           >
             <Typography
+              id={heading}
               variant="h2"
               mb={!downloadButton && 4}
               sx={{

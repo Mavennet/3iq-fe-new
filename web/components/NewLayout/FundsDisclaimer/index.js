@@ -9,7 +9,7 @@ function FundsDisclaimer(props) {
   return (
     <section id={styles.disclaimer__section}>
       <Container sx={{py:6, px: 3}}>
-        <h2 className={styles.heading}>{heading}</h2>
+        <h2 id={heading} className={styles.heading}>{heading}</h2>
         <div className={styles.portable__text}>
           <SimpleBlockContent blocks={portableText}></SimpleBlockContent>
           <div className={styles.shadow}></div>

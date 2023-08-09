@@ -24,55 +24,49 @@ function HeroSailGP(props) {
         pb: 2,
       }}
     >
-      <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
+      <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
         <Box
           sx={{
             position: 'relative',
             background:
-              backgroundImage &&
-              `url("${urlFor(backgroundImage)
-                .url()}") no-repeat center center`,
+              backgroundImage && `url("${urlFor(backgroundImage).url()}") no-repeat center center`,
             backgroundSize: 'cover',
             px: 5,
             mx: 2,
-            minHeight: { xs: '250px', sm: '400px', md: 'auto', },
-            mt: { xs: 5, md: 0 }
+            minHeight: {xs: '250px', sm: '400px', md: 'auto'},
+            mt: {xs: 5, md: 0},
           }}
         >
           <Grid container>
             <Grid item xs={12} md={6} my={4}>
-              <h2 className={styles.heading}>{heading}</h2>
-              <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+              <h2 id={heading} className={styles.heading}>
+                {heading}
+              </h2>
+              <Box sx={{display: {xs: 'none', md: 'block'}}}>
                 <div className={styles.simple__block__content}>
                   {description && <SimpleBlockContent blocks={description} />}
                 </div>
-                {localeButton && (localeButton.route || localeButton.link) &&
-                  (
-                    <Button
-                      variant={'solidOrange'}
-                      className={styles.button}
-                      {...localeButton}
-                    ></Button>
-                  )}
+                {localeButton && (localeButton.route || localeButton.link) && (
+                  <Button
+                    variant={'solidOrange'}
+                    className={styles.button}
+                    {...localeButton}
+                  ></Button>
+                )}
               </Box>
             </Grid>
           </Grid>
         </Box>
       </Container>
-      <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' }, display: { xs: 'block', md: 'none' } }}>
+      <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}, display: {xs: 'block', md: 'none'}}}>
         <Grid container>
           <Grid item xs={12} md={6} mx={2}>
             <div className={styles.simple__block__content}>
               {description && <SimpleBlockContent blocks={description} />}
             </div>
-            {localeButton && (localeButton.route || localeButton.link) &&
-              (
-                <Button
-                  variant={'solidOrange'}
-                  className={styles.button}
-                  {...localeButton}
-                ></Button>
-              )}
+            {localeButton && (localeButton.route || localeButton.link) && (
+              <Button variant={'solidOrange'} className={styles.button} {...localeButton}></Button>
+            )}
           </Grid>
         </Grid>
       </Container>

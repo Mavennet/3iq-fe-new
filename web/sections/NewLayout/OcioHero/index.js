@@ -82,6 +82,7 @@ function OcioHero(props) {
           <Grid container spacing={2} pt={3} pb={3}>
             <Grid item xs={12} md={6}>
               <Typography
+                id={heading}
                 component="h1"
                 variant="h3"
                 style={{fontWeight: 'bold', color: 'white'}}
@@ -103,17 +104,10 @@ function OcioHero(props) {
               </div>
               <Box display="flex" justifyContent="left">
                 {localeButtonOne && (localeButtonOne.route || localeButtonOne.link) && (
-                  <Button
-                    {...localeButtonOne}
-                    title={localeButtonOne.title}
-                    marginRight={10}
-                  />
+                  <Button {...localeButtonOne} title={localeButtonOne.title} marginRight={10} />
                 )}
                 {localeButtonTwo && (localeButtonTwo.route || localeButtonTwo.link) && (
-                  <Button
-                    {...localeButtonTwo}
-                    title={localeButtonTwo.title}
-                  />
+                  <Button {...localeButtonTwo} title={localeButtonTwo.title} />
                 )}
               </Box>
             </Grid>

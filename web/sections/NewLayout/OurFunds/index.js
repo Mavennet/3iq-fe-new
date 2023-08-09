@@ -62,8 +62,9 @@ function renderCards(items, languageTag) {
 
     return (
       <Box
+        id={item.localeHeading[languageTag].trim()}
         sx={{
-          minWidth: {sm: '500px', xs: '300px'}
+          minWidth: {sm: '500px', xs: '300px'},
         }}
         className={item.cardColor ? cardStyles[item.cardColor].card : cardStyles[0].card}
       >
@@ -165,6 +166,7 @@ function OurFunds(props) {
       <Container sx={{maxWidth: {sm: 'md', md: 'lg', lg: 'xl'}}}>
         <Grid container mb={4}>
           <Grid
+            id={heading}
             item
             xs={12}
             sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}

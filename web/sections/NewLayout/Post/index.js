@@ -256,6 +256,7 @@ function Post(props) {
                         >
                           <a className={styles.no__decoration}>
                             <Typography
+                              id={item.post?.localeHeading?.[currentLanguage.languageTag]}
                               component="h5"
                               variant="h5"
                               sx={{

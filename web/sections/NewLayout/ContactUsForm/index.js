@@ -140,7 +140,7 @@ function ContactUsForm(props) {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item md={6} xs={12} order={{md: 2, xs: 1}} sx={{height: '960px'}}>
+      <Grid id={heading} item md={6} xs={12} order={{md: 2, xs: 1}} sx={{height: '960px'}}>
         <Grid container pt={5} pl={{md: 11, xs: 2}} sx={{height: '200px'}}>
           <Grid item xs={12}>
             <h3>{heading}</h3>

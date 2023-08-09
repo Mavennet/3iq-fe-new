@@ -48,7 +48,7 @@ function Why3iQ(props) {
   return (
     <Box pt={12}>
       <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
-        <Grid container>
+        <Grid id={name} container>
           <Grid item xs={12}>
             <Typography
               variant="h2"

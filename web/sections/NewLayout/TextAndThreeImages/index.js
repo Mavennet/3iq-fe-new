@@ -72,16 +72,22 @@ function TextAndThreeImages(props) {
           // backgroundImage &&
           // `url("${urlFor(backgroundImage)
           //   .url()}") no-repeat center center`,
-        backgroundSize: 'cover',
+          backgroundSize: 'cover',
           bgcolor: '#fff',
           // pt: {lg: 12, xs: 8},
           // pb: {lg: 18, xs: 14},
         }}
       >
-        <Container sx={{ maxWidth: {sm: 'md', lg: 'lg'}, pt: 10, pb: 5 }}>
+        <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}, pt: 10, pb: 5}}>
           <Grid container spacing={2}>
-            <Grid item >
-            <Typography component="h1" variant="h3" style={{fontWeight: 'bold', color: 'black'}} gutterBottom>
+            <Grid item>
+              <Typography
+                id={heading}
+                component="h1"
+                variant="h3"
+                style={{fontWeight: 'bold', color: 'black'}}
+                gutterBottom
+              >
                 {heading}
               </Typography>
               <div className={styles.simpleBlockContent} style={{color: 'black'}}>
@@ -90,15 +96,15 @@ function TextAndThreeImages(props) {
             </Grid>
           </Grid>
           <Grid alignSelf={'center'} item xs={12} md={6}>
-              <Box
-                component="img"
-                sx={{
-                  width: '100%',
-                }}
-                alt={backgroundImage.alt}
-                src={builder.image(backgroundImage).url()}
-              />
-            </Grid>
+            <Box
+              component="img"
+              sx={{
+                width: '100%',
+              }}
+              alt={backgroundImage.alt}
+              src={builder.image(backgroundImage).url()}
+            />
+          </Grid>
         </Container>
       </Box>
     </ThemeProvider>

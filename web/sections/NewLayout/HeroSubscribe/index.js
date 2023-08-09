@@ -55,7 +55,9 @@ function HeroSubscribe(props) {
           <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
             <Grid container>
               <Grid item xs={12}>
-                <h1 className={styles.heading}>{heading}</h1>
+                <h1 id={heading} className={styles.heading}>
+                  {heading}
+                </h1>
                 <div className={styles.simpleBlockContent}>
                   {description && <SimpleBlockContent blocks={description} />}
                 </div>

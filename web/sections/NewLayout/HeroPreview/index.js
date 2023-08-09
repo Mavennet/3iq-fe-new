@@ -94,7 +94,7 @@ function HeroPreview(props) {
               </Box>
             )}
             {currentLanguage.name === 'EN' && (
-              <div className={styles.image}>
+              <div id={heading} className={styles.image}>
                 <Box
                   component="img"
                   sx={{

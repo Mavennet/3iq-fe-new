@@ -109,7 +109,7 @@ function HeroNft(props) {
             justifyContent: 'flex-end',
           }}
         >
-          <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
+          <Container id={heading} sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
             <Grid container>
               <Grid item xs={12}>
                 <h1 className={styles.heading}>{heading}</h1>

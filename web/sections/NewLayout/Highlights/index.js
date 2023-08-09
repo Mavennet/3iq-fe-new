@@ -105,25 +105,33 @@ function Highlights(props) {
   }, [])
 
   return (
-    <Container sx={{ maxWidth: { sm: 'md', lg: 'lg', xl: 'xl' } }}>
-      <Grid container pt={10}>
-        <Grid item xs={12} mb={4} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', flexWrap: 'wrap' }}>
-          {
-            heading && (
-              <Typography
-                variant="h2"
-                mb={{ xs: 4, md: 0 }}
-                sx={{
-                  fontFamily: 'var(--font-family-primary)',
-                  fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
-                  color: 'var(--black)',
-                }}
-              >
-                {heading}
-              </Typography>
-            )
-          }
-          <Box sx={{ display: 'flex', gap: 2 }}>
+    <Container sx={{maxWidth: {sm: 'md', lg: 'lg', xl: 'xl'}}}>
+      <Grid id='highlights' container pt={10}>
+        <Grid
+          item
+          xs={12}
+          mb={4}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'end',
+            flexWrap: 'wrap',
+          }}
+        >
+          {heading && (
+            <Typography
+              variant="h2"
+              mb={{xs: 4, md: 0}}
+              sx={{
+                fontFamily: 'var(--font-family-primary)',
+                fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
+                color: 'var(--black)',
+              }}
+            >
+              {heading}
+            </Typography>
+          )}
+          <Box sx={{display: 'flex', gap: 2}}>
             {firstLocaleButton && (
               <Button
                 variant={'outlinedBlack'}
@@ -145,34 +153,25 @@ function Highlights(props) {
           </Box>
         </Grid>
       </Grid>
-      <Grid container spacing={{ xs: 0, md: 3 }} sx={{ alignItems: {xs: 'flex-start', md: 'stretch'} }}>
+      <Grid container spacing={{xs: 0, md: 3}} sx={{alignItems: {xs: 'flex-start', md: 'stretch'}}}>
         <Grid item xs={12} lg={8}>
           {videoSrc && (
             <iframe
-            width="100%"
-            height="100%"
-            src={videoSrc}
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
-            allowfullscreen
-          ></iframe>
+              width="100%"
+              height="100%"
+              src={videoSrc}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
+              allowfullscreen
+            ></iframe>
           )}
         </Grid>
-        <Grid item xs={12} lg={4} sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'stretch' }}>
-          {
-            articles && (
-              articles.map((item, i) => {
-                return (
-                  <ArticleText
-                    {...item}
-                    currentLanguage={currentLanguage}
-                    number={i}
-                  />
-                )
-              })
-            )
-          }
+        <Grid item xs={12} lg={4} sx={{display: 'flex', flexWrap: 'wrap', alignItems: 'stretch'}}>
+          {articles &&
+            articles.map((item, i) => {
+              return <ArticleText {...item} currentLanguage={currentLanguage} number={i} />
+            })}
         </Grid>
       </Grid>
     </Container>

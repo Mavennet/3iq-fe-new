@@ -78,7 +78,7 @@ function TextAndThreeImages(props) {
           // pb: {lg: 18, xs: 14},
         }}
       >
-        <Container sx={{ maxWidth: {sm: 'md', lg: 'lg'} }}>
+        <Container id={heading} sx={{ maxWidth: {sm: 'md', lg: 'lg'} }}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
             <Typography component="h1" variant="h3" style={{fontWeight: 'bold', color: 'white'}} gutterBottom>

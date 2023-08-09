@@ -48,7 +48,9 @@ function ArticleText(props) {
             color: 'var(--black)',
           }}
         >
-          <strong className={styles.blue}>{post?.categories[0]?.localeName[currentLanguage.languageTag] + ' '}</strong>
+          <strong className={styles.blue}>
+            {post?.categories[0]?.localeName[currentLanguage.languageTag] + ' '}
+          </strong>
           {byLocaleText} {post?.author?.name}
         </Typography>
       )}
@@ -56,12 +58,13 @@ function ArticleText(props) {
         <Link
           href={{
             pathname: `/${post?.localeHeading[currentLanguage.languageTag]}`,
-            query: { slug: route.slug.current },
+            query: {slug: route.slug.current},
           }}
           as={`/${route.slug.current}`}
         >
           <a className={styles.noDecoration}>
             <Typography
+              id={post?.localeHeading[currentLanguage.languageTag]}
               component="h2"
               variant="h2"
               my={2}

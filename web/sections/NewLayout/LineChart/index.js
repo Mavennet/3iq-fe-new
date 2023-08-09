@@ -146,8 +146,8 @@ function LineChart(props) {
   }, [data])
 
   return (
-    <Grid item xs={mobileSize} md={desktopSize} py={6} sx={{ fontFamily: 'Europa' }}>
-      <Grid container sx={{ flexDirection: 'unset' }}>
+    <Grid item xs={mobileSize} md={desktopSize} py={6} sx={{fontFamily: 'Europa'}}>
+      <Grid id={heading} container sx={{flexDirection: 'unset'}}>
         {heading && (
           <Grid item mb={4}>
             <Typography
@@ -163,10 +163,10 @@ function LineChart(props) {
           </Grid>
         )}
         {data && (
-          <Grid item xs={12} mb={4} sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+          <Grid item xs={12} mb={4} sx={{display: 'flex', justifyContent: 'flex-end', gap: 1}}>
             <CSVLink
               data={data}
-              filename={ downloadFileName ? `${downloadFileName}.csv` : `line-chart.csv` }
+              filename={downloadFileName ? `${downloadFileName}.csv` : `line-chart.csv`}
               target="_blank"
               style={{
                 textAlign: 'center',
@@ -176,13 +176,10 @@ function LineChart(props) {
                 textDecoration: 'none',
                 padding: '5px 25px',
                 borderRadius: '4px',
-                fontSize: '20px'
+                fontSize: '20px',
               }}
             >
-              <TfiDownload
-                size={15}
-                className={styles.download__icon}
-              />
+              <TfiDownload size={15} className={styles.download__icon} />
               {downloadText}
             </CSVLink>
           </Grid>

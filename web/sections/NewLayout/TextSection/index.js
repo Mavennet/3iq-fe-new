@@ -111,7 +111,7 @@ function TextSection(props) {
         <Box>
           <Grid container>
             <Grid item sm={videoSrc ? 8 : 12} xs={12}>
-              <Box sx={{pt: 5, pr: videoSrc && {md: 20, sm: 0}, align: 'left'}}>
+              <Box id={heading} sx={{pt: 5, pr: videoSrc && {md: 20, sm: 0}, align: 'left'}}>
                 {heading && (
                   <Typography
                     component="h2"

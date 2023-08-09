@@ -45,7 +45,7 @@ function Hero(props) {
             xs={12}
             sx={{pt: {lg: 4, xs: 6}, pb: {lg: 8, xs: 2}, pl: {lg: 5, sm: 10}, p: 2}}
           >
-            <Box sx={{p: '5 1', pr: 1, pl: {xs: 1}}}>
+            <Box id={heading} sx={{p: '5 1', pr: 1, pl: {xs: 1}}}>
               <Box
                 sx={{
                   pt: 5,
