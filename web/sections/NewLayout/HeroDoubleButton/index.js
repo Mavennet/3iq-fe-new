@@ -26,7 +26,7 @@ function HeroDoubleButton(props) {
         bgcolor: 'var(--light-orange)',
       }}
     >
-      <Container sx={{ maxWidth: { sm: 'md', md: 'lg', xl: 'xl' } }}>
+      <Container id={name} sx={{ maxWidth: { sm: 'md', md: 'lg', xl: 'xl' } }}>
         <Box py={15}>
           <div className={styles.text}>
             { name && (<h2>{name}</h2>) }

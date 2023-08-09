@@ -48,23 +48,23 @@ function SideBySideImages(props) {
   }, [])
 
   return (
-    <Box sx={{
-      backgroundColor: backgroundColor && backgroundColor
-    }}>
-      <Container sx={{ maxWidth: { sm: 'md', md: 'md', lg: 'lg' } }} >
-        <Grid container py={6} pb>
+    <Box
+      sx={{
+        backgroundColor: backgroundColor && backgroundColor,
+      }}
+    >
+      <Container sx={{maxWidth: {sm: 'md', md: 'md', lg: 'lg'}}}>
+        <Grid id={heading} container py={6} pb>
           <CssBaseline />
-          {
-            heading && (
-              <Grid item xs={12} mb={4} mt={4}>
-                <div className={styles.simple__block__content}>
-                  <SimpleBlockContent blocks={heading} />
-                </div>
-              </Grid>
-            )
-          }
-          {localeButton && (localeButton.route || localeButton.link) &&
-            (<Grid item xs={12} mb={8} sx={{display: 'flex', justifyContent: 'center'}}>
+          {heading && (
+            <Grid id={heading} item xs={12} mb={4} mt={4}>
+              <div className={styles.simple__block__content}>
+                <SimpleBlockContent blocks={heading} />
+              </div>
+            </Grid>
+          )}
+          {localeButton && (localeButton.route || localeButton.link) && (
+            <Grid item xs={12} mb={8} sx={{display: 'flex', justifyContent: 'center'}}>
               <Button
                 {...localeButton}
                 size={'lg'}
@@ -72,11 +72,12 @@ function SideBySideImages(props) {
                 variant={'solid'}
                 className={styles.button}
               ></Button>
-            </Grid>)}
-          {
-            images &&
-            images.map((item) => (
-              item.imagesContainers && (
+            </Grid>
+          )}
+          {images &&
+            images.map(
+              (item) =>
+                item.imagesContainers &&
                 item.imagesContainers.map((item, i) => {
                   let title = null
                   if (item?.title[currentLanguage?.languageTag] && !item?.isTitleHidden) {
@@ -85,68 +86,69 @@ function SideBySideImages(props) {
                   if (item?.images) {
                     return (
                       <Grid item xs={12} my={4} key={i}>
-                        {
-                          title && <h5 className={styles.title__image}>{title}</h5>
-                        }
+                        {title && <h5 className={styles.title__image}>{title}</h5>}
                         <Grid container spacing={6} my={4}>
-                          {
-                            item.images.map((image, i) => {
-                              if (image.imageExternalLink) {
-                                return (
-                                  <Grid item xs={6} md={3} sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                                    <Link href={image.imageExternalLink} key={i}>
-                                      <a target='_blank' rel="noopener">
-                                        <Box
-                                          component="img"
-                                          alt={image.alt}
-                                          src={builder.image(image).url()}
-                                          key={image._key}
-                                          sx={{
-                                            maxWidth: '100%',
-                                            maxHeight: '100%',
-                                          }}
-                                        />
-                                      </a>
-                                    </Link>
-                                  </Grid>
-                                )
-                              } else {
-                                return (
-                                  <Grid item xs={6} md={3}>
-                                    <Box
-                                      component="img"
-                                      alt={image.alt}
-                                      src={builder.image(image).url()}
-                                      key={image._key}
-                                      p={2}
-                                      sx={{
-                                        maxWidth: '100%',
-                                        maxHeight: '100%',
-                                      }}
-                                    />
-                                  </Grid>
-                                )
-                              }
-                            })
-                          }
+                          {item.images.map((image, i) => {
+                            if (image.imageExternalLink) {
+                              return (
+                                <Grid
+                                  item
+                                  xs={6}
+                                  md={3}
+                                  sx={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                  }}
+                                >
+                                  <Link href={image.imageExternalLink} key={i}>
+                                    <a target="_blank" rel="noopener">
+                                      <Box
+                                        component="img"
+                                        alt={image.alt}
+                                        src={builder.image(image).url()}
+                                        key={image._key}
+                                        sx={{
+                                          maxWidth: '100%',
+                                          maxHeight: '100%',
+                                        }}
+                                      />
+                                    </a>
+                                  </Link>
+                                </Grid>
+                              )
+                            } else {
+                              return (
+                                <Grid item xs={6} md={3}>
+                                  <Box
+                                    component="img"
+                                    alt={image.alt}
+                                    src={builder.image(image).url()}
+                                    key={image._key}
+                                    p={2}
+                                    sx={{
+                                      maxWidth: '100%',
+                                      maxHeight: '100%',
+                                    }}
+                                  />
+                                </Grid>
+                              )
+                            }
+                          })}
                         </Grid>
                       </Grid>
                     )
                   }
                   return null
                 })
-              )
-            ))
-          }
-          {
-            footerText && (
-              <Grid item xs={12}>
-                <div className={`${styles.simple__block__content} ${styles.left}`}>
-                  <SimpleBlockContent blocks={footerText} />
-                </div>
-              </Grid>
-            )
-          }
+            )}
+          {footerText && (
+            <Grid item xs={12}>
+              <div className={`${styles.simple__block__content} ${styles.left}`}>
+                <SimpleBlockContent blocks={footerText} />
+              </div>
+            </Grid>
+          )}
         </Grid>
       </Container>
     </Box>

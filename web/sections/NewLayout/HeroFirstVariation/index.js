@@ -65,7 +65,7 @@ function HeroFirstVariation(props) {
               pb: {md: 7, sm: bottomImage ? 20 : 7, xs: bottomImage ? 15 : 7},
             }}
           >
-            <Grid container>
+            <Grid id={heading} container>
               <Grid item xs={12} md={7}>
                 <div className={styles.simple__block__content}>
                   {heading && <SimpleBlockContent blocks={heading} />}

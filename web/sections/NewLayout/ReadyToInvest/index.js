@@ -12,22 +12,22 @@ function ReadyToInvest(props) {
   const localeButton = ctaButton[currentLanguage?.languageTag]
 
   return (
-    <Box sx={{
-      backgroundColor: backgroundColor && backgroundColor
-    }}>
-      <Container sx={{ maxWidth: { sm: 'md', md: 'md', lg: 'lg' } }} >
-        <Grid container py={15}>
-          {
-            heading && (
-              <Grid item xs={12} mb={6}>
-                <div className={styles.simpleBlockContent}>
-                  <SimpleBlockContent blocks={heading} />
-                </div>
-              </Grid>
-            )
-          }
-          {localeButton && (localeButton.route || localeButton.link) &&
-            (<Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
+    <Box
+      sx={{
+        backgroundColor: backgroundColor && backgroundColor,
+      }}
+    >
+      <Container sx={{maxWidth: {sm: 'md', md: 'md', lg: 'lg'}}}>
+        <Grid id={heading} container py={15}>
+          {heading && (
+            <Grid item xs={12} mb={6}>
+              <div className={styles.simpleBlockContent}>
+                <SimpleBlockContent blocks={heading} />
+              </div>
+            </Grid>
+          )}
+          {localeButton && (localeButton.route || localeButton.link) && (
+            <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center'}}>
               <Button
                 {...localeButton}
                 size={'lg'}
@@ -35,10 +35,11 @@ function ReadyToInvest(props) {
                 variant={'solid'}
                 className={styles.button}
               ></Button>
-            </Grid>)}
+            </Grid>
+          )}
         </Grid>
       </Container>
-    </Box >
+    </Box>
   )
 }
 

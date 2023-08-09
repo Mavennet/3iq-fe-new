@@ -32,23 +32,33 @@ function TableCripto(props) {
   }, [endpoint])
 
   return (
-    <Container sx={{ maxWidth: { sm: 'md', lg: 'lg', xl: 'xl' } }}>
+    <Container sx={{maxWidth: {sm: 'md', lg: 'lg', xl: 'xl'}}}>
       <Grid container py={6}>
-        <Grid item xs={12} mb={2} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
-          {
-            heading && (
-              <Typography
-                variant="h2"
-                sx={{
-                  fontFamily: 'var(--font-family-primary)',
-                  fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
-                  color: 'var(--black)',
-                }}
-              >
-                {heading}
-              </Typography>
-            )
-          }
+        <Grid
+          id={heading}
+          item
+          xs={12}
+          mb={2}
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          {heading && (
+            <Typography
+              id={heading}
+              variant="h2"
+              sx={{
+                fontFamily: 'var(--font-family-primary)',
+                fontSize: {xs: 'var(--font-size-primary-md)', md: 'var(--font-size-primary-lg)'},
+                color: 'var(--black)',
+              }}
+            >
+              {heading}
+            </Typography>
+          )}
           <>
             <CSVLink
               data={data ? data : []}
@@ -63,78 +73,69 @@ function TableCripto(props) {
                 padding: '5px 25px',
                 borderRadius: '4px',
                 fontSize: '20px',
-                margin: '20px 0px'
+                margin: '20px 0px',
               }}
             >
-              <TfiDownload
-                size={15}
-                className={styles.download__icon}
-              />
+              <TfiDownload size={15} className={styles.download__icon} />
               {downloadText}
             </CSVLink>
           </>
         </Grid>
-        {
-          data && (
-            <Grid item xs={12}>
-              <div className={styles.simpleBlockContent}>
-                <table>
-                  {
-                    headers && (
-                      <thead>
-                        <tr>
-                          {
-                            headers.map((item, i) => {
-                              return (
-                                <th key={item._key} className={i === 0 && styles.header__fixed__mobile}>{item[currentLanguage?.languageTag]}</th>
-                              )
-                            })
-                          }
-                        </tr>
-                      </thead>
-                    )
-                  }
-                  <tbody>
-                    {
-                      data.map((item, i) => {
+        {data && (
+          <Grid item xs={12}>
+            <div className={styles.simpleBlockContent}>
+              <table>
+                {headers && (
+                  <thead>
+                    <tr>
+                      {headers.map((item, i) => {
                         return (
-                          <tr key={i}>
-                            <td className={styles.fixed__mobile}>
-                              <div className={styles.criptoInfo}>
-                                <Box
-                                  component="img"
-                                  alt={item.currency}
-                                  src={item.image.small}
-                                  sx={{
-                                    marginRight: '10px',
-                                    width: '25px',
-                                  }}
-                                />
-                                {item.currency}
-                              </div>
-                            </td>
-                            <td className={styles.price}>$ {(item.price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}</td>
-                            <td className={styles.price}>{item.index}</td>
-                            <td>{item.weight}</td>
-                          </tr>
+                          <th key={item._key} className={i === 0 && styles.header__fixed__mobile}>
+                            {item[currentLanguage?.languageTag]}
+                          </th>
                         )
-                      })
-                    }
-                  </tbody>
-                </table>
-              </div>
-            </Grid>
-          )
-        }
-        {
-          description && (
-            <Grid item xs={12} mt={2}>
-              <div className={styles.simple__block__content}>
-                <SimpleBlockContent blocks={description} />
-              </div>
-            </Grid>
-          )
-        }
+                      })}
+                    </tr>
+                  </thead>
+                )}
+                <tbody>
+                  {data.map((item, i) => {
+                    return (
+                      <tr key={i}>
+                        <td className={styles.fixed__mobile}>
+                          <div className={styles.criptoInfo}>
+                            <Box
+                              component="img"
+                              alt={item.currency}
+                              src={item.image.small}
+                              sx={{
+                                marginRight: '10px',
+                                width: '25px',
+                              }}
+                            />
+                            {item.currency}
+                          </div>
+                        </td>
+                        <td className={styles.price}>
+                          $ {item.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                        </td>
+                        <td className={styles.price}>{item.index}</td>
+                        <td>{item.weight}</td>
+                      </tr>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </Grid>
+        )}
+        {description && (
+          <Grid item xs={12} mt={2}>
+            <div className={styles.simple__block__content}>
+              <SimpleBlockContent blocks={description} />
+            </div>
+          </Grid>
+        )}
       </Grid>
     </Container>
   )

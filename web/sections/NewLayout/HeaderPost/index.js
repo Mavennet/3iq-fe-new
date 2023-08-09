@@ -112,6 +112,7 @@ function HeaderPost(props) {
                 </Typography>
               )}
               <Typography
+                id={post?.heading[currentLanguage.languageTag]}
                 component="h1"
                 variant="h1"
                 sx={{

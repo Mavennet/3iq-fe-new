@@ -58,14 +58,11 @@ function NewsletterCard(props) {
                 <Box pt={2.5}>#{newsletterNumber}</Box>
               </Box>
             </Grid>
-            <Grid
-              item
-              xs={10}
-              pl={3}
-            >
+            <Grid item xs={10} pl={3}>
               <div className={styles.newsletterCard}>
                 {post?.author?.name &&
-                  post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] && (
+                  post?.categories[0]?.singularName &&
+                  post?.categories[0]?.singularName[currentLanguage.languageTag] && (
                     <Typography
                       mt={2}
                       variant="h5"
@@ -74,10 +71,10 @@ function NewsletterCard(props) {
                         fontFamily: 'var(--font-family-secondary)',
                         color: 'var(--black)',
                       }}
-                    
                     >
                       <span className={styles.blue}>
-                        {post?.categories[0]?.singularName && post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}
+                        {post?.categories[0]?.singularName &&
+                          post?.categories[0]?.singularName[currentLanguage.languageTag] + ' '}
                       </span>
                       {byLocaleText} {post?.author?.name}
                     </Typography>
@@ -92,6 +89,7 @@ function NewsletterCard(props) {
                   >
                     <a className={styles.noDecoration}>
                       <Typography
+                        id={post?.localeHeading[currentLanguage.languageTag]}
                         component="h3"
                         variant="h3"
                         my={1}

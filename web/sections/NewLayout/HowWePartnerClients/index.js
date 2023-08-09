@@ -64,14 +64,11 @@ function HowWePartnerClients(props) {
   }, [post])
 
   return (
-    <Box
-      py={15}
-      className={greenLayout ? styles.green : styles.blue}
-    >
-      <Container sx={{ maxWidth: { sm: 'md', lg: 'lg', xl: 'xl' } }}>
-        <Grid container spacing={{ xs: 0, md: 4 }} sx={{display: 'flex', alignItems: 'center'}}>
-          <Grid item xs={12} md={7}>
-            <div className={styles.image} style={{ display: 'flex', alignItems: 'flex-end'}}>
+    <Box py={15} className={greenLayout ? styles.green : styles.blue}>
+      <Container sx={{maxWidth: {sm: 'md', lg: 'lg', xl: 'xl'}}}>
+        <Grid container spacing={{xs: 0, md: 4}} sx={{display: 'flex', alignItems: 'center'}}>
+          <Grid id={'How we partner with clients'} item xs={12} md={7}>
+            <div className={styles.image} style={{display: 'flex', alignItems: 'flex-end'}}>
               <Box
                 component="img"
                 sx={{
@@ -80,7 +77,12 @@ function HowWePartnerClients(props) {
                 alt={backgroundImage.alt}
                 src={builder.image(backgroundImage).url()}
               />
-              {heading && !hideHeading && <div className={styles.heading} > <SimpleBlockContent blocks={heading} /> </div>} 
+              {heading && !hideHeading && (
+                <div className={styles.heading}>
+                  {' '}
+                  <SimpleBlockContent blocks={heading} />{' '}
+                </div>
+              )}
             </div>
           </Grid>
           <Grid item xs={12} md={5}>
@@ -115,7 +117,8 @@ function HowWePartnerClients(props) {
               {shortDescription && <SimpleBlockContent blocks={shortDescription} />}
             </div>
             {publishedDate && (
-              <Typography variant="h5"
+              <Typography
+                variant="h5"
                 mb={4}
                 sx={{
                   fontSize: 'var(--font-size-secondary-md)',
@@ -126,16 +129,14 @@ function HowWePartnerClients(props) {
                 {publishedDate}
               </Typography>
             )}
-            {
-              buttonText && emailUrl && (
-                <Button
-                  title={buttonText}
-                  variant={'solid'}
-                  className={styles.button}
-                  link='mailto:ocio@3iq.ca?subject=Website%20Inquiry:%20Hey%203iQ!'
-                />
-              )
-            }
+            {buttonText && emailUrl && (
+              <Button
+                title={buttonText}
+                variant={'solid'}
+                className={styles.button}
+                link="mailto:ocio@3iq.ca?subject=Website%20Inquiry:%20Hey%203iQ!"
+              />
+            )}
           </Grid>
         </Grid>
       </Container>
