@@ -97,7 +97,7 @@ function NewsCard(props) {
                       {` ${byLocaleText} ${post.author.name}`}
                     </div>
                     <span></span>
-                    <h4>{post.heading[currentLanguage.languageTag]}</h4>
+                    <h4 id={post.heading[currentLanguage.languageTag]}>{post.heading[currentLanguage.languageTag]}</h4>
                     <SimpleBlockContent blocks={shortDescription} />
                   </Box>
                   <Box pb={8} px={5} className={styles.newsCard}>
@@ -177,10 +177,19 @@ function NewsCard(props) {
                           flexDirection: 'column',
                           justifyContent: {xs: 'flex-end', md: 'center'},
                           alignItems: 'center',
-                          py: categorie.searchId == 'videos' || categorie.searchId == 'podcasts' || categorie.searchId == 'webinars' ? 8 : 14,
+                          py:
+                            categorie.searchId == 'videos' ||
+                            categorie.searchId == 'podcasts' ||
+                            categorie.searchId == 'webinars'
+                              ? 8
+                              : 14,
                         }}
                       >
-                        {categorie.searchId == 'videos' || categorie.searchId == 'podcasts' || categorie.searchId == 'webinars' &&  <AiFillPlayCircle size={90} color={'var(--white)'} />}
+                        {categorie.searchId == 'videos' ||
+                          categorie.searchId == 'podcasts' ||
+                          (categorie.searchId == 'webinars' && (
+                            <AiFillPlayCircle size={90} color={'var(--white)'} />
+                          ))}
                       </Box>
                     </>
                   )}
@@ -214,6 +223,7 @@ function NewsCard(props) {
                     )}
                     {localeHeading && (
                       <Typography
+                        id={localeHeading}
                         component="h2"
                         variant="h4"
                         sx={{
@@ -278,7 +288,11 @@ function NewsCard(props) {
                       }}
                     />
                   )}
-                  {categorie.searchId == 'videos' || categorie.searchId == 'podcasts' || categorie.searchId == 'webinars' && <AiFillPlayCircle size={90} color={'var(--white)'} />}
+                  {categorie.searchId == 'videos' ||
+                    categorie.searchId == 'podcasts' ||
+                    (categorie.searchId == 'webinars' && (
+                      <AiFillPlayCircle size={90} color={'var(--white)'} />
+                    ))}
                 </Grid>
               </Grid>
             </a>
@@ -374,10 +388,14 @@ function NewsCard(props) {
                     )}
                     {localeHeading && (
                       <Typography
+                        id={localeHeading}
                         component="h2"
                         variant="h4"
                         sx={{
-                          fontSize: {xs: 'var(--font-size-primary-sm)', md: 'var(--font-size-primary-md)'},
+                          fontSize: {
+                            xs: 'var(--font-size-primary-sm)',
+                            md: 'var(--font-size-primary-md)',
+                          },
                           fontFamily: 'var(--font-family-primary)',
                           color: 'var(--black)',
                         }}
@@ -418,10 +436,8 @@ function NewsCard(props) {
                   py={{xs: 28, md: 0}}
                   md={6}
                   sx={{
-                    background:
-                      post.mainImage &&
-                      `url("${urlFor(post.mainImage).url()}")`,
-                    backgroundSize: 'contain', 
+                    background: post.mainImage && `url("${urlFor(post.mainImage).url()}")`,
+                    backgroundSize: 'contain',
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center center',
                     bgcolor: '#EBEBEB',
@@ -430,8 +446,12 @@ function NewsCard(props) {
                     justifyContent: {xs: 'flex-end', md: 'center'},
                     alignItems: 'center',
                   }}
-                  >
-                  {categorie.searchId == 'videos' || categorie.searchId == 'podcasts' || categorie.searchId == 'webinars' &&  <AiFillPlayCircle size={90} color={'var(--white)'} />}
+                >
+                  {categorie.searchId == 'videos' ||
+                    categorie.searchId == 'podcasts' ||
+                    (categorie.searchId == 'webinars' && (
+                      <AiFillPlayCircle size={90} color={'var(--white)'} />
+                    ))}
                 </Grid>
               </Grid>
             </a>

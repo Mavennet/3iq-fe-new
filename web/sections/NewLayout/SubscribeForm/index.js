@@ -45,7 +45,7 @@ function SubscribeForm(props) {
                     src={builder.image(item.mainImage).url()}
                     className={styles.filteredImage}
                   />
-                  <Box ml={1}>
+                  <Box id={item.heading[currentLanguage.languageTag]} ml={1}>
                     <span>{item.heading[currentLanguage.languageTag]}</span>
                   </Box>
                 </Box>

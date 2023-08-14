@@ -20,57 +20,49 @@ function HeroWithImage(props) {
     <Box
       sx={{
         background:
-          backgroundImage &&
-          `url("${urlFor(backgroundImage)
-            .url()}") no-repeat center center`,
+          backgroundImage && `url("${urlFor(backgroundImage).url()}") no-repeat center center`,
         backgroundSize: 'cover',
         py: 15,
         position: 'relative',
       }}
     >
-      <Container sx={{ maxWidth: { sm: 'md', lg: 'lg' } }}>
-        <Grid container sx={{ display: 'flex', justifyContent: align ? align : 'flex-end' }}>
+      <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
+        <Grid container sx={{display: 'flex', justifyContent: align ? align : 'flex-end'}}>
           <Grid item xs={12} md={6} my={4}>
             <div className={styles.simple__block__content}>
-              <h2 className={styles.heading}>{heading}</h2>
+              <h2 id={heading} className={styles.heading}>
+                {heading}
+              </h2>
               {description && <SimpleBlockContent blocks={description} />}
             </div>
-            {localeButton && (localeButton.route) &&
-              (
-                <Button
-                  variant={'solidOrange'}
-                  className={styles.button}
-                  {...localeButton}
-                ></Button>
-              )}
-              {localeButton && (localeButton.link) &&
-              (
-                <Button
-                  variant={'solidOrange'}
-                  className={styles.button}
-                  {...localeButton}
-                  target="_blank"
-                ></Button>
-              )}
+            {localeButton && localeButton.route && (
+              <Button variant={'solidOrange'} className={styles.button} {...localeButton}></Button>
+            )}
+            {localeButton && localeButton.link && (
+              <Button
+                variant={'solidOrange'}
+                className={styles.button}
+                {...localeButton}
+                target="_blank"
+              ></Button>
+            )}
           </Grid>
         </Grid>
       </Container>
-      {
-        stripes && (
-          <Box
-            sx={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              width: '100%',
-            }}
-          >
-            <div className={styles.stripe} />
-            <div className={styles.stripe} />
-            <div className={styles.stripe} />
-          </Box>
-        )
-      }
+      {stripes && (
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+          }}
+        >
+          <div className={styles.stripe} />
+          <div className={styles.stripe} />
+          <div className={styles.stripe} />
+        </Box>
+      )}
     </Box>
   )
 }

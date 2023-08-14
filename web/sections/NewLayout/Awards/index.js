@@ -79,6 +79,7 @@ function Awards(props) {
             <Grid item xs={12} md={8} mt={10} my={8}>
               <div className={styles.video}>
                 <Typography
+                  id={heading}
                   variant="h2"
                   sx={{
                     fontWeight: '300',

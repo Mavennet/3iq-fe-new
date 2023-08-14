@@ -129,7 +129,7 @@ function TeamsVideoDisplay(props) {
               pt={{md: 6, sm: 2, xs: 5}}
               bgcolor={'var(--background-color)'}
             >
-              <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+              <Box id={heading} sx={{display: 'flex', justifyContent: 'space-between'}}>
                 <h4>{heading}</h4>
                 <Box className={styles.arrows} sx={{display: {xs: 'none', sm: 'block'}}}>
                   <IoIosArrowDropleft size={40} onClick={() => selectMember('prev')} />

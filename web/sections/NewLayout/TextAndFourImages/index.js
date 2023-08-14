@@ -72,16 +72,22 @@ function TextAndFourImages(props) {
           // backgroundImage &&
           // `url("${urlFor(backgroundImage)
           //   .url()}") no-repeat center center`,
-        backgroundSize: 'cover',
+          backgroundSize: 'cover',
           bgcolor: '#091b3f',
           // pt: {lg: 12, xs: 8},
           // pb: {lg: 18, xs: 14},
         }}
       >
-        <Container sx={{ maxWidth: {sm: 'md', lg: 'lg'} }}>
+        <Container sx={{maxWidth: {sm: 'md', lg: 'lg'}}}>
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
-            <Typography component="h1" variant="h3" style={{fontWeight: 'bold', color: 'white'}} gutterBottom>
+              <Typography
+                id={heading}
+                component="h1"
+                variant="h3"
+                style={{fontWeight: 'bold', color: 'white'}}
+                gutterBottom
+              >
                 {heading}
               </Typography>
               <div className={styles.simpleBlockContent} style={{color: 'white'}}>

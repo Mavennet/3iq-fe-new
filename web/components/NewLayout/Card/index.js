@@ -165,6 +165,7 @@ function Card(props) {
                     >
                       <a className={styles.noDecoration}>
                         <Typography
+                          id={post?.localeHeading[currentLanguage.languageTag]}
                           component="h3"
                           variant="h3"
                           my={1}

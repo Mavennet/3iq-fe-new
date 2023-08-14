@@ -48,7 +48,7 @@ function SideBySideImages(props) {
     <Box sx={{
       backgroundColor: backgroundColor && backgroundColor
     }}>
-      <Container sx={{ maxWidth: { sm: 'md', md: 'md', lg: 'lg' } }} >
+      <Container id={heading} sx={{ maxWidth: { sm: 'md', md: 'md', lg: 'lg' } }} >
         <Grid container py={6}>
           <CssBaseline />
           {

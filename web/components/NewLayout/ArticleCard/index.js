@@ -40,7 +40,7 @@ function ArticleCard(props) {
         query: {slug: route?.slug?.current},
       }}
       as={`${currentCountry.urlTag}/${route?.slug?.current}`}
-      >
+    >
       <a>
         <div className={`${styles.article__card} ${className}`}>
           <Grid container>
@@ -52,7 +52,7 @@ function ArticleCard(props) {
                       src={builder.image(post?.mainImage.asset._ref).url()}
                       alt={post?.heading}
                       layout="fill"
-                      objectFit="contain"
+                      objectFit="fill"
                     />
                   )}
                   {(post?.categories[0]?.searchId === 'videos' ||
@@ -98,15 +98,14 @@ function ArticleCard(props) {
                 {post?.localeHeading && route && (
                   <Link
                     href={{
-                      pathname: `${
-                        post?.localeHeading[currentLanguage.languageTag]
-                      }`,
+                      pathname: `${post?.localeHeading[currentLanguage.languageTag]}`,
                       query: {slug: route.slug.current},
                     }}
                     as={`${currentCountry.urlTag}/${route?.slug?.current}`}
                   >
                     <a className={styles.noDecoration}>
                       <Typography
+                        id={post?.localeHeading[currentLanguage.languageTag]}
                         component="h2"
                         variant="h2"
                         my={2}

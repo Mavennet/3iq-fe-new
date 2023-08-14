@@ -5,12 +5,11 @@ import '../styles/global.scss'
 import '../styles/shared.module.css'
 import '../styles/layout.css'
 import '../styles/custom-properties.css'
-import { SITE_CONFIG_QUERY } from '../utils/groqQueries'
+import {SITE_CONFIG_QUERY} from '../utils/groqQueries'
 
 class App extends BaseApp {
   static async getInitialProps({Component, ctx}) {
     let pageProps = {}
-
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx)
     }

@@ -126,7 +126,7 @@ function AccordionLayout(props) {
                 {item.localeName && item.localeName[currentLanguage.languageTag]}
               </p>
             ))}
-          </Grid> 
+          </Grid>
           <Grid item md={9} pt={2} pl={2}>
             <div className={styles.content}>
               <div className={styles.content__text}>
@@ -134,32 +134,39 @@ function AccordionLayout(props) {
                   blocks={tabItems[selected].localecontentBlock[currentLanguage.languageTag]}
                 />
               </div>
-            {selected != 0 &&  <Box mt={3}>
-                <Grid contianer xs={12} sx={{display: 'flex', justifyContent: 'space-between'}}>
-                  <h3>{localePressReleaseHeading}</h3>
-                  {tabItems[selected].localeButton &&
-                    tabItems[selected].localeButton[currentLanguage.languageTag] && (
-                      <Button
-                        className={styles.button}
-                        size={'sm'}
-                        variant="outlined"
-                        {...tabItems[selected].localeButton[currentLanguage.languageTag]}
-                      />
-                    )}
-                </Grid>
-                <Grid container mt={3} spacing={2}>
-                  {articles &&
-                    articles.map((newsCard) => (
-                      <Grid item md={4}>
-                        <CustomPostCard
-                          {...newsCard}
-                          currentLanguage={currentLanguage}
-                          key={newsCard._id}
+              {selected != 0 && (
+                <Box mt={3}>
+                  <Grid
+                    id={localePressReleaseHeading}
+                    contianer
+                    xs={12}
+                    sx={{display: 'flex', justifyContent: 'space-between'}}
+                  >
+                    <h3>{localePressReleaseHeading}</h3>
+                    {tabItems[selected].localeButton &&
+                      tabItems[selected].localeButton[currentLanguage.languageTag] && (
+                        <Button
+                          className={styles.button}
+                          size={'sm'}
+                          variant="outlined"
+                          {...tabItems[selected].localeButton[currentLanguage.languageTag]}
                         />
-                      </Grid>
-                    ))}
-                </Grid>
-              </Box>}
+                      )}
+                  </Grid>
+                  <Grid container mt={3} spacing={2}>
+                    {articles &&
+                      articles.map((newsCard) => (
+                        <Grid item md={4}>
+                          <CustomPostCard
+                            {...newsCard}
+                            currentLanguage={currentLanguage}
+                            key={newsCard._id}
+                          />
+                        </Grid>
+                      ))}
+                  </Grid>
+                </Box>
+              )}
             </div>
           </Grid>
         </Grid>
