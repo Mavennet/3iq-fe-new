@@ -72,6 +72,27 @@ export default {
       name: "buttonTwo",
       type: "localeCta",
       title: "Optional button Two"
+    },
+    {
+      name: "body",
+      type: "localePortableText"
+    },
+    {
+      name: "imagesContainers",
+      type: "array",
+      title: "Image Containers",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "imagesContainer" }],
+          title: "Images Container"
+        }
+      ]
+    },
+    {
+      name: "footerText",
+      type: "localePortableText",
+      title: "Footer text"
     }
   ],
   preview: {
