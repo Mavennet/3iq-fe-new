@@ -1,7 +1,7 @@
 import React from 'react'
 import Document, {Html, Head, Main, NextScript} from 'next/document'
 import client from '../client'
-import Favicon from '@assets/favicon.ico'
+import Favicon from '../static/favicon.ico'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
