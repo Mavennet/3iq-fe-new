@@ -23,8 +23,7 @@ export default class MyDocument extends Document {
                 })(window,document,'script','dataLayer','GTM-P2CW2MZB');`,
             }}
           />
-          <link rel="shortcut icon" href="./public/assets/favicon.ico" />
-          <link rel="icon" type="image/x-icon" href="./public/assets/favicon.ico" />
+          <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           <link
