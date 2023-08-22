@@ -1,6 +1,7 @@
 import React from 'react'
 import Document, {Html, Head, Main, NextScript} from 'next/document'
 import client from '../client'
+import Favicon from '@assets/favicon.ico'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -23,7 +24,7 @@ export default class MyDocument extends Document {
                 })(window,document,'script','dataLayer','GTM-P2CW2MZB');`,
             }}
           />
-          <link rel="icon" type="image/x-icon" href="../static/favicon.ico" />
+          <link rel="icon" href={Favicon.src} />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           <link
