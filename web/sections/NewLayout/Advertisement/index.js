@@ -1,11 +1,14 @@
 import React from 'react'
 import {PropTypes} from 'prop-types'
 import styles from './styles.module.scss'
-import {Box, Container, Grid, Modal} from '@mui/material'
+import {Box, Container, Grid, Modal, Link} from '@mui/material'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import Button from '../../../components/NewLayout/Button'
 import client from '../../../client'
 import groq from 'groq'
+import imageUrlBuilder from '@sanity/image-url'
+
+const builder = imageUrlBuilder(client)
 
 function Advertisement(props) {
   const {text, button, currentLanguage, color, buttonColor, body, footerText, _id} = props
@@ -43,7 +46,7 @@ function Advertisement(props) {
     await client
       .fetch(
         groq`
-      *[_type == 'ocioHero' && _id == $sectionId] {
+      *[_type == 'advertisement' && _id == $sectionId] {
           _id,
           _type,
           _rev,
