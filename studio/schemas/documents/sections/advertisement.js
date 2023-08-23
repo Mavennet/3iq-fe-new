@@ -53,6 +53,27 @@ export default {
         ],
         layout: "radio"
       }
+    },
+    {
+      name: "body",
+      type: "localePortableText"
+    },
+    {
+      name: "imagesContainers",
+      type: "array",
+      title: "Image Containers",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "imagesContainer" }],
+          title: "Images Container"
+        }
+      ]
+    },
+    {
+      name: "footerText",
+      type: "localePortableText",
+      title: "Footer text"
     }
   ],
   preview: {
