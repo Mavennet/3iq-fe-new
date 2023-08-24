@@ -129,7 +129,6 @@ function Post(props) {
         response.map((item) => {
           return postsId.push(item._id)
         })
-        console.log(postsId)
         const fetchArticles = async () => {
           await client
             .fetch(
