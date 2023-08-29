@@ -127,8 +127,9 @@ function LineChart(props) {
         entries.map(([key, val] = entry) => {
           const date = new Date(key)
           if (key !== 'label' && date.getDay() == 5 && !isNaN(val)) {
+            date.setDate(date.getDate() + 1);
             newData.push({
-              x: format(new Date(key), 'yyyy-MM-dd'),
+              x: format(date, 'yyyy-MM-dd'),
               y: parseFloat(val).toFixed(2),
             })
           }
