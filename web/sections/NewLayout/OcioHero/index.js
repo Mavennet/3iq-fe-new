@@ -149,14 +149,18 @@ function OcioHero(props) {
                 {description && <SimpleBlockContent blocks={description} />}
               </div>
               <Box display="flex" justifyContent="left">
-                {!images && localeButtonOne && (localeButtonOne.route || localeButtonOne.link) && (
-                  <Button {...localeButtonOne} title={localeButtonOne?.title} marginRight={10} />
+                {!images || !body || !footerText ? (
+                  localeButtonOne &&
+                  (localeButtonOne.route || localeButtonOne.link) && (
+                    <Button {...localeButtonOne} title={localeButtonOne?.title} marginRight={10} />
+                  )
+                ) : (
+                  <Button
+                    onClick={handleOpen}
+                    title={localeButtonOne?.title}
+                    marginRight={10}
+                  ></Button>
                 )}
-                <Button
-                  onClick={handleOpen}
-                  title={localeButtonOne?.title}
-                  marginRight={10}
-                ></Button>
 
                 <Modal
                   open={open}
