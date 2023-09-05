@@ -26,7 +26,8 @@ function AccordionLayout(props) {
   const [articles, setArticles] = useState([])
   const containerRef = useRef(null)
 
-  const localePressReleaseHeading = currentLanguage.name === 'EN' ? 'Press Release' : 'Communiqué de presse'
+  const localePressReleaseHeading =
+    currentLanguage.name === 'EN' ? 'Press Release' : 'Communiqué de presse'
 
   const fetchCategory = async () => {
     await client
@@ -36,7 +37,7 @@ function AccordionLayout(props) {
           _type,
           publishedAt,
         }[0..3]`,
-        {categoryId: tabItems[selected].selectedPostCategory._id}
+        {categoryId: tabItems[selected].selectedPostCategory?._id}
       )
       .then((response) => {
         const postsId = []
@@ -99,7 +100,11 @@ function AccordionLayout(props) {
       <Container maxWidth={'lg'} bgcolor="#F6F6F6">
         <Grid container mt={10} mb={20}>
           <Grid item xs={12}>
-            <h4>{currentLanguage.name === 'EN' ? 'Investment Funds' : "Fonds d'investissement"}</h4>
+            <h4>
+              {currentLanguage.name === 'EN'
+                ? 'Communication Disclosures'
+                : 'Divulgations de Communications'}
+            </h4>
           </Grid>
           <Grid item xs={12} sx={{display: {sm: 'block', md: 'none'}}}>
             <div className={`${styles.menu} ${styles.light__blue}`} ref={containerRef}>
@@ -142,7 +147,7 @@ function AccordionLayout(props) {
                     xs={12}
                     sx={{display: 'flex', justifyContent: 'space-between'}}
                   >
-                    <h3>{localePressReleaseHeading}</h3>
+                    <h3>{articles.length != 0 && localePressReleaseHeading}</h3>
                     {tabItems[selected].localeButton &&
                       tabItems[selected].localeButton[currentLanguage.languageTag] && (
                         <Button
