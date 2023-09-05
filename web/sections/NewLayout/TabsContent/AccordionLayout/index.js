@@ -103,7 +103,7 @@ function AccordionLayout(props) {
             <h4>
               {currentLanguage.name === 'EN'
                 ? 'Communication Disclosures'
-                : "Fonds d'investissement"}
+                : 'Divulgations de Communications'}
             </h4>
           </Grid>
           <Grid item xs={12} sx={{display: {sm: 'block', md: 'none'}}}>
