@@ -112,14 +112,13 @@ function ReadMoreCard(props) {
             >
               {heading && currentLanguage.name === 'EN' ? (
                 heading
-              ) : (
+              ) : heading?.includes('OCIO') ? (
                 <div>
                   Découvrez notre 3iQ Outsourced Crypto Investment Office (OCIO
-                  <span style={{verticalAlign: 'super', fontSize: 'medium', fontWeight: 'bold'}}>
-                    MC
-                  </span>
-                  )
+                  <span style={{verticalAlign: 'super', fontSize: 'large'}}>MC</span>)
                 </div>
+              ) : (
+                heading
               )}
             </Typography>
           )}
