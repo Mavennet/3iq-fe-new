@@ -112,20 +112,20 @@ function TabMenu(props) {
             scrollButtons="auto"
           >
             <Tab
-              label={tabMenus[0]?.newTabItems[0].name[currentLanguage.languageTag]}
+              label={tabMenus[0]?.newTabItems[0]?.name[currentLanguage.languageTag]}
               wrapped
               {...a11yProps(0)}
               style={value === 0 ? {...tabStyle, ...selectedTabStyle} : tabStyle}
               sx={tabItemStyle}
             />
             <Tab
-              label={tabMenus[0]?.newTabItems[1].name[currentLanguage.languageTag]}
+              label={tabMenus[0]?.newTabItems[1]?.name[currentLanguage.languageTag]}
               {...a11yProps(1)}
               style={value === 1 ? {...tabStyle, ...selectedTabStyle} : tabStyle}
               sx={tabItemStyle}
             />
             <Tab
-              label={tabMenus[0]?.newTabItems[2].name[currentLanguage.languageTag]}
+              label={tabMenus[0]?.newTabItems[2]?.name[currentLanguage?.languageTag]}
               {...a11yProps(2)}
               style={value === 2 ? {...tabStyle, ...selectedTabStyle} : tabStyle}
               sx={tabItemStyle}
@@ -133,18 +133,18 @@ function TabMenu(props) {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          {tabMenus[0]?.newTabItems[0].pageSections && (
-            <RenderSections sections={createSection(tabMenus[0]?.newTabItems[0].pageSections)} />
+          {tabMenus[0]?.newTabItems[0]?.pageSections && (
+            <RenderSections sections={createSection(tabMenus[0]?.newTabItems[0]?.pageSections)} />
           )}
         </TabPanel>
         <TabPanel value={value} index={1}>
-          {tabMenus[0]?.newTabItems[1].pageSections && (
-            <RenderSections sections={createSection(tabMenus[0]?.newTabItems[1].pageSections)} />
+          {tabMenus[0]?.newTabItems[1]?.pageSections && (
+            <RenderSections sections={createSection(tabMenus[0]?.newTabItems[1]?.pageSections)} />
           )}
         </TabPanel>
         <TabPanel value={value} index={2}>
-          {tabMenus[0]?.newTabItems[2].pageSections && (
-            <RenderSections sections={createSection(tabMenus[0]?.newTabItems[2].pageSections)} />
+          {tabMenus[0]?.newTabItems[2]?.pageSections && (
+            <RenderSections sections={createSection(tabMenus[0]?.newTabItems[2]?.pageSections)} />
           )}
         </TabPanel>
       </Container>
