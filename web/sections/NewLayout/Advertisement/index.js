@@ -131,7 +131,7 @@ function Advertisement(props) {
               />
             )}
 
-          {
+          {localeButton.link !== '#onboarding' && localeButton.link !== '#BambooHR' && (
             <Button
               variant={buttonColor}
               className={`${styles.advertisement__button}`}
@@ -140,7 +140,7 @@ function Advertisement(props) {
               onClick={handleOpen}
               title={localeButton?.title}
             />
-          }
+          )}
           <Modal
             open={open}
             onClose={handleClose}
