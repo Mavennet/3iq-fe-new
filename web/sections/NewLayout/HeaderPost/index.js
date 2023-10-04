@@ -125,14 +125,14 @@ function HeaderPost(props) {
               {post?.author?.name && categorie?.name && (
                 <Link
                   href={{
-                    pathname: `/${categorie.searchId}`,
-                    query: {slug: categorie.searchId},
+                    pathname: `/${categorie.searchId.replace(/_/g, '-')}`,
+                    query: {slug: categorie.searchId.replace(/_/g, '-')},
                   }}
                   as={`${currentCountry.urlTag}/${
                     categorie.searchId == 'digital_asset_bulletin' ||
                     categorie.searchId == 'research_papers_blogs'
                       ? 'articles-reports'
-                      : categorie.searchId
+                      : categorie.searchId.replace(/_/g, '-')
                   }`}
                 >
                   <a className={styles.no__decoration}>
