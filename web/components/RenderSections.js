@@ -43,7 +43,7 @@ function getContentWithRoutes(sectionItems, items, countryLanguageTags, routes) 
 
           if (sectionItems[index].localeButton) {
             countryLanguageTags.forEach(tag => {
-              const localeRoute = routes.filter((r) => r._id === sectionItems[index].localeButton[tag]?.route?._ref)[0]
+              const localeRoute = routes?.filter((r) => r._id === sectionItems[index].localeButton[tag]?.route?._ref)[0]
               if (localeRoute) {
                 sectionItems[index].localeButton[tag].route = localeRoute
               }
@@ -82,7 +82,7 @@ function RenderSections(props) {
       if (section[key] && section.currentLanguage) {
         if (section[key]._type === 'localeCta') {
           countryLanguageTags.forEach(tag => {
-            const localeRoute = routes.filter((r) => r._id === section[key][tag]?.route?._ref)[0]
+            const localeRoute = routes?.filter((r) => r._id === section[key][tag]?.route?._ref)[0]
             if (localeRoute) {
               section[key][tag].route = localeRoute
             }
