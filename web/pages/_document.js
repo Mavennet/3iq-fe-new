@@ -23,7 +23,7 @@ export default class MyDocument extends Document {
                 })(window,document,'script','dataLayer','GTM-P2CW2MZB');`,
             }}
           />
-          <link rel="icon" href="./static/favicon.ico?v=3" />
+          <link rel="icon" href="https://3iq-webdocs.s3.ca-central-1.amazonaws.com/3iq_fav_icon.ico"/>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
           <link
