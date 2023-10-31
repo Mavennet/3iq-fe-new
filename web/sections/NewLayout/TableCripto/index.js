@@ -39,7 +39,7 @@ function TableCripto(props) {
   const [tableRow, setTableRows] = React.useState([])
   const [loadedData, setLoadedData] = React.useState([])
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
     const fetchDataForTableRow = async () => {
       // Create an array to store the updated data
       const updatedData = []
@@ -66,9 +66,7 @@ function TableCripto(props) {
       setLoadedData(updatedData)
     }
 
-    if (tableRow.length > 0) {
-      fetchDataForTableRow()
-    }
+    await fetchDataForTableRow()
   }, [tableRow])
 
   React.useEffect(() => {
