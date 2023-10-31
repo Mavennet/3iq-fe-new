@@ -52,7 +52,7 @@ function TableCripto(props) {
             const priceData = response.data
             const firstValue = Object.values(priceData)[0]
             const usdValue = firstValue.usd
-            item.price = usdValue
+            item.price = parseFloat(usdValue)
           } else {
             console.error('Failed to fetch data for item: ', item)
           }
