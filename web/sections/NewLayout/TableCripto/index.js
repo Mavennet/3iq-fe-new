@@ -101,7 +101,7 @@ function TableCripto(props) {
       }
     })
     setDownloadData(formatted)
-  }, [loadedData, currentLanguage])
+  }, [loadedData])
 
   return (
     <Container sx={{maxWidth: {sm: 'md', lg: 'lg', xl: 'xl'}}}>
