@@ -28,6 +28,7 @@ import services from "./documents/services";
 import postV2 from "./documents/postV2";
 import keyFact from "./documents/keyFact";
 import dailyNav from "./documents/dailyNav";
+import tiqFundPerformance from './documents/tiqFundPerformance';
 
 // Section documents
 import textSection from "./documents/sections/textSection";
@@ -163,6 +164,7 @@ export default createSchema({
     benefity,
     keyFact,
     dailyNav,
+    tiqFundPerformance,
     accordionItem,
     doubleOptions,
     keyBenefits,

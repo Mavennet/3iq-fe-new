@@ -61,6 +61,7 @@ export default {
     "benefity",
     "keyFact",
     "dailyNav",
+    "tiqFundPerformance",
     "accordionItem",
     "team",
     "contactUsForm",

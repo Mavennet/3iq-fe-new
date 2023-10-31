@@ -1,28 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Typography, Box, Container } from '@mui/material'
+import {Grid, Typography, Box, Container} from '@mui/material'
 import styles from './styles.module.scss'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import axios from 'axios'
-import { CSVLink } from 'react-csv'
-import { TfiDownload } from 'react-icons/tfi'
+import {CSVLink} from 'react-csv'
+import {TfiDownload} from 'react-icons/tfi'
+import client from '../../../client'
+import groq from 'groq'
+import imageUrlBuilder from '@sanity/image-url'
 
+const builder = imageUrlBuilder(client)
 function TableCripto(props) {
-  const {
-    heading,
-    description,
-    endpoint,
-    headers,
-    currentLanguage,
-  } = props
+  const {heading, description, endpoint, headers, currentLanguage, additionalTableRows} = props
 
   const [data, setData] = React.useState([])
 
   const downloadText = currentLanguage.name === 'EN' ? 'Download' : 'Télécharger'
 
   const getTableData = (endpoint) => {
-    axios.get(endpoint)
-      .then(response => setData(response.data))
+    axios.get(endpoint).then((response) => setData(response.data))
   }
 
   React.useEffect(() => {
@@ -30,6 +27,28 @@ function TableCripto(props) {
       getTableData(endpoint)
     }
   }, [endpoint])
+
+  const groqQuery = `*[_type == "tiqFundPerformance" && _id in $ref] | order(priority asc) {
+    cryptoName,
+    cryptoLogo,
+    price,
+    indexWeight,
+    portfolioWeight
+  }`
+
+  const [tableRow, setTableRows] = React.useState([])
+
+  React.useEffect(() => {
+    const fetchData = async (refs) => {
+      const results = await client.fetch(groqQuery, {ref: refs})
+      setTableRows(results)
+    }
+    if (additionalTableRows && tableRow.length == 0) {
+      let refs = []
+      additionalTableRows.forEach((row) => refs.push(row._ref))
+      fetchData(refs)
+    }
+  }, [])
 
   return (
     <Container sx={{maxWidth: {sm: 'md', lg: 'lg', xl: 'xl'}}}>
@@ -124,6 +143,28 @@ function TableCripto(props) {
                       </tr>
                     )
                   })}
+                  {tableRow &&
+                    tableRow.map((item, key) => (
+                      <tr key={key}>
+                        <td className={styles.fixed__mobile}>
+                          <div className={styles.criptoInfo}>
+                            <Box
+                              component="img"
+                              alt={item.cryptoName[currentLanguage?.languageTag]}
+                              src={builder.image(item.cryptoLogo).url()}
+                              sx={{
+                                marginRight: '10px',
+                                width: '25px',
+                              }}
+                            />
+                            {item.cryptoName[currentLanguage?.languageTag]}
+                          </div>
+                        </td>
+                        <td>{item.price[currentLanguage?.languageTag]}</td>
+                        <td>{item.indexWeight[currentLanguage?.languageTag]}</td>
+                        <td>{item.portfolioWeight[currentLanguage?.languageTag]}</td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
@@ -146,8 +187,8 @@ TableCripto.propTypes = {
   description: PropTypes.string,
   endpoint: PropTypes.string,
   headers: PropTypes.array,
-  currentLanguage: PropTypes.object
+  currentLanguage: PropTypes.object,
+  additionalTableRows: PropTypes.array,
 }
 
 export default TableCripto
-

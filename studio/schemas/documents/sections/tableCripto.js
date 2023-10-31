@@ -27,17 +27,25 @@ export default {
       type: 'array',
       of: [{ type: 'localeString' }],
     },
+     {
+      name: "additionalTableRows",
+      title: "Additional Table Rows",
+      description:
+        "Add new rows to the table. This is used for Global Cryptoasset Fund Performance.",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "tiqFundPerformance" }],
+          title: "Global Cryptoasset Fund Performance"
+        }
+      ]
+    },
     {
       name: 'endpoint',
       type: 'url',
       title: 'API Endpoint',
       description: "Insert an optional URL for the API endpoint that will retrieve the data to populate the table automatically",
-      validation: Rule =>
-        Rule.error('Information required.').required()
-            .uri({
-              allowRelative: false,
-              scheme: ['https', 'http'],
-            }),
     },
     {
       name: 'description',
