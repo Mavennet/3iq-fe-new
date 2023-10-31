@@ -37,13 +37,56 @@ function TableCripto(props) {
   }`
 
   const [tableRow, setTableRows] = React.useState([])
+  const [loadedData, setLoadedData] = React.useState([])
 
   React.useEffect(() => {
+    const fetchDataForTableRow = async () => {
+      // Create an array to store the updated data
+      const updatedData = []
+
+      for (const item of tableRow) {
+        try {
+          // Make an API call to get the price data
+          const response = await axios.get(item.price)
+          if (response.status === 200) {
+            const priceData = response.data
+            const firstValue = Object.values(priceData)[0]
+            const usdValue = firstValue.usd
+            item.price = usdValue
+          } else {
+            console.error('Failed to fetch data for item: ', item)
+          }
+        } catch (error) {
+          console.error('Error fetching data: ', error)
+        }
+
+        updatedData.push(item)
+      }
+
+      setLoadedData(updatedData)
+    }
+
+    if (tableRow.length > 0) {
+      fetchDataForTableRow()
+    }
+  }, [tableRow])
+
+  React.useEffect(() => {
+    // Fetch data from your Groq query and update tableRow
+    const groqQuery = `*[_type == "tiqFundPerformance" && _id in $ref] | order(priority asc) {
+      cryptoName,
+      cryptoLogo,
+      price,
+      indexWeight,
+      portfolioWeight
+    }`
+
     const fetchData = async (refs) => {
       const results = await client.fetch(groqQuery, {ref: refs})
       setTableRows(results)
     }
-    if (additionalTableRows && tableRow.length == 0) {
+
+    if (additionalTableRows && tableRow.length === 0) {
       let refs = []
       additionalTableRows.forEach((row) => refs.push(row._ref))
       fetchData(refs)
@@ -143,28 +186,29 @@ function TableCripto(props) {
                       </tr>
                     )
                   })}
-                  {tableRow &&
-                    tableRow.map((item, key) => (
-                      <tr key={key}>
-                        <td className={styles.fixed__mobile}>
-                          <div className={styles.criptoInfo}>
-                            <Box
-                              component="img"
-                              alt={item.cryptoName[currentLanguage?.languageTag]}
-                              src={builder.image(item.cryptoLogo).url()}
-                              sx={{
-                                marginRight: '10px',
-                                width: '25px',
-                              }}
-                            />
-                            {item.cryptoName[currentLanguage?.languageTag]}
-                          </div>
-                        </td>
-                        <td>{item.price[currentLanguage?.languageTag]}</td>
-                        <td>{item.indexWeight[currentLanguage?.languageTag]}</td>
-                        <td>{item.portfolioWeight[currentLanguage?.languageTag]}</td>
-                      </tr>
-                    ))}
+                  {loadedData.map((item, key) => (
+                    <tr key={key}>
+                      <td className={styles.fixed__mobile}>
+                        <div className={styles.criptoInfo}>
+                          <Box
+                            component="img"
+                            alt={item.cryptoName[currentLanguage?.languageTag]}
+                            src={builder.image(item.cryptoLogo).url()}
+                            sx={{
+                              marginRight: '10px',
+                              width: '25px',
+                            }}
+                          />
+                          {item.cryptoName[currentLanguage?.languageTag]}
+                        </div>
+                      </td>
+                      <td className={styles.price}>
+                        $ {item.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                      </td>
+                      <td>{item.indexWeight[currentLanguage?.languageTag]}</td>
+                      <td>{item.portfolioWeight[currentLanguage?.languageTag]}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

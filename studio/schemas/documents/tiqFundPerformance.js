@@ -29,8 +29,10 @@ export default {
     },
     {
       name: "price",
-      type: "localeString",
-      title: "Price"
+      type: "url",
+      description:
+        "Insert a CoinGecko URL for the API endpoint that will retrieve the data to populate the table automatically",
+      title: "Price Endpoint"
     },
     {
       name: "indexWeight",
@@ -40,7 +42,7 @@ export default {
     {
       name: "portfolioWeight",
       type: "localeString",
-      title: "Profile Weight"
+      title: "Portfolio Weight"
     },
     {
       name: "priority",
