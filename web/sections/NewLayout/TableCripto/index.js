@@ -32,14 +32,13 @@ function TableCripto(props) {
     cryptoName,
     cryptoLogo,
     price,
-    indexWeight,
     portfolioWeight
   }`
 
   const [tableRow, setTableRows] = React.useState([])
   const [loadedData, setLoadedData] = React.useState([])
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
     const fetchDataForTableRow = async () => {
       // Create an array to store the updated data
       const updatedData = []
@@ -49,10 +48,12 @@ function TableCripto(props) {
           // Make an API call to get the price data
           const response = await axios.get(item.price)
           if (response.status === 200) {
+            item.cryptoName = item?.cryptoName[currentLanguage?.languageTag]
             const priceData = response.data
             const firstValue = Object.values(priceData)[0]
             const usdValue = firstValue.usd
             item.price = parseFloat(usdValue)
+            item.portfolioWeight = item?.portfolioWeight[currentLanguage?.languageTag]
           } else {
             console.error('Failed to fetch data for item: ', item)
           }
@@ -64,11 +65,10 @@ function TableCripto(props) {
       }
 
       setLoadedData(updatedData)
+      console.log(loadedData)
     }
 
-    if (tableRow.length > 0) {
-      fetchDataForTableRow()
-    }
+    await fetchDataForTableRow()
   }, [tableRow])
 
   React.useEffect(() => {
@@ -77,7 +77,6 @@ function TableCripto(props) {
       cryptoName,
       cryptoLogo,
       price,
-      indexWeight,
       portfolioWeight
     }`
 
@@ -123,7 +122,14 @@ function TableCripto(props) {
           )}
           <>
             <CSVLink
-              data={data ? data : []}
+              data={
+                loadedData
+                  ? loadedData.map((item) => {
+                      const {cryptoLogo, ...restOfItem} = item
+                      return restOfItem
+                    })
+                  : []
+              }
               filename={`table.csv`}
               target="_blank"
               style={{
@@ -192,14 +198,14 @@ function TableCripto(props) {
                         <div className={styles.criptoInfo}>
                           <Box
                             component="img"
-                            alt={item?.cryptoName[currentLanguage?.languageTag]}
+                            alt={item?.cryptoName}
                             src={builder.image(item?.cryptoLogo).url()}
                             sx={{
                               marginRight: '10px',
                               width: '25px',
                             }}
                           />
-                          {item?.cryptoName[currentLanguage?.languageTag]}
+                          {item?.cryptoName}
                         </div>
                       </td>
                       <td className={styles.price}>
@@ -207,7 +213,7 @@ function TableCripto(props) {
                           ? `$ ${item.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
                           : 'N/A'}
                       </td>
-                      <td>{item?.portfolioWeight[currentLanguage?.languageTag]}</td>
+                      <td>{item?.portfolioWeight}</td>
                     </tr>
                   ))}
                 </tbody>
