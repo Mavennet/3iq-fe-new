@@ -39,7 +39,7 @@ function TableCripto(props) {
   const [tableRow, setTableRows] = React.useState([])
   const [loadedData, setLoadedData] = React.useState([])
 
-  React.useEffect(() => {
+  React.useEffect(async () => {
     const fetchDataForTableRow = async () => {
       // Create an array to store the updated data
       const updatedData = []
@@ -52,9 +52,7 @@ function TableCripto(props) {
             const priceData = response.data
             const firstValue = Object.values(priceData)[0]
             const usdValue = firstValue.usd
-            console.log(usdValue)
             item.price = parseFloat(usdValue)
-            console.log(item.price)
           } else {
             console.error('Failed to fetch data for item: ', item)
           }
@@ -68,7 +66,7 @@ function TableCripto(props) {
       setLoadedData(updatedData)
     }
 
-    fetchDataForTableRow()
+    await fetchDataForTableRow()
   }, [tableRow])
 
   React.useEffect(() => {
