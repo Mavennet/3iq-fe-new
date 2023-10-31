@@ -38,12 +38,10 @@ function TableCripto(props) {
   const [tableRow, setTableRows] = React.useState([])
   const [loadedData, setLoadedData] = React.useState([])
 
-  React.useEffect(async () => {
+  React.useEffect(() => {
     const fetchDataForTableRow = async () => {
-      // Create an array to store the updated data
-      const updatedData = []
-
-      for (const item of tableRow) {
+      // Create an array to store the promises for all API calls
+      const apiCallPromises = tableRow.map(async (item) => {
         try {
           // Make an API call to get the price data
           const response = await axios.get(item.price)
@@ -59,13 +57,20 @@ function TableCripto(props) {
           console.error('Error fetching data: ', error)
         }
 
-        updatedData.push(item)
-      }
+        return item
+      })
 
-      setLoadedData(updatedData)
+      try {
+        // Wait for all API calls to complete
+        const updatedData = await Promise.all(apiCallPromises)
+        // After all API calls are completed, update the state with the updated data
+        setLoadedData(updatedData)
+      } catch (error) {
+        console.error('Error fetching data for one or more items: ', error)
+      }
     }
 
-    await fetchDataForTableRow()
+    fetchDataForTableRow()
   }, [tableRow])
 
   React.useEffect(() => {
@@ -215,7 +220,7 @@ function TableCripto(props) {
                       <td className={styles.price}>
                         {item?.price && typeof item.price === 'number'
                           ? `$ ${item.price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}`
-                          : 'N/A'}
+                          : ''}
                       </td>
                       <td>{item?.portfolioWeight[currentLanguage?.languageTag]}</td>
                     </tr>
