@@ -205,7 +205,6 @@ function TableCripto(props) {
                       <td className={styles.price}>
                         $ {item.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                       </td>
-                      <td>{item?.indexWeight[currentLanguage?.languageTag]}</td>
                       <td>{item?.portfolioWeight[currentLanguage?.languageTag]}</td>
                     </tr>
                   ))}
