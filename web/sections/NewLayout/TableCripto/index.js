@@ -192,21 +192,21 @@ function TableCripto(props) {
                         <div className={styles.criptoInfo}>
                           <Box
                             component="img"
-                            alt={item.cryptoName[currentLanguage?.languageTag]}
-                            src={builder.image(item.cryptoLogo).url()}
+                            alt={item?.cryptoName[currentLanguage?.languageTag]}
+                            src={builder.image(item?.cryptoLogo).url()}
                             sx={{
                               marginRight: '10px',
                               width: '25px',
                             }}
                           />
-                          {item.cryptoName[currentLanguage?.languageTag]}
+                          {item?.cryptoName[currentLanguage?.languageTag]}
                         </div>
                       </td>
                       <td className={styles.price}>
-                        $ {item.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                        $ {item?.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                       </td>
-                      <td>{item.indexWeight[currentLanguage?.languageTag]}</td>
-                      <td>{item.portfolioWeight[currentLanguage?.languageTag]}</td>
+                      <td>{item?.indexWeight[currentLanguage?.languageTag]}</td>
+                      <td>{item?.portfolioWeight[currentLanguage?.languageTag]}</td>
                     </tr>
                   ))}
                 </tbody>
