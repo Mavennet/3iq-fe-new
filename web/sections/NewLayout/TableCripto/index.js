@@ -1,28 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Typography, Box, Container } from '@mui/material'
+import {Grid, Typography, Box, Container} from '@mui/material'
 import styles from './styles.module.scss'
 import SimpleBlockContent from '../../../components/OldLayout/SimpleBlockContent'
 import axios from 'axios'
-import { CSVLink } from 'react-csv'
-import { TfiDownload } from 'react-icons/tfi'
+import {CSVLink} from 'react-csv'
+import {TfiDownload} from 'react-icons/tfi'
+import client from '../../../client'
+import groq from 'groq'
+import imageUrlBuilder from '@sanity/image-url'
 
+const builder = imageUrlBuilder(client)
 function TableCripto(props) {
-  const {
-    heading,
-    description,
-    endpoint,
-    headers,
-    currentLanguage,
-  } = props
+  const {heading, description, endpoint, headers, currentLanguage, additionalTableRows} = props
 
   const [data, setData] = React.useState([])
 
   const downloadText = currentLanguage.name === 'EN' ? 'Download' : 'Télécharger'
 
   const getTableData = (endpoint) => {
-    axios.get(endpoint)
-      .then(response => setData(response.data))
+    axios.get(endpoint).then((response) => setData(response.data))
   }
 
   React.useEffect(() => {
@@ -30,6 +27,71 @@ function TableCripto(props) {
       getTableData(endpoint)
     }
   }, [endpoint])
+
+  const groqQuery = `*[_type == "tiqFundPerformance" && _id in $ref] | order(priority asc) {
+    cryptoName,
+    cryptoLogo,
+    price,
+    indexWeight,
+    portfolioWeight
+  }`
+
+  const [tableRow, setTableRows] = React.useState([])
+  const [loadedData, setLoadedData] = React.useState([])
+
+  React.useEffect(() => {
+    const fetchDataForTableRow = async () => {
+      // Create an array to store the updated data
+      const updatedData = []
+
+      for (const item of tableRow) {
+        try {
+          // Make an API call to get the price data
+          const response = await axios.get(item.price)
+          if (response.status === 200) {
+            const priceData = response.data
+            const firstValue = Object.values(priceData)[0]
+            const usdValue = firstValue.usd
+            item.price = usdValue
+          } else {
+            console.error('Failed to fetch data for item: ', item)
+          }
+        } catch (error) {
+          console.error('Error fetching data: ', error)
+        }
+
+        updatedData.push(item)
+      }
+
+      setLoadedData(updatedData)
+    }
+
+    if (tableRow.length > 0) {
+      fetchDataForTableRow()
+    }
+  }, [tableRow])
+
+  React.useEffect(() => {
+    // Fetch data from your Groq query and update tableRow
+    const groqQuery = `*[_type == "tiqFundPerformance" && _id in $ref] | order(priority asc) {
+      cryptoName,
+      cryptoLogo,
+      price,
+      indexWeight,
+      portfolioWeight
+    }`
+
+    const fetchData = async (refs) => {
+      const results = await client.fetch(groqQuery, {ref: refs})
+      setTableRows(results)
+    }
+
+    if (additionalTableRows && tableRow.length === 0) {
+      let refs = []
+      additionalTableRows.forEach((row) => refs.push(row._ref))
+      fetchData(refs)
+    }
+  }, [])
 
   return (
     <Container sx={{maxWidth: {sm: 'md', lg: 'lg', xl: 'xl'}}}>
@@ -124,6 +186,29 @@ function TableCripto(props) {
                       </tr>
                     )
                   })}
+                  {loadedData.map((item, key) => (
+                    <tr key={key}>
+                      <td className={styles.fixed__mobile}>
+                        <div className={styles.criptoInfo}>
+                          <Box
+                            component="img"
+                            alt={item.cryptoName[currentLanguage?.languageTag]}
+                            src={builder.image(item.cryptoLogo).url()}
+                            sx={{
+                              marginRight: '10px',
+                              width: '25px',
+                            }}
+                          />
+                          {item.cryptoName[currentLanguage?.languageTag]}
+                        </div>
+                      </td>
+                      <td className={styles.price}>
+                        $ {item.price?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                      </td>
+                      <td>{item.indexWeight[currentLanguage?.languageTag]}</td>
+                      <td>{item.portfolioWeight[currentLanguage?.languageTag]}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -146,8 +231,8 @@ TableCripto.propTypes = {
   description: PropTypes.string,
   endpoint: PropTypes.string,
   headers: PropTypes.array,
-  currentLanguage: PropTypes.object
+  currentLanguage: PropTypes.object,
+  additionalTableRows: PropTypes.array,
 }
 
 export default TableCripto
-

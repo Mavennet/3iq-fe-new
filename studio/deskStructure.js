@@ -95,6 +95,7 @@ const hiddenDocTypes = listItem =>
     "category",
     "keyFact",
     "dailyNav",
+    "tiqFundPerformance",
     "imagesContainer",
     "lineChart",
     "tableSection",
@@ -359,5 +360,6 @@ export default () =>
       S.documentTypeListItem("services").title("Services"),
       S.documentTypeListItem("keyFact").title("Key Fact"),
       S.documentTypeListItem("dailyNav").title("Daily Nav"),
+      S.documentTypeListItem("tiqFundPerformance").title("Fund Performance"),
       ...S.documentTypeListItems().filter(hiddenDocTypes)
     ]);
