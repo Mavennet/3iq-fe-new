@@ -48,12 +48,10 @@ function TableCripto(props) {
         try {
           // Make an API call to get the price data
           const response = await axios.get(item.price)
-          console.log(response.data)
           if (response.status === 200) {
             const priceData = response.data
             const firstValue = Object.values(priceData)[0]
             const usdValue = firstValue.usd
-            console.log(usdValue)
             item.price = usdValue
           } else {
             console.error('Failed to fetch data for item: ', item)
