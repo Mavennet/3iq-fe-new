@@ -116,88 +116,104 @@ function QuoteHeads({ orangeBoxEndpoint, greenBoxEndpoint, currentLanguage, volu
       <Container>
         <Grid container>
           <Grid item xs={12}>
-            {
-              orangeBoxData && (
-                <>
-                  <div className={styles.circle__top}></div>
-                  <div className={`${styles.box} ${styles.down} ${parseFloat(orangeBoxData?.change) < 0 ? styles.orange : styles.green}`}>
-                    <Grid container>
-                      <Grid item xs={9}>
-                        <h5>{orangeBoxData?.longname} ({orangeBoxData?.symbolstring})</h5>
-                        <h2>{toCurrency(orangeBoxData?.last,orangeBoxData?.symbolstringCrr)} <small>{orangeBoxData?.change}({orangeBoxData?.changepercent.toFixed(2)}%)</small></h2>
-                        <div className={styles.info}>
-                          <div>
-                            <label>{dateText && dateText}</label>
-                            <h5><strong>{orangeBoxData?.datetime}</strong></h5>
-                          </div>
+            {orangeBoxData && (
+              <>
+                <div className={styles.circle__top}></div>
+                <div
+                  className={`${styles.box} ${styles.down} ${
+                    parseFloat(orangeBoxData?.change) < 0 ? styles.orange : styles.green
+                  }`}
+                >
+                  <Grid container>
+                    <Grid item xs={9}>
+                      <h5>
+                        {orangeBoxData?.longname} ({orangeBoxData?.symbolstring})
+                      </h5>
+                      <h2>
+                        {orangeBoxData?.symbolstring === 'QETH.UN'
+                          ? toCurrency(orangeBoxData?.last, orangeBoxData?.symbolstringCrr).replace(
+                              'US',
+                              'CA'
+                            )
+                          : toCurrency(orangeBoxData?.last, orangeBoxData?.symbolstringCrr)}{' '}
+                        <small>
+                          {orangeBoxData?.change}({orangeBoxData?.changepercent.toFixed(2)}%)
+                        </small>
+                      </h2>
+                      <div className={styles.info}>
+                        <div>
+                          <label>{dateText && dateText}</label>
+                          <h5>
+                            <strong>{orangeBoxData?.datetime}</strong>
+                          </h5>
                         </div>
-                      </Grid>
-                      <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        {
-                          parseFloat(orangeBoxData?.change) < 0 ? (
-                            <BsFillArrowDownLeftCircleFill
-                              size={60}
-                              color={'var(--orange)'}
-                            />
-                          ) : (
-                            <BsFillArrowUpRightCircleFill
-                              size={60}
-                              color={'#009A93'}
-                            />
-                          )
-                        }
-                      </Grid>
-                      <Grid item xs={12}>
-                        <div className={styles.footer}>
-                          <p>{orangeBoxData.key}</p>
-                        </div>
-                      </Grid>
+                      </div>
                     </Grid>
-                  </div>
-                </>
-              )
-            }
-            {
-              greenBoxData && (
-                <>
-                  <div className={`${styles.box} ${styles.up} ${parseFloat(greenBoxData?.change) < 0 ? styles.orange : styles.green}`}>
-                    <Grid container>
-                      <Grid item xs={9}>
-                        <h5>{greenBoxData?.longname} ({greenBoxData?.symbolstring})</h5>
-                        <h2>{toCurrency(greenBoxData?.last,greenBoxData?.symbolstringCrr)} <small>{greenBoxData?.change}({greenBoxData?.changepercent.toFixed(2)}%)</small></h2>
-                        <div className={styles.info}>
-                          <div>
-                            <label>{dateText && dateText}</label>
-                            <h5><strong>{orangeBoxData?.datetime}</strong></h5>
-                          </div>
-                        </div>
-                      </Grid>
-                      <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        {
-                          parseFloat(greenBoxData?.change) < 0 ? (
-                            <BsFillArrowDownLeftCircleFill
-                              size={60}
-                              color={'var(--orange)'}
-                            />
-                          ) : (
-                            <BsFillArrowUpRightCircleFill
-                              size={60}
-                              color={'#009A93'}
-                            />
-                          )
-                        }
-                      </Grid>
-                      <Grid item xs={12}>
-                        <div className={styles.footer}>
-                          <p>{greenBoxData?.key}</p>
-                        </div>
-                      </Grid>
+                    <Grid item xs={3} sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                      {parseFloat(orangeBoxData?.change) < 0 ? (
+                        <BsFillArrowDownLeftCircleFill size={60} color={'var(--orange)'} />
+                      ) : (
+                        <BsFillArrowUpRightCircleFill size={60} color={'#009A93'} />
+                      )}
                     </Grid>
-                  </div>
-                  <div className={styles.circle__down}></div>
-                </>
-              )
-            }
+                    <Grid item xs={12}>
+                      <div className={styles.footer}>
+                        <p>{orangeBoxData.key}</p>
+                      </div>
+                    </Grid>
+                  </Grid>
+                </div>
+              </>
+            )}
+            {greenBoxData && (
+              <>
+                <div
+                  className={`${styles.box} ${styles.up} ${
+                    parseFloat(greenBoxData?.change) < 0 ? styles.orange : styles.green
+                  }`}
+                >
+                  <Grid container>
+                    <Grid item xs={9}>
+                      <h5>
+                        {greenBoxData?.longname} ({greenBoxData?.symbolstring})
+                      </h5>
+                      <h2>
+                        {greenBoxData?.symbolstring === 'QETH.UN'
+                          ? toCurrency(greenBoxData?.last, greenBoxData?.symbolstringCrr).replace(
+                              'US',
+                              'CA'
+                            )
+                          : toCurrency(greenBoxData?.last, greenBoxData?.symbolstringCrr)}{' '}
+                        <small>
+                          {greenBoxData?.change}({greenBoxData?.changepercent.toFixed(2)}%)
+                        </small>
+                      </h2>
+                      <div className={styles.info}>
+                        <div>
+                          <label>{dateText && dateText}</label>
+                          <h5>
+                            <strong>{orangeBoxData?.datetime}</strong>
+                          </h5>
+                        </div>
+                      </div>
+                    </Grid>
+                    <Grid item xs={3} sx={{display: 'flex', justifyContent: 'flex-end'}}>
+                      {parseFloat(greenBoxData?.change) < 0 ? (
+                        <BsFillArrowDownLeftCircleFill size={60} color={'var(--orange)'} />
+                      ) : (
+                        <BsFillArrowUpRightCircleFill size={60} color={'#009A93'} />
+                      )}
+                    </Grid>
+                    <Grid item xs={12}>
+                      <div className={styles.footer}>
+                        <p>{greenBoxData?.key}</p>
+                      </div>
+                    </Grid>
+                  </Grid>
+                </div>
+                <div className={styles.circle__down}></div>
+              </>
+            )}
           </Grid>
         </Grid>
       </Container>
