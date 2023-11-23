@@ -288,7 +288,9 @@ function LineChart(props) {
                   reverse: false,
                 }}
                 axisLeft={{
-                  format: (v) => `$ ${limitLabel(v)}`,
+                  format: (v) => {
+                    console.log(v)
+                    return (v > 1 && v <= 60000) ? `$${limitLabel(v)}` : `${limitLabel(v)}`},
                 }}
                 axisBottom={{
                   format: (v) => convertDate(v),
