@@ -22,7 +22,7 @@ export default {
       validation: Rule => Rule.error("Information required.").required()
     },
     {
-      name: "a",
+      name: "a2",
       type: "string",
       title: "Jan"
     },
