@@ -85,6 +85,23 @@ function FundHistorialPerformanceTable(props) {
     'Annual or YTD',
   ]
 
+  const headings_fr = [
+    'Rendements des fonds ‡',
+    'Janv',
+    'Févr',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juil',
+    'Août',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Déc',
+    'Annuel ou cumulév',
+  ]
+
   return (
     <Container sx={{maxWidth: {sm: 'md', md: 'lg', lg: 'xl'}}}>
       <Grid container my={6} id={heading}>
@@ -126,11 +143,19 @@ function FundHistorialPerformanceTable(props) {
               <table>
                 {
                   <thead className={headerTransparentLayout && styles.headerTransparent}>
-                    <tr>
-                      {headings_en.map((item, i) => {
-                        return <th key={i}>{item}</th>
-                      })}
-                    </tr>
+                    {currentLanguage.name === 'EN' ? (
+                      <tr>
+                        {headings_en.map((item, i) => {
+                          return <th key={i}>{item}</th>
+                        })}
+                      </tr>
+                    ) : (
+                      <tr>
+                        {headings_fr.map((item, i) => {
+                          return <th key={i}>{item}</th>
+                        })}
+                      </tr>
+                    )}
                   </thead>
                 }
                 <tbody className={colorfulLayout && `${styles.tableColorful} ${typesStyle[color]}`}>
