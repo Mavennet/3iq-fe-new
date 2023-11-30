@@ -16,6 +16,7 @@ import item from "./documents/item";
 import menuItem from "./documents/menuItem";
 import team from "./documents/team";
 import timelineItem from "./documents/timelineItem";
+import yearFundHistorialPerformance from "./documents/yearFundHistorialPerformance";
 import location from "./documents/location";
 import tabItem from "./documents/tabItem";
 import product from "./documents/product";
@@ -91,6 +92,7 @@ import fundsContent from "./documents/sections/fundsContent";
 import fundsOverview from "./documents/sections/fundsOverview";
 import lineChart from "./documents/sections/lineChart";
 import tableSection from "./documents/sections/tableSection";
+import fundHistoricalPerformanceTable from "./documents/sections/fundHistoricalPerformanceTable";
 import tableCripto from "./documents/sections/tableCripto";
 import articles from "./documents/sections/articles";
 import howWePartnerClients from "./documents/sections/howWePartnerClients";
@@ -210,6 +212,7 @@ export default createSchema({
     accordionText,
     timeline,
     timelineItem,
+    yearFundHistorialPerformance,
     subscribeForm,
     contactUsForm,
     webinarSubscribe,
@@ -233,6 +236,7 @@ export default createSchema({
     imagesContainer,
     lineChart,
     tableSection,
+    fundHistoricalPerformanceTable,
     tableCripto,
     howWePartnerClients,
     serviceAndSolutions,

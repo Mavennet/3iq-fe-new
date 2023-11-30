@@ -85,6 +85,7 @@ export default {
     "category",
     "imagesContainer",
     "tableSection",
+    "fundHistoricalPerformanceTable",
     "tableCripto",
     "lineChart",
     "articles",
