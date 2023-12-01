@@ -17,6 +17,7 @@ import menuItem from "./documents/menuItem";
 import team from "./documents/team";
 import timelineItem from "./documents/timelineItem";
 import yearFundHistorialPerformance from "./documents/yearFundHistorialPerformance";
+import fundlPerformance from "./documents/fundPerformance";
 import location from "./documents/location";
 import tabItem from "./documents/tabItem";
 import product from "./documents/product";
@@ -29,7 +30,7 @@ import services from "./documents/services";
 import postV2 from "./documents/postV2";
 import keyFact from "./documents/keyFact";
 import dailyNav from "./documents/dailyNav";
-import tiqFundPerformance from './documents/tiqFundPerformance';
+import tiqFundPerformance from "./documents/tiqFundPerformance";
 
 // Section documents
 import textSection from "./documents/sections/textSection";
@@ -93,6 +94,7 @@ import fundsOverview from "./documents/sections/fundsOverview";
 import lineChart from "./documents/sections/lineChart";
 import tableSection from "./documents/sections/tableSection";
 import fundHistoricalPerformanceTable from "./documents/sections/fundHistoricalPerformanceTable";
+import fundPerformanceTable from "./documents/sections/fundPerformanceTable";
 import tableCripto from "./documents/sections/tableCripto";
 import articles from "./documents/sections/articles";
 import howWePartnerClients from "./documents/sections/howWePartnerClients";
@@ -124,8 +126,8 @@ import localeBioPortableText from "./objects/locale/localeBioPortableText";
 import localeFigure from "./objects/locale/localeFigure";
 import accordionText from "./documents/sections/accordionText";
 import why3iQ from "./documents/sections/why3iQ";
-import newTabItem from './documents/sections/newTabItem';
-import tabMenu from './documents/sections/tabMenu';
+import newTabItem from "./documents/sections/newTabItem";
+import tabMenu from "./documents/sections/tabMenu";
 
 export default createSchema({
   name: "default",
@@ -213,6 +215,7 @@ export default createSchema({
     timeline,
     timelineItem,
     yearFundHistorialPerformance,
+    fundlPerformance,
     subscribeForm,
     contactUsForm,
     webinarSubscribe,
@@ -237,6 +240,7 @@ export default createSchema({
     lineChart,
     tableSection,
     fundHistoricalPerformanceTable,
+    fundPerformanceTable,
     tableCripto,
     howWePartnerClients,
     serviceAndSolutions,

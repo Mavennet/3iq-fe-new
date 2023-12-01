@@ -50,6 +50,7 @@ export default {
             {type: 'lineChart'},
             {type: 'tableSection'},
             {type: 'fundHistoricalPerformanceTable'},
+            {type: 'fundPerformanceTable'},
             {type: 'tableCripto'},
             {type: 'textSection'},
             {type: 'keyBenefits'},
