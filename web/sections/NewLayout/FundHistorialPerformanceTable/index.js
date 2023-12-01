@@ -25,7 +25,7 @@ function FundHistorialPerformanceTable(props) {
   const [data, setData] = React.useState()
   const [date, setDate] = React.useState(null)
 
-  const groqQuery = `*[_type == "yearFundHistorialPerformance"] | order(priority desc) {
+  const groqQuery = `*[_type == "yearFundHistorialPerformance" && _id in $ref] | order(priority desc) {
     a1,
     a2,
     a3,
